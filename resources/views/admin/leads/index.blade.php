@@ -64,29 +64,54 @@
                                     {{ $lead->name }}
                                 </div>
 
-                                <form
-                                    method="POST"
-                                    action="{{ route('admin.leads.update-status', $lead) }}"
-                                    class="mt-3"
-                                >
-                                    @csrf
-                                    @method('PATCH')
+                                @php
+                                    $currentStatus = collect($statuses)->firstWhere('value', $lead->status);
 
-                                    <select
-                                        name="status"
-                                        onchange="this.form.submit()"
-                                        class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black outline-none"
+                                    $statusClasses = [
+                                        'new' => 'bg-blue-100 text-blue-700 border-blue-200',
+                                        'contacted' => 'bg-yellow-100 text-yellow-700 border-yellow-200',
+                                        'in_discussion' => 'bg-purple-100 text-purple-700 border-purple-200',
+                                        'won' => 'bg-green-100 text-green-700 border-green-200',
+                                        'lost' => 'bg-red-100 text-red-700 border-red-200',
+                                    ];
+                                @endphp
+
+                                <details class="group relative mt-3 w-fit">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition hover:shadow-sm {{ $statusClasses[$lead->status] ?? 'bg-gray-100 text-gray-700 border-gray-200' }}"
                                     >
+                                        {{ $currentStatus?->label() ?? $lead->status }}
+
+                                        <span class="text-[10px] transition group-open:rotate-180">
+            ▼
+        </span>
+                                    </summary>
+
+                                    <div class="absolute left-0 z-30 mt-2 w-44 overflow-hidden rounded-2xl border border-black/10 bg-white p-1 shadow-xl">
                                         @foreach($statuses as $status)
-                                            <option
-                                                value="{{ $status->value }}"
-                                                @selected($lead->status === $status->value)
+                                            <form
+                                                method="POST"
+                                                action="{{ route('admin.leads.update-status', $lead) }}"
                                             >
-                                                {{ $status->label() }}
-                                            </option>
+                                                @csrf
+                                                @method('PATCH')
+
+                                                <input type="hidden" name="status" value="{{ $status->value }}">
+
+                                                <button
+                                                    type="submit"
+                                                    class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-medium transition hover:bg-[#f7f4ef] {{ $lead->status === $status->value ? 'text-[#8b6f47]' : 'text-black/70' }}"
+                                                >
+                                                    <span>{{ $status->label() }}</span>
+
+                                                    @if($lead->status === $status->value)
+                                                        <span>✓</span>
+                                                    @endif
+                                                </button>
+                                            </form>
                                         @endforeach
-                                    </select>
-                                </form>
+                                    </div>
+                                </details>
                             </td>
 
                             <td class="px-5 py-4">
@@ -107,8 +132,16 @@
                                 @endif
                             </td>
 
-                            <td class="px-5 py-4 font-medium">
-                                {{ $lead->selected_template }}
+                            <td class="px-5 py-4">
+                                <div class="font-medium">
+                                    {{ $lead->selected_template }}
+                                </div>
+
+                                @if($lead->selected_category_label)
+                                    <div class="mt-1 inline-flex rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
+                                        {{ $lead->selected_category_label }}
+                                    </div>
+                                @endif
                             </td>
 
                             <td class="px-5 py-4">

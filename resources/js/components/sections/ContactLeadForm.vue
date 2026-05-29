@@ -137,6 +137,8 @@ async function handleSubmit() {
     const payload = {
         ...form.value,
         template: props.selectedTemplate.name,
+        categoryKey: props.selectedTemplate.categoryKey,
+        categoryLabel: props.selectedTemplate.category,
         features: props.selectedFeatures.map(feature => feature.name),
         totalPrice: props.totalPrice,
     }

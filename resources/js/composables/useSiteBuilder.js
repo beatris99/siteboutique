@@ -1,7 +1,19 @@
 import { computed, ref } from 'vue'
 
-export function useSiteBuilder(templates, features) {
-    const selectedTemplateId = ref(templates[0]?.id ?? null)
+export function useSiteBuilder(templates, features, categories) {
+    const selectedCategoryKey = ref(categories[0]?.key ?? null)
+
+    const filteredTemplates = computed(() => {
+        return templates.filter(template => template.categoryKey === selectedCategoryKey.value)
+    })
+
+    const availableFeatures = computed(() => {
+        return features.filter(feature => {
+            return feature.availableFor.includes(selectedCategoryKey.value)
+        })
+    })
+
+    const selectedTemplateId = ref(filteredTemplates.value[0]?.id ?? templates[0]?.id ?? null)
     const selectedFeatureIds = ref([])
 
     const selectedTemplate = computed(() => {
@@ -9,7 +21,9 @@ export function useSiteBuilder(templates, features) {
     })
 
     const selectedFeatures = computed(() => {
-        return features.filter(feature => selectedFeatureIds.value.includes(feature.id))
+        return availableFeatures.value.filter(feature => {
+            return selectedFeatureIds.value.includes(feature.id)
+        })
     })
 
     const totalPrice = computed(() => {
@@ -21,6 +35,20 @@ export function useSiteBuilder(templates, features) {
             return sum + feature.price
         }, 0)
     })
+
+    function selectCategory(categoryKey) {
+        selectedCategoryKey.value = categoryKey
+
+        const firstTemplateFromCategory = templates.find(template => {
+            return template.categoryKey === categoryKey
+        })
+
+        if (firstTemplateFromCategory) {
+            selectedTemplateId.value = firstTemplateFromCategory.id
+        }
+
+        selectedFeatureIds.value = []
+    }
 
     function selectTemplate(templateId) {
         selectedTemplateId.value = templateId
@@ -40,11 +68,15 @@ export function useSiteBuilder(templates, features) {
     }
 
     return {
+        selectedCategoryKey,
         selectedTemplateId,
         selectedFeatureIds,
+        filteredTemplates,
+        availableFeatures,
         selectedTemplate,
         selectedFeatures,
         totalPrice,
+        selectCategory,
         selectTemplate,
         toggleFeature,
         resetSelectedFeatures,

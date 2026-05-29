@@ -8,15 +8,18 @@
         <HeroSection :hero="siteContent.hero" />
 
         <TemplateGallery
-            :templates="templates"
+            :categories="templateCategories"
+            :templates="filteredTemplates"
+            :selected-category-key="selectedCategoryKey"
             :selected-template-id="selectedTemplateId"
+            @select-category="selectCategory"
             @select-template="selectTemplate"
         />
 
         <section id="builder" class="bg-white py-24">
             <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
                 <SiteConfigurator
-                    :features="features"
+                    :features="availableFeatures"
                     :selected-feature-ids="selectedFeatureIds"
                     @toggle-feature="toggleFeature"
                 />
@@ -40,7 +43,7 @@
 </template>
 
 <script setup>
-import { features, templates } from './data/siteBuilder'
+import { features, templateCategories, templates } from './data/siteBuilder'
 import { siteContent } from './data/siteContent'
 import { useSiteBuilder } from './composables/useSiteBuilder'
 
@@ -52,13 +55,17 @@ import PriceSummary from './components/builder/PriceSummary.vue'
 import ContactLeadForm from './components/sections/ContactLeadForm.vue'
 
 const {
+    selectedCategoryKey,
     selectedTemplateId,
     selectedFeatureIds,
+    filteredTemplates,
+    availableFeatures,
     selectedTemplate,
     selectedFeatures,
     totalPrice,
+    selectCategory,
     selectTemplate,
     toggleFeature,
     resetSelectedFeatures,
-} = useSiteBuilder(templates, features)
+} = useSiteBuilder(templates, features, templateCategories)
 </script>

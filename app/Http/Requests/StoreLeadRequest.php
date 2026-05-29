@@ -35,6 +35,9 @@ class StoreLeadRequest extends FormRequest
             'features.*' => ['string', 'max:255'],
 
             'totalPrice' => ['required', 'integer', 'min:0'],
+
+            'categoryKey' => ['nullable', 'string', 'max:255'],
+            'categoryLabel' => ['nullable', 'string', 'max:255'],
         ];
     }
 

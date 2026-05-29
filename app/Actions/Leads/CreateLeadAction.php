@@ -17,6 +17,8 @@ class CreateLeadAction
             'selected_features' => $data['features'] ?? [],
             'total_price' => $data['totalPrice'],
             'status' => 'new',
+            'selected_category_key' => $data['categoryKey'] ?? null,
+            'selected_category_label' => $data['categoryLabel'] ?? null,
         ]);
     }
 }

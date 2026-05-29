@@ -15,6 +15,8 @@ class Lead extends Model
         'total_price',
         'message',
         'status',
+        'selected_category_key',
+        'selected_category_label',
     ];
 
     protected $casts = [
