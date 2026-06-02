@@ -5,10 +5,14 @@ export function useLeadSubmission() {
     const errorMessage = ref('')
     const successMessage = ref('')
 
-    async function submitLead(payload) {
-        isSubmitting.value = true
+    function resetMessages() {
         errorMessage.value = ''
         successMessage.value = ''
+    }
+
+    async function submitLead(payload) {
+        isSubmitting.value = true
+        resetMessages()
 
         const csrfToken = document
             .querySelector('meta[name="csrf-token"]')
@@ -60,5 +64,6 @@ export function useLeadSubmission() {
         errorMessage,
         successMessage,
         submitLead,
+        resetMessages,
     }
 }

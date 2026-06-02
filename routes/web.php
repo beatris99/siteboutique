@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\LeadController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LeadNoteController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\LeadController;
+use App\Http\Controllers\LeadNoteController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +13,7 @@ Route::get('/', function () {
 Route::get('/templates/{slug}', function () {
     return view('welcome');
 })->name('templates.show');
+
 Route::post('/leads', [LeadController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('leads.store');
@@ -29,6 +30,7 @@ Route::middleware('admin.auth')
 
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
         Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
+
         Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
         Route::get('/leads/{lead}/edit', [LeadController::class, 'edit'])->name('leads.edit');
         Route::put('/leads/{lead}', [LeadController::class, 'update'])->name('leads.update');

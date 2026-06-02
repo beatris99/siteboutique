@@ -1,7 +1,8 @@
 import { computed, ref } from 'vue'
 
-export function useSiteBuilder(templates, features, categories) {
+export function useSiteBuilder(templates, features, categories, packages) {
     const selectedCategoryKey = ref(categories[0]?.key ?? null)
+    const selectedPackageId = ref(packages[1]?.id ?? packages[0]?.id ?? null)
 
     const filteredTemplates = computed(() => {
         return templates.filter(template => template.categoryKey === selectedCategoryKey.value)
@@ -20,6 +21,10 @@ export function useSiteBuilder(templates, features, categories) {
         return templates.find(template => template.id === selectedTemplateId.value) || templates[0]
     })
 
+    const selectedPackage = computed(() => {
+        return packages.find(packageItem => packageItem.id === selectedPackageId.value) || packages[0]
+    })
+
     const selectedFeatures = computed(() => {
         return availableFeatures.value.filter(feature => {
             return selectedFeatureIds.value.includes(feature.id)
@@ -27,13 +32,15 @@ export function useSiteBuilder(templates, features, categories) {
     })
 
     const totalPrice = computed(() => {
-        if (!selectedTemplate.value) {
+        if (!selectedTemplate.value || !selectedPackage.value) {
             return 0
         }
 
-        return selectedTemplate.value.basePrice + selectedFeatures.value.reduce((sum, feature) => {
+        const extraFeaturesPrice = selectedFeatures.value.reduce((sum, feature) => {
             return sum + feature.price
         }, 0)
+
+        return selectedTemplate.value.basePrice + selectedPackage.value.price + extraFeaturesPrice
     })
 
     function selectCategory(categoryKey) {
@@ -54,6 +61,10 @@ export function useSiteBuilder(templates, features, categories) {
         selectedTemplateId.value = templateId
     }
 
+    function selectPackage(packageId) {
+        selectedPackageId.value = packageId
+    }
+
     function toggleFeature(featureId) {
         if (selectedFeatureIds.value.includes(featureId)) {
             selectedFeatureIds.value = selectedFeatureIds.value.filter(id => id !== featureId)
@@ -70,14 +81,17 @@ export function useSiteBuilder(templates, features, categories) {
     return {
         selectedCategoryKey,
         selectedTemplateId,
+        selectedPackageId,
         selectedFeatureIds,
         filteredTemplates,
         availableFeatures,
         selectedTemplate,
+        selectedPackage,
         selectedFeatures,
         totalPrice,
         selectCategory,
         selectTemplate,
+        selectPackage,
         toggleFeature,
         resetSelectedFeatures,
     }

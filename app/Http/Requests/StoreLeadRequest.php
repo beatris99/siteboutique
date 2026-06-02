@@ -41,16 +41,18 @@ class StoreLeadRequest extends FormRequest
 
             'totalPrice' => ['required', 'integer', 'min:0'],
 
+            'privacyAccepted' => ['accepted'],
+
             // Honeypot antispam.
             // Utilizatorii reali nu văd câmpul acesta.
             // Boții îl completează des, iar atunci cererea pică.
             'website' => ['nullable', 'max:0'],
         ];
     }
+
     public function messages(): array
     {
         return [
-            'website.max' => 'Cererea nu a putut fi trimisă.',
             'name.required' => 'Numele este obligatoriu.',
 
             'email.required_without' => 'Completează emailul sau telefonul.',
@@ -59,8 +61,13 @@ class StoreLeadRequest extends FormRequest
             'phone.required_without' => 'Completează telefonul sau emailul.',
 
             'template.required' => 'Trebuie selectat un template.',
+
             'totalPrice.required' => 'Prețul estimativ este obligatoriu.',
             'totalPrice.integer' => 'Prețul trebuie să fie un număr.',
+
+            'privacyAccepted.accepted' => 'Trebuie să fii de acord să fii contactat/ă pentru această cerere.',
+
+            'website.max' => 'Cererea nu a putut fi trimisă.',
         ];
     }
 
@@ -72,8 +79,14 @@ class StoreLeadRequest extends FormRequest
             'phone' => 'telefon',
             'message' => 'mesaj',
             'template' => 'template',
+            'categoryKey' => 'categorie',
+            'categoryLabel' => 'categorie',
+            'packageKey' => 'pachet',
+            'packageName' => 'pachet',
             'features' => 'funcționalități',
             'totalPrice' => 'preț total',
+            'privacyAccepted' => 'acord contact',
+            'website' => 'website',
         ];
     }
 }

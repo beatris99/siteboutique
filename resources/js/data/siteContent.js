@@ -255,7 +255,13 @@ export const siteContent = {
         emailPlaceholder: 'Email',
         phonePlaceholder: 'Telefon',
         messagePlaceholder: 'Spune-mi pe scurt ce business ai.',
+        privacyText:
+            'Sunt de acord să fiu contactat/ă pentru această cerere și înțeleg că datele introduse vor fi folosite pentru a primi un răspuns.',
         buttonLabel: 'Trimite cererea',
         loadingLabel: 'Se trimite...',
+        successTitle: 'Am primit cererea ta.',
+        successDescription:
+            'Revin cu un mesaj pentru clarificări și recomandări. Configurația aleasă a fost salvată.',
+        anotherRequestLabel: 'Trimite altă cerere',
     },
 }
