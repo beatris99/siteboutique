@@ -228,6 +228,23 @@ export const siteContent = {
         ],
     },
 
+    finalCta: {
+        eyebrow: 'Ești gata să începi?',
+        title: 'Configurează site-ul și vezi rapid o estimare clară.',
+        description:
+            'Alegi tipul de site, template-ul, pachetul și funcțiile dorite. După trimiterea cererii, revin cu recomandări și o ofertă finală.',
+        card: {
+            label: 'Următorul pas',
+            title: 'Trimite configurația',
+            description:
+                'Nu trebuie să știi exact toate detaliile tehnice. Pornim de la configurația aleasă și ajustăm împreună ce are sens pentru afacerea ta.',
+        },
+        button: {
+            label: 'Mergi la formular',
+            href: '#contact',
+        },
+    },
+
     contact: {
         eyebrow: 'Contact',
         title: 'Hai să discutăm proiectul.',

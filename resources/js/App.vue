@@ -38,6 +38,8 @@
 
             <FAQSection :section="siteContent.faq" />
 
+            <FinalCTASection :section="siteContent.finalCta" />
+
             <ContactLeadForm
                 :contact="siteContent.contact"
                 :selected-template="selectedTemplate"
@@ -94,6 +96,8 @@
 
             <FAQSection :section="siteContent.faq" />
 
+            <FinalCTASection :section="siteContent.finalCta" />
+
             <ContactLeadForm
                 :contact="siteContent.contact"
                 :selected-template="selectedTemplate"
@@ -130,6 +134,7 @@ import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
 import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
 import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
+import FinalCTASection from './components/sections/FinalCTASection.vue'
 
 const {
     selectedCategoryKey,
