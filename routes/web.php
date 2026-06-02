@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LeadNoteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +25,5 @@ Route::middleware('admin.auth')
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
         Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
         Route::patch('/leads/{lead}/status', [LeadController::class, 'updateStatus'])->name('leads.update-status');
+        Route::post('/leads/{lead}/notes', [LeadNoteController::class, 'store'])->name('leads.notes.store');
     });

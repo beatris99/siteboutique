@@ -85,6 +85,8 @@ class LeadController extends Controller
 
     public function show(Lead $lead): View
     {
+        $lead->load('notes');
+
         $statuses = LeadStatus::cases();
 
         return view('admin.leads.show', compact('lead', 'statuses'));

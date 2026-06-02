@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lead extends Model
 {
@@ -58,5 +59,10 @@ class Lead extends Model
         $body = rawurlencode("Bună,\n\nAm primit cererea ta pentru proiectul web și revin cu câteva detalii.");
 
         return "mailto:{$this->email}?subject={$subject}&body={$body}";
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(LeadNote::class)->latest();
     }
 }

@@ -167,9 +167,63 @@
         </div>
 
         <section class="mt-6 rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
-            <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                Mesaj client
-            </p>
+            <section class="mt-6 rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    Note interne
+                </p>
+
+                <form
+                    method="POST"
+                    action="{{ route('admin.leads.notes.store', $lead) }}"
+                    class="mt-6 grid gap-4"
+                >
+                    @csrf
+
+                    <textarea
+                        name="body"
+                        rows="4"
+                        placeholder="Adaugă o notă internă despre discuția cu clientul..."
+                        class="w-full rounded-2xl border border-black/10 bg-[#f7f4ef] px-5 py-4 outline-none placeholder:text-black/40 focus:border-black/30"
+                    >{{ old('body') }}</textarea>
+
+                    @error('body')
+                    <p class="text-sm text-red-600">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
+                    <button
+                        type="submit"
+                        class="w-fit rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-[#8b6f47]"
+                    >
+                        Adaugă notă
+                    </button>
+                </form>
+
+                <div class="mt-8 grid gap-4">
+                    @forelse($lead->notes as $note)
+                        <article class="rounded-2xl border border-black/10 bg-[#f7f4ef] p-5">
+                            <div class="flex flex-col justify-between gap-2 md:flex-row md:items-center">
+                                <p class="text-sm font-medium text-black/70">
+                                    Notă internă
+                                </p>
+
+                                <p class="text-xs text-black/40">
+                                    {{ $note->created_at?->format('d.m.Y H:i') }}
+                                </p>
+                            </div>
+
+                            <div class="mt-3 leading-7 text-black/70">
+                                {!! nl2br(e($note->body)) !!}
+                            </div>
+                        </article>
+                    @empty
+                        <div class="rounded-2xl border border-dashed border-black/10 bg-[#f7f4ef] p-6 text-center text-sm text-black/50">
+                            Nu ai adăugat încă note pentru acest lead.
+                        </div>
+                    @endforelse
+                </div>
+            </section>
 
             <div class="mt-5 rounded-[1.5rem] bg-[#f7f4ef] p-5 leading-7 text-black/70">
                 @if($lead->message)
