@@ -14,6 +14,7 @@
             :selected-template-id="selectedTemplateId"
             @select-category="selectCategory"
             @select-template="selectTemplate"
+            :selected-template="selectedTemplate"
         />
 
         <section id="builder" class="bg-white py-24">

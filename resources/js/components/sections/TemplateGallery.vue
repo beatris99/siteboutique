@@ -32,6 +32,11 @@
         >
             Nu există încă template-uri în această categorie.
         </div>
+
+        <TemplateDetailsPanel
+            v-if="selectedTemplate"
+            :template="selectedTemplate"
+        />
     </section>
 </template>
 
@@ -39,6 +44,7 @@
 import SectionTitle from '../ui/SectionTitle.vue'
 import TemplateCard from '../cards/TemplateCard.vue'
 import TemplateCategoryTabs from '../builder/TemplateCategoryTabs.vue'
+import TemplateDetailsPanel from '../builder/TemplateDetailsPanel.vue'
 
 defineProps({
     categories: {
@@ -55,6 +61,10 @@ defineProps({
     },
     selectedTemplateId: {
         type: Number,
+        required: true,
+    },
+    selectedTemplate: {
+        type: Object,
         required: true,
     },
 })
