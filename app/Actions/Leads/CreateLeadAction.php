@@ -13,12 +13,18 @@ class CreateLeadAction
             'email' => $data['email'] ?? null,
             'phone' => $data['phone'] ?? null,
             'message' => $data['message'] ?? null,
+
             'selected_template' => $data['template'],
+
+            'selected_category_key' => $data['categoryKey'] ?? null,
+            'selected_category_label' => $data['categoryLabel'] ?? null,
+
+            'selected_package_key' => $data['packageKey'] ?? null,
+            'selected_package_name' => $data['packageName'] ?? null,
+
             'selected_features' => $data['features'] ?? [],
             'total_price' => $data['totalPrice'],
             'status' => 'new',
-            'selected_category_key' => $data['categoryKey'] ?? null,
-            'selected_category_label' => $data['categoryLabel'] ?? null,
         ]);
     }
 }

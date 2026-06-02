@@ -11,15 +11,52 @@ class Lead extends Model
         'email',
         'phone',
         'selected_template',
+        'selected_category_key',
+        'selected_category_label',
+        'selected_package_key',
+        'selected_package_name',
         'selected_features',
         'total_price',
         'message',
         'status',
-        'selected_category_key',
-        'selected_category_label',
     ];
 
     protected $casts = [
         'selected_features' => 'array',
     ];
+
+    public function getWhatsappUrlAttribute(): ?string
+    {
+        if (! $this->phone) {
+            return null;
+        }
+
+        $number = preg_replace('/\D+/', '', $this->phone);
+
+        if (! $number) {
+            return null;
+        }
+
+        if (str_starts_with($number, '0')) {
+            $number = '40' . substr($number, 1);
+        }
+
+        if (strlen($number) < 8) {
+            return null;
+        }
+
+        return 'https://wa.me/' . $number;
+    }
+
+    public function getEmailUrlAttribute(): ?string
+    {
+        if (! $this->email) {
+            return null;
+        }
+
+        $subject = rawurlencode('SiteBoutique - cererea ta pentru ' . $this->selected_template);
+        $body = rawurlencode("Bună,\n\nAm primit cererea ta pentru proiectul web și revin cu câteva detalii.");
+
+        return "mailto:{$this->email}?subject={$subject}&body={$body}";
+    }
 }

@@ -38,6 +38,9 @@ class StoreLeadRequest extends FormRequest
 
             'categoryKey' => ['nullable', 'string', 'max:255'],
             'categoryLabel' => ['nullable', 'string', 'max:255'],
+
+            'packageKey' => ['nullable', 'string', 'max:255'],
+            'packageName' => ['nullable', 'string', 'max:255'],
         ];
     }
 
