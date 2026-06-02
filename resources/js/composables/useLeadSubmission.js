@@ -28,6 +28,11 @@ export function useLeadSubmission() {
             const data = await response.json()
 
             if (!response.ok) {
+                if (response.status === 429) {
+                    errorMessage.value = 'Ai trimis prea multe cereri într-un timp scurt. Încearcă din nou peste un minut.'
+                    return null
+                }
+
                 if (data.errors) {
                     const firstError = Object.values(data.errors)[0]?.[0]
                     errorMessage.value = firstError || 'Verifică datele introduse.'

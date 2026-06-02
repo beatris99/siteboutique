@@ -13,7 +13,9 @@ Route::get('/', function () {
 Route::get('/templates/{slug}', function () {
     return view('welcome');
 })->name('templates.show');
-Route::post('/leads', [LeadController::class, 'store'])->name('leads.store');
+Route::post('/leads', [LeadController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('leads.store');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.store');

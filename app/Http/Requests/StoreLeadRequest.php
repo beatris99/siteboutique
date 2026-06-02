@@ -23,7 +23,6 @@ class StoreLeadRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
 
-            // Clientul trebuie să lase măcar email sau telefon.
             'email' => ['nullable', 'required_without:phone', 'email', 'max:255'],
             'phone' => ['nullable', 'required_without:email', 'string', 'max:50'],
 
@@ -31,22 +30,27 @@ class StoreLeadRequest extends FormRequest
 
             'template' => ['required', 'string', 'max:255'],
 
-            'features' => ['nullable', 'array'],
-            'features.*' => ['string', 'max:255'],
-
-            'totalPrice' => ['required', 'integer', 'min:0'],
-
             'categoryKey' => ['nullable', 'string', 'max:255'],
             'categoryLabel' => ['nullable', 'string', 'max:255'],
 
             'packageKey' => ['nullable', 'string', 'max:255'],
             'packageName' => ['nullable', 'string', 'max:255'],
+
+            'features' => ['nullable', 'array'],
+            'features.*' => ['string', 'max:255'],
+
+            'totalPrice' => ['required', 'integer', 'min:0'],
+
+            // Honeypot antispam.
+            // Utilizatorii reali nu văd câmpul acesta.
+            // Boții îl completează des, iar atunci cererea pică.
+            'website' => ['nullable', 'max:0'],
         ];
     }
-
     public function messages(): array
     {
         return [
+            'website.max' => 'Cererea nu a putut fi trimisă.',
             'name.required' => 'Numele este obligatoriu.',
 
             'email.required_without' => 'Completează emailul sau telefonul.',

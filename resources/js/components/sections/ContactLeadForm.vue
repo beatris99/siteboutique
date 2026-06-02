@@ -88,6 +88,14 @@
                     {{ isSubmitting ? contact.loadingLabel : contact.buttonLabel }}
                 </BaseButton>
             </form>
+            <input
+                v-model="form.website"
+                type="text"
+                name="website"
+                autocomplete="off"
+                tabindex="-1"
+                class="hidden"
+            />
         </div>
     </section>
 </template>
@@ -131,6 +139,7 @@ const form = ref({
     email: '',
     phone: '',
     message: '',
+    website: '',
 })
 
 async function handleSubmit() {
@@ -154,6 +163,7 @@ async function handleSubmit() {
         email: '',
         phone: '',
         message: '',
+        website: '',
     }
 
     emit('lead-created')
