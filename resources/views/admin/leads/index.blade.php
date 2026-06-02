@@ -33,7 +33,12 @@
                 >
                     Înapoi la site
                 </a>
-
+                <a
+                    href="{{ route('admin.leads.export', request()->query()) }}"
+                    class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                >
+                    Export CSV
+                </a>
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
 
@@ -53,26 +58,39 @@
             </div>
         @endif
 
-        <div class="mb-6 grid gap-4 md:grid-cols-4">
+        <div class="mb-6 grid gap-4 md:grid-cols-5">
             <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
                 <p class="text-sm text-black/50">Total cereri</p>
-                <p class="mt-2 text-3xl font-semibold">{{ $stats['total'] }}</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['total'] ?? 0 }}
+                </p>
             </div>
 
             <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
                 <p class="text-sm text-black/50">Cereri noi</p>
-                <p class="mt-2 text-3xl font-semibold">{{ $stats['new'] }}</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['new'] ?? 0 }}
+                </p>
             </div>
 
             <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
                 <p class="text-sm text-black/50">În discuție</p>
-                <p class="mt-2 text-3xl font-semibold">{{ $stats['in_discussion'] }}</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['in_discussion'] ?? 0 }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">De urmărit</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['follow_up'] ?? 0 }}
+                </p>
             </div>
 
             <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
                 <p class="text-sm text-black/50">Valoare estimată</p>
                 <p class="mt-2 text-3xl font-semibold">
-                    {{ number_format($stats['estimated_value'], 0, ',', '.') }} lei
+                    {{ number_format($stats['estimated_value'] ?? 0, 0, ',', '.') }} lei
                 </p>
             </div>
         </div>
@@ -80,7 +98,7 @@
         <form
             method="GET"
             action="{{ route('admin.leads.index') }}"
-            class="mb-6 grid gap-3 rounded-[1.5rem] border border-black/10 bg-white p-5 md:grid-cols-[1.4fr_1fr_1fr_1fr_auto]"
+            class="mb-6 grid gap-3 rounded-[1.5rem] border border-black/10 bg-white p-5 md:grid-cols-[1.4fr_1fr_1fr_1fr_auto_auto]"
         >
             <input
                 type="text"
@@ -110,7 +128,10 @@
                 <option value="">Toate categoriile</option>
 
                 @foreach($categories as $category)
-                    <option value="{{ $category->selected_category_key }}" @selected(request('category') === $category->selected_category_key)>
+                    <option
+                        value="{{ $category->selected_category_key }}"
+                        @selected(request('category') === $category->selected_category_key)
+                    >
                         {{ $category->selected_category_label }}
                     </option>
                 @endforeach
@@ -123,11 +144,26 @@
                 <option value="">Toate pachetele</option>
 
                 @foreach($packages as $package)
-                    <option value="{{ $package->selected_package_key }}" @selected(request('package') === $package->selected_package_key)>
+                    <option
+                        value="{{ $package->selected_package_key }}"
+                        @selected(request('package') === $package->selected_package_key)
+                    >
                         {{ $package->selected_package_name }}
                     </option>
                 @endforeach
             </select>
+
+            <label class="flex items-center gap-2 rounded-2xl border border-black/10 bg-[#f7f4ef] px-4 py-3 text-sm">
+                <input
+                    type="checkbox"
+                    name="follow_up"
+                    value="1"
+                    @checked(request()->boolean('follow_up'))
+                    class="h-4 w-4"
+                >
+
+                <span>De urmărit</span>
+            </label>
 
             <div class="flex gap-2">
                 <button
@@ -168,6 +204,12 @@
                             $features = is_array($lead->selected_features)
                                 ? $lead->selected_features
                                 : json_decode($lead->selected_features ?? '[]', true);
+
+                            $priorityLabel = match($lead->priority) {
+                                'low' => 'Scăzută',
+                                'high' => 'Ridicată',
+                                default => 'Normală',
+                            };
                         @endphp
 
                         <tr class="align-top transition hover:bg-[#f7f4ef]">
@@ -186,6 +228,12 @@
                                         'statuses' => $statuses,
                                     ])
                                 </div>
+
+                                @if($lead->priority === 'high')
+                                    <div class="mt-2 inline-flex rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">
+                                        Prioritate ridicată
+                                    </div>
+                                @endif
                             </td>
 
                             <td class="px-5 py-4">
@@ -225,14 +273,14 @@
                                 <div class="mt-2 flex flex-wrap gap-2">
                                     @if($lead->selected_category_label)
                                         <span class="inline-flex rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
-                                                    {{ $lead->selected_category_label }}
-                                                </span>
+                                            {{ $lead->selected_category_label }}
+                                        </span>
                                     @endif
 
                                     @if($lead->selected_package_name)
                                         <span class="inline-flex rounded-full bg-black px-3 py-1 text-xs text-white">
-                                                    Pachet {{ $lead->selected_package_name }}
-                                                </span>
+                                            Pachet {{ $lead->selected_package_name }}
+                                        </span>
                                     @endif
                                 </div>
                             </td>
@@ -242,8 +290,8 @@
                                     <div class="flex max-w-xs flex-wrap gap-2">
                                         @foreach($features as $feature)
                                             <span class="rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
-                                                        {{ $feature }}
-                                                    </span>
+                                                {{ $feature }}
+                                            </span>
                                         @endforeach
                                     </div>
                                 @else
@@ -256,7 +304,19 @@
                             </td>
 
                             <td class="whitespace-nowrap px-5 py-4 text-black/50">
-                                {{ $lead->created_at?->format('d.m.Y H:i') }}
+                                <div>
+                                    {{ $lead->created_at?->format('d.m.Y H:i') }}
+                                </div>
+
+                                @if($lead->follow_up_at)
+                                    <div class="mt-2 rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
+                                        Follow-up: {{ $lead->follow_up_at->format('d.m H:i') }}
+                                    </div>
+                                @endif
+
+                                <div class="mt-2 rounded-full bg-white px-3 py-1 text-xs text-black/40">
+                                    Prioritate: {{ $priorityLabel }}
+                                </div>
                             </td>
 
                             <td class="px-5 py-4">

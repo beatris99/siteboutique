@@ -20,10 +20,13 @@ class Lead extends Model
         'total_price',
         'message',
         'status',
+        'follow_up_at',
+        'priority',
     ];
 
     protected $casts = [
         'selected_features' => 'array',
+        'follow_up_at' => 'datetime',
     ];
 
     public function getWhatsappUrlAttribute(): ?string

@@ -6,45 +6,29 @@ use App\Actions\Leads\CreateLeadAction;
 use App\Actions\Leads\UpdateLeadStatusAction;
 use App\Enums\LeadStatus;
 use App\Http\Requests\StoreLeadRequest;
+use App\Http\Requests\UpdateLeadFollowUpRequest;
 use App\Http\Requests\UpdateLeadStatusRequest;
+use App\Mail\NewLeadReceivedMail;
 use App\Models\Lead;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Mail\NewLeadReceivedMail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class LeadController extends Controller
 {
     public function index(Request $request): View
     {
-        $query = Lead::query()->latest();
+        $query = $this->applyFilters(Lead::query(), $request);
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->string('status'));
-        }
-
-        if ($request->filled('category')) {
-            $query->where('selected_category_key', $request->string('category'));
-        }
-
-        if ($request->filled('package')) {
-            $query->where('selected_package_key', $request->string('package'));
-        }
-
-        if ($request->filled('search')) {
-            $search = '%' . $request->string('search') . '%';
-
-            $query->where(function ($query) use ($search) {
-                $query
-                    ->where('name', 'like', $search)
-                    ->orWhere('email', 'like', $search)
-                    ->orWhere('phone', 'like', $search)
-                    ->orWhere('selected_template', 'like', $search)
-                    ->orWhere('message', 'like', $search);
-            });
+        if ($request->boolean('follow_up')) {
+            $query->orderBy('follow_up_at');
+        } else {
+            $query->latest();
         }
 
         $leads = $query
@@ -71,6 +55,7 @@ class LeadController extends Controller
             'total' => Lead::query()->count(),
             'new' => Lead::query()->where('status', LeadStatus::New->value)->count(),
             'in_discussion' => Lead::query()->where('status', LeadStatus::InDiscussion->value)->count(),
+            'follow_up' => Lead::query()->whereNotNull('follow_up_at')->count(),
             'estimated_value' => Lead::query()->sum('total_price'),
         ];
 
@@ -95,6 +80,7 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request, CreateLeadAction $createLeadAction): JsonResponse
     {
         $lead = $createLeadAction->handle($request->validated());
+
         try {
             Mail::to(config('admin.email'))->send(new NewLeadReceivedMail($lead));
         } catch (\Throwable $exception) {
@@ -103,6 +89,7 @@ class LeadController extends Controller
                 'error' => $exception->getMessage(),
             ]);
         }
+
         return response()->json([
             'message' => 'Cererea a fost trimisă cu succes.',
             'lead_id' => $lead->id,
@@ -117,5 +104,125 @@ class LeadController extends Controller
         $updateLeadStatusAction->handle($lead, $request->validated('status'));
 
         return back()->with('success', 'Statusul cererii a fost actualizat.');
+    }
+
+    public function updateFollowUp(UpdateLeadFollowUpRequest $request, Lead $lead): RedirectResponse
+    {
+        $lead->update([
+            'follow_up_at' => $request->validated('follow_up_at'),
+            'priority' => $request->validated('priority'),
+        ]);
+
+        return back()->with('success', 'Follow-up-ul a fost actualizat.');
+    }
+
+    public function export(Request $request): StreamedResponse
+    {
+        $query = $this->applyFilters(Lead::query(), $request)
+            ->with('notes')
+            ->latest();
+
+        $fileName = 'siteboutique-leads-' . now()->format('Y-m-d-H-i') . '.csv';
+
+        return response()->streamDownload(function () use ($query) {
+            $handle = fopen('php://output', 'w');
+
+            fwrite($handle, "\xEF\xBB\xBF");
+
+            fputcsv($handle, [
+                'ID',
+                'Nume',
+                'Email',
+                'Telefon',
+                'Status',
+                'Categorie',
+                'Template',
+                'Pachet',
+                'Functii extra',
+                'Total estimativ',
+                'Prioritate',
+                'Follow-up',
+                'Mesaj',
+                'Note interne',
+                'Creat la',
+            ]);
+
+            $query->chunk(100, function ($leads) use ($handle) {
+                foreach ($leads as $lead) {
+                    $features = is_array($lead->selected_features)
+                        ? $lead->selected_features
+                        : json_decode($lead->selected_features ?? '[]', true);
+
+                    $notes = $lead->notes
+                        ->map(fn ($note) => $note->created_at?->format('d.m.Y H:i') . ' - ' . $note->body)
+                        ->implode("\n");
+
+                    fputcsv($handle, [
+                        $lead->id,
+                        $lead->name,
+                        $lead->email,
+                        $lead->phone,
+                        $lead->status,
+                        $lead->selected_category_label,
+                        $lead->selected_template,
+                        $lead->selected_package_name,
+                        implode(', ', $features ?: []),
+                        $lead->total_price,
+                        $lead->priority,
+                        $lead->follow_up_at?->format('d.m.Y H:i'),
+                        $lead->message,
+                        $notes,
+                        $lead->created_at?->format('d.m.Y H:i'),
+                    ]);
+                }
+            });
+
+            fclose($handle);
+        }, $fileName, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    public function destroy(Lead $lead): RedirectResponse
+    {
+        $lead->delete();
+
+        return redirect()
+            ->route('admin.leads.index')
+            ->with('success', 'Lead-ul a fost șters.');
+    }
+
+    private function applyFilters(Builder $query, Request $request): Builder
+    {
+        if ($request->filled('status')) {
+            $query->where('status', $request->string('status'));
+        }
+
+        if ($request->filled('category')) {
+            $query->where('selected_category_key', $request->string('category'));
+        }
+
+        if ($request->filled('package')) {
+            $query->where('selected_package_key', $request->string('package'));
+        }
+
+        if ($request->boolean('follow_up')) {
+            $query->whereNotNull('follow_up_at');
+        }
+
+        if ($request->filled('search')) {
+            $search = '%' . $request->string('search') . '%';
+
+            $query->where(function (Builder $query) use ($search) {
+                $query
+                    ->where('name', 'like', $search)
+                    ->orWhere('email', 'like', $search)
+                    ->orWhere('phone', 'like', $search)
+                    ->orWhere('selected_template', 'like', $search)
+                    ->orWhere('message', 'like', $search);
+            });
+        }
+
+        return $query;
     }
 }
