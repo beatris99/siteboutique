@@ -12,6 +12,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Mail\NewLeadReceivedMail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -90,7 +93,14 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request, CreateLeadAction $createLeadAction): JsonResponse
     {
         $lead = $createLeadAction->handle($request->validated());
-
+        try {
+            Mail::to(config('admin.email'))->send(new NewLeadReceivedMail($lead));
+        } catch (\Throwable $exception) {
+            Log::error('New lead email could not be sent.', [
+                'lead_id' => $lead->id,
+                'error' => $exception->getMessage(),
+            ]);
+        }
         return response()->json([
             'message' => 'Cererea a fost trimisă cu succes.',
             'lead_id' => $lead->id,

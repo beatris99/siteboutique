@@ -8,6 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/templates/{slug}', function () {
+    return view('welcome');
+})->name('templates.show');
 Route::post('/leads', [LeadController::class, 'store'])->name('leads.store');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');

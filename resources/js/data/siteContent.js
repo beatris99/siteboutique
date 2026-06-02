@@ -7,7 +7,7 @@ export const siteContent = {
     navigation: [
         {
             label: 'Template-uri',
-            href: '#templates',
+            href: '/#templates',
         },
         {
             label: 'Configurator',
@@ -35,7 +35,7 @@ export const siteContent = {
             'Site-uri moderne, configurabile și transparente pentru afaceri care vor să se lanseze rapid, fără discuții inutile și fără prețuri ascunse.',
         primaryButton: {
             label: 'Vezi template-uri',
-            href: '#templates',
+            href: '/#templates',
         },
         secondaryButton: {
             label: 'Configurează prețul',
@@ -207,7 +207,7 @@ export const siteContent = {
         links: [
             {
                 label: 'Template-uri',
-                href: '#templates',
+                href: '/#templates',
             },
             {
                 label: 'Configurator',

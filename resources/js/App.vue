@@ -4,76 +4,175 @@
             :brand="siteContent.brand"
             :navigation="siteContent.navigation"
         />
+        <template v-if="isTemplatePage && !publicTemplate">
+            <TemplateNotFoundPage />
 
-        <HeroSection :hero="siteContent.hero" />
+            <AppFooter :footer="siteContent.footer" />
+        </template>
 
-        <TrustSection :items="siteContent.trust" />
+        <template v-else-if="isTemplatePage && publicTemplate">
+            <TemplatePublicPage :template="publicTemplate" />
 
-        <TemplateGallery
-            :categories="templateCategories"
-            :templates="filteredTemplates"
-            :selected-category-key="selectedCategoryKey"
-            :selected-template-id="selectedTemplateId"
-            @select-category="selectCategory"
-            @select-template="selectTemplate"
-            :selected-template="selectedTemplate"
-        />
+            <PackageSelector
+                :packages="packages"
+                :selected-package-id="selectedPackageId"
+                @select-package="selectPackage"
+            />
 
-        <section id="builder" class="bg-white py-24">
-            <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
-                <SiteConfigurator
-                    :features="availableFeatures"
-                    :selected-feature-ids="selectedFeatureIds"
-                    @toggle-feature="toggleFeature"
-                />
+            <section id="builder" class="bg-white py-24">
+                <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
+                    <SiteConfigurator
+                        :features="availableFeatures"
+                        :selected-feature-ids="selectedFeatureIds"
+                        @toggle-feature="toggleFeature"
+                    />
 
-                <PriceSummary
-                    :selected-template="selectedTemplate"
-                    :selected-features="selectedFeatures"
-                    :total-price="totalPrice"
-                />
-            </div>
-        </section>
+                    <PriceSummary
+                        :selected-template="selectedTemplate"
+                        :selected-package="selectedPackage"
+                        :selected-features="selectedFeatures"
+                        :total-price="totalPrice"
+                    />
+                </div>
+            </section>
 
-        <ContactLeadForm
-            :contact="siteContent.contact"
-            :selected-template="selectedTemplate"
-            :selected-features="selectedFeatures"
-            :total-price="totalPrice"
-            @lead-created="resetSelectedFeatures"
-        />
+            <FAQSection :section="siteContent.faq" />
 
-        <AppFooter :footer="siteContent.footer" />
+            <ContactLeadForm
+                :contact="siteContent.contact"
+                :selected-template="selectedTemplate"
+                :selected-package="selectedPackage"
+                :selected-features="selectedFeatures"
+                :total-price="totalPrice"
+                @lead-created="resetSelectedFeatures"
+            />
 
+            <AppFooter :footer="siteContent.footer" />
+        </template>
+
+        <template v-else>
+            <HeroSection :hero="siteContent.hero" />
+
+            <TrustSection :items="siteContent.trust" />
+
+            <HowItWorksSection :section="siteContent.howItWorks" />
+
+            <TemplateGallery
+                :categories="templateCategories"
+                :templates="filteredTemplates"
+                :selected-category-key="selectedCategoryKey"
+                :selected-template-id="selectedTemplateId"
+                :selected-template="selectedTemplate"
+                @select-category="selectCategory"
+                @select-template="selectTemplate"
+            />
+
+            <PackageSelector
+                :packages="packages"
+                :selected-package-id="selectedPackageId"
+                @select-package="selectPackage"
+            />
+
+            <section id="builder" class="bg-white py-24">
+                <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
+                    <SiteConfigurator
+                        :features="availableFeatures"
+                        :selected-feature-ids="selectedFeatureIds"
+                        @toggle-feature="toggleFeature"
+                    />
+
+                    <PriceSummary
+                        :selected-template="selectedTemplate"
+                        :selected-package="selectedPackage"
+                        :selected-features="selectedFeatures"
+                        :total-price="totalPrice"
+                    />
+                </div>
+            </section>
+
+            <MaintenancePlans :section="siteContent.maintenance" />
+
+            <FAQSection :section="siteContent.faq" />
+
+            <ContactLeadForm
+                :contact="siteContent.contact"
+                :selected-template="selectedTemplate"
+                :selected-package="selectedPackage"
+                :selected-features="selectedFeatures"
+                :total-price="totalPrice"
+                @lead-created="resetSelectedFeatures"
+            />
+
+            <AppFooter :footer="siteContent.footer" />
+        </template>
     </main>
 </template>
 
 <script setup>
-import { features, templateCategories, templates } from './data/siteBuilder'
+import { computed, onMounted } from 'vue'
+import { features, packages, templateCategories, templates } from './data/siteBuilder'
 import { siteContent } from './data/siteContent'
 import { useSiteBuilder } from './composables/useSiteBuilder'
 
 import AppHeader from './components/layout/AppHeader.vue'
+import AppFooter from './components/layout/AppFooter.vue'
+
 import HeroSection from './components/sections/HeroSection.vue'
+import TrustSection from './components/sections/TrustSection.vue'
+import HowItWorksSection from './components/sections/HowItWorksSection.vue'
 import TemplateGallery from './components/sections/TemplateGallery.vue'
+import MaintenancePlans from './components/sections/MaintenancePlans.vue'
+import FAQSection from './components/sections/FAQSection.vue'
+import ContactLeadForm from './components/sections/ContactLeadForm.vue'
+
+import PackageSelector from './components/builder/PackageSelector.vue'
 import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
-import ContactLeadForm from './components/sections/ContactLeadForm.vue'
-import TrustSection from './components/sections/TrustSection.vue'
-import AppFooter from './components/layout/AppFooter.vue'
+import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
+import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
 
 const {
     selectedCategoryKey,
     selectedTemplateId,
+    selectedPackageId,
     selectedFeatureIds,
     filteredTemplates,
     availableFeatures,
     selectedTemplate,
+    selectedPackage,
     selectedFeatures,
     totalPrice,
     selectCategory,
     selectTemplate,
+    selectPackage,
     toggleFeature,
     resetSelectedFeatures,
-} = useSiteBuilder(templates, features, templateCategories)
+} = useSiteBuilder(templates, features, templateCategories, packages)
+
+const currentPath = window.location.pathname
+
+const isTemplatePage = computed(() => {
+    return currentPath.startsWith('/templates/')
+})
+
+const templateSlug = computed(() => {
+    if (!isTemplatePage.value) {
+        return null
+    }
+
+    return currentPath.split('/templates/')[1]?.replace(/^\/+|\/+$/g, '') || null
+})
+
+const publicTemplate = computed(() => {
+    return templates.find(template => template.slug === templateSlug.value) || null
+})
+
+onMounted(() => {
+    if (!publicTemplate.value) {
+        return
+    }
+
+    selectCategory(publicTemplate.value.categoryKey)
+    selectTemplate(publicTemplate.value.id)
+})
 </script>
