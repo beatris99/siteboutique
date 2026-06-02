@@ -7,6 +7,8 @@
 
         <HeroSection :hero="siteContent.hero" />
 
+        <TrustSection :items="siteContent.trust" />
+
         <TemplateGallery
             :categories="templateCategories"
             :templates="filteredTemplates"
@@ -40,6 +42,9 @@
             :total-price="totalPrice"
             @lead-created="resetSelectedFeatures"
         />
+
+        <AppFooter :footer="siteContent.footer" />
+
     </main>
 </template>
 
@@ -54,6 +59,8 @@ import TemplateGallery from './components/sections/TemplateGallery.vue'
 import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
 import ContactLeadForm from './components/sections/ContactLeadForm.vue'
+import TrustSection from './components/sections/TrustSection.vue'
+import AppFooter from './components/layout/AppFooter.vue'
 
 const {
     selectedCategoryKey,

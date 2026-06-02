@@ -170,6 +170,64 @@ export const siteContent = {
         ],
     },
 
+    trust: [
+        {
+            value: '01',
+            title: 'Preț transparent',
+            description: 'Clientul vede un cost estimativ înainte să trimită cererea.',
+        },
+        {
+            value: '02',
+            title: 'Proces rapid',
+            description: 'Pornim de la template-uri clare și evităm discuțiile inutile.',
+        },
+        {
+            value: '03',
+            title: 'Design modern',
+            description: 'Site-uri responsive, curate și potrivite pentru business-uri reale.',
+        },
+        {
+            value: '04',
+            title: 'Suport uman',
+            description: 'După configurare, proiectul este discutat și ajustat personal.',
+        },
+    ],
+
+    footer: {
+        brand: {
+            firstPart: 'Site',
+            secondPart: 'Boutique',
+        },
+        description:
+            'Site-uri moderne, configurabile și transparente pentru afaceri care vor să se lanseze rapid.',
+        copyright: '© 2026 SiteBoutique. Toate drepturile rezervate.',
+        email: 'hello@siteboutique.ro',
+        phone: '+40 700 000 000',
+        location: 'Brașov, România',
+        links: [
+            {
+                label: 'Template-uri',
+                href: '#templates',
+            },
+            {
+                label: 'Configurator',
+                href: '#builder',
+            },
+            {
+                label: 'Mentenanță',
+                href: '#maintenance',
+            },
+            {
+                label: 'FAQ',
+                href: '#faq',
+            },
+            {
+                label: 'Contact',
+                href: '#contact',
+            },
+        ],
+    },
+
     contact: {
         eyebrow: 'Contact',
         title: 'Hai să discutăm proiectul.',
