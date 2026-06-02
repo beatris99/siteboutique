@@ -60,6 +60,13 @@
                         WhatsApp
                     </a>
                 @endif
+
+                    <a
+                        href="{{ route('admin.dashboard') }}"
+                        class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                    >
+                        Dashboard
+                    </a>
             </div>
         </div>
 

@@ -13,7 +13,7 @@ class AdminAuthController extends Controller
     public function showLogin(Request $request): View|RedirectResponse
     {
         if ($request->session()->get('admin_authenticated')) {
-            return redirect()->route('admin.leads.index');
+            return redirect()->route('admin.dashboard');
         }
 
         return view('admin.auth.login');
@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
         $request->session()->regenerate();
         $request->session()->put('admin_authenticated', true);
 
-        return redirect()->route('admin.leads.index');
+        return redirect()->route('admin.dashboard');
     }
 
     public function logout(Request $request): RedirectResponse

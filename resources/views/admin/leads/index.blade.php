@@ -28,17 +28,26 @@
 
             <div class="flex flex-wrap gap-3">
                 <a
+                    href="{{ route('admin.dashboard') }}"
+                    class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                >
+                    Dashboard
+                </a>
+
+                <a
                     href="/"
                     class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
                 >
                     Înapoi la site
                 </a>
+
                 <a
                     href="{{ route('admin.leads.export', request()->query()) }}"
                     class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
                 >
                     Export CSV
                 </a>
+
                 <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
 

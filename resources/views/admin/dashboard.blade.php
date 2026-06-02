@@ -1,56 +1,282 @@
-@extends('admin.layout')
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - SiteBoutique Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-@section('content')
+    @vite(['resources/css/app.css'])
+</head>
 
-    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 mb-8">
-        {{ __('site.admin_dashboard.title') }}
-    </h1>
+<body class="bg-[#f7f4ef] text-[#171717]">
+<main class="min-h-screen px-6 py-10">
+    <div class="mx-auto max-w-7xl">
+        <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    SiteBoutique Admin
+                </p>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10">
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p class="text-slate-500">{{ __('site.admin_dashboard.total_vehicles') }}</p>
-            <p class="mt-2 text-4xl font-extrabold text-slate-900">{{ $vehiclesCount }}</p>
+                <h1 class="mt-3 text-4xl font-semibold tracking-tight">
+                    Dashboard
+                </h1>
+
+                <p class="mt-3 text-black/60">
+                    Privire rapidă peste cereri, vânzări estimate și lead-uri de urmărit.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+                <a
+                    href="/"
+                    class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                >
+                    Înapoi la site
+                </a>
+
+                <a
+                    href="{{ route('admin.leads.index') }}"
+                    class="rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-[#8b6f47]"
+                >
+                    Vezi lead-uri
+                </a>
+
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+
+                    <button
+                        type="submit"
+                        class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                    >
+                        Logout
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p class="text-slate-500">{{ __('site.admin_dashboard.available') }}</p>
-            <p class="mt-2 text-4xl font-extrabold text-emerald-600">{{ $availableVehiclesCount }}</p>
+        <div class="mb-6 grid gap-4 md:grid-cols-4">
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Total lead-uri</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['total'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Lead-uri noi</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['new'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">De urmărit</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['follow_up'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Valoare estimată</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ number_format($stats['estimated_value'], 0, ',', '.') }} lei
+                </p>
+            </div>
         </div>
 
-        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:col-span-2 lg:col-span-1">
-            <p class="text-slate-500">{{ __('site.admin_dashboard.contact_requests') }}</p>
-            <p class="mt-2 text-4xl font-extrabold text-sky-700">{{ $contactRequestsCount }}</p>
+        <div class="mb-6 grid gap-4 md:grid-cols-4">
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Contactate</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['contacted'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">În discuție</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['in_discussion'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Câștigate</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ $stats['won'] }}
+                </p>
+            </div>
+
+            <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
+                <p class="text-sm text-black/50">Valoare câștigată</p>
+                <p class="mt-2 text-3xl font-semibold">
+                    {{ number_format($stats['won_value'], 0, ',', '.') }} lei
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
-            <h2 class="text-xl font-bold text-slate-900">{{ __('site.admin_dashboard.latest_requests') }}</h2>
+        <div class="grid gap-6 lg:grid-cols-[1fr_1fr]">
+            <section class="rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                            Ultimele cereri
+                        </p>
 
-            <a href="{{ route('admin.contact_requests.index') }}" class="font-semibold text-sky-700 hover:text-sky-800">
-                {{ __('site.admin_dashboard.view_all') }}
-            </a>
-        </div>
+                        <h2 class="mt-3 text-2xl font-semibold">
+                            Lead-uri recente
+                        </h2>
+                    </div>
 
-        <div class="space-y-4">
-            @forelse($latestRequests as $request)
-                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <p class="font-bold text-slate-900">
-                        {{ $request->name }} - {{ $request->phone }}
-                    </p>
-
-                    <p class="mt-1 text-sm text-slate-500">
-                        {{ $request->vehicle_type ?: '-' }}
-                    </p>
-
-                    <p class="mt-2 text-slate-600">
-                        {{ $request->message ?: '-' }}
-                    </p>
+                    <a
+                        href="{{ route('admin.leads.index') }}"
+                        class="text-sm text-[#8b6f47] hover:underline"
+                    >
+                        Vezi toate
+                    </a>
                 </div>
-            @empty
-                <p class="text-slate-500">{{ __('site.admin_dashboard.no_requests') }}</p>
-            @endforelse
-        </div>
-    </div>
 
-@endsection
+                <div class="mt-6 grid gap-3">
+                    @forelse($latestLeads as $lead)
+                        <a
+                            href="{{ route('admin.leads.show', $lead) }}"
+                            class="block rounded-2xl border border-black/10 bg-[#f7f4ef] p-4 transition hover:border-black/30"
+                        >
+                            <div class="flex flex-col justify-between gap-2 md:flex-row md:items-center">
+                                <div>
+                                    <p class="font-semibold">
+                                        {{ $lead->name }}
+                                    </p>
+
+                                    <p class="mt-1 text-sm text-black/50">
+                                        {{ $lead->selected_template }} · {{ number_format($lead->total_price, 0, ',', '.') }} lei
+                                    </p>
+                                </div>
+
+                                <p class="text-xs text-black/40">
+                                    {{ $lead->created_at?->format('d.m.Y H:i') }}
+                                </p>
+                            </div>
+                        </a>
+                    @empty
+                        <div class="rounded-2xl border border-dashed border-black/10 bg-[#f7f4ef] p-6 text-center text-sm text-black/50">
+                            Nu există încă lead-uri.
+                        </div>
+                    @endforelse
+                </div>
+            </section>
+
+            <section class="rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                            Follow-up
+                        </p>
+
+                        <h2 class="mt-3 text-2xl font-semibold">
+                            Lead-uri de urmărit
+                        </h2>
+                    </div>
+
+                    <a
+                        href="{{ route('admin.leads.index', ['follow_up' => 1]) }}"
+                        class="text-sm text-[#8b6f47] hover:underline"
+                    >
+                        Vezi toate
+                    </a>
+                </div>
+
+                <div class="mt-6 grid gap-3">
+                    @forelse($followUpLeads as $lead)
+                        <a
+                            href="{{ route('admin.leads.show', $lead) }}"
+                            class="block rounded-2xl border border-black/10 bg-[#f7f4ef] p-4 transition hover:border-black/30"
+                        >
+                            <div class="flex flex-col justify-between gap-2 md:flex-row md:items-center">
+                                <div>
+                                    <p class="font-semibold">
+                                        {{ $lead->name }}
+                                    </p>
+
+                                    <p class="mt-1 text-sm text-black/50">
+                                        {{ $lead->selected_template }}
+                                    </p>
+                                </div>
+
+                                <div class="text-left md:text-right">
+                                    <p class="text-sm font-medium text-[#8b6f47]">
+                                        {{ $lead->follow_up_at?->format('d.m.Y H:i') }}
+                                    </p>
+
+                                    <p class="mt-1 text-xs text-black/40">
+                                        Prioritate: {{ match($lead->priority) {
+                                            'low' => 'Scăzută',
+                                            'high' => 'Ridicată',
+                                            default => 'Normală',
+                                        } }}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    @empty
+                        <div class="rounded-2xl border border-dashed border-black/10 bg-[#f7f4ef] p-6 text-center text-sm text-black/50">
+                            Nu ai lead-uri setate pentru follow-up.
+                        </div>
+                    @endforelse
+                </div>
+            </section>
+        </div>
+
+        <section class="mt-6 rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
+            <div class="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+                <div>
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                        Statusuri
+                    </p>
+
+                    <h2 class="mt-3 text-2xl font-semibold">
+                        Valoare pe status
+                    </h2>
+                </div>
+
+                <a
+                    href="{{ route('admin.leads.export') }}"
+                    class="w-fit rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+                >
+                    Export CSV
+                </a>
+            </div>
+
+            <div class="mt-6 overflow-x-auto">
+                <table class="min-w-full text-left text-sm">
+                    <thead>
+                    <tr class="border-b border-black/10 text-black/50">
+                        <th class="py-3 pr-4">Status</th>
+                        <th class="py-3 pr-4">Număr lead-uri</th>
+                        <th class="py-3 pr-4">Valoare estimată</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-black/10">
+                    @foreach($statusSummaries as $summary)
+                        <tr>
+                            <td class="py-4 pr-4 font-medium">
+                                {{ $summary['label'] }}
+                            </td>
+
+                            <td class="py-4 pr-4">
+                                {{ $summary['count'] }}
+                            </td>
+
+                            <td class="py-4 pr-4 font-semibold">
+                                {{ number_format($summary['total'], 0, ',', '.') }} lei
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>

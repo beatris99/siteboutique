@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LeadNoteController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,7 @@ Route::middleware('admin.auth')
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
+        Route::get('/', AdminDashboardController::class)->name('dashboard');
         Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
         Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
