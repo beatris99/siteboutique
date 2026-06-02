@@ -24,11 +24,17 @@ Route::middleware('admin.auth')
     ->name('admin.')
     ->group(function () {
         Route::get('/', AdminDashboardController::class)->name('dashboard');
-        Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
+
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+        Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
         Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
+        Route::get('/leads/{lead}/edit', [LeadController::class, 'edit'])->name('leads.edit');
+        Route::put('/leads/{lead}', [LeadController::class, 'update'])->name('leads.update');
+
         Route::patch('/leads/{lead}/status', [LeadController::class, 'updateStatus'])->name('leads.update-status');
-        Route::post('/leads/{lead}/notes', [LeadNoteController::class, 'store'])->name('leads.notes.store');
         Route::patch('/leads/{lead}/follow-up', [LeadController::class, 'updateFollowUp'])->name('leads.update-follow-up');
+
+        Route::post('/leads/{lead}/notes', [LeadNoteController::class, 'store'])->name('leads.notes.store');
+
         Route::delete('/leads/{lead}', [LeadController::class, 'destroy'])->name('leads.destroy');
     });

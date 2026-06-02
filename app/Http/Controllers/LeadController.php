@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use App\Http\Requests\UpdateLeadRequest;
 
 class LeadController extends Controller
 {
@@ -224,5 +225,23 @@ class LeadController extends Controller
         }
 
         return $query;
+    }
+
+    public function edit(Lead $lead): View
+    {
+        $lead->load('notes');
+
+        $statuses = LeadStatus::cases();
+
+        return view('admin.leads.edit', compact('lead', 'statuses'));
+    }
+
+    public function update(UpdateLeadRequest $request, Lead $lead): RedirectResponse
+    {
+        $lead->update($request->validated());
+
+        return redirect()
+            ->route('admin.leads.show', $lead)
+            ->with('success', 'Lead-ul a fost actualizat.');
     }
 }

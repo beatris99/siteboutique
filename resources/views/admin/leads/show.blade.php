@@ -67,6 +67,12 @@
                     >
                         Dashboard
                     </a>
+                    <a
+                        href="{{ route('admin.leads.edit', $lead) }}"
+                        class="rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-[#8b6f47]"
+                    >
+                        Editează
+                    </a>
             </div>
         </div>
 

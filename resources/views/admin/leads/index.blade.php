@@ -336,6 +336,24 @@
                                     Detalii
                                 </a>
                             </td>
+
+                            <td class="px-5 py-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <a
+                                        href="{{ route('admin.leads.show', $lead) }}"
+                                        class="rounded-full bg-black px-4 py-2 text-xs font-medium text-white transition hover:bg-[#8b6f47]"
+                                    >
+                                        Detalii
+                                    </a>
+
+                                    <a
+                                        href="{{ route('admin.leads.edit', $lead) }}"
+                                        class="rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-medium transition hover:border-black/30"
+                                    >
+                                        Editează
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
