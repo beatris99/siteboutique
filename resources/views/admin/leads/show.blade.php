@@ -300,11 +300,29 @@
 
         <div class="mt-8 grid gap-4">
             @forelse($lead->notes as $note)
-                <article class="rounded-2xl border border-black/10 bg-[#f7f4ef] p-5">
+                <article
+                    class="rounded-2xl border p-5"
+                    @class([
+                        'border-black/10 bg-[#f7f4ef]' => $note->type === 'manual',
+                        'border-blue-100 bg-blue-50' => $note->type === 'system',
+                    ])
+                >
                     <div class="flex flex-col justify-between gap-2 md:flex-row md:items-center">
-                        <p class="text-sm font-medium text-black/70">
-                            Notă internă
-                        </p>
+                        <div class="flex items-center gap-2">
+                            <p class="text-sm font-medium text-black/70">
+                                {{ $note->type === 'system' ? 'Activitate sistem' : 'Notă internă' }}
+                            </p>
+
+                            <span
+                                class="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                    @class([
+                        'bg-black text-white' => $note->type === 'manual',
+                        'bg-blue-100 text-blue-700' => $note->type === 'system',
+                    ])
+                >
+                    {{ $note->type === 'system' ? 'system' : 'manual' }}
+                </span>
+                        </div>
 
                         <p class="text-xs text-black/40">
                             {{ $note->created_at?->format('d.m.Y H:i') }}

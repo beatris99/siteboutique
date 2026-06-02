@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Http\Requests\UpdateLeadRequest;
+use App\Actions\Leads\CreateLeadSystemNoteAction;
 
 class LeadController extends Controller
 {
@@ -100,19 +101,46 @@ class LeadController extends Controller
     public function updateStatus(
         UpdateLeadStatusRequest $request,
         Lead $lead,
-        UpdateLeadStatusAction $updateLeadStatusAction
+        UpdateLeadStatusAction $updateLeadStatusAction,
+        CreateLeadSystemNoteAction $createLeadSystemNoteAction
     ): RedirectResponse {
-        $updateLeadStatusAction->handle($lead, $request->validated('status'));
+        $oldStatus = $lead->status;
+        $newStatus = $request->validated('status');
+
+        $updateLeadStatusAction->handle($lead, $newStatus);
+
+        if ($oldStatus !== $newStatus) {
+            $createLeadSystemNoteAction->handle(
+                $lead,
+                "Status schimbat din '{$oldStatus}' în '{$newStatus}'."
+            );
+        }
 
         return back()->with('success', 'Statusul cererii a fost actualizat.');
     }
 
-    public function updateFollowUp(UpdateLeadFollowUpRequest $request, Lead $lead): RedirectResponse
-    {
+    public function updateFollowUp(
+        UpdateLeadFollowUpRequest $request,
+        Lead $lead,
+        CreateLeadSystemNoteAction $createLeadSystemNoteAction
+    ): RedirectResponse {
+        $validated = $request->validated();
+
+        $oldFollowUp = $lead->follow_up_at?->format('d.m.Y H:i') ?: 'nesetat';
+        $oldPriority = $lead->priority;
+
         $lead->update([
-            'follow_up_at' => $request->validated('follow_up_at'),
-            'priority' => $request->validated('priority'),
+            'follow_up_at' => $validated['follow_up_at'],
+            'priority' => $validated['priority'],
         ]);
+
+        $newFollowUp = $lead->fresh()->follow_up_at?->format('d.m.Y H:i') ?: 'nesetat';
+        $newPriority = $validated['priority'];
+
+        $createLeadSystemNoteAction->handle(
+            $lead,
+            "Follow-up actualizat din '{$oldFollowUp}' în '{$newFollowUp}'. Prioritate: {$oldPriority} → {$newPriority}."
+        );
 
         return back()->with('success', 'Follow-up-ul a fost actualizat.');
     }
@@ -236,9 +264,33 @@ class LeadController extends Controller
         return view('admin.leads.edit', compact('lead', 'statuses'));
     }
 
-    public function update(UpdateLeadRequest $request, Lead $lead): RedirectResponse
-    {
-        $lead->update($request->validated());
+    public function update(
+        UpdateLeadRequest $request,
+        Lead $lead,
+        CreateLeadSystemNoteAction $createLeadSystemNoteAction
+    ): RedirectResponse {
+        $validated = $request->validated();
+
+        $changes = [];
+
+        foreach ($validated as $key => $value) {
+            if ($key === 'selected_features') {
+                continue;
+            }
+
+            if ((string) $lead->{$key} !== (string) $value) {
+                $changes[] = $key;
+            }
+        }
+
+        $lead->update($validated);
+
+        if (! empty($changes)) {
+            $createLeadSystemNoteAction->handle(
+                $lead,
+                'Lead editat manual. Câmpuri modificate: ' . implode(', ', $changes) . '.'
+            );
+        }
 
         return redirect()
             ->route('admin.leads.show', $lead)

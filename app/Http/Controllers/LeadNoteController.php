@@ -11,6 +11,7 @@ class LeadNoteController extends Controller
     public function store(StoreLeadNoteRequest $request, Lead $lead): RedirectResponse
     {
         $lead->notes()->create([
+            'type' => 'manual',
             'body' => $request->validated('body'),
         ]);
 
