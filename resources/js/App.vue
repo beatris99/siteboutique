@@ -172,6 +172,9 @@ import { businessEssenceData } from './templates/business-essence/data'
 import RentalFlowTemplate from './templates/rental-flow/RentalFlowTemplate.vue'
 import { rentalFlowData } from './templates/rental-flow/data'
 
+import TourismStayTemplate from './templates/tourism-stay/TourismStayTemplate.vue'
+import { tourismStayData } from './templates/tourism-stay/data'
+
 
 const {
     selectedCategoryKey,
@@ -222,6 +225,10 @@ const realTemplateComponent = computed(() => {
         return RentalFlowTemplate
     }
 
+    if (templateSlug.value === 'tourism-stay') {
+        return TourismStayTemplate
+    }
+
     return null
 })
 
@@ -236,6 +243,10 @@ const realTemplateData = computed(() => {
 
     if (templateSlug.value === 'rental-flow') {
         return rentalFlowData
+    }
+
+    if (templateSlug.value === 'tourism-stay') {
+        return tourismStayData
     }
 
     return null
