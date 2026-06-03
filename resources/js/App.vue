@@ -162,10 +162,16 @@ import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
 import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
 import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
 import PortfolioSection from './components/sections/PortfolioSection.vue'
+
 import PremiumStudioTemplate from './templates/premium-studio/PremiumStudioTemplate.vue'
 import { premiumStudioData } from './templates/premium-studio/data'
+
 import BusinessEssenceTemplate from './templates/business-essence/BusinessEssenceTemplate.vue'
 import { businessEssenceData } from './templates/business-essence/data'
+
+import RentalFlowTemplate from './templates/rental-flow/RentalFlowTemplate.vue'
+import { rentalFlowData } from './templates/rental-flow/data'
+
 
 const {
     selectedCategoryKey,
@@ -212,6 +218,10 @@ const realTemplateComponent = computed(() => {
         return BusinessEssenceTemplate
     }
 
+    if (templateSlug.value === 'rental-flow') {
+        return RentalFlowTemplate
+    }
+
     return null
 })
 
@@ -224,8 +234,13 @@ const realTemplateData = computed(() => {
         return businessEssenceData
     }
 
+    if (templateSlug.value === 'rental-flow') {
+        return rentalFlowData
+    }
+
     return null
 })
+
 onMounted(() => {
     if (!publicTemplate.value) {
         return
