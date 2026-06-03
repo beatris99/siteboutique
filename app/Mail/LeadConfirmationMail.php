@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewLeadReceivedMail extends Mailable
+class LeadConfirmationMail extends Mailable
 {
     use Queueable;
     use SerializesModels;
@@ -20,8 +20,9 @@ class NewLeadReceivedMail extends Mailable
     public function build(): self
     {
         return $this
-            ->subject('Cerere nouă SiteBoutique - ' . $this->lead->name)
-            ->view('emails.leads.new')
+            ->subject('Am primit cererea ta - SiteBoutique')
+            ->replyTo(config('admin.email'))
+            ->view('emails.leads.confirmation')
             ->with([
                 'requirements' => TemplateRequirementResolver::requirements($this->lead),
             ]);

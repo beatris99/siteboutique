@@ -20,6 +20,8 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Http\Requests\UpdateLeadRequest;
 use App\Actions\Leads\CreateLeadSystemNoteAction;
+use App\Mail\LeadConfirmationMail;
+use Throwable;
 
 class LeadController extends Controller
 {
@@ -85,17 +87,20 @@ class LeadController extends Controller
 
         try {
             Mail::to(config('admin.email'))->send(new NewLeadReceivedMail($lead));
-        } catch (\Throwable $exception) {
-            Log::error('New lead email could not be sent.', [
+
+            if ($lead->email) {
+                Mail::to($lead->email)->send(new LeadConfirmationMail($lead));
+            }
+        } catch (Throwable $exception) {
+            Log::error('Lead emails could not be sent.', [
                 'lead_id' => $lead->id,
                 'error' => $exception->getMessage(),
             ]);
         }
 
         return response()->json([
-            'message' => 'Cererea a fost trimisă cu succes.',
-            'lead_id' => $lead->id,
-        ], 201);
+            'message' => 'Cererea a fost trimisă cu succes. Revin cu un mesaj pentru clarificări.',
+        ]);
     }
 
     public function updateStatus(
@@ -295,5 +300,15 @@ class LeadController extends Controller
         return redirect()
             ->route('admin.leads.show', $lead)
             ->with('success', 'Lead-ul a fost actualizat.');
+    }
+
+    public function offer(Lead $lead, LeadOfferBuilder $leadOfferBuilder)
+    {
+        $lead->load('notes');
+
+        return view('admin.leads.offer', [
+            'lead' => $lead,
+            'offerText' => $leadOfferBuilder->build($lead),
+        ]);
     }
 }

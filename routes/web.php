@@ -22,7 +22,20 @@ Route::get('/realizare-site-uri', function () {
     return view('pages.realizare-site-uri');
 })->name('seo.websites');
 
+Route::get('/preturi', function () {
+    return view('pages.pricing');
+})->name('pricing');
+
 Route::redirect('/realizare-site-brasov', '/realizare-site-uri', 301);
+
+foreach (config('seo_pages', []) as $slug => $page) {
+    Route::get('/' . $slug, function () use ($page, $slug) {
+        return view('pages.seo.show', [
+            'page' => $page,
+            'slug' => $slug,
+        ]);
+    })->name('seo.' . $page['route_name']);
+}
 
 Route::get('/politica-confidentialitate', function () {
     return view('legal.privacy');
@@ -43,6 +56,7 @@ Route::get('/sitemap.xml', function () {
         ['loc' => $baseUrl . '/', 'priority' => '1.0'],
         ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
+        ['loc' => $baseUrl . '/preturi', 'priority' => '0.8'],
 
         ['loc' => $baseUrl . '/templates/business-essence', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/templates/premium-studio', 'priority' => '0.8'],
@@ -59,6 +73,13 @@ Route::get('/sitemap.xml', function () {
         ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
     ];
 
+    foreach (config('seo_pages', []) as $slug => $page) {
+        $urls[] = [
+            'loc' => $baseUrl . '/' . $slug,
+            'priority' => '0.8',
+        ];
+    }
+
     return response()
         ->view('sitemap', compact('urls'))
         ->header('Content-Type', 'application/xml');
@@ -69,9 +90,11 @@ Route::post('/leads', [LeadController::class, 'store'])
     ->name('leads.store');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+
 Route::post('/admin/login', [AdminAuthController::class, 'login'])
     ->middleware('throttle:5,1')
     ->name('admin.login.store');
+
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('admin.auth')
@@ -84,7 +107,9 @@ Route::middleware('admin.auth')
         Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');
 
         Route::get('/leads/{lead}', [LeadController::class, 'show'])->name('leads.show');
+        Route::get('/leads/{lead}/offer', [LeadController::class, 'offer'])->name('leads.offer');
         Route::get('/leads/{lead}/edit', [LeadController::class, 'edit'])->name('leads.edit');
+
         Route::put('/leads/{lead}', [LeadController::class, 'update'])->name('leads.update');
 
         Route::patch('/leads/{lead}/status', [LeadController::class, 'updateStatus'])->name('leads.update-status');

@@ -10,8 +10,8 @@ export const siteContent = {
             href: '/#templates',
         },
         {
-            label: 'Ce primești',
-            href: '/#what-you-get',
+            label: 'Prețuri',
+            href: '/preturi',
         },
         {
             label: 'Portofoliu',
@@ -452,8 +452,8 @@ export const siteContent = {
                 href: '/#templates',
             },
             {
-                label: 'Ce primești',
-                href: '/#what-you-get',
+                label: 'Prețuri',
+                href: '/preturi',
             },
             {
                 label: 'Portofoliu',

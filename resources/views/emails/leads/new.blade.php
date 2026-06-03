@@ -4,56 +4,84 @@
     <meta charset="UTF-8">
     <title>Cerere nouă SiteBoutique</title>
 </head>
-<body style="font-family: Arial, sans-serif; color: #171717; line-height: 1.6;">
+<body style="margin:0; padding:0; background:#f7f4ef; font-family:Arial, sans-serif; color:#171717;">
 @php
-    $features = is_array($lead->selected_features)
-        ? $lead->selected_features
-        : json_decode($lead->selected_features ?? '[]', true);
+    $yesNo = function ($value) {
+        if (is_null($value)) {
+            return 'Nespecificat';
+        }
+
+        return $value ? 'Da' : 'Nu';
+    };
 @endphp
 
-<h1>Cerere nouă SiteBoutique</h1>
+<div style="max-width:760px; margin:0 auto; padding:32px 16px;">
+    <div style="background:#ffffff; border-radius:24px; padding:32px; border:1px solid #eee;">
+        <p style="margin:0; font-size:12px; text-transform:uppercase; letter-spacing:3px; color:#8b6f47;">
+            SiteBoutique Admin
+        </p>
 
-<p>Ai primit o cerere nouă din configurator.</p>
+        <h1 style="margin:16px 0 0; font-size:30px;">
+            Cerere nouă de la {{ $lead->name }}
+        </h1>
 
-<h2>Client</h2>
+        <div style="margin-top:24px; background:#f7f4ef; border-radius:18px; padding:20px;">
+            <h2 style="margin:0 0 14px; font-size:20px;">Client</h2>
 
-<p>
-    <strong>Nume:</strong> {{ $lead->name }}<br>
-    <strong>Email:</strong> {{ $lead->email ?: '-' }}<br>
-    <strong>Telefon:</strong> {{ $lead->phone ?: '-' }}
-</p>
+            <p><strong>Nume:</strong> {{ $lead->name }}</p>
+            <p><strong>Email:</strong> {{ $lead->email ?: '-' }}</p>
+            <p><strong>Telefon:</strong> {{ $lead->phone ?: '-' }}</p>
+            <p><strong>Tip business:</strong> {{ $lead->business_type ?: 'Nespecificat' }}</p>
+            <p><strong>Pagina sursă:</strong> {{ $lead->source_page ?: '-' }}</p>
+        </div>
 
-<h2>Configurație</h2>
+        <div style="margin-top:20px; background:#f7f4ef; border-radius:18px; padding:20px;">
+            <h2 style="margin:0 0 14px; font-size:20px;">Detalii proiect</h2>
 
-<p>
-    <strong>Categorie:</strong> {{ $lead->selected_category_label ?: '-' }}<br>
-    <strong>Template:</strong> {{ $lead->selected_template }}<br>
-    <strong>Pachet:</strong> {{ $lead->selected_package_name ?: '-' }}<br>
-    <strong>Total estimativ:</strong> {{ number_format($lead->total_price, 0, ',', '.') }} lei
-</p>
+            <p><strong>Are logo?</strong> {{ $yesNo($lead->has_logo) }}</p>
+            <p><strong>Are poze?</strong> {{ $yesNo($lead->has_photos) }}</p>
+            <p><strong>Are domeniu?</strong> {{ $yesNo($lead->has_domain) }}</p>
+            <p><strong>Buget aproximativ:</strong> {{ $lead->budget_range ?: 'Nespecificat' }}</p>
+            <p><strong>Urgență:</strong> {{ $lead->urgency ?: 'Nespecificat' }}</p>
+            <p><strong>Deadline dorit:</strong> {{ $lead->launch_deadline ? $lead->launch_deadline->format('d.m.Y') : 'Nespecificat' }}</p>
+        </div>
 
-<h2>Funcții extra</h2>
+        <div style="margin-top:20px; background:#171717; color:#ffffff; border-radius:18px; padding:20px;">
+            <h2 style="margin:0 0 14px; font-size:20px;">Configurație</h2>
 
-@if(!empty($features))
-    <ul>
-        @foreach($features as $feature)
-            <li>{{ $feature }}</li>
-        @endforeach
-    </ul>
-@else
-    <p>Fără funcții extra selectate.</p>
-@endif
+            <p><strong>Template:</strong> {{ $lead->selected_template ?: '-' }}</p>
+            <p><strong>Categorie:</strong> {{ $lead->selected_category_label ?: '-' }}</p>
+            <p><strong>Pachet:</strong> {{ $lead->selected_package_name ?: '-' }}</p>
+            <p><strong>Preț estimativ:</strong> {{ $lead->total_price }} lei</p>
 
-<h2>Mesaj</h2>
+            @if(!empty($lead->selected_features))
+                <p><strong>Extra-uri:</strong></p>
+                <ul>
+                    @foreach($lead->selected_features as $feature)
+                        <li>{{ $feature }}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
 
-<p>
-    {!! nl2br(e($lead->message ?: 'Clientul nu a lăsat mesaj.')) !!}
-</p>
+        <div style="margin-top:20px; background:#f7f4ef; border-radius:18px; padding:20px;">
+            <h2 style="margin:0 0 14px; font-size:20px;">Mesaj client</h2>
 
-<p>
-    <a href="{{ route('admin.leads.show', $lead) }}">
-        Vezi cererea în admin
-    </a>
-</p>
+            <p style="white-space:pre-line; line-height:1.7;">
+                {{ $lead->message ?: 'Nu a lăsat mesaj.' }}
+            </p>
+        </div>
+
+        <div style="margin-top:20px; background:#f7f4ef; border-radius:18px; padding:20px;">
+            <h2 style="margin:0 0 14px; font-size:20px;">Materiale de cerut</h2>
+
+            <ul style="line-height:1.8;">
+                @foreach($requirements as $requirement)
+                    <li>{{ $requirement }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
