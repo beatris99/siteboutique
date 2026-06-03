@@ -4,6 +4,7 @@
             :brand="siteContent.brand"
             :navigation="siteContent.navigation"
         />
+
         <template v-if="isTemplatePage && !publicTemplate">
             <TemplateNotFoundPage />
 
@@ -12,6 +13,8 @@
 
         <template v-else-if="isTemplatePage && publicTemplate">
             <TemplatePublicPage :template="publicTemplate" />
+
+            <WhatYouGetSection :section="siteContent.whatYouGet" />
 
             <PackageSelector
                 :packages="packages"
@@ -58,6 +61,10 @@
             <TrustSection :items="siteContent.trust" />
 
             <HowItWorksSection :section="siteContent.howItWorks" />
+
+            <WhatYouGetSection :section="siteContent.whatYouGet" />
+
+            <AudienceSection :section="siteContent.audience" />
 
             <TemplateGallery
                 :categories="templateCategories"
@@ -124,9 +131,12 @@ import AppFooter from './components/layout/AppFooter.vue'
 import HeroSection from './components/sections/HeroSection.vue'
 import TrustSection from './components/sections/TrustSection.vue'
 import HowItWorksSection from './components/sections/HowItWorksSection.vue'
+import WhatYouGetSection from './components/sections/WhatYouGetSection.vue'
+import AudienceSection from './components/sections/AudienceSection.vue'
 import TemplateGallery from './components/sections/TemplateGallery.vue'
 import MaintenancePlans from './components/sections/MaintenancePlans.vue'
 import FAQSection from './components/sections/FAQSection.vue'
+import FinalCTASection from './components/sections/FinalCTASection.vue'
 import ContactLeadForm from './components/sections/ContactLeadForm.vue'
 
 import PackageSelector from './components/builder/PackageSelector.vue'
@@ -134,7 +144,6 @@ import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
 import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
 import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
-import FinalCTASection from './components/sections/FinalCTASection.vue'
 
 const {
     selectedCategoryKey,

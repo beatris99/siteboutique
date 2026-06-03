@@ -14,6 +14,42 @@ Route::get('/templates/{slug}', function () {
     return view('welcome');
 })->name('templates.show');
 
+Route::get('/politica-confidentialitate', function () {
+    return view('legal.privacy');
+})->name('privacy');
+
+Route::get('/termeni-conditii', function () {
+    return view('legal.terms');
+})->name('terms');
+
+Route::get('/politica-cookies', function () {
+    return view('legal.cookies');
+})->name('cookies');
+
+Route::get('/sitemap.xml', function () {
+    $baseUrl = rtrim(config('app.url'), '/');
+
+    $urls = [
+        ['loc' => $baseUrl . '/', 'priority' => '1.0'],
+        ['loc' => $baseUrl . '/templates/business-essence', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/premium-studio', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/launch-page', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/conversion-flow', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/rental-flow', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/tourism-stay', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/simple-shop', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/premium-store', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/client-portal', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/politica-confidentialitate', 'priority' => '0.3'],
+        ['loc' => $baseUrl . '/termeni-conditii', 'priority' => '0.3'],
+        ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
+    ];
+
+    return response()
+        ->view('sitemap', compact('urls'))
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
 Route::post('/leads', [LeadController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('leads.store');

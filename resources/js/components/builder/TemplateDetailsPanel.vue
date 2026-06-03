@@ -1,8 +1,12 @@
 <template>
     <section class="mt-10 rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
         <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div class="rounded-[1.5rem] bg-gradient-to-br from-[#111] to-[#8b6f47] p-6 text-white">
-                <p class="text-sm text-white/60">
+            <div class="rounded-[1.5rem] bg-black p-4">
+                <TemplatePreviewMockup :template="template" />
+            </div>
+
+            <div>
+                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
                     Template selectat
                 </p>
 
@@ -10,29 +14,29 @@
                     {{ template.name }}
                 </h3>
 
-                <p class="mt-4 leading-7 text-white/70">
+                <p class="mt-4 leading-7 text-black/60">
                     {{ template.description }}
                 </p>
 
-                <div class="mt-8 grid grid-cols-2 gap-4">
-                    <div class="rounded-2xl bg-white/10 p-4">
-                        <p class="text-sm text-white/50">Preț de bază</p>
+                <div class="mt-8 grid gap-4 md:grid-cols-2">
+                    <div class="rounded-2xl bg-[#f7f4ef] p-4">
+                        <p class="text-sm text-black/50">Preț de bază</p>
+
                         <p class="mt-1 text-2xl font-semibold">
                             {{ template.basePrice }} lei
                         </p>
                     </div>
 
-                    <div class="rounded-2xl bg-white/10 p-4">
-                        <p class="text-sm text-white/50">Livrare</p>
+                    <div class="rounded-2xl bg-[#f7f4ef] p-4">
+                        <p class="text-sm text-black/50">Livrare</p>
+
                         <p class="mt-1 text-2xl font-semibold">
                             {{ template.deliveryTime || 'Estimativ' }}
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="grid gap-5 md:grid-cols-2">
+                <div class="mt-8 grid gap-5 md:grid-cols-2">
                     <div>
                         <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
                             Potrivit pentru
@@ -95,6 +99,8 @@
 </template>
 
 <script setup>
+import TemplatePreviewMockup from '../ui/TemplatePreviewMockup.vue'
+
 defineProps({
     template: {
         type: Object,

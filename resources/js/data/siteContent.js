@@ -10,48 +10,71 @@ export const siteContent = {
             href: '/#templates',
         },
         {
+            label: 'Ce primești',
+            href: '/#what-you-get',
+        },
+        {
+            label: 'Pentru cine',
+            href: '/#audience',
+        },
+        {
             label: 'Configurator',
-            href: '#builder',
-        },
-        {
-            label: 'Mentenanță',
-            href: '#maintenance',
-        },
-        {
-            label: 'FAQ',
-            href: '#faq',
+            href: '/#builder',
         },
         {
             label: 'Contact',
-            href: '#contact',
+            href: '/#contact',
         },
     ],
 
     hero: {
-        badge: 'Site-uri premium. Preț clar. Lansare rapidă.',
-        title: 'Alege designul.',
-        highlightedTitle: 'Construiește oferta.',
+        badge: 'Site-uri moderne pentru afaceri mici și locale',
+        title: 'Alege un template.',
+        highlightedTitle: 'Vezi cât te-ar costa site-ul.',
         description:
-            'Site-uri moderne, configurabile și transparente pentru afaceri care vor să se lanseze rapid, fără discuții inutile și fără prețuri ascunse.',
+            'Configurezi rapid tipul de site, pachetul și funcțiile dorite. Primești o estimare clară, iar apoi discutăm exact ce are sens pentru afacerea ta.',
         primaryButton: {
-            label: 'Vezi template-uri',
-            href: '/#templates',
-        },
-        secondaryButton: {
-            label: 'Configurează prețul',
+            label: 'Configurează site-ul',
             href: '#builder',
         },
+        secondaryButton: {
+            label: 'Vezi template-uri',
+            href: '#templates',
+        },
         preview: {
-            eyebrow: 'Template demo',
-            title: 'Rental Business',
+            eyebrow: 'Site configurabil',
+            title: 'Business Website',
             description:
-                'Perfect pentru scutere, biciclete, pensiuni, servicii cu rezervare sau afaceri locale.',
+                'Pentru servicii, rezervări, magazine online, campanii sau platforme custom.',
             priceLabel: 'De la',
-            price: '2.500 lei',
+            price: '1.800 lei',
             timeLabel: 'Lansare',
-            time: '7 zile',
+            time: '5-14 zile',
         },
     },
+
+    trust: [
+        {
+            value: '01',
+            title: 'Preț transparent',
+            description: 'Clientul vede un cost estimativ înainte să trimită cererea.',
+        },
+        {
+            value: '02',
+            title: 'Proces rapid',
+            description: 'Pornim de la template-uri clare și evităm discuțiile inutile.',
+        },
+        {
+            value: '03',
+            title: 'Design modern',
+            description: 'Site-uri responsive, curate și potrivite pentru business-uri reale.',
+        },
+        {
+            value: '04',
+            title: 'Suport uman',
+            description: 'După configurare, proiectul este discutat și ajustat personal.',
+        },
+    ],
 
     howItWorks: {
         eyebrow: 'Proces',
@@ -79,9 +102,81 @@ export const siteContent = {
             },
             {
                 number: '04',
-                title: 'Discutăm detaliile',
+                title: 'Primești o ofertă clară',
                 description:
                     'Trimiți cererea, iar eu revin cu recomandări și ajustări concrete pentru proiectul tău.',
+            },
+        ],
+    },
+
+    whatYouGet: {
+        eyebrow: 'Ce primești concret',
+        title: 'Nu primești doar un design. Primești un site pregătit să fie folosit.',
+        description:
+            'Fiecare proiect pornește de la o structură clară, adaptată business-ului tău, cu accent pe imagine, claritate și conversie.',
+        items: [
+            {
+                title: 'Design responsive',
+                description:
+                    'Site-ul arată bine pe telefon, tabletă și desktop, pentru că majoritatea clienților intră de pe mobil.',
+            },
+            {
+                title: 'Structură clară',
+                description:
+                    'Pagini și secțiuni gândite logic: servicii, beneficii, prețuri, întrebări și contact.',
+            },
+            {
+                title: 'Formular de contact',
+                description:
+                    'Clientul poate trimite rapid o cerere, iar tu o vezi în panoul de administrare.',
+            },
+            {
+                title: 'SEO basic',
+                description:
+                    'Titluri, descrieri, structură corectă și sitemap pentru indexare mai bună în Google.',
+            },
+            {
+                title: 'Optimizare pentru viteză',
+                description:
+                    'Frontend construit curat, cu build de producție, astfel încât site-ul să se încarce rapid.',
+            },
+            {
+                title: 'Panou pentru lead-uri',
+                description:
+                    'Ai admin unde vezi cereri, statusuri, follow-up, note interne și export CSV.',
+            },
+        ],
+    },
+
+    audience: {
+        eyebrow: 'Pentru cine este',
+        title: 'Site-uri potrivite pentru afaceri care vor să arate profesionist rapid.',
+        description:
+            'Sistemul este gândit pentru business-uri mici și medii care au nevoie de o prezență online clară, fără un proces complicat.',
+        groups: [
+            {
+                title: 'Saloane și beauty',
+                examples: ['Salon coafură', 'Cosmetică', 'Make-up artist', 'Nails'],
+            },
+            {
+                title: 'Servicii locale',
+                examples: ['Instalatori', 'Curățenie', 'Consultanță', 'Reparații'],
+            },
+            {
+                title: 'Cabinete și specialiști',
+                examples: ['Terapeuți', 'Nutriționiști', 'Psihologi', 'Coach'],
+            },
+            {
+                title: 'Turism și rezervări',
+                examples: ['Pensiuni', 'Cabane', 'Tururi', 'Închirieri'],
+            },
+            {
+                title: 'Magazine mici',
+                examples: ['Handmade', 'Produse locale', 'Brand personal', 'Catalog online'],
+            },
+            {
+                title: 'Platforme custom',
+                examples: ['CRM', 'Dashboard', 'Portal clienți', 'Aplicații interne'],
             },
         ],
     },
@@ -170,28 +265,42 @@ export const siteContent = {
         ],
     },
 
-    trust: [
-        {
-            value: '01',
-            title: 'Preț transparent',
-            description: 'Clientul vede un cost estimativ înainte să trimită cererea.',
+    finalCta: {
+        eyebrow: 'Vrei un site pentru afacerea ta?',
+        title: 'Configurează-l acum și vezi rapid o estimare de preț.',
+        description:
+            'Alegi template-ul, pachetul și funcțiile dorite. Nu trebuie să știi detalii tehnice — le clarificăm împreună după ce trimiți cererea.',
+        card: {
+            label: 'Următorul pas',
+            title: 'Trimite configurația',
+            description:
+                'Primești o direcție clară și o ofertă adaptată. Configuratorul te ajută să pornești cu o idee concretă, nu cu o discuție vagă.',
         },
-        {
-            value: '02',
-            title: 'Proces rapid',
-            description: 'Pornim de la template-uri clare și evităm discuțiile inutile.',
+        button: {
+            label: 'Vreau ofertă pentru site',
+            href: '#contact',
         },
-        {
-            value: '03',
-            title: 'Design modern',
-            description: 'Site-uri responsive, curate și potrivite pentru business-uri reale.',
-        },
-        {
-            value: '04',
-            title: 'Suport uman',
-            description: 'După configurare, proiectul este discutat și ajustat personal.',
-        },
-    ],
+    },
+
+    contact: {
+        eyebrow: 'Contact',
+        title: 'Vreau un site pentru afacerea mea.',
+        description:
+            'Trimite configurația aleasă, iar eu revin cu un mesaj pentru clarificări și recomandări.',
+        selectedConfigurationLabel: 'Configurație aleasă',
+        namePlaceholder: 'Nume',
+        emailPlaceholder: 'Email',
+        phonePlaceholder: 'Telefon',
+        messagePlaceholder: 'Spune-mi pe scurt ce business ai și ce vrei să obții cu site-ul.',
+        privacyText:
+            'Sunt de acord să fiu contactat/ă pentru această cerere și înțeleg că datele introduse vor fi folosite pentru a primi un răspuns.',
+        buttonLabel: 'Vreau ofertă',
+        loadingLabel: 'Se trimite...',
+        successTitle: 'Am primit cererea ta.',
+        successDescription:
+            'Revin cu un mesaj pentru clarificări și recomandări. Configurația aleasă a fost salvată.',
+        anotherRequestLabel: 'Trimite altă cerere',
+    },
 
     footer: {
         brand: {
@@ -199,7 +308,7 @@ export const siteContent = {
             secondPart: 'Boutique',
         },
         description:
-            'Site-uri moderne, configurabile și transparente pentru afaceri care vor să se lanseze rapid.',
+            'Site-uri moderne, configurabile și transparente pentru afaceri mici și locale care vor să se lanseze rapid.',
         copyright: '© 2026 SiteBoutique. Toate drepturile rezervate.',
         email: 'hello@siteboutique.ro',
         phone: '+40 700 000 000',
@@ -210,58 +319,35 @@ export const siteContent = {
                 href: '/#templates',
             },
             {
+                label: 'Ce primești',
+                href: '/#what-you-get',
+            },
+            {
+                label: 'Pentru cine',
+                href: '/#audience',
+            },
+            {
                 label: 'Configurator',
-                href: '#builder',
-            },
-            {
-                label: 'Mentenanță',
-                href: '#maintenance',
-            },
-            {
-                label: 'FAQ',
-                href: '#faq',
+                href: '/#builder',
             },
             {
                 label: 'Contact',
-                href: '#contact',
+                href: '/#contact',
             },
         ],
-    },
-
-    finalCta: {
-        eyebrow: 'Ești gata să începi?',
-        title: 'Configurează site-ul și vezi rapid o estimare clară.',
-        description:
-            'Alegi tipul de site, template-ul, pachetul și funcțiile dorite. După trimiterea cererii, revin cu recomandări și o ofertă finală.',
-        card: {
-            label: 'Următorul pas',
-            title: 'Trimite configurația',
-            description:
-                'Nu trebuie să știi exact toate detaliile tehnice. Pornim de la configurația aleasă și ajustăm împreună ce are sens pentru afacerea ta.',
-        },
-        button: {
-            label: 'Mergi la formular',
-            href: '#contact',
-        },
-    },
-
-    contact: {
-        eyebrow: 'Contact',
-        title: 'Hai să discutăm proiectul.',
-        description:
-            'După ce trimiți cererea, revin cu un mesaj pentru clarificări și recomandări.',
-        selectedConfigurationLabel: 'Configurație aleasă',
-        namePlaceholder: 'Nume',
-        emailPlaceholder: 'Email',
-        phonePlaceholder: 'Telefon',
-        messagePlaceholder: 'Spune-mi pe scurt ce business ai.',
-        privacyText:
-            'Sunt de acord să fiu contactat/ă pentru această cerere și înțeleg că datele introduse vor fi folosite pentru a primi un răspuns.',
-        buttonLabel: 'Trimite cererea',
-        loadingLabel: 'Se trimite...',
-        successTitle: 'Am primit cererea ta.',
-        successDescription:
-            'Revin cu un mesaj pentru clarificări și recomandări. Configurația aleasă a fost salvată.',
-        anotherRequestLabel: 'Trimite altă cerere',
+        legalLinks: [
+            {
+                label: 'Politica de confidențialitate',
+                href: '/politica-confidentialitate',
+            },
+            {
+                label: 'Termeni și condiții',
+                href: '/termeni-conditii',
+            },
+            {
+                label: 'Politica cookies',
+                href: '/politica-cookies',
+            },
+        ],
     },
 }

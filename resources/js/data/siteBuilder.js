@@ -91,6 +91,18 @@ export const templates = [
             'Formular de contact',
             'SEO basic',
         ],
+        preview: {
+            eyebrow: 'Business local',
+            headline: 'Servicii profesionale pentru clienți care caută încredere.',
+            subheadline: 'O pagină clară, modernă și ușor de parcurs pentru firme locale.',
+            primaryButton: 'Cere ofertă',
+            secondaryButton: 'Vezi servicii',
+            stats: [
+                { label: 'Pagini', value: '4+' },
+                { label: 'Lansare', value: '7 zile' },
+            ],
+            sections: ['Servicii', 'Beneficii', 'Testimoniale'],
+        },
     },
     {
         id: 2,
@@ -109,6 +121,18 @@ export const templates = [
             'Secțiune servicii',
             'Formular contact',
         ],
+        preview: {
+            eyebrow: 'Studio premium',
+            headline: 'Imagine elegantă pentru servicii vizuale și experiențe premium.',
+            subheadline: 'Un design aerisit, cu accent pe imagini, emoție și conversie.',
+            primaryButton: 'Programează-te',
+            secondaryButton: 'Vezi portofoliu',
+            stats: [
+                { label: 'Galerie', value: 'Inclusă' },
+                { label: 'Stil', value: 'Premium' },
+            ],
+            sections: ['Portofoliu', 'Servicii', 'Contact rapid'],
+        },
     },
     {
         id: 3,
@@ -127,6 +151,18 @@ export const templates = [
             'Call-to-action clar',
             'Formular lead',
         ],
+        preview: {
+            eyebrow: 'Campanie rapidă',
+            headline: 'Lansează o ofertă clară și transformă vizitatorii în lead-uri.',
+            subheadline: 'Landing page direct, cu beneficii, ofertă și formular de contact.',
+            primaryButton: 'Vreau oferta',
+            secondaryButton: 'Află detalii',
+            stats: [
+                { label: 'Focus', value: 'Lead-uri' },
+                { label: 'Pagini', value: '1' },
+            ],
+            sections: ['Beneficii', 'Ofertă', 'FAQ'],
+        },
     },
     {
         id: 4,
@@ -145,6 +181,18 @@ export const templates = [
             'Secțiune ofertă',
             'Tracking conversii opțional',
         ],
+        preview: {
+            eyebrow: 'Sales flow',
+            headline: 'Pagină construită pentru promovare, argumente și conversie.',
+            subheadline: 'Ideală pentru reclame, servicii premium sau lansări cu termen limitat.',
+            primaryButton: 'Cumpără / Cere ofertă',
+            secondaryButton: 'Vezi beneficiile',
+            stats: [
+                { label: 'CTA-uri', value: 'Multiple' },
+                { label: 'Conversie', value: 'Focus' },
+            ],
+            sections: ['Problemă', 'Soluție', 'Dovadă socială'],
+        },
     },
     {
         id: 5,
@@ -163,6 +211,18 @@ export const templates = [
             'Formular rezervare',
             'Buton WhatsApp opțional',
         ],
+        preview: {
+            eyebrow: 'Rental business',
+            headline: 'Închirieri rapide cu prețuri clare și rezervare simplă.',
+            subheadline: 'Prezintă flota, condițiile, prețurile și pașii de rezervare.',
+            primaryButton: 'Rezervă acum',
+            secondaryButton: 'Vezi prețuri',
+            stats: [
+                { label: 'Flotă', value: 'Listată' },
+                { label: 'Rezervări', value: 'Formular' },
+            ],
+            sections: ['Vehicule', 'Tarife', 'Cum funcționează'],
+        },
     },
     {
         id: 6,
@@ -181,6 +241,18 @@ export const templates = [
             'Formular rezervare',
             'Google Maps opțional',
         ],
+        preview: {
+            eyebrow: 'Turism local',
+            headline: 'Transformă o locație frumoasă într-o experiență ușor de rezervat.',
+            subheadline: 'Prezentare elegantă pentru cazare, tururi sau experiențe locale.',
+            primaryButton: 'Verifică disponibilitatea',
+            secondaryButton: 'Vezi galeria',
+            stats: [
+                { label: 'Galerie', value: 'Da' },
+                { label: 'Rezervări', value: 'Da' },
+            ],
+            sections: ['Camere', 'Experiențe', 'Recenzii'],
+        },
     },
     {
         id: 7,
@@ -199,6 +271,18 @@ export const templates = [
             'Pagină produs',
             'Cerere ofertă sau comandă',
         ],
+        preview: {
+            eyebrow: 'Shop simplu',
+            headline: 'Prezintă produsele clar și primește cereri sau comenzi.',
+            subheadline: 'Pentru afaceri care vor să înceapă simplu, fără sistem complicat.',
+            primaryButton: 'Vezi produse',
+            secondaryButton: 'Cere ofertă',
+            stats: [
+                { label: 'Produse', value: 'Listate' },
+                { label: 'Comenzi', value: 'Simplu' },
+            ],
+            sections: ['Categorii', 'Produse', 'Contact'],
+        },
     },
     {
         id: 8,
@@ -217,6 +301,18 @@ export const templates = [
             'Variante produse',
             'Administrare produse',
         ],
+        preview: {
+            eyebrow: 'Premium ecommerce',
+            headline: 'Magazin online pregătit pentru vânzare și administrare.',
+            subheadline: 'Structură completă pentru produse, variante, coș și checkout.',
+            primaryButton: 'Cumpără acum',
+            secondaryButton: 'Explorează shop-ul',
+            stats: [
+                { label: 'Checkout', value: 'Inclus' },
+                { label: 'Admin', value: 'Inclus' },
+            ],
+            sections: ['Shop', 'Coș', 'Checkout'],
+        },
     },
     {
         id: 9,
@@ -235,6 +331,18 @@ export const templates = [
             'Structură backend',
             'Funcționalități custom',
         ],
+        preview: {
+            eyebrow: 'Platformă custom',
+            headline: 'Dashboard personalizat pentru date, clienți și procese interne.',
+            subheadline: 'Pentru afaceri care au nevoie de mai mult decât un site de prezentare.',
+            primaryButton: 'Vezi dashboard',
+            secondaryButton: 'Cere consultanță',
+            stats: [
+                { label: 'Login', value: 'Da' },
+                { label: 'Custom', value: '100%' },
+            ],
+            sections: ['Dashboard', 'Rapoarte', 'Utilizatori'],
+        },
     },
 ]
 

@@ -1,14 +1,24 @@
 <template>
     <div :class="wrapperClass">
-        <p class="text-sm uppercase tracking-[0.25em]" :class="eyebrowClass">
+        <p
+            class="text-sm uppercase tracking-[0.25em]"
+            :class="dark ? 'text-white/40' : 'text-[#8b6f47]'"
+        >
             {{ eyebrow }}
         </p>
 
-        <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+        <h2
+            class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl"
+            :class="dark ? 'text-white' : 'text-black'"
+        >
             {{ title }}
         </h2>
 
-        <p v-if="description" class="mt-5 text-black/60">
+        <p
+            v-if="description"
+            class="mt-4 max-w-3xl leading-7"
+            :class="dark ? 'text-white/60' : 'text-black/60'"
+        >
             {{ description }}
         </p>
     </div>
@@ -30,11 +40,11 @@ defineProps({
     },
     wrapperClass: {
         type: String,
-        default: 'max-w-2xl',
+        default: '',
     },
-    eyebrowClass: {
-        type: String,
-        default: 'text-[#8b6f47]',
+    dark: {
+        type: Boolean,
+        default: false,
     },
 })
 </script>

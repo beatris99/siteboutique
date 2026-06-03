@@ -34,47 +34,13 @@
                             href="#contact"
                             class="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-medium transition hover:border-black/30"
                         >
-                            Cere detalii
+                            Vreau ofertă
                         </a>
                     </div>
                 </div>
 
-                <div class="rounded-[2rem] border border-black/10 bg-white p-4 shadow-xl">
-                    <div class="rounded-[1.5rem] bg-gradient-to-br from-[#111] to-[#8b6f47] p-6 text-white">
-                        <p class="text-sm text-white/50">
-                            Preview template
-                        </p>
-
-                        <div class="mt-12 rounded-2xl bg-white p-6 text-black">
-                            <p class="text-xs uppercase tracking-[0.25em] text-black/40">
-                                {{ template.category }}
-                            </p>
-
-                            <h2 class="mt-4 text-3xl font-semibold">
-                                {{ template.name }}
-                            </h2>
-
-                            <p class="mt-3 text-sm leading-6 text-black/50">
-                                {{ template.description }}
-                            </p>
-
-                            <div class="mt-8 grid grid-cols-2 gap-4">
-                                <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                                    <p class="text-sm text-black/50">De la</p>
-                                    <p class="mt-1 text-2xl font-semibold">
-                                        {{ template.basePrice }} lei
-                                    </p>
-                                </div>
-
-                                <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                                    <p class="text-sm text-black/50">Livrare</p>
-                                    <p class="mt-1 text-2xl font-semibold">
-                                        {{ template.deliveryTime || 'Estimativ' }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="rounded-[2rem] border border-black/10 bg-black p-4 shadow-xl">
+                    <TemplatePreviewMockup :template="template" />
                 </div>
             </div>
 
@@ -156,6 +122,8 @@
 </template>
 
 <script setup>
+import TemplatePreviewMockup from '../ui/TemplatePreviewMockup.vue'
+
 defineProps({
     template: {
         type: Object,

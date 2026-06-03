@@ -1,6 +1,6 @@
 <template>
     <footer class="border-t border-black/10 bg-black text-white">
-        <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div class="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
             <div>
                 <div class="text-2xl font-semibold tracking-tight">
                     {{ footer.brand.firstPart }}<span class="italic text-[#d8c3a5]">{{ footer.brand.secondPart }}</span>
@@ -23,6 +23,23 @@
                 <nav class="mt-5 grid gap-3 text-sm text-white/60">
                     <a
                         v-for="item in footer.links"
+                        :key="item.href"
+                        :href="item.href"
+                        class="transition hover:text-white"
+                    >
+                        {{ item.label }}
+                    </a>
+                </nav>
+            </div>
+
+            <div>
+                <h3 class="font-semibold">
+                    Legal
+                </h3>
+
+                <nav class="mt-5 grid gap-3 text-sm text-white/60">
+                    <a
+                        v-for="item in footer.legalLinks || []"
                         :key="item.href"
                         :href="item.href"
                         class="transition hover:text-white"
