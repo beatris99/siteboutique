@@ -22,11 +22,23 @@ class Lead extends Model
         'status',
         'follow_up_at',
         'priority',
+        'business_type',
+        'has_logo',
+        'has_photos',
+        'has_domain',
+        'budget_range',
+        'urgency',
+        'launch_deadline',
+        'source_page',
     ];
 
     protected $casts = [
         'selected_features' => 'array',
         'follow_up_at' => 'datetime',
+        'has_logo' => 'boolean',
+        'has_photos' => 'boolean',
+        'has_domain' => 'boolean',
+        'launch_deadline' => 'date',
     ];
 
     public function getWhatsappUrlAttribute(): ?string

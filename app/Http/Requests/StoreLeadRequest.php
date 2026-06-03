@@ -26,6 +26,15 @@ class StoreLeadRequest extends FormRequest
             'email' => ['nullable', 'required_without:phone', 'email', 'max:255'],
             'phone' => ['nullable', 'required_without:email', 'string', 'max:50'],
 
+            'businessType' => ['nullable', 'string', 'max:255'],
+            'hasLogo' => ['nullable', 'boolean'],
+            'hasPhotos' => ['nullable', 'boolean'],
+            'hasDomain' => ['nullable', 'boolean'],
+            'budgetRange' => ['nullable', 'string', 'max:255'],
+            'urgency' => ['nullable', 'string', 'max:255'],
+            'launchDeadline' => ['nullable', 'date'],
+            'sourcePage' => ['nullable', 'string', 'max:255'],
+
             'message' => ['nullable', 'string', 'max:5000'],
 
             'template' => ['required', 'string', 'max:255'],
@@ -43,9 +52,6 @@ class StoreLeadRequest extends FormRequest
 
             'privacyAccepted' => ['accepted'],
 
-            // Honeypot antispam.
-            // Utilizatorii reali nu văd câmpul acesta.
-            // Boții îl completează des, iar atunci cererea pică.
             'website' => ['nullable', 'max:0'],
         ];
     }
@@ -68,25 +74,6 @@ class StoreLeadRequest extends FormRequest
             'privacyAccepted.accepted' => 'Trebuie să fii de acord să fii contactat/ă pentru această cerere.',
 
             'website.max' => 'Cererea nu a putut fi trimisă.',
-        ];
-    }
-
-    public function attributes(): array
-    {
-        return [
-            'name' => 'nume',
-            'email' => 'email',
-            'phone' => 'telefon',
-            'message' => 'mesaj',
-            'template' => 'template',
-            'categoryKey' => 'categorie',
-            'categoryLabel' => 'categorie',
-            'packageKey' => 'pachet',
-            'packageName' => 'pachet',
-            'features' => 'funcționalități',
-            'totalPrice' => 'preț total',
-            'privacyAccepted' => 'acord contact',
-            'website' => 'website',
         ];
     }
 }

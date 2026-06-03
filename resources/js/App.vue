@@ -25,6 +25,18 @@
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
+            <WhyWorkWithMeSection :section="siteContent.whyWorkWithMe" />
+
+            <TemplatePreparationSection
+                v-if="templateClientInfo"
+                :info="templateClientInfo"
+            />
+
+            <TemplateScopeSection
+                v-if="templateClientInfo"
+                :info="templateClientInfo"
+            />
+
             <PackageSelector
                 :packages="packages"
                 :selected-package-id="selectedPackageId"
@@ -47,6 +59,8 @@
                     />
                 </div>
             </section>
+
+            <ProjectProcessSection :section="siteContent.projectProcess" />
 
             <FAQSection :section="siteContent.faq" />
 
@@ -73,11 +87,11 @@
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
+            <AudienceSection :section="siteContent.audience" />
+
             <WhyWorkWithMeSection :section="siteContent.whyWorkWithMe" />
 
             <PortfolioSection :section="siteContent.portfolio" />
-
-            <AudienceSection :section="siteContent.audience" />
 
             <TemplateGallery
                 :categories="templateCategories"
@@ -112,9 +126,9 @@
                 </div>
             </section>
 
-            <MaintenancePlans :section="siteContent.maintenance" />
-
             <ProjectProcessSection :section="siteContent.projectProcess" />
+
+            <MaintenancePlans :section="siteContent.maintenance" />
 
             <FAQSection :section="siteContent.faq" />
 
@@ -139,6 +153,8 @@ import { computed, onMounted } from 'vue'
 import { features, packages, templateCategories, templates } from './data/siteBuilder'
 import { siteContent } from './data/siteContent'
 import { useSiteBuilder } from './composables/useSiteBuilder'
+import { getRegisteredTemplate } from './templates/templateRegistry'
+import { getTemplateClientInfo } from './templates/templateClientInfo'
 
 import AppHeader from './components/layout/AppHeader.vue'
 import AppFooter from './components/layout/AppFooter.vue'
@@ -148,38 +164,22 @@ import TrustSection from './components/sections/TrustSection.vue'
 import HowItWorksSection from './components/sections/HowItWorksSection.vue'
 import WhatYouGetSection from './components/sections/WhatYouGetSection.vue'
 import AudienceSection from './components/sections/AudienceSection.vue'
+import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
+import PortfolioSection from './components/sections/PortfolioSection.vue'
 import TemplateGallery from './components/sections/TemplateGallery.vue'
 import MaintenancePlans from './components/sections/MaintenancePlans.vue'
+import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
 import FAQSection from './components/sections/FAQSection.vue'
 import FinalCTASection from './components/sections/FinalCTASection.vue'
 import ContactLeadForm from './components/sections/ContactLeadForm.vue'
+import TemplatePreparationSection from './components/sections/TemplatePreparationSection.vue'
+import TemplateScopeSection from './components/sections/TemplateScopeSection.vue'
 
 import PackageSelector from './components/builder/PackageSelector.vue'
 import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
 import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
 import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
-import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
-import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
-import PortfolioSection from './components/sections/PortfolioSection.vue'
-
-import PremiumStudioTemplate from './templates/premium-studio/PremiumStudioTemplate.vue'
-import { premiumStudioData } from './templates/premium-studio/data'
-
-import BusinessEssenceTemplate from './templates/business-essence/BusinessEssenceTemplate.vue'
-import { businessEssenceData } from './templates/business-essence/data'
-
-import RentalFlowTemplate from './templates/rental-flow/RentalFlowTemplate.vue'
-import { rentalFlowData } from './templates/rental-flow/data'
-
-import TourismStayTemplate from './templates/tourism-stay/TourismStayTemplate.vue'
-import { tourismStayData } from './templates/tourism-stay/data'
-
-import SimpleShopTemplate from './templates/simple-shop/SimpleShopTemplate.vue'
-import { simpleShopData } from './templates/simple-shop/data'
-
-import ConversionFlowTemplate from './templates/conversion-flow/ConversionFlowTemplate.vue'
-import { conversionFlowData } from './templates/conversion-flow/data'
 
 const {
     selectedCategoryKey,
@@ -217,60 +217,20 @@ const publicTemplate = computed(() => {
     return templates.find(template => template.slug === templateSlug.value) || null
 })
 
+const registeredTemplate = computed(() => {
+    return getRegisteredTemplate(templateSlug.value)
+})
+
 const realTemplateComponent = computed(() => {
-    if (templateSlug.value === 'premium-studio') {
-        return PremiumStudioTemplate
-    }
-
-    if (templateSlug.value === 'business-essence') {
-        return BusinessEssenceTemplate
-    }
-
-    if (templateSlug.value === 'rental-flow') {
-        return RentalFlowTemplate
-    }
-
-    if (templateSlug.value === 'tourism-stay') {
-        return TourismStayTemplate
-    }
-
-    if (templateSlug.value === 'simple-shop') {
-        return SimpleShopTemplate
-    }
-
-    if (templateSlug.value === 'conversion-flow') {
-        return ConversionFlowTemplate
-    }
-
-    return null
+    return registeredTemplate.value?.component || null
 })
 
 const realTemplateData = computed(() => {
-    if (templateSlug.value === 'premium-studio') {
-        return premiumStudioData
-    }
+    return registeredTemplate.value?.data || null
+})
 
-    if (templateSlug.value === 'business-essence') {
-        return businessEssenceData
-    }
-
-    if (templateSlug.value === 'rental-flow') {
-        return rentalFlowData
-    }
-
-    if (templateSlug.value === 'tourism-stay') {
-        return tourismStayData
-    }
-
-    if (templateSlug.value === 'simple-shop') {
-        return simpleShopData
-    }
-
-    if (templateSlug.value === 'conversion-flow') {
-        return conversionFlowData
-    }
-
-    return null
+const templateClientInfo = computed(() => {
+    return getTemplateClientInfo(templateSlug.value)
 })
 
 onMounted(() => {

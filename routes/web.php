@@ -14,6 +14,16 @@ Route::get('/templates/{slug}', function () {
     return view('welcome');
 })->name('templates.show');
 
+Route::get('/cum-lucram', function () {
+    return view('pages.work-process');
+})->name('work-process');
+
+Route::get('/realizare-site-uri', function () {
+    return view('pages.realizare-site-uri');
+})->name('seo.websites');
+
+Route::redirect('/realizare-site-brasov', '/realizare-site-uri', 301);
+
 Route::get('/politica-confidentialitate', function () {
     return view('legal.privacy');
 })->name('privacy');
@@ -31,15 +41,19 @@ Route::get('/sitemap.xml', function () {
 
     $urls = [
         ['loc' => $baseUrl . '/', 'priority' => '1.0'],
+        ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
+
         ['loc' => $baseUrl . '/templates/business-essence', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/templates/premium-studio', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/launch-page', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/launch-page', 'priority' => '0.7'],
         ['loc' => $baseUrl . '/templates/conversion-flow', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/templates/rental-flow', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/templates/tourism-stay', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/templates/simple-shop', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/premium-store', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/client-portal', 'priority' => '0.8'],
+        ['loc' => $baseUrl . '/templates/premium-store', 'priority' => '0.7'],
+        ['loc' => $baseUrl . '/templates/client-portal', 'priority' => '0.7'],
+
         ['loc' => $baseUrl . '/politica-confidentialitate', 'priority' => '0.3'],
         ['loc' => $baseUrl . '/termeni-conditii', 'priority' => '0.3'],
         ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
@@ -55,7 +69,9 @@ Route::post('/leads', [LeadController::class, 'store'])
     ->name('leads.store');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.store');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])
+    ->middleware('throttle:5,1')
+    ->name('admin.login.store');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware('admin.auth')

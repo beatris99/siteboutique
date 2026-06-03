@@ -19,11 +19,11 @@
                 </p>
 
                 <p class="mt-2 font-semibold">
-                    {{ selectedTemplate.name }} — {{ totalPrice }} lei
+                    {{ selectedTemplate?.name || 'Template neselectat' }} — {{ totalPrice }} lei
                 </p>
 
                 <p class="mt-1 text-sm text-white/50">
-                    Pachet: {{ selectedPackage.name }}
+                    Pachet: {{ selectedPackage?.name || 'Neselectat' }}
                 </p>
 
                 <div
@@ -91,16 +91,94 @@
                     :placeholder="contact.namePlaceholder"
                 />
 
-                <FormField
-                    v-model="form.email"
-                    type="email"
-                    :placeholder="contact.emailPlaceholder"
-                />
+                <div class="grid gap-4 md:grid-cols-2">
+                    <FormField
+                        v-model="form.email"
+                        type="email"
+                        :placeholder="contact.emailPlaceholder"
+                    />
 
-                <FormField
-                    v-model="form.phone"
-                    :placeholder="contact.phonePlaceholder"
-                />
+                    <FormField
+                        v-model="form.phone"
+                        :placeholder="contact.phonePlaceholder"
+                    />
+                </div>
+
+                <select
+                    v-model="form.businessType"
+                    class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                >
+                    <option value="" class="text-black">
+                        Tip business
+                    </option>
+                    <option value="Salon / beauty / wellness" class="text-black">Salon / beauty / wellness</option>
+                    <option value="Firmă locală / servicii" class="text-black">Firmă locală / servicii</option>
+                    <option value="Închirieri" class="text-black">Închirieri</option>
+                    <option value="Pensiune / turism / cazare" class="text-black">Pensiune / turism / cazare</option>
+                    <option value="Magazin online / produse" class="text-black">Magazin online / produse</option>
+                    <option value="Curs / campanie / landing page" class="text-black">Curs / campanie / landing page</option>
+                    <option value="Alt tip de business" class="text-black">Alt tip de business</option>
+                </select>
+
+                <div class="grid gap-4 md:grid-cols-3">
+                    <select
+                        v-model="form.hasLogo"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    >
+                        <option value="" class="text-black">Ai logo?</option>
+                        <option value="1" class="text-black">Da</option>
+                        <option value="0" class="text-black">Nu</option>
+                    </select>
+
+                    <select
+                        v-model="form.hasPhotos"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    >
+                        <option value="" class="text-black">Ai poze?</option>
+                        <option value="1" class="text-black">Da</option>
+                        <option value="0" class="text-black">Nu</option>
+                    </select>
+
+                    <select
+                        v-model="form.hasDomain"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    >
+                        <option value="" class="text-black">Ai domeniu?</option>
+                        <option value="1" class="text-black">Da</option>
+                        <option value="0" class="text-black">Nu</option>
+                    </select>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-3">
+                    <select
+                        v-model="form.budgetRange"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    >
+                        <option value="" class="text-black">Buget aproximativ</option>
+                        <option value="sub 2.000 lei" class="text-black">sub 2.000 lei</option>
+                        <option value="2.000 - 4.000 lei" class="text-black">2.000 - 4.000 lei</option>
+                        <option value="4.000 - 7.000 lei" class="text-black">4.000 - 7.000 lei</option>
+                        <option value="7.000+ lei" class="text-black">7.000+ lei</option>
+                        <option value="nu știu încă" class="text-black">nu știu încă</option>
+                    </select>
+
+                    <select
+                        v-model="form.urgency"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    >
+                        <option value="" class="text-black">Cât de urgent?</option>
+                        <option value="cât mai repede" class="text-black">cât mai repede</option>
+                        <option value="în 2-4 săptămâni" class="text-black">în 2-4 săptămâni</option>
+                        <option value="în 1-2 luni" class="text-black">în 1-2 luni</option>
+                        <option value="nu este urgent" class="text-black">nu este urgent</option>
+                    </select>
+
+                    <input
+                        v-model="form.launchDeadline"
+                        type="date"
+                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none"
+                    />
+                </div>
 
                 <FormField
                     v-model="form.message"
@@ -116,7 +194,7 @@
                     >
 
                     <span>
-                        {{ contact.privacyText || 'Sunt de acord să fiu contactat/ă pentru această cerere și înțeleg că datele introduse vor fi folosite pentru a primi un răspuns.' }}
+                        {{ contact.privacyText || 'Sunt de acord să fiu contactat/ă pentru această cerere.' }}
                     </span>
                 </label>
 
@@ -187,24 +265,26 @@ const {
 
 const hasSubmitted = ref(false)
 
-const form = ref({
+const emptyForm = {
     name: '',
     email: '',
     phone: '',
+    businessType: '',
+    hasLogo: '',
+    hasPhotos: '',
+    hasDomain: '',
+    budgetRange: '',
+    urgency: '',
+    launchDeadline: '',
     message: '',
     website: '',
     privacyAccepted: false,
-})
+}
+
+const form = ref({ ...emptyForm })
 
 function resetForm() {
-    form.value = {
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        website: '',
-        privacyAccepted: false,
-    }
+    form.value = { ...emptyForm }
 }
 
 function prepareAnotherRequest() {
@@ -215,11 +295,16 @@ function prepareAnotherRequest() {
 async function handleSubmit() {
     const payload = {
         ...form.value,
-        template: props.selectedTemplate.name,
-        categoryKey: props.selectedTemplate.categoryKey,
-        categoryLabel: props.selectedTemplate.category,
-        packageKey: props.selectedPackage.key,
-        packageName: props.selectedPackage.name,
+        hasLogo: form.value.hasLogo,
+        hasPhotos: form.value.hasPhotos,
+        hasDomain: form.value.hasDomain,
+        privacyAccepted: form.value.privacyAccepted ? '1' : '0',
+        sourcePage: window.location.pathname,
+        template: props.selectedTemplate?.name || null,
+        categoryKey: props.selectedTemplate?.categoryKey || null,
+        categoryLabel: props.selectedTemplate?.category || null,
+        packageKey: props.selectedPackage?.key || null,
+        packageName: props.selectedPackage?.name || null,
         features: props.selectedFeatures.map(feature => feature.name),
         totalPrice: props.totalPrice,
     }

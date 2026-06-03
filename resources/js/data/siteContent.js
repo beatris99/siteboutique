@@ -14,16 +14,16 @@ export const siteContent = {
             href: '/#what-you-get',
         },
         {
-            label: 'Pentru cine',
-            href: '/#audience',
-        },
-        {
             label: 'Portofoliu',
             href: '/#portfolio',
         },
         {
             label: 'Proces',
-            href: '/#process',
+            href: '/cum-lucram',
+        },
+        {
+            label: 'Realizare site-uri',
+            href: '/realizare-site-uri',
         },
         {
             label: 'Contact',
@@ -456,16 +456,16 @@ export const siteContent = {
                 href: '/#what-you-get',
             },
             {
-                label: 'Pentru cine',
-                href: '/#audience',
-            },
-            {
                 label: 'Portofoliu',
                 href: '/#portfolio',
             },
             {
-                label: 'Proces',
-                href: '/#process',
+                label: 'Cum lucrăm',
+                href: '/cum-lucram',
+            },
+            {
+                label: 'Realizare site-uri',
+                href: '/realizare-site-uri',
             },
             {
                 label: 'Contact',
