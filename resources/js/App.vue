@@ -12,7 +12,16 @@
         </template>
 
         <template v-else-if="isTemplatePage && publicTemplate">
-            <TemplatePublicPage :template="publicTemplate" />
+            <component
+                :is="realTemplateComponent"
+                v-if="realTemplateComponent"
+                :content="realTemplateData"
+            />
+
+            <TemplatePublicPage
+                v-else
+                :template="publicTemplate"
+            />
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
@@ -153,7 +162,8 @@ import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
 import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
 import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
 import PortfolioSection from './components/sections/PortfolioSection.vue'
-
+import PremiumStudioTemplate from './templates/premium-studio/PremiumStudioTemplate.vue'
+import { premiumStudioData } from './templates/premium-studio/data'
 const {
     selectedCategoryKey,
     selectedTemplateId,
@@ -190,6 +200,21 @@ const publicTemplate = computed(() => {
     return templates.find(template => template.slug === templateSlug.value) || null
 })
 
+const realTemplateComponent = computed(() => {
+    if (templateSlug.value === 'premium-studio') {
+        return PremiumStudioTemplate
+    }
+
+    return null
+})
+
+const realTemplateData = computed(() => {
+    if (templateSlug.value === 'premium-studio') {
+        return premiumStudioData
+    }
+
+    return null
+})
 onMounted(() => {
     if (!publicTemplate.value) {
         return
