@@ -164,6 +164,9 @@ import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue
 import PortfolioSection from './components/sections/PortfolioSection.vue'
 import PremiumStudioTemplate from './templates/premium-studio/PremiumStudioTemplate.vue'
 import { premiumStudioData } from './templates/premium-studio/data'
+import BusinessEssenceTemplate from './templates/business-essence/BusinessEssenceTemplate.vue'
+import { businessEssenceData } from './templates/business-essence/data'
+
 const {
     selectedCategoryKey,
     selectedTemplateId,
@@ -205,12 +208,20 @@ const realTemplateComponent = computed(() => {
         return PremiumStudioTemplate
     }
 
+    if (templateSlug.value === 'business-essence') {
+        return BusinessEssenceTemplate
+    }
+
     return null
 })
 
 const realTemplateData = computed(() => {
     if (templateSlug.value === 'premium-studio') {
         return premiumStudioData
+    }
+
+    if (templateSlug.value === 'business-essence') {
+        return businessEssenceData
     }
 
     return null
