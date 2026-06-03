@@ -18,8 +18,12 @@ export const siteContent = {
             href: '/#audience',
         },
         {
-            label: 'Configurator',
-            href: '/#builder',
+            label: 'Portofoliu',
+            href: '/#portfolio',
+        },
+        {
+            label: 'Proces',
+            href: '/#process',
         },
         {
             label: 'Contact',
@@ -226,6 +230,135 @@ export const siteContent = {
         ],
     },
 
+    projectProcess: {
+        eyebrow: 'După ce trimiți cererea',
+        title: 'Proces clar de la idee până la lansare.',
+        description:
+            'După ce alegi template-ul și trimiți configurația, proiectul nu pornește haotic. Urmăm pași clari, astfel încât să știi ce urmează.',
+        steps: [
+            {
+                number: '01',
+                title: 'Analizez configurația',
+                description:
+                    'Mă uit la template-ul ales, pachet, funcțiile dorite și mesajul tău despre business.',
+            },
+            {
+                number: '02',
+                title: 'Clarificăm detaliile',
+                description:
+                    'Discutăm ce vrei să obții cu site-ul, ce pagini sunt necesare și ce poate fi simplificat.',
+            },
+            {
+                number: '03',
+                title: 'Primești oferta finală',
+                description:
+                    'Îți trimit o ofertă clară, cu preț, termen estimativ și ce este inclus.',
+            },
+            {
+                number: '04',
+                title: 'Construim site-ul',
+                description:
+                    'După confirmare, încep dezvoltarea, adaptez designul și pun structura potrivită afacerii tale.',
+            },
+            {
+                number: '05',
+                title: 'Revizuim împreună',
+                description:
+                    'Verificăm textele, imaginile, secțiunile și modificăm ce trebuie înainte de lansare.',
+            },
+            {
+                number: '06',
+                title: 'Lansăm site-ul',
+                description:
+                    'Site-ul este pregătit pentru publicare, conectare domeniu, formulare și indexare basic.',
+            },
+        ],
+    },
+
+    whyWorkWithMe: {
+        eyebrow: 'De ce să lucrezi cu mine',
+        title: 'Lucrezi direct cu un developer, nu cu un proces complicat.',
+        description:
+            'Scopul este să primești un site clar, modern și util pentru business, fără discuții inutile și fără prețuri neclare.',
+        items: [
+            {
+                title: 'Comunicare directă',
+                description:
+                    'Discuți direct cu persoana care construiește site-ul, deci deciziile sunt mai rapide și mai clare.',
+            },
+            {
+                title: 'Preț estimativ din start',
+                description:
+                    'Configuratorul te ajută să vezi rapid o direcție de buget înainte să pierdem timp cu discuții vagi.',
+            },
+            {
+                title: 'Site adaptat afacerii tale',
+                description:
+                    'Pornim de la un template, dar îl ajustăm în funcție de servicii, public, obiective și imagine.',
+            },
+            {
+                title: 'Gândire practică',
+                description:
+                    'Nu construim secțiuni doar ca să fie multe. Punem ce ajută clientul să înțeleagă, să aibă încredere și să contacteze.',
+            },
+            {
+                title: 'Posibilitate de extindere',
+                description:
+                    'Poți începe simplu, apoi adaugi rezervări, blog, magazin online, tracking, SEO sau funcții custom.',
+            },
+            {
+                title: 'Admin pentru cereri',
+                description:
+                    'Pentru proiectele potrivite, poți avea panou unde vezi lead-uri, statusuri, follow-up și export.',
+            },
+        ],
+    },
+
+    portfolio: {
+        eyebrow: 'Portofoliu de prezentare',
+        title: 'Exemple de site-uri pe care le putem construi.',
+        description:
+            'Acestea sunt exemple demonstrative, create ca să vezi direcții posibile de design și structură. Fiecare proiect real se adaptează business-ului tău.',
+        items: [
+            {
+                title: 'Site pentru salon beauty',
+                category: 'Prezentare premium',
+                description:
+                    'Potrivit pentru saloane, cosmetică, make-up, nails sau servicii de wellness care vor o imagine elegantă.',
+                templateSlug: 'premium-studio',
+                templateName: 'Premium Studio',
+                tags: ['Galerie', 'Servicii', 'Programări', 'Imagine premium'],
+            },
+            {
+                title: 'Site pentru închirieri',
+                category: 'Rezervări',
+                description:
+                    'Pentru scutere, biciclete, ATV-uri, echipamente sau servicii unde clientul trebuie să vadă rapid prețul și condițiile.',
+                templateSlug: 'rental-flow',
+                templateName: 'Rental Flow',
+                tags: ['Tarife', 'Formular rezervare', 'Flotă', 'WhatsApp'],
+            },
+            {
+                title: 'Landing page pentru campanie',
+                category: 'Vânzare',
+                description:
+                    'Pentru servicii, cursuri, oferte limitate sau campanii de reclame unde scopul este generarea de lead-uri.',
+                templateSlug: 'conversion-flow',
+                templateName: 'Conversion Flow',
+                tags: ['CTA', 'Beneficii', 'Testimoniale', 'Conversie'],
+            },
+            {
+                title: 'Magazin online simplu',
+                category: 'Ecommerce',
+                description:
+                    'Pentru branduri mici, produse handmade, produse locale sau afaceri care vor să testeze vânzarea online.',
+                templateSlug: 'simple-shop',
+                templateName: 'Simple Shop',
+                tags: ['Produse', 'Categorii', 'Comenzi', 'Catalog online'],
+            },
+        ],
+    },
+
     faq: {
         eyebrow: 'FAQ',
         title: 'Întrebări frecvente.',
@@ -327,8 +460,12 @@ export const siteContent = {
                 href: '/#audience',
             },
             {
-                label: 'Configurator',
-                href: '/#builder',
+                label: 'Portofoliu',
+                href: '/#portfolio',
+            },
+            {
+                label: 'Proces',
+                href: '/#process',
             },
             {
                 label: 'Contact',

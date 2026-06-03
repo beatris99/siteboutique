@@ -64,6 +64,10 @@
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
+            <WhyWorkWithMeSection :section="siteContent.whyWorkWithMe" />
+
+            <PortfolioSection :section="siteContent.portfolio" />
+
             <AudienceSection :section="siteContent.audience" />
 
             <TemplateGallery
@@ -100,6 +104,8 @@
             </section>
 
             <MaintenancePlans :section="siteContent.maintenance" />
+
+            <ProjectProcessSection :section="siteContent.projectProcess" />
 
             <FAQSection :section="siteContent.faq" />
 
@@ -144,6 +150,9 @@ import SiteConfigurator from './components/sections/SiteConfigurator.vue'
 import PriceSummary from './components/builder/PriceSummary.vue'
 import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
 import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
+import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
+import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
+import PortfolioSection from './components/sections/PortfolioSection.vue'
 
 const {
     selectedCategoryKey,
