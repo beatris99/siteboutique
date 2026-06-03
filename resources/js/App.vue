@@ -178,6 +178,9 @@ import { tourismStayData } from './templates/tourism-stay/data'
 import SimpleShopTemplate from './templates/simple-shop/SimpleShopTemplate.vue'
 import { simpleShopData } from './templates/simple-shop/data'
 
+import ConversionFlowTemplate from './templates/conversion-flow/ConversionFlowTemplate.vue'
+import { conversionFlowData } from './templates/conversion-flow/data'
+
 const {
     selectedCategoryKey,
     selectedTemplateId,
@@ -235,6 +238,10 @@ const realTemplateComponent = computed(() => {
         return SimpleShopTemplate
     }
 
+    if (templateSlug.value === 'conversion-flow') {
+        return ConversionFlowTemplate
+    }
+
     return null
 })
 
@@ -257,6 +264,10 @@ const realTemplateData = computed(() => {
 
     if (templateSlug.value === 'simple-shop') {
         return simpleShopData
+    }
+
+    if (templateSlug.value === 'conversion-flow') {
+        return conversionFlowData
     }
 
     return null
