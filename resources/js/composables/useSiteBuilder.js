@@ -1,60 +1,53 @@
 import { computed, ref } from 'vue'
 
-export function useSiteBuilder(templates, features, categories, packages) {
-    const selectedCategoryKey = ref(categories[0]?.key ?? null)
-    const selectedPackageId = ref(packages[1]?.id ?? packages[0]?.id ?? null)
+export function useSiteBuilder(templates, features, templateCategories, packages) {
+    const selectedCategoryKey = ref(templateCategories[0]?.key || '')
+    const selectedTemplateId = ref(templates[0]?.id || null)
+    const selectedPackageId = ref(packages[1]?.id || packages[0]?.id || null)
+    const selectedFeatureIds = ref([])
 
     const filteredTemplates = computed(() => {
         return templates.filter(template => template.categoryKey === selectedCategoryKey.value)
     })
 
-    const availableFeatures = computed(() => {
-        return features.filter(feature => {
-            return feature.availableFor.includes(selectedCategoryKey.value)
-        })
-    })
-
-    const selectedTemplateId = ref(filteredTemplates.value[0]?.id ?? templates[0]?.id ?? null)
-    const selectedFeatureIds = ref([])
-
     const selectedTemplate = computed(() => {
-        return templates.find(template => template.id === selectedTemplateId.value) || templates[0]
+        return templates.find(template => template.id === selectedTemplateId.value) || templates[0] || null
     })
 
     const selectedPackage = computed(() => {
-        return packages.find(packageItem => packageItem.id === selectedPackageId.value) || packages[0]
+        return packages.find(packageItem => packageItem.id === selectedPackageId.value) || packages[0] || null
+    })
+
+    const availableFeatures = computed(() => {
+        if (!selectedPackage.value) {
+            return []
+        }
+
+        return features.filter(feature => feature.availableFor.includes(selectedPackage.value.key))
     })
 
     const selectedFeatures = computed(() => {
-        return availableFeatures.value.filter(feature => {
-            return selectedFeatureIds.value.includes(feature.id)
-        })
+        return features.filter(feature => selectedFeatureIds.value.includes(feature.id))
     })
 
     const totalPrice = computed(() => {
-        if (!selectedTemplate.value || !selectedPackage.value) {
-            return 0
-        }
+        const packagePrice = selectedPackage.value?.price || 0
 
-        const extraFeaturesPrice = selectedFeatures.value.reduce((sum, feature) => {
-            return sum + feature.price
+        const featuresPrice = selectedFeatures.value.reduce((total, feature) => {
+            return total + feature.price
         }, 0)
 
-        return selectedTemplate.value.basePrice + selectedPackage.value.price + extraFeaturesPrice
+        return packagePrice + featuresPrice
     })
 
     function selectCategory(categoryKey) {
         selectedCategoryKey.value = categoryKey
 
-        const firstTemplateFromCategory = templates.find(template => {
-            return template.categoryKey === categoryKey
-        })
+        const firstTemplateInCategory = templates.find(template => template.categoryKey === categoryKey)
 
-        if (firstTemplateFromCategory) {
-            selectedTemplateId.value = firstTemplateFromCategory.id
+        if (firstTemplateInCategory) {
+            selectedTemplateId.value = firstTemplateInCategory.id
         }
-
-        selectedFeatureIds.value = []
     }
 
     function selectTemplate(templateId) {
@@ -63,6 +56,10 @@ export function useSiteBuilder(templates, features, categories, packages) {
 
     function selectPackage(packageId) {
         selectedPackageId.value = packageId
+
+        selectedFeatureIds.value = selectedFeatureIds.value.filter(featureId => {
+            return availableFeatures.value.some(feature => feature.id === featureId)
+        })
     }
 
     function toggleFeature(featureId) {
@@ -71,7 +68,7 @@ export function useSiteBuilder(templates, features, categories, packages) {
             return
         }
 
-        selectedFeatureIds.value.push(featureId)
+        selectedFeatureIds.value = [...selectedFeatureIds.value, featureId]
     }
 
     function resetSelectedFeatures() {

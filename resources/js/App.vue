@@ -18,10 +18,9 @@
                 :content="realTemplateData"
             />
 
-            <TemplatePublicPage
-                v-else
-                :template="publicTemplate"
-            />
+            <TemplatePublicPage v-else :template="publicTemplate" />
+
+            <TemplateProductDetailsSection :template="publicTemplate" />
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
@@ -43,8 +42,13 @@
                 @select-package="selectPackage"
             />
 
-            <section id="builder" class="bg-white py-24">
-                <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
+            <section
+                id="builder"
+                class="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
+            >
+                <div
+                    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]"
+                >
                     <SiteConfigurator
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
@@ -81,6 +85,8 @@
         <template v-else>
             <HeroSection :hero="siteContent.hero" />
 
+            <ProductPathsSection />
+
             <TrustSection :items="siteContent.trust" />
 
             <HowItWorksSection :section="siteContent.howItWorks" />
@@ -109,8 +115,13 @@
                 @select-package="selectPackage"
             />
 
-            <section id="builder" class="bg-white py-24">
-                <div class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
+            <section
+                id="builder"
+                class="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
+            >
+                <div
+                    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]"
+                >
                     <SiteConfigurator
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
@@ -149,37 +160,44 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue'
-import { features, packages, templateCategories, templates } from './data/siteBuilder'
-import { siteContent } from './data/siteContent'
-import { useSiteBuilder } from './composables/useSiteBuilder'
-import { getRegisteredTemplate } from './templates/templateRegistry'
-import { getTemplateClientInfo } from './templates/templateClientInfo'
+import { computed, onMounted } from "vue";
+import {
+    features,
+    packages,
+    templateCategories,
+    templates,
+} from "./data/siteBuilder";
+import { siteContent } from "./data/siteContent";
+import { useSiteBuilder } from "./composables/useSiteBuilder";
+import { getRegisteredTemplate } from "./templates/templateRegistry";
+import { getTemplateClientInfo } from "./templates/templateClientInfo";
 
-import AppHeader from './components/layout/AppHeader.vue'
-import AppFooter from './components/layout/AppFooter.vue'
+import AppHeader from "./components/layout/AppHeader.vue";
+import AppFooter from "./components/layout/AppFooter.vue";
 
-import HeroSection from './components/sections/HeroSection.vue'
-import TrustSection from './components/sections/TrustSection.vue'
-import HowItWorksSection from './components/sections/HowItWorksSection.vue'
-import WhatYouGetSection from './components/sections/WhatYouGetSection.vue'
-import AudienceSection from './components/sections/AudienceSection.vue'
-import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
-import PortfolioSection from './components/sections/PortfolioSection.vue'
-import TemplateGallery from './components/sections/TemplateGallery.vue'
-import MaintenancePlans from './components/sections/MaintenancePlans.vue'
-import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
-import FAQSection from './components/sections/FAQSection.vue'
-import FinalCTASection from './components/sections/FinalCTASection.vue'
-import ContactLeadForm from './components/sections/ContactLeadForm.vue'
-import TemplatePreparationSection from './components/sections/TemplatePreparationSection.vue'
-import TemplateScopeSection from './components/sections/TemplateScopeSection.vue'
+import HeroSection from "./components/sections/HeroSection.vue";
+import ProductPathsSection from "./components/sections/ProductPathsSection.vue";
+import TrustSection from "./components/sections/TrustSection.vue";
+import HowItWorksSection from "./components/sections/HowItWorksSection.vue";
+import WhatYouGetSection from "./components/sections/WhatYouGetSection.vue";
+import AudienceSection from "./components/sections/AudienceSection.vue";
+import WhyWorkWithMeSection from "./components/sections/WhyWorkWithMeSection.vue";
+import PortfolioSection from "./components/sections/PortfolioSection.vue";
+import TemplateGallery from "./components/sections/TemplateGallery.vue";
+import MaintenancePlans from "./components/sections/MaintenancePlans.vue";
+import ProjectProcessSection from "./components/sections/ProjectProcessSection.vue";
+import FAQSection from "./components/sections/FAQSection.vue";
+import FinalCTASection from "./components/sections/FinalCTASection.vue";
+import ContactLeadForm from "./components/sections/ContactLeadForm.vue";
+import TemplatePreparationSection from "./components/sections/TemplatePreparationSection.vue";
+import TemplateScopeSection from "./components/sections/TemplateScopeSection.vue";
+import TemplateProductDetailsSection from "./components/sections/TemplateProductDetailsSection.vue";
 
-import PackageSelector from './components/builder/PackageSelector.vue'
-import SiteConfigurator from './components/sections/SiteConfigurator.vue'
-import PriceSummary from './components/builder/PriceSummary.vue'
-import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
-import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
+import PackageSelector from "./components/builder/PackageSelector.vue";
+import SiteConfigurator from "./components/sections/SiteConfigurator.vue";
+import PriceSummary from "./components/builder/PriceSummary.vue";
+import TemplatePublicPage from "./components/pages/TemplatePublicPage.vue";
+import TemplateNotFoundPage from "./components/pages/TemplateNotFoundPage.vue";
 
 const {
     selectedCategoryKey,
@@ -197,48 +215,53 @@ const {
     selectPackage,
     toggleFeature,
     resetSelectedFeatures,
-} = useSiteBuilder(templates, features, templateCategories, packages)
+} = useSiteBuilder(templates, features, templateCategories, packages);
 
-const currentPath = window.location.pathname
+const currentPath = window.location.pathname;
 
 const isTemplatePage = computed(() => {
-    return currentPath.startsWith('/templates/')
-})
+    return currentPath.startsWith("/templates/");
+});
 
 const templateSlug = computed(() => {
     if (!isTemplatePage.value) {
-        return null
+        return null;
     }
 
-    return currentPath.split('/templates/')[1]?.replace(/^\/+|\/+$/g, '') || null
-})
+    return (
+        currentPath.split("/templates/")[1]?.replace(/^\/+|\/+$/g, "") || null
+    );
+});
 
 const publicTemplate = computed(() => {
-    return templates.find(template => template.slug === templateSlug.value) || null
-})
+    return (
+        templates.find((template) => template.slug === templateSlug.value) ||
+        null
+    );
+});
 
 const registeredTemplate = computed(() => {
-    return getRegisteredTemplate(templateSlug.value)
-})
+    return getRegisteredTemplate(templateSlug.value);
+});
 
 const realTemplateComponent = computed(() => {
-    return registeredTemplate.value?.component || null
-})
+    return registeredTemplate.value?.component || null;
+});
 
 const realTemplateData = computed(() => {
-    return registeredTemplate.value?.data || null
-})
+    return registeredTemplate.value?.data || null;
+});
 
 const templateClientInfo = computed(() => {
-    return getTemplateClientInfo(templateSlug.value)
-})
+    return getTemplateClientInfo(templateSlug.value);
+});
 
 onMounted(() => {
     if (!publicTemplate.value) {
-        return
+        return;
     }
 
-    selectCategory(publicTemplate.value.categoryKey)
-    selectTemplate(publicTemplate.value.id)
-})
+    selectCategory(publicTemplate.value.categoryKey);
+    selectTemplate(publicTemplate.value.id);
+});
 </script>

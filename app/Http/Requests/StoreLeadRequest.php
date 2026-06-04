@@ -26,6 +26,9 @@ class StoreLeadRequest extends FormRequest
             'email' => ['nullable', 'required_without:phone', 'email', 'max:255'],
             'phone' => ['nullable', 'required_without:email', 'string', 'max:50'],
 
+            'requestType' => ['nullable', 'string', 'max:255'],
+            'siteGoal' => ['nullable', 'string', 'max:255'],
+
             'businessType' => ['nullable', 'string', 'max:255'],
             'hasLogo' => ['nullable', 'boolean'],
             'hasPhotos' => ['nullable', 'boolean'],
@@ -60,19 +63,12 @@ class StoreLeadRequest extends FormRequest
     {
         return [
             'name.required' => 'Numele este obligatoriu.',
-
             'email.required_without' => 'Completează emailul sau telefonul.',
             'email.email' => 'Emailul nu este valid.',
-
             'phone.required_without' => 'Completează telefonul sau emailul.',
-
-            'template.required' => 'Trebuie selectat un template.',
-
+            'template.required' => 'Trebuie selectat un model de site.',
             'totalPrice.required' => 'Prețul estimativ este obligatoriu.',
-            'totalPrice.integer' => 'Prețul trebuie să fie un număr.',
-
             'privacyAccepted.accepted' => 'Trebuie să fii de acord să fii contactat/ă pentru această cerere.',
-
             'website.max' => 'Cererea nu a putut fi trimisă.',
         ];
     }

@@ -30,6 +30,8 @@ class Lead extends Model
         'urgency',
         'launch_deadline',
         'source_page',
+        'request_type',
+        'site_goal',
     ];
 
     protected $casts = [

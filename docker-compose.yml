@@ -21,6 +21,15 @@ services:
         depends_on:
             - app
 
+    node:
+        image: node:22-alpine
+        container_name: siteboutique_node
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "5173:5173"
+
     mysql:
         image: mysql:8.0
         container_name: siteboutique_mysql

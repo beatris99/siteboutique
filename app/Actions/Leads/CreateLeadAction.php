@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Leads;
+namespace App\Actions;
 
 use App\Models\Lead;
 
@@ -12,6 +12,9 @@ class CreateLeadAction
             'name' => $data['name'],
             'email' => $data['email'] ?? null,
             'phone' => $data['phone'] ?? null,
+
+            'request_type' => $data['requestType'] ?? null,
+            'site_goal' => $data['siteGoal'] ?? null,
 
             'business_type' => $data['businessType'] ?? null,
             'has_logo' => $data['hasLogo'] ?? null,

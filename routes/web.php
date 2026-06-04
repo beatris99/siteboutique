@@ -52,26 +52,28 @@ Route::get('/politica-cookies', function () {
 Route::get('/sitemap.xml', function () {
     $baseUrl = rtrim(config('app.url'), '/');
 
-    $urls = [
-        ['loc' => $baseUrl . '/', 'priority' => '1.0'],
-        ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
-        ['loc' => $baseUrl . '/preturi', 'priority' => '0.8'],
+   $urls = [
+    ['loc' => $baseUrl . '/', 'priority' => '1.0'],
+    ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
+    ['loc' => $baseUrl . '/preturi', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/pentru-developeri', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/site-facut-pentru-tine', 'priority' => '0.8'],
 
-        ['loc' => $baseUrl . '/templates/business-essence', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/premium-studio', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/launch-page', 'priority' => '0.7'],
-        ['loc' => $baseUrl . '/templates/conversion-flow', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/rental-flow', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/tourism-stay', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/simple-shop', 'priority' => '0.8'],
-        ['loc' => $baseUrl . '/templates/premium-store', 'priority' => '0.7'],
-        ['loc' => $baseUrl . '/templates/client-portal', 'priority' => '0.7'],
+    ['loc' => $baseUrl . '/templates/business-essence', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/premium-studio', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/launch-page', 'priority' => '0.7'],
+    ['loc' => $baseUrl . '/templates/conversion-flow', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/rental-flow', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/tourism-stay', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/simple-shop', 'priority' => '0.8'],
+    ['loc' => $baseUrl . '/templates/premium-store', 'priority' => '0.7'],
+    ['loc' => $baseUrl . '/templates/client-portal', 'priority' => '0.7'],
 
-        ['loc' => $baseUrl . '/politica-confidentialitate', 'priority' => '0.3'],
-        ['loc' => $baseUrl . '/termeni-conditii', 'priority' => '0.3'],
-        ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
-    ];
+    ['loc' => $baseUrl . '/politica-confidentialitate', 'priority' => '0.3'],
+    ['loc' => $baseUrl . '/termeni-conditii', 'priority' => '0.3'],
+    ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
+];
 
     foreach (config('seo_pages', []) as $slug => $page) {
         $urls[] = [
@@ -119,3 +121,10 @@ Route::middleware('admin.auth')
 
         Route::delete('/leads/{lead}', [LeadController::class, 'destroy'])->name('leads.destroy');
     });
+Route::get('/pentru-developeri', function () {
+    return view('pages.developers');
+})->name('developers');
+
+Route::get('/site-facut-pentru-tine', function () {
+    return view('pages.done-for-you');
+})->name('done-for-you');
