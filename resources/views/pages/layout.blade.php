@@ -5,7 +5,9 @@
     <title>@yield('title') - SiteBoutique</title>
     <meta name="description" content="@yield('description', 'Site-uri moderne pentru afaceri mici și locale.')">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
+    <link rel="shortcut icon" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
+    <meta name="theme-color" content="#f7f4ef">
     @vite(['resources/css/app.css'])
 </head>
 

@@ -28,6 +28,10 @@
         content="Site-uri configurabile, preț transparent și lansare rapidă pentru afaceri."
     >
 
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
+    <link rel="shortcut icon" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
+    <meta name="theme-color" content="#f7f4ef">
+
     <link rel="canonical" href="{{ config('app.url') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

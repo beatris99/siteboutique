@@ -211,10 +211,10 @@ export const siteContent = {
             "Un site bun nu se termină la lansare. Îl poți păstra actualizat, rapid și sigur printr-un pachet lunar.",
         plans: [
             {
-                name: "Start",
-                price: "150 lei/lună",
+                name: "Basic",
+                price: "250 lei/lună",
                 description:
-                    "Pentru site-uri simple care au nevoie de mici actualizări.",
+                    "Pentru site-uri simple care au nevoie de verificări și mici actualizări.",
                 features: [
                     "Actualizări minore de text",
                     "Verificare funcționare site",
@@ -223,8 +223,8 @@ export const siteContent = {
                 ],
             },
             {
-                name: "Pro",
-                price: "350 lei/lună",
+                name: "Plus",
+                price: "450 lei/lună",
                 description:
                     "Pentru business-uri active care modifică periodic conținutul.",
                 features: [
@@ -238,15 +238,15 @@ export const siteContent = {
             },
             {
                 name: "Premium",
-                price: "700 lei/lună",
+                price: "850 lei/lună",
                 description:
-                    "Pentru proiecte care au nevoie de optimizări și suport constant.",
+                    "Pentru proiecte care au nevoie de suport constant și optimizări.",
                 features: [
                     "Actualizări recurente",
                     "Optimizări viteză",
-                    "SEO basic lunar",
+                    "Backup mai frecvent",
                     "Raport lunar",
-                    "Suport prioritar",
+                    "Suport dedicat",
                 ],
             },
         ],

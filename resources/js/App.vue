@@ -18,9 +18,14 @@
                 :content="realTemplateData"
             />
 
-            <TemplatePublicPage v-else :template="publicTemplate" />
+            <TemplatePublicPage
+                v-else
+                :template="publicTemplate"
+            />
 
             <TemplateProductDetailsSection :template="publicTemplate" />
+
+            <PluginLibrarySection />
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
 
@@ -46,9 +51,7 @@
                 id="builder"
                 class="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
             >
-                <div
-                    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]"
-                >
+                <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
                     <SiteConfigurator
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
@@ -109,6 +112,8 @@
                 @select-template="selectTemplate"
             />
 
+            <PluginLibrarySection />
+
             <PackageSelector
                 :packages="packages"
                 :selected-package-id="selectedPackageId"
@@ -119,9 +124,7 @@
                 id="builder"
                 class="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:py-24"
             >
-                <div
-                    class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]"
-                >
+                <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
                     <SiteConfigurator
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
@@ -184,6 +187,7 @@ import AudienceSection from "./components/sections/AudienceSection.vue";
 import WhyWorkWithMeSection from "./components/sections/WhyWorkWithMeSection.vue";
 import PortfolioSection from "./components/sections/PortfolioSection.vue";
 import TemplateGallery from "./components/sections/TemplateGallery.vue";
+import PluginLibrarySection from "./components/sections/PluginLibrarySection.vue";
 import MaintenancePlans from "./components/sections/MaintenancePlans.vue";
 import ProjectProcessSection from "./components/sections/ProjectProcessSection.vue";
 import FAQSection from "./components/sections/FAQSection.vue";
@@ -228,16 +232,11 @@ const templateSlug = computed(() => {
         return null;
     }
 
-    return (
-        currentPath.split("/templates/")[1]?.replace(/^\/+|\/+$/g, "") || null
-    );
+    return currentPath.split("/templates/")[1]?.replace(/^\/+|\/+$/g, "") || null;
 });
 
 const publicTemplate = computed(() => {
-    return (
-        templates.find((template) => template.slug === templateSlug.value) ||
-        null
-    );
+    return templates.find((template) => template.slug === templateSlug.value) || null;
 });
 
 const registeredTemplate = computed(() => {
