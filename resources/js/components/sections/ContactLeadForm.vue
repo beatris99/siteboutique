@@ -6,18 +6,18 @@
         <div class="mx-auto max-w-5xl">
             <div class="max-w-3xl">
                 <p class="text-sm uppercase tracking-[0.25em] text-white/40">
-                    Cere site-ul
+                    Ultimul pas
                 </p>
 
                 <h2
                     class="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
                 >
-                    Vrei acest model adaptat pentru tine?
+                    Trimite și primești o ofertă fermă în maxim o zi.
                 </h2>
 
                 <p class="mt-5 text-base leading-8 text-white/60 sm:text-lg">
-                    Completează câteva răspunsuri simple. Nu trebuie să știi
-                    termeni tehnici.
+                    Câteva răspunsuri simple, fără termeni tehnici. Îți spun eu ce
+                    variantă ți se potrivește și cât costă exact.
                 </p>
             </div>
 
@@ -96,13 +96,6 @@
                     grid-class="grid gap-2 md:grid-cols-2"
                 />
 
-                <ChoicePills
-                    v-model="form.siteGoal"
-                    label="Ce vrei să facă site-ul?"
-                    :options="siteGoalOptions"
-                    grid-class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
-                />
-
                 <div class="grid gap-4 md:grid-cols-2">
                     <FormField v-model="form.name" placeholder="Numele tău" />
 
@@ -114,61 +107,6 @@
                     type="email"
                     placeholder="Email"
                 />
-
-                <ChoicePills
-                    v-model="form.businessType"
-                    label="Ce fel de afacere ai?"
-                    :options="businessTypeOptions"
-                    grid-class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
-                />
-
-                <div class="grid gap-5 lg:grid-cols-3">
-                    <ChoicePills
-                        v-model="form.hasLogo"
-                        label="Ai logo?"
-                        :options="yesNoOptions"
-                    />
-
-                    <ChoicePills
-                        v-model="form.hasPhotos"
-                        label="Ai poze?"
-                        :options="yesNoOptions"
-                    />
-
-                    <ChoicePills
-                        v-model="form.hasDomain"
-                        label="Ai domeniu?"
-                        :options="yesNoOptions"
-                    />
-                </div>
-
-                <ChoicePills
-                    v-model="form.budgetRange"
-                    label="Buget aproximativ"
-                    :options="budgetOptions"
-                    grid-class="grid gap-2 sm:grid-cols-2 lg:grid-cols-5"
-                />
-
-                <ChoicePills
-                    v-model="form.urgency"
-                    label="Cât de repede ai nevoie?"
-                    :options="urgencyOptions"
-                    grid-class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"
-                />
-
-                <div>
-                    <label
-                        class="mb-2 block text-sm font-semibold text-white/70"
-                    >
-                        Ai o dată limită? Opțional
-                    </label>
-
-                    <input
-                        v-model="form.launchDeadline"
-                        type="date"
-                        class="w-full rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm text-white outline-none [color-scheme:dark]"
-                    />
-                </div>
 
                 <FormField
                     v-model="form.message"
@@ -270,46 +208,6 @@ const requestTypeOptions = [
         value: "developer_template",
         description: "Sunt developer și vreau să îl folosesc eu.",
     },
-];
-
-const siteGoalOptions = [
-    { label: "Să primesc cereri", value: "cereri" },
-    { label: "Să prezint servicii", value: "prezentare servicii" },
-    { label: "Să primesc rezervări", value: "rezervări" },
-    { label: "Să vând produse", value: "vânzare produse" },
-    { label: "Să arăt un portofoliu", value: "portofoliu" },
-    { label: "Platformă custom", value: "platformă custom" },
-];
-
-const businessTypeOptions = [
-    { label: "Salon / beauty", value: "Salon / beauty / wellness" },
-    { label: "Firmă de servicii", value: "Firmă locală / servicii" },
-    { label: "Închirieri", value: "Închirieri" },
-    { label: "Pensiune / cazare", value: "Pensiune / turism / cazare" },
-    { label: "Magazin / produse", value: "Magazin online / produse" },
-    { label: "Campanie / ofertă", value: "Curs / campanie / landing page" },
-    { label: "Altceva", value: "Alt tip de business" },
-];
-
-const yesNoOptions = [
-    { label: "Da", value: "1" },
-    { label: "Nu", value: "0" },
-    { label: "Nu încă", value: "" },
-];
-
-const budgetOptions = [
-    { label: "Sub 2.500 lei", value: "sub 2.500 lei" },
-    { label: "2.500 - 4.500 lei", value: "2.500 - 4.500 lei" },
-    { label: "4.500 - 7.500 lei", value: "4.500 - 7.500 lei" },
-    { label: "7.500+ lei", value: "7.500+ lei" },
-    { label: "Nu știu încă", value: "nu știu încă" },
-];
-
-const urgencyOptions = [
-    { label: "Cât mai repede", value: "cât mai repede" },
-    { label: "2-4 săptămâni", value: "în 2-4 săptămâni" },
-    { label: "1-2 luni", value: "în 1-2 luni" },
-    { label: "Nu e urgent", value: "nu este urgent" },
 ];
 
 const emptyForm = {

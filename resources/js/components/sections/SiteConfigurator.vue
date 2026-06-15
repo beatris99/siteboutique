@@ -81,25 +81,6 @@
                             </span>
                         </div>
 
-                        <div
-                            class="mt-5 rounded-2xl p-4"
-                            :class="isSelected(feature.id) ? 'bg-white/10' : 'bg-[#f7f4ee]'"
-                        >
-                            <p
-                                class="text-xs font-semibold uppercase tracking-[0.2em]"
-                                :class="isSelected(feature.id) ? 'text-white/40' : 'text-black/40'"
-                            >
-                                Exemplu concret
-                            </p>
-
-                            <p
-                                class="mt-2 text-sm leading-6"
-                                :class="isSelected(feature.id) ? 'text-white/70' : 'text-black/60'"
-                            >
-                                {{ getExample(feature.name) }}
-                            </p>
-                        </div>
-
                         <div class="mt-5 grid gap-2 text-sm">
                             <div class="flex justify-between gap-4">
                                 <span :class="isSelected(feature.id) ? 'text-white/50' : 'text-black/50'">

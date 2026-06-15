@@ -51,8 +51,8 @@
             </p>
 
             <p class="mt-3 text-sm leading-6 text-white/50">
-                Preț estimativ. Oferta finală depinde de conținut, funcții și
-                termen.
+                Prețul pe care îl vezi aici e cel pe care îl plătești. După ce
+                trimiți, îți confirm în scris suma fixă și termenul.
             </p>
         </div>
 

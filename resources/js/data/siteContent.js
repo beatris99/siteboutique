@@ -458,8 +458,8 @@ export const siteContent = {
         description:
             "Site-uri moderne, configurabile și transparente pentru afaceri mici și locale care vor să se lanseze rapid.",
         copyright: "© 2026 SiteBoutique. Toate drepturile rezervate.",
-        email: "hello@siteboutique.ro",
-        phone: "+40 700 000 000",
+        email: "heresbeatriselena@gmail.com",
+        phone: "+40 747 084 861",
         location: "Brașov, România",
         links: [
             {
