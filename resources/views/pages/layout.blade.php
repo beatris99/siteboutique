@@ -2,11 +2,11 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title') - SiteBoutique</title>
+    <title>@yield('title') - SiteGo</title>
     <meta name="description" content="@yield('description', 'Site-uri moderne pentru afaceri mici și locale.')">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
-    <link rel="shortcut icon" href="{{ asset('favicon-siteboutique.svg') }}?v=3">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-sitego.svg') }}?v=3">
+    <link rel="shortcut icon" href="{{ asset('favicon-sitego.svg') }}?v=3">
     <meta name="theme-color" content="#f7f4ef">
     @vite(['resources/css/app.css'])
 </head>
@@ -20,7 +20,7 @@
 
         <div class="mt-8 rounded-[2rem] border border-black/10 bg-white p-8 shadow-xl md:p-12">
             <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                SiteBoutique
+                SiteGo
             </p>
 
             <h1 class="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">

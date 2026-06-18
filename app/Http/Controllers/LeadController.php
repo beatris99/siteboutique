@@ -156,7 +156,7 @@ class LeadController extends Controller
             ->with('notes')
             ->latest();
 
-        $fileName = 'siteboutique-leads-' . now()->format('Y-m-d-H-i') . '.csv';
+        $fileName = 'sitego-leads-' . now()->format('Y-m-d-H-i') . '.csv';
 
         return response()->streamDownload(function () use ($query) {
             $handle = fopen('php://output', 'w');

@@ -76,7 +76,7 @@ const props = defineProps({
     phone: { type: String, default: '+40 747 084 861' },
     message: {
         type: String,
-        default: 'Salut! Am văzut SiteBoutique și aș vrea un site pentru afacerea mea.',
+        default: 'Salut! Am văzut SiteGo și aș vrea un site pentru afacerea mea.',
     },
 })
 

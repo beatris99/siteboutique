@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'SiteBoutique Admin')</title>
+    <title>@yield('title', 'SiteGo Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     @vite(['resources/css/app.css'])
@@ -14,7 +14,7 @@
         <div class="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-center">
             <div>
                 <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                    @yield('eyebrow', 'SiteBoutique Admin')
+                    @yield('eyebrow', 'SiteGo Admin')
                 </p>
 
                 <h1 class="mt-3 text-4xl font-semibold tracking-tight">

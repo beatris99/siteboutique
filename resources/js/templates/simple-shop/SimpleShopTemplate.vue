@@ -148,25 +148,21 @@
                     </a>
                 </div>
 
-                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <article
-                        v-for="category in categories"
-                        :key="category.name"
-                        class="rounded-[1.5rem] border border-black/10 bg-[#faf4ed] p-5"
-                    >
-                        <div
-                            class="h-24 rounded-[1.25rem]"
-                            :class="category.gradient"
-                        ></div>
-
-                        <h3 class="mt-5 text-xl font-semibold">
-                            {{ category.name }}
-                        </h3>
-
-                        <p class="mt-2 text-sm leading-6 text-black/60">
-                            {{ category.description }}
-                        </p>
-                    </article>
+                <div class="-mx-4 mt-8 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+                    <div class="flex w-max min-w-full gap-3 pb-3">
+                        <button
+                            v-for="category in categories"
+                            :key="category.key"
+                            type="button"
+                            class="shrink-0 whitespace-nowrap rounded-full border px-6 py-3 text-sm font-semibold transition"
+                            :class="selectedCategoryKey === category.key
+                ? 'border-black bg-black text-white'
+                : 'border-black/10 bg-white text-black hover:border-black/30'"
+                            @click="$emit('select-category', category.key)"
+                        >
+                            {{ category.label }}
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

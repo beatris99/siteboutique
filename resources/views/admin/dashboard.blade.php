@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Dashboard - SiteBoutique Admin')
+@section('title', 'Dashboard - SiteGo Admin')
 @section('page-title', 'Dashboard')
 @section('page-description', 'Privire rapidă peste cereri, vânzări estimate și lead-uri de urmărit.')
 

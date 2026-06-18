@@ -1,41 +1,67 @@
 @extends('pages.layout')
 
-@section('title', 'Prețuri')
-@section('description', 'Prețuri pentru site-uri gata făcute, template-uri pentru developeri și funcționalități extra.')
+@section('title', 'Prețuri realizare site')
+@section('description', 'Prețuri orientative pentru realizare site de prezentare, landing page, magazin online simplu sau platformă personalizată.')
 @section('page-title', 'Prețuri clare pentru site-ul tău')
-@section('page-intro', 'Poți alege să îți fac eu site-ul complet sau poți cumpăra template-ul și îl folosești tu, dacă ești developer.')
+@section('page-intro', 'Alegi direcția potrivită pentru afacerea ta, iar după ce trimiți cererea primești o ofertă finală, adaptată exact la ce ai nevoie.')
 
 @section('content')
-    <section class="grid gap-6 lg:grid-cols-2">
+    <section class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <article class="rounded-[2rem] bg-black p-6 text-white sm:p-8">
             <p class="text-sm uppercase tracking-[0.25em] text-white/40">
-                Pentru antreprenori
+                Realizare site la cheie
             </p>
 
-            <h2 class="mt-4 text-3xl font-semibold">
-                Vreau să îmi faci tu site-ul
+            <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">
+                Site construit, adaptat și pregătit pentru lansare.
             </h2>
 
-            <p class="mt-4 text-white/60">
-                Alegi un model de site, alegi funcțiile dorite, iar eu îl adaptez pentru afacerea ta.
+            <p class="mt-4 leading-8 text-white/60">
+                Prețurile sunt orientative. După ce alegi modelul, pachetul și funcționalitățile, discutăm detaliile și primești oferta finală.
             </p>
 
             <div class="mt-8 grid gap-4">
                 @foreach([
-                    ['Start', '2.500 lei', 'Site simplu, clar, potrivit pentru început.'],
-                    ['Pro', '4.500 lei', 'Site complet, cu funcții extra și structură mai bună.'],
-                    ['Premium', '7.500 lei', 'Site mai avansat, imagine premium și mai multe pagini.'],
-                    ['Custom', 'de la 10.000 lei', 'Platformă, magazin complex, admin sau funcții speciale.'],
-                ] as [$name, $price, $description])
+                    [
+                        'name' => 'Start',
+                        'price' => 'de la 2.500 lei',
+                        'description' => 'Pentru un site simplu de prezentare sau landing page, potrivit pentru început.',
+                        'features' => ['Model de site adaptat', '4-5 secțiuni principale', 'Formular de contact', 'Variantă mobil și desktop', 'SEO basic']
+                    ],
+                    [
+                        'name' => 'Pro',
+                        'price' => 'de la 4.500 lei',
+                        'description' => 'Pentru o afacere care are nevoie de un site complet, mai convingător și mai bine structurat.',
+                        'features' => ['Tot ce include Start', 'Mai multe secțiuni personalizate', 'Funcționalități extra', 'Texte structurate mai clar', 'Pregătire pentru promovare']
+                    ],
+                    [
+                        'name' => 'Premium',
+                        'price' => 'de la 7.500 lei',
+                        'description' => 'Pentru proiecte mai complexe, imagine premium, rezervări, catalog sau magazin online simplu.',
+                        'features' => ['Tot ce include Pro', 'Pagini extra', 'Funcționalități avansate', 'Admin sau panou cereri', 'Suport la lansare']
+                    ],
+                    [
+                        'name' => 'Custom',
+                        'price' => 'ofertă personalizată',
+                        'description' => 'Pentru platforme, magazine online complexe, conturi de client, integrări sau funcții speciale.',
+                        'features' => ['Analiză cerințe', 'Structură custom', 'Funcții personalizate', 'Estimare separată', 'Livrare pe etape']
+                    ],
+                ] as $package)
                     <div class="rounded-2xl bg-white/10 p-5">
                         <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                            <h3 class="text-2xl font-semibold">{{ $name }}</h3>
-                            <p class="text-xl font-semibold">{{ $price }}</p>
+                            <h3 class="text-2xl font-semibold">{{ $package['name'] }}</h3>
+                            <p class="text-xl font-semibold">{{ $package['price'] }}</p>
                         </div>
 
-                        <p class="mt-3 text-white/60">
-                            {{ $description }}
+                        <p class="mt-3 leading-7 text-white/60">
+                            {{ $package['description'] }}
                         </p>
+
+                        <ul class="mt-4 grid gap-2 text-sm text-white/70">
+                            @foreach($package['features'] as $feature)
+                                <li>✓ {{ $feature }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endforeach
             </div>
@@ -43,31 +69,30 @@
 
         <article class="rounded-[2rem] bg-[#f7f4ef] p-6 sm:p-8">
             <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                Pentru developeri
+                Ce include prețul
             </p>
 
             <h2 class="mt-4 text-3xl font-semibold">
-                Cumpăr template-ul și îl folosesc eu
+                Nu plătești doar un design. Primești o structură funcțională.
             </h2>
 
-            <p class="mt-4 text-black/60">
-                Primești template-ul și componentele, apoi îl adaptezi tu pentru clientul tău.
+            <p class="mt-4 leading-8 text-black/60">
+                Scopul este ca site-ul să fie clar pentru client, ușor de parcurs și pregătit pentru cereri reale.
             </p>
 
             <div class="mt-8 grid gap-4">
                 @foreach([
-                    ['Template simplu', '490 lei', 'Un model de site gata construit.'],
-                    ['Template + componente', '890 lei', 'Modelul plus funcționalități comune.'],
-                    ['Starter kit complet', '1.290 lei', 'Template, componente, structură și documentație.'],
-                    ['Toate template-urile', '2.900 lei', 'Pachet pentru developeri care vor mai multe modele.'],
-                ] as [$name, $price, $description])
+                    ['Design responsive', 'Site-ul este adaptat pentru telefon, tabletă și desktop.'],
+                    ['Structură clară', 'Secțiuni logice pentru servicii, beneficii, prețuri, întrebări și contact.'],
+                    ['Formular de contact', 'Vizitatorul poate trimite rapid o cerere direct din site.'],
+                    ['SEO basic', 'Titluri, descrieri, structură și sitemap pentru indexare mai bună.'],
+                    ['Configurare lansare', 'Te pot ajuta cu domeniul, hostingul, publicarea și verificările de bază.'],
+                    ['Posibilitate de extindere', 'Poți începe simplu și adăuga ulterior rezervări, blog, magazin sau admin.'],
+                ] as [$title, $description])
                     <div class="rounded-2xl bg-white p-5">
-                        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                            <h3 class="text-2xl font-semibold">{{ $name }}</h3>
-                            <p class="text-xl font-semibold text-[#8b6f47]">{{ $price }}</p>
-                        </div>
+                        <h3 class="font-semibold">{{ $title }}</h3>
 
-                        <p class="mt-3 text-black/60">
+                        <p class="mt-2 text-sm leading-6 text-black/60">
                             {{ $description }}
                         </p>
                     </div>
@@ -81,54 +106,60 @@
             Funcționalități extra
         </h2>
 
-        <p class="mt-4 text-black/60">
-            Poți porni simplu și adaugi doar ce ai nevoie.
+        <p class="mt-4 max-w-3xl leading-8 text-black/60">
+            Poți porni cu un site simplu și poți adăuga doar funcționalitățile de care ai nevoie. Prețurile sunt orientative și pot varia în funcție de complexitate.
         </p>
 
-        <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             @foreach([
-                ['Buton WhatsApp', '150 lei', '49 lei'],
-                ['Formular contact', '300 lei', '99 lei'],
-                ['Galerie foto', '300 lei', '99 lei'],
-                ['Listă servicii / prețuri', '350 lei', '149 lei'],
-                ['Google Maps', '200 lei', '79 lei'],
-                ['Formular rezervare', '600 lei', '199 lei'],
-                ['Catalog produse', '900 lei', '299 lei'],
-                ['Panou cereri clienți', '1.200 lei', '399 lei'],
-                ['Site RO/EN', '1.500 lei', '499 lei'],
-                ['Plată online', '1.800 lei', '699 lei'],
-                ['Magazin online simplu', '2.500 lei', '899 lei'],
-            ] as [$feature, $clientPrice, $developerPrice])
+                ['Buton WhatsApp', 'de la 150 lei', 'Contact rapid pentru clienți.'],
+                ['Formular contact', 'de la 300 lei', 'Cererile ajung direct în email sau în panou.'],
+                ['Galerie foto / video', 'de la 400 lei', 'Potrivită pentru portofoliu, lucrări, camere sau produse.'],
+                ['Listă servicii și prețuri', 'de la 350 lei', 'Prezinți clar ce oferi și cât costă.'],
+                ['Google Maps', 'de la 250 lei', 'Clientul vede rapid locația afacerii.'],
+                ['Formular rezervare', 'de la 600 lei', 'Pentru programări, perioade sau cereri de disponibilitate.'],
+                ['Catalog produse', 'de la 900 lei', 'Produse afișate cu poză, preț și descriere.'],
+                ['Panou cereri clienți', 'de la 1.200 lei', 'Vezi cererile primite într-un admin simplu.'],
+                ['Site RO/EN', 'de la 1.500 lei', 'Site în română și engleză.'],
+                ['Plată online', 'ofertă personalizată', 'Integrare plată cu cardul, în funcție de provider.'],
+                ['Magazin online simplu', 'de la 7.500 lei', 'Produse, categorii, coș și cerere/comandă.'],
+                ['Funcții custom', 'ofertă personalizată', 'Pentru idei speciale sau logică specifică businessului.'],
+            ] as [$feature, $price, $description])
                 <article class="rounded-2xl bg-white p-5">
-                    <h3 class="font-semibold">{{ $feature }}</h3>
-
-                    <div class="mt-4 grid gap-2 text-sm text-black/60">
-                        <div class="flex justify-between gap-4">
-                            <span>Pentru client</span>
-                            <strong class="text-black">{{ $clientPrice }}</strong>
-                        </div>
-
-                        <div class="flex justify-between gap-4">
-                            <span>Pentru developer</span>
-                            <strong class="text-black">{{ $developerPrice }}</strong>
-                        </div>
+                    <div class="flex items-start justify-between gap-4">
+                        <h3 class="font-semibold">{{ $feature }}</h3>
+                        <strong class="text-right text-[#8b6f47]">{{ $price }}</strong>
                     </div>
+
+                    <p class="mt-3 text-sm leading-6 text-black/60">
+                        {{ $description }}
+                    </p>
                 </article>
             @endforeach
         </div>
     </section>
 
     <section class="mt-12 rounded-[2rem] bg-black p-6 text-white sm:p-8">
-        <h2 class="text-3xl font-semibold">
-            Nu știi ce variantă să alegi?
-        </h2>
+        <div class="grid gap-6 lg:grid-cols-[1fr_0.6fr] lg:items-center">
+            <div>
+                <h2 class="text-3xl font-semibold">
+                    Nu știi ce variantă ți se potrivește?
+                </h2>
 
-        <p class="mt-4 text-white/60">
-            Alege un model de site, selectează pachetul Pro și trimite cererea. Îți spun eu dacă ai nevoie de mai mult sau dacă poți începe mai simplu.
-        </p>
+                <p class="mt-4 leading-8 text-white/60">
+                    Alege un model de site și trimite cererea cu ce ai în minte. Îți spun ce pachet este potrivit, ce poți simplifica și unde merită să investești.
+                </p>
+            </div>
 
-        <a href="/#templates" class="mt-6 inline-flex rounded-full bg-white px-6 py-4 text-sm font-semibold text-black">
-            Alege un model de site
-        </a>
+            <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+                <a href="/#templates" class="inline-flex justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-black">
+                    Alege un model
+                </a>
+
+                <a href="/intrebari-frecvente" class="inline-flex justify-center rounded-full border border-white/20 px-6 py-4 text-sm font-semibold text-white">
+                    Vezi întrebări frecvente
+                </a>
+            </div>
+        </div>
     </section>
 @endsection

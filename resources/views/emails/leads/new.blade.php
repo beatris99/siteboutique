@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Cerere nouă SiteBoutique</title>
+    <title>Cerere nouă SiteGo</title>
 </head>
 <body style="margin:0; padding:0; background:#f7f4ef; font-family:Arial, sans-serif; color:#171717;">
 @php
@@ -18,7 +18,7 @@
 <div style="max-width:760px; margin:0 auto; padding:32px 16px;">
     <div style="background:#ffffff; border-radius:24px; padding:32px; border:1px solid #eee;">
         <p style="margin:0; font-size:12px; text-transform:uppercase; letter-spacing:3px; color:#8b6f47;">
-            SiteBoutique Admin
+            SiteGo Admin
         </p>
 
         <h1 style="margin:16px 0 0; font-size:30px;">

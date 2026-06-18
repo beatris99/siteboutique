@@ -5,7 +5,7 @@
 
 @section('content')
     <p>
-        Această politică explică modul în care SiteBoutique colectează și folosește datele introduse de utilizatori prin formularul de contact.
+        Această politică explică modul în care SiteGo colectează și folosește datele introduse de utilizatori prin formularul de contact.
     </p>
 
     <h2>Date colectate</h2>

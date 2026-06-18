@@ -15,14 +15,17 @@
                 </p>
             </div>
 
-            <div>
+            <div
+                v-for="group in footer.links"
+                :key="group.title"
+            >
                 <h3 class="font-semibold">
-                    Navigare
+                    {{ group.title }}
                 </h3>
 
                 <nav class="mt-5 grid gap-3 text-sm text-white/60">
                     <a
-                        v-for="item in footer.links"
+                        v-for="item in group.items"
                         :key="item.href"
                         :href="item.href"
                         class="transition hover:text-white"
@@ -34,24 +37,7 @@
 
             <div>
                 <h3 class="font-semibold">
-                    Legal
-                </h3>
-
-                <nav class="mt-5 grid gap-3 text-sm text-white/60">
-                    <a
-                        v-for="item in footer.legalLinks || []"
-                        :key="item.href"
-                        :href="item.href"
-                        class="transition hover:text-white"
-                    >
-                        {{ item.label }}
-                    </a>
-                </nav>
-            </div>
-
-            <div>
-                <h3 class="font-semibold">
-                    Contact
+                    {{ footer.contactTitle }}
                 </h3>
 
                 <div class="mt-5 grid gap-3 text-sm text-white/60">
@@ -65,7 +51,7 @@
 
                     <a
                         v-if="footer.phone"
-                        :href="`tel:${footer.phone}`"
+                        :href="`tel:${footer.phone.replaceAll(' ', '')}`"
                         class="transition hover:text-white"
                     >
                         {{ footer.phone }}
@@ -86,5 +72,9 @@ defineProps({
         type: Object,
         required: true,
     },
-})
+    locale: {
+        type: String,
+        default: "ro",
+    },
+});
 </script>

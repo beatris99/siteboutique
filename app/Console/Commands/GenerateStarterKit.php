@@ -190,7 +190,7 @@ Estimare: ______ zile lucrătoare
 ## Pentru oferta finală am nevoie de materialele din fișierul materiale-necesare.md.
 
 Mulțumesc,
-SiteBoutique
+SiteGo
 MD;
     }
 }

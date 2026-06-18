@@ -20,7 +20,7 @@ class NewLeadReceivedMail extends Mailable
     public function build(): self
     {
         return $this
-            ->subject('Cerere nouă SiteBoutique - ' . $this->lead->name)
+            ->subject('Cerere nouă SiteGo - ' . $this->lead->name)
             ->view('emails.leads.new')
             ->with([
                 'requirements' => TemplateRequirementResolver::requirements($this->lead),

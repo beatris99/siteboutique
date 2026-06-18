@@ -6,7 +6,7 @@
             <span class="h-3 w-3 rounded-full bg-green-300"></span>
 
             <div class="ml-3 flex-1 rounded-full bg-white px-3 py-1 text-[10px] text-black/40">
-                siteboutique.ro/templates/{{ template.slug }}
+                sitego.ro/templates/{{ template.slug }}
             </div>
         </div>
 

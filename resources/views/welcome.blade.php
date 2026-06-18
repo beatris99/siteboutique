@@ -28,8 +28,8 @@
         content="{{ __('site.meta.twitter_description') }}"
     >
 
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon-sitego.svg') }}?v=1">
-    <link rel="shortcut icon" href="{{ asset('favicon-sitego.svg') }}?v=1">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/sitego-icon.svg') }}?v=1">
+    <link rel="shortcut icon" href="{{ asset('images/sitego-icon.svg') }}?v=1">
     <meta name="theme-color" content="#f7f4ef">
 
     <link rel="canonical" href="{{ config('app.url') }}">

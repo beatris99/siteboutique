@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin Login - SiteBoutique')
+@section('title', 'Admin Login - SiteGo')
 @section('page-title', 'Autentificare')
 @section('page-description', 'Introdu parola de admin pentru a vedea cererile primite.')
 

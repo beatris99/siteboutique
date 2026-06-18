@@ -69,7 +69,7 @@ Prețul de mai sus este estimativ. Oferta finală se stabilește după ce verifi
 Dacă ești de acord cu direcția, îmi poți trimite materialele disponibile, iar eu revin cu oferta finală și termenul de livrare.
 
 Mulțumesc,
-SiteBoutique
+SiteGo
 TEXT;
     }
 

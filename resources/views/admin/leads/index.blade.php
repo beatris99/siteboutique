@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Cereri primite - SiteBoutique')
+@section('title', 'Cereri primite - SiteGo')
 @section('page-title', 'Cereri primite')
 @section('page-description', 'Aici vezi toate cererile trimise din configurator.')
 

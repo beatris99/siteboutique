@@ -20,7 +20,7 @@ class LeadConfirmationMail extends Mailable
     public function build(): self
     {
         return $this
-            ->subject('Am primit cererea ta - SiteBoutique')
+            ->subject('Am primit cererea ta - SiteGo')
             ->replyTo(config('admin.email'))
             ->view('emails.leads.confirmation')
             ->with([

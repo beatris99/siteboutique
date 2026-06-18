@@ -3,7 +3,7 @@ services:
         build:
             context: .
             dockerfile: docker/php/Dockerfile
-        container_name: siteboutique_app
+        container_name: sitego_app
         working_dir: /var/www/html
         volumes:
             - ./:/var/www/html
@@ -12,7 +12,7 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: siteboutique_nginx
+        container_name: sitego_nginx
         ports:
             - "8082:80"
         volumes:
@@ -23,7 +23,7 @@ services:
 
     node:
         image: node:22-alpine
-        container_name: siteboutique_node
+        container_name: sitego_node
         working_dir: /var/www/html
         volumes:
             - ./:/var/www/html
@@ -32,17 +32,17 @@ services:
 
     mysql:
         image: mysql:8.0
-        container_name: siteboutique_mysql
+        container_name: sitego_mysql
         restart: unless-stopped
         ports:
             - "3309:3306"
         environment:
-            MYSQL_DATABASE: siteboutique
+            MYSQL_DATABASE: sitego
             MYSQL_ROOT_PASSWORD: root
             MYSQL_PASSWORD: root
             MYSQL_USER: site_user
         volumes:
-            - siteboutique_mysql_data:/var/lib/mysql
+            - sitego_mysql_data:/var/lib/mysql
 
 volumes:
-    siteboutique_mysql_data:
+    sitego_mysql_data:

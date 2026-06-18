@@ -72,7 +72,7 @@ class Lead extends Model
             return null;
         }
 
-        $subject = rawurlencode('SiteBoutique - cererea ta pentru ' . $this->selected_template);
+        $subject = rawurlencode('SiteGo - cererea ta pentru ' . $this->selected_template);
         $body = rawurlencode("Bună,\n\nAm primit cererea ta pentru proiectul web și revin cu câteva detalii.");
 
         return "mailto:{$this->email}?subject={$subject}&body={$body}";

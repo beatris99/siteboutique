@@ -636,11 +636,476 @@ export const templates = [
         },
     },
 ];
-export function getSiteBuilderData(locale = "ro") {
+const builderTranslations = {
+    ro: {
+        categories: {
+            presentation: {
+                label: "Prezentare",
+                description: "Pentru firme locale, cabinete, servicii și branduri personale.",
+            },
+            sales: {
+                label: "Vânzare",
+                description: "Pentru landing page-uri, campanii, servicii premium și oferte clare.",
+            },
+            booking: {
+                label: "Rezervări",
+                description: "Pentru închirieri, programări, cazări, tururi și disponibilitate.",
+            },
+            ecommerce: {
+                label: "Magazin online",
+                description: "Pentru produse, cataloage, comenzi, coș și vânzare online.",
+            },
+            "custom-platform": {
+                label: "Platforme custom",
+                description: "Pentru dashboard-uri, portaluri, conturi client și aplicații interne.",
+            },
+        },
+
+        packages: {
+            start: {
+                name: "Start",
+                badge: "Simplu",
+                label: "Pentru început",
+                description: "Pentru un site simplu, clar, potrivit unei afaceri la început.",
+                clientDescription: "Site la cheie pornind de la modelul ales.",
+            },
+            pro: {
+                name: "Pro",
+                badge: "Recomandat",
+                label: "Cel mai ales",
+                description: "Pentru o afacere care vrea un site complet și mai convingător.",
+                clientDescription: "Site complet, cu mai multe secțiuni și funcționalități.",
+            },
+            premium: {
+                name: "Premium",
+                badge: "Complet",
+                label: "Pentru imagine premium",
+                description: "Pentru proiecte care au nevoie de imagine premium și structură mai avansată.",
+                clientDescription: "Site mai complex, adaptat serios pe business.",
+            },
+        },
+
+        featureCategories: {
+            Contact: "Contact",
+            Rezervări: "Rezervări",
+            Conținut: "Conținut",
+            Încredere: "Încredere",
+            Localizare: "Localizare",
+            Vânzare: "Vânzare",
+            Marketing: "Marketing",
+            Administrare: "Administrare",
+            Google: "Google",
+            Avansat: "Avansat",
+        },
+
+        features: {
+            1: {
+                name: "Formular de contact",
+                plainName: "Clientul îți poate trimite nume, telefon, email și mesaj.",
+            },
+            2: {
+                name: "Buton WhatsApp",
+                plainName: "Clientul poate deschide direct o conversație pe WhatsApp.",
+            },
+            3: {
+                name: "Formular de rezervare",
+                plainName: "Clientul poate cere o dată, o oră sau o perioadă.",
+            },
+            4: {
+                name: "Galerie foto / video",
+                plainName: "Afișezi poze, lucrări, camere, produse sau rezultate.",
+            },
+            5: {
+                name: "Listă servicii și prețuri",
+                plainName: "Arăți clar ce oferi și cât costă.",
+            },
+            6: {
+                name: "Întrebări frecvente",
+                plainName: "Răspunzi dinainte la întrebările clientului.",
+            },
+            7: {
+                name: "Testimoniale / recenzii",
+                plainName: "Afișezi păreri de la clienți sau exemple de rezultate.",
+            },
+            8: {
+                name: "Google Maps",
+                plainName: "Clientul vede rapid unde te găsește.",
+            },
+            9: {
+                name: "Catalog produse",
+                plainName: "Afișezi produse cu poză, preț și descriere.",
+            },
+            10: {
+                name: "Coș de cumpărături",
+                plainName: "Clientul poate adăuga produse în coș.",
+            },
+            11: {
+                name: "Checkout / comandă",
+                plainName: "Clientul poate trimite comandă sau cerere pentru produse.",
+            },
+            12: {
+                name: "Plată online",
+                plainName: "Integrare pentru plată cu cardul.",
+            },
+            13: {
+                name: "Newsletter / abonare",
+                plainName: "Vizitatorii se pot abona pentru oferte și noutăți.",
+            },
+            14: {
+                name: "Google Analytics",
+                plainName: "Vezi câți oameni intră pe site și ce pagini accesează.",
+            },
+            15: {
+                name: "Pixel Facebook / TikTok",
+                plainName: "Pregătire pentru reclame și măsurarea rezultatelor.",
+            },
+            16: {
+                name: "Panou cereri clienți",
+                plainName: "Vezi cererile primite într-un panou simplu.",
+            },
+            17: {
+                name: "Administrare produse / servicii",
+                plainName: "Poți modifica produse, servicii sau prețuri din admin.",
+            },
+            18: {
+                name: "Setări Google de bază",
+                plainName: "Titluri, descrieri, sitemap și structură pentru indexare.",
+            },
+            19: {
+                name: "Site în română și engleză",
+                plainName: "Site cu două limbi: română și engleză.",
+            },
+            20: {
+                name: "Cont client / autentificare",
+                plainName: "Utilizatorii se pot loga într-un cont propriu.",
+            },
+        },
+
+        templates: {
+            "business-essence": {
+                category: "Prezentare",
+                shortTitle: "Site pentru firmă locală",
+                description: "Pentru firme locale, cabinete, consultanță, servicii premium sau brand personal.",
+                idealFor: ["Firme locale", "Cabinete", "Consultanță", "Servicii premium"],
+                pages: ["Acasă", "Despre", "Servicii", "Contact"],
+            },
+            "premium-studio": {
+                category: "Beauty & Salon",
+                shortTitle: "Glow Beauty",
+                description: "Pentru beauty, design interior, fotografie, wellness sau servicii creative.",
+                idealFor: ["Beauty", "Fotografie", "Wellness", "Design interior"],
+                pages: ["Acasă", "Portofoliu", "Servicii", "Despre", "Contact"],
+            },
+            "launch-page": {
+                category: "Lansare",
+                shortTitle: "Launch Page",
+                description: "Landing page pentru promovarea unui produs, serviciu, curs sau ofertă limitată.",
+                idealFor: ["Campanii", "Cursuri", "Servicii", "Produse digitale"],
+                pages: ["Landing page"],
+            },
+            "conversion-flow": {
+                category: "Campanie",
+                shortTitle: "Pagină de conversie",
+                description: "Pagină de vânzare cu beneficii, testimoniale, ofertă și butoane clare.",
+                idealFor: ["Servicii premium", "Cursuri", "Lansări", "Campanii ads"],
+                pages: ["Landing page extins"],
+            },
+            "rental-flow": {
+                category: "Rezervări",
+                shortTitle: "Site pentru închirieri",
+                description: "Pentru închirieri, flote, tururi sau servicii unde clientul cere disponibilitate.",
+                idealFor: ["Închirieri", "Tururi", "Flote", "Servicii locale"],
+                pages: ["Acasă", "Flotă", "Tarife", "Rezervare", "Contact"],
+            },
+            "tourism-stay": {
+                category: "Turism",
+                shortTitle: "Site pentru cazare",
+                description: "Pentru pensiuni, apartamente, cabane sau experiențe turistice.",
+                idealFor: ["Cazări", "Pensiuni", "Cabane", "Experiențe"],
+                pages: ["Acasă", "Camere", "Galerie", "Tarife", "Contact"],
+            },
+            "simple-shop": {
+                category: "Magazin online",
+                shortTitle: "Magazin online simplu",
+                description: "Pentru afaceri care vor să prezinte produse și să primească cereri sau comenzi.",
+                idealFor: ["Produse locale", "Handmade", "Fashion", "Catalog online"],
+                pages: ["Acasă", "Produse", "Categorii", "Contact"],
+            },
+            "premium-store": {
+                category: "E-commerce",
+                shortTitle: "Magazin online premium",
+                description: "Structură completă pentru produse, variante, coș și checkout.",
+                idealFor: ["Magazine online", "Branduri", "Produse premium", "E-commerce"],
+                pages: ["Shop", "Categorii", "Produs", "Coș", "Checkout"],
+            },
+            "client-portal": {
+                category: "Platformă custom",
+                shortTitle: "Client Portal",
+                description: "Platformă cu autentificare, conturi clienți, dashboard și funcționalități personalizate.",
+                idealFor: ["Dashboard-uri", "CRM-uri", "Platforme interne", "Portaluri clienți"],
+                pages: ["Login", "Dashboard", "Profil client", "Administrare", "Rapoarte"],
+            },
+        },
+    },
+
+    en: {
+        categories: {
+            presentation: {
+                label: "Presentation",
+                description: "For local businesses, clinics, services, and personal brands.",
+            },
+            sales: {
+                label: "Sales",
+                description: "For landing pages, campaigns, premium services, and clear offers.",
+            },
+            booking: {
+                label: "Bookings",
+                description: "For rentals, appointments, stays, tours, and availability.",
+            },
+            ecommerce: {
+                label: "Online store",
+                description: "For products, catalogs, orders, carts, and online sales.",
+            },
+            "custom-platform": {
+                label: "Custom platforms",
+                description: "For dashboards, portals, client accounts, and internal apps.",
+            },
+        },
+
+        packages: {
+            start: {
+                name: "Start",
+                badge: "Simple",
+                label: "For getting started",
+                description: "For a simple and clear website suitable for an early-stage business.",
+                clientDescription: "Done-for-you website based on the selected template.",
+            },
+            pro: {
+                name: "Pro",
+                badge: "Recommended",
+                label: "Most selected",
+                description: "For a business that needs a complete and more convincing website.",
+                clientDescription: "Complete website with more sections and useful features.",
+            },
+            premium: {
+                name: "Premium",
+                badge: "Complete",
+                label: "For premium image",
+                description: "For projects that need a premium image and a more advanced structure.",
+                clientDescription: "A more complex website, seriously adapted to the business.",
+            },
+        },
+
+        featureCategories: {
+            Contact: "Contact",
+            Rezervări: "Bookings",
+            Conținut: "Content",
+            Încredere: "Trust",
+            Localizare: "Location",
+            Vânzare: "Sales",
+            Marketing: "Marketing",
+            Administrare: "Administration",
+            Google: "Google",
+            Avansat: "Advanced",
+        },
+
+        features: {
+            1: {
+                name: "Contact form",
+                plainName: "The client can send name, phone, email, and message.",
+            },
+            2: {
+                name: "WhatsApp button",
+                plainName: "The visitor can open a WhatsApp conversation directly.",
+            },
+            3: {
+                name: "Booking form",
+                plainName: "The client can request a date, time, or period.",
+            },
+            4: {
+                name: "Photo / video gallery",
+                plainName: "Show photos, work examples, rooms, products, or results.",
+            },
+            5: {
+                name: "Services and pricing list",
+                plainName: "Clearly show what you offer and how much it costs.",
+            },
+            6: {
+                name: "Frequently asked questions",
+                plainName: "Answer common client questions in advance.",
+            },
+            7: {
+                name: "Testimonials / reviews",
+                plainName: "Show client opinions or result examples.",
+            },
+            8: {
+                name: "Google Maps",
+                plainName: "The client can quickly see where to find you.",
+            },
+            9: {
+                name: "Product catalog",
+                plainName: "Display products with image, price, and description.",
+            },
+            10: {
+                name: "Shopping cart",
+                plainName: "The client can add products to the cart.",
+            },
+            11: {
+                name: "Checkout / order",
+                plainName: "The client can send an order or product request.",
+            },
+            12: {
+                name: "Online payment",
+                plainName: "Card payment integration.",
+            },
+            13: {
+                name: "Newsletter / subscription",
+                plainName: "Visitors can subscribe for offers and updates.",
+            },
+            14: {
+                name: "Google Analytics",
+                plainName: "See how many people visit the website and which pages they access.",
+            },
+            15: {
+                name: "Facebook / TikTok pixel",
+                plainName: "Preparation for ads and measuring campaign results.",
+            },
+            16: {
+                name: "Client requests dashboard",
+                plainName: "View received requests in a simple admin panel.",
+            },
+            17: {
+                name: "Products / services management",
+                plainName: "Edit products, services, or prices from admin.",
+            },
+            18: {
+                name: "Basic Google setup",
+                plainName: "Titles, descriptions, sitemap, and structure for indexing.",
+            },
+            19: {
+                name: "Romanian and English website",
+                plainName: "Website with two languages: Romanian and English.",
+            },
+            20: {
+                name: "Client account / login",
+                plainName: "Users can log into their own account.",
+            },
+        },
+
+        templates: {
+            "business-essence": {
+                category: "Presentation",
+                shortTitle: "Website for local business",
+                description: "For local businesses, clinics, consulting, premium services, or personal brands.",
+                idealFor: ["Local businesses", "Clinics", "Consulting", "Premium services"],
+                pages: ["Home", "About", "Services", "Contact"],
+            },
+            "premium-studio": {
+                category: "Beauty & Salon",
+                shortTitle: "Glow Beauty",
+                description: "For beauty, interior design, photography, wellness, or creative services.",
+                idealFor: ["Beauty", "Photography", "Wellness", "Interior design"],
+                pages: ["Home", "Portfolio", "Services", "About", "Contact"],
+            },
+            "launch-page": {
+                category: "Launch",
+                shortTitle: "Launch Page",
+                description: "Landing page for promoting a product, service, course, or limited offer.",
+                idealFor: ["Campaigns", "Courses", "Services", "Digital products"],
+                pages: ["Landing page"],
+            },
+            "conversion-flow": {
+                category: "Campaign",
+                shortTitle: "Conversion page",
+                description: "Sales page with benefits, testimonials, offer, and clear buttons.",
+                idealFor: ["Premium services", "Courses", "Launches", "Ad campaigns"],
+                pages: ["Extended landing page"],
+            },
+            "rental-flow": {
+                category: "Bookings",
+                shortTitle: "Rental website",
+                description: "For rentals, fleets, tours, or services where the client requests availability.",
+                idealFor: ["Rentals", "Tours", "Fleets", "Local services"],
+                pages: ["Home", "Fleet", "Pricing", "Booking", "Contact"],
+            },
+            "tourism-stay": {
+                category: "Tourism",
+                shortTitle: "Accommodation website",
+                description: "For guesthouses, apartments, cabins, or tourism experiences.",
+                idealFor: ["Stays", "Guesthouses", "Cabins", "Experiences"],
+                pages: ["Home", "Rooms", "Gallery", "Pricing", "Contact"],
+            },
+            "simple-shop": {
+                category: "Online store",
+                shortTitle: "Simple online store",
+                description: "For businesses that want to show products and receive requests or orders.",
+                idealFor: ["Local products", "Handmade", "Fashion", "Online catalog"],
+                pages: ["Home", "Products", "Categories", "Contact"],
+            },
+            "premium-store": {
+                category: "E-commerce",
+                shortTitle: "Premium online store",
+                description: "Complete structure for products, variants, cart, and checkout.",
+                idealFor: ["Online stores", "Brands", "Premium products", "E-commerce"],
+                pages: ["Shop", "Categories", "Product", "Cart", "Checkout"],
+            },
+            "client-portal": {
+                category: "Custom platform",
+                shortTitle: "Client Portal",
+                description: "Platform with authentication, client accounts, dashboard, and custom features.",
+                idealFor: ["Dashboards", "CRMs", "Internal platforms", "Client portals"],
+                pages: ["Login", "Dashboard", "Client profile", "Administration", "Reports"],
+            },
+        },
+    },
+};
+
+function translateCategory(category, locale) {
+    const dictionary = builderTranslations[locale] || builderTranslations.ro;
+
     return {
-        features,
-        packages,
-        templateCategories,
-        templates,
+        ...category,
+        ...(dictionary.categories[category.key] || {}),
+    };
+}
+
+function translatePackage(packageItem, locale) {
+    const dictionary = builderTranslations[locale] || builderTranslations.ro;
+
+    return {
+        ...packageItem,
+        ...(dictionary.packages[packageItem.key] || {}),
+    };
+}
+
+function translateFeature(feature, locale) {
+    const dictionary = builderTranslations[locale] || builderTranslations.ro;
+    const translatedFeature = dictionary.features[feature.id] || {};
+
+    return {
+        ...feature,
+        category: dictionary.featureCategories[feature.category] || feature.category,
+        ...translatedFeature,
+    };
+}
+
+function translateTemplate(template, locale) {
+    const dictionary = builderTranslations[locale] || builderTranslations.ro;
+    const translatedTemplate = dictionary.templates[template.slug] || {};
+
+    return {
+        ...template,
+        ...translatedTemplate,
+    };
+}
+
+export function getSiteBuilderData(locale = "ro") {
+    const currentLocale = locale === "en" ? "en" : "ro";
+
+    return {
+        features: features.map((feature) => translateFeature(feature, currentLocale)),
+        packages: packages.map((packageItem) => translatePackage(packageItem, currentLocale)),
+        templateCategories: templateCategories.map((category) => translateCategory(category, currentLocale)),
+        templates: templates.map((template) => translateTemplate(template, currentLocale)),
     };
 }

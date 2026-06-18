@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Editează lead #' . $lead->id . ' - SiteBoutique')
+@section('title', 'Editează lead #' . $lead->id . ' - SiteGo')
 @section('page-title', 'Editează lead #' . $lead->id)
 @section('page-description', 'Modifică datele clientului și configurația cererii.')
 

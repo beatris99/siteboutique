@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title') - SiteBoutique</title>
+    <title>@yield('title') - SiteGo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     @vite(['resources/css/app.css'])
@@ -20,7 +20,7 @@
 
         <div class="mt-8 rounded-[2rem] border border-black/10 bg-white p-8 shadow-xl md:p-12">
             <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                SiteBoutique
+                SiteGo
             </p>
 
             <h1 class="mt-4 text-4xl font-semibold tracking-tight">

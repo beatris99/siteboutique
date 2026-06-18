@@ -5,7 +5,7 @@
 
 @section('content')
     <p>
-        Această politică explică modul în care SiteBoutique poate folosi cookies sau tehnologii similare.
+        Această politică explică modul în care SiteGo poate folosi cookies sau tehnologii similare.
     </p>
 
     <h2>Ce sunt cookies</h2>

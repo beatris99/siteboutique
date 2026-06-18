@@ -5,13 +5,13 @@
 
 @section('content')
     <p>
-        Acești termeni descriu modul de utilizare a site-ului SiteBoutique și condițiile generale pentru cererile trimise prin configurator.
+        Acești termeni descriu modul de utilizare a site-ului SiteGo și condițiile generale pentru cererile trimise prin configurator.
     </p>
 
     <h2>Rolul site-ului</h2>
 
     <p>
-        SiteBoutique prezintă servicii de realizare site-uri și oferă un configurator de preț estimativ. Trimiterea unei cereri nu reprezintă automat încheierea unui contract.
+        SiteGo prezintă servicii de realizare site-uri și oferă un configurator de preț estimativ. Trimiterea unei cereri nu reprezintă automat încheierea unui contract.
     </p>
 
     <h2>Prețuri estimative</h2>
@@ -41,7 +41,7 @@
     <h2>Limitarea răspunderii</h2>
 
     <p>
-        SiteBoutique nu garantează un anumit număr de vânzări, clienți sau poziții în Google. Site-ul poate contribui la imagine și conversie, dar rezultatele depind și de ofertă, piață și promovare.
+        SiteGo nu garantează un anumit număr de vânzări, clienți sau poziții în Google. Site-ul poate contribui la imagine și conversie, dar rezultatele depind și de ofertă, piață și promovare.
     </p>
 
     <h2>Modificări</h2>

@@ -3,14 +3,14 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
             <a href="/" class="flex shrink-0 items-center" @click="closeMenu">
                 <img
-                    :src="'/images/siteboutique-icon.svg'"
-                    alt="SiteBoutique"
+                    :src="'/images/sitego-icon.svg'"
+                    alt="SiteGo"
                     class="h-10 w-10 object-contain sm:hidden"
                 />
 
                 <img
-                    :src="'/images/siteboutique-logo.svg'"
-                    alt="SiteBoutique"
+                    :src="'/images/sitego-logo.svg'"
+                    alt="SiteGo"
                     class="hidden h-11 w-auto object-contain sm:block lg:h-12"
                 />
             </a>

@@ -6,31 +6,31 @@
         <div class="mx-auto max-w-5xl">
             <div class="max-w-3xl">
                 <p class="text-sm uppercase tracking-[0.25em] text-white/40">
-                    Ultimul pas
+                    {{ contact.eyebrow }}
                 </p>
 
-                <h2
-                    class="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
-                >
-                    Trimite și primești o ofertă fermă în maxim o zi.
+                <h2 class="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+                    {{ contact.title }}
                 </h2>
 
                 <p class="mt-5 text-base leading-8 text-white/60 sm:text-lg">
-                    Câteva răspunsuri simple, fără termeni tehnici. Îți spun eu ce
-                    variantă ți se potrivește și cât costă exact.
+                    {{ contact.description }}
                 </p>
             </div>
 
             <div class="mt-10 rounded-[2rem] bg-white/10 p-5 sm:p-6">
-                <p class="text-sm text-white/50">Ai ales</p>
+                <p class="text-sm text-white/50">
+                    {{ contact.selectedLabel }}
+                </p>
 
                 <p class="mt-2 text-xl font-semibold">
-                    {{ selectedTemplate?.name || "Model neselectat" }} —
+                    {{ selectedTemplate?.name || contact.noTemplateSelected }} —
                     {{ formatPrice(totalPrice) }}
                 </p>
 
                 <p class="mt-1 text-sm text-white/50">
-                    Pachet: {{ selectedPackage?.name || "Neselectat" }}
+                    {{ contact.packageLabel }}:
+                    {{ selectedPackage?.name || contact.noPackageSelected }}
                 </p>
 
                 <div
@@ -46,8 +46,11 @@
                     </span>
                 </div>
 
-                <p v-else class="mt-4 text-sm text-white/40">
-                    Fără funcționalități extra.
+                <p
+                    v-else
+                    class="mt-4 text-sm text-white/40"
+                >
+                    {{ contact.emptyFeatures }}
                 </p>
             </div>
 
@@ -55,19 +58,16 @@
                 v-if="hasSubmitted"
                 class="mt-8 rounded-[2rem] border border-green-400/20 bg-green-500/15 p-6"
             >
-                <p
-                    class="text-sm uppercase tracking-[0.25em] text-green-100/70"
-                >
-                    Cerere trimisă
+                <p class="text-sm uppercase tracking-[0.25em] text-green-100/70">
+                    {{ contact.successEyebrow }}
                 </p>
 
                 <h3 class="mt-4 text-3xl font-semibold text-white">
-                    Am primit cererea ta.
+                    {{ contact.successTitle }}
                 </h3>
 
                 <p class="mt-4 leading-7 text-green-50/80">
-                    Revin cu un mesaj pentru clarificări. Configurația aleasă a
-                    fost salvată.
+                    {{ contact.successDescription }}
                 </p>
 
                 <button
@@ -75,11 +75,15 @@
                     class="mt-6 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#d8c3a5]"
                     @click="prepareAnotherRequest"
                 >
-                    Trimite altă cerere
+                    {{ contact.sendAnother }}
                 </button>
             </div>
 
-            <form v-else class="mt-8 grid gap-5" @submit.prevent="handleSubmit">
+            <form
+                v-else
+                class="mt-8 grid gap-5"
+                @submit.prevent="handleSubmit"
+            >
                 <input
                     v-model="form.website"
                     type="text"
@@ -87,44 +91,47 @@
                     autocomplete="off"
                     tabindex="-1"
                     class="hidden"
-                />
+                >
 
-                <ChoicePills
+                <input
                     v-model="form.requestType"
-                    label="Ce variantă vrei?"
-                    :options="requestTypeOptions"
-                    grid-class="grid gap-2 md:grid-cols-2"
-                />
+                    type="hidden"
+                    name="requestType"
+                >
 
                 <div class="grid gap-4 md:grid-cols-2">
-                    <FormField v-model="form.name" placeholder="Numele tău" />
+                    <FormField
+                        v-model="form.name"
+                        :placeholder="contact.namePlaceholder"
+                    />
 
-                    <FormField v-model="form.phone" placeholder="Telefon" />
+                    <FormField
+                        v-model="form.phone"
+                        :placeholder="contact.phonePlaceholder"
+                    />
                 </div>
 
                 <FormField
                     v-model="form.email"
                     type="email"
-                    placeholder="Email"
+                    :placeholder="contact.emailPlaceholder"
                 />
 
                 <FormField
                     v-model="form.message"
                     type="textarea"
-                    placeholder="Spune-mi pe scurt ce vrei. Exemplu: vreau să prezint servicii, să primesc rezervări pe WhatsApp, să arăt produse etc."
+                    :placeholder="contact.messagePlaceholder"
                 />
 
-                <label
-                    class="flex cursor-pointer gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm leading-6 text-white/70"
-                >
+                <label class="flex cursor-pointer gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 text-sm leading-6 text-white/70">
                     <input
                         v-model="form.privacyAccepted"
                         type="checkbox"
                         class="mt-1 h-4 w-4 shrink-0 rounded border-white/20"
-                    />
+                    >
 
                     <span>
-                        Sunt de acord să fiu contactat/ă pentru această cerere.
+                        {{ contact.consentLabel }}
                     </span>
                 </label>
 
@@ -147,7 +154,7 @@
                     variant="light"
                     :disabled="isSubmitting"
                 >
-                    {{ isSubmitting ? "Se trimite..." : "Trimite cererea" }}
+                    {{ isSubmitting ? contact.submittingButton : contact.submitButton }}
                 </BaseButton>
             </form>
         </div>
@@ -158,7 +165,6 @@
 import { ref } from "vue";
 import { useLeadSubmission } from "../../composables/useLeadSubmission";
 import BaseButton from "../ui/BaseButton.vue";
-import ChoicePills from "../ui/ChoicePills.vue";
 import FormField from "../ui/FormField.vue";
 
 const props = defineProps({
@@ -192,23 +198,9 @@ const {
     successMessage,
     submitLead,
     resetMessages,
-} = useLeadSubmission();
+} = useLeadSubmission(props.contact.messages);
 
 const hasSubmitted = ref(false);
-
-const requestTypeOptions = [
-    {
-        label: "Vreau să îmi faci tu site-ul",
-        value: "done_for_you",
-        description:
-            "Aleg modelul, iar tu îl adaptezi și îl pregătești pentru lansare.",
-    },
-    {
-        label: "Cumpăr template-ul",
-        value: "developer_template",
-        description: "Sunt developer și vreau să îl folosesc eu.",
-    },
-];
 
 const emptyForm = {
     name: "",
@@ -246,9 +238,6 @@ function formatPrice(value) {
 async function handleSubmit() {
     const payload = {
         ...form.value,
-        hasLogo: form.value.hasLogo,
-        hasPhotos: form.value.hasPhotos,
-        hasDomain: form.value.hasDomain,
         privacyAccepted: form.value.privacyAccepted ? "1" : "0",
         sourcePage: window.location.pathname,
         template: props.selectedTemplate?.name || null,

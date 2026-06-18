@@ -8,7 +8,7 @@
 <div style="max-width:680px; margin:0 auto; padding:32px 16px;">
     <div style="background:#ffffff; border-radius:24px; padding:32px; border:1px solid #eee;">
         <p style="margin:0; font-size:12px; text-transform:uppercase; letter-spacing:3px; color:#8b6f47;">
-            SiteBoutique
+            SiteGo
         </p>
 
         <h1 style="margin:16px 0 0; font-size:30px;">
@@ -56,7 +56,7 @@
 
         <p style="margin-top:24px; line-height:1.7; color:#555;">
             Mulțumesc,<br>
-            SiteBoutique
+            SiteGo
         </p>
     </div>
 </div>
