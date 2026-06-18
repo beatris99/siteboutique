@@ -3,12 +3,16 @@
         <AppHeader
             :brand="siteContent.brand"
             :navigation="siteContent.navigation"
+            :locale="locale"
         />
 
         <template v-if="isTemplatePage && !publicTemplate">
             <TemplateNotFoundPage />
 
-            <AppFooter :footer="siteContent.footer" />
+            <AppFooter
+                :footer="siteContent.footer"
+                :locale="locale"
+            />
         </template>
 
         <template v-else-if="isTemplatePage && publicTemplate">
@@ -82,7 +86,10 @@
                 @lead-created="resetSelectedFeatures"
             />
 
-            <AppFooter :footer="siteContent.footer" />
+            <AppFooter
+                :footer="siteContent.footer"
+                :locale="locale"
+            />
         </template>
 
         <template v-else>
@@ -157,20 +164,19 @@
                 @lead-created="resetSelectedFeatures"
             />
 
-            <AppFooter :footer="siteContent.footer" />
+            <AppFooter
+                :footer="siteContent.footer"
+                :locale="locale"
+            />
         </template>
     </main>
 </template>
 
 <script setup>
 import { computed, onMounted } from "vue";
-import {
-    features,
-    packages,
-    templateCategories,
-    templates,
-} from "./data/siteBuilder";
-import { siteContent } from "./data/siteContent";
+
+import { getSiteBuilderData } from "./data/siteBuilder";
+import { getSiteContent } from "./data/siteContent";
 import { useSiteBuilder } from "./composables/useSiteBuilder";
 import { getRegisteredTemplate } from "./templates/templateRegistry";
 import { getTemplateClientInfo } from "./templates/templateClientInfo";
@@ -203,6 +209,24 @@ import PriceSummary from "./components/builder/PriceSummary.vue";
 import TemplatePublicPage from "./components/pages/TemplatePublicPage.vue";
 import TemplateNotFoundPage from "./components/pages/TemplateNotFoundPage.vue";
 
+const props = defineProps({
+    initialLocale: {
+        type: String,
+        default: "ro",
+    },
+});
+
+const locale = props.initialLocale === "en" ? "en" : "ro";
+
+const siteContent = getSiteContent(locale);
+
+const {
+    features,
+    packages,
+    templateCategories,
+    templates,
+} = getSiteBuilderData(locale);
+
 const {
     selectedCategoryKey,
     selectedTemplateId,
@@ -232,7 +256,9 @@ const templateSlug = computed(() => {
         return null;
     }
 
-    return currentPath.split("/templates/")[1]?.replace(/^\/+|\/+$/g, "") || null;
+    return currentPath
+        .split("/templates/")[1]
+        ?.replace(/^\/+|\/+$/g, "") || null;
 });
 
 const publicTemplate = computed(() => {
@@ -240,7 +266,7 @@ const publicTemplate = computed(() => {
 });
 
 const registeredTemplate = computed(() => {
-    return getRegisteredTemplate(templateSlug.value);
+    return getRegisteredTemplate(templateSlug.value, locale);
 });
 
 const realTemplateComponent = computed(() => {
@@ -252,7 +278,7 @@ const realTemplateData = computed(() => {
 });
 
 const templateClientInfo = computed(() => {
-    return getTemplateClientInfo(templateSlug.value);
+    return getTemplateClientInfo(templateSlug.value, locale);
 });
 
 onMounted(() => {

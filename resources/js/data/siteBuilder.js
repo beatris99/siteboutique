@@ -636,3 +636,11 @@ export const templates = [
         },
     },
 ];
+export function getSiteBuilderData(locale = "ro") {
+    return {
+        features,
+        packages,
+        templateCategories,
+        templates,
+    };
+}

@@ -6,6 +6,16 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadNoteController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/language/{locale}', function (string $locale) {
+    if (! in_array($locale, ['ro', 'en'], true)) {
+        abort(404);
+    }
+
+    session(['locale' => $locale]);
+
+    return back();
+})->name('language.switch');
+
 Route::get('/', function () {
     return view('welcome');
 });

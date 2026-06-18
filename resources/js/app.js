@@ -2,4 +2,8 @@ import './bootstrap'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const appElement = document.getElementById('app')
+
+createApp(App, {
+    initialLocale: appElement?.dataset?.locale || 'ro',
+}).mount(appElement)

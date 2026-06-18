@@ -503,3 +503,6 @@ export const siteContent = {
         ],
     },
 };
+export function getSiteContent(locale = "ro") {
+    return siteContent;
+}
