@@ -1,4 +1,4 @@
-﻿@php
+@php
     $title = $page['title'] ?? 'SiteGo';
     $description = $page['description'] ?? 'Site-uri de prezentare pentru afaceri locale.';
     $canonical = 'https://sitego.ro/' . $slug;
@@ -124,6 +124,40 @@
             <h2>Cât durează și ce include procesul</h2>
             <p>{{ $page['process'] }}</p>
         </section>
+
+        
+        <!-- SITEGO SEO CROSS LINKS START -->
+        <section class="card section">
+            <h2>Servicii populare SiteGo</h2>
+            <p>Poți explora și alte variante de site potrivite pentru afaceri locale, servicii, saloane, campanii sau promovare online.</p>
+            <div class="grid">
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/creare-site-de-prezentare-brasov">
+                    <h3>Creare site de prezentare Brașov</h3>
+                    <p>Site clar pentru afaceri locale care vor să fie găsite mai ușor online.</p>
+                </a>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/web-design-brasov">
+                    <h3>Web design Brașov</h3>
+                    <p>Design modern, responsive și adaptat pentru telefon.</p>
+                </a>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/realizare-website-brasov">
+                    <h3>Realizare website Brașov</h3>
+                    <p>Website complet, de la structură și texte până la publicare.</p>
+                </a>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/landing-page-afaceri">
+                    <h3>Landing page pentru afaceri</h3>
+                    <p>Pagină concentrată pe o ofertă, un serviciu sau o campanie.</p>
+                </a>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/site-salon-beauty">
+                    <h3>Site pentru salon beauty</h3>
+                    <p>Prezentare elegantă pentru servicii beauty, programări și portofoliu.</p>
+                </a>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/cat-costa-un-site-de-prezentare-2026">
+                    <h3>Cât costă un site în 2026?</h3>
+                    <p>Ghid simplu despre buget, ce include și ce poate costa extra.</p>
+                </a>
+            </div>
+        </section>
+        <!-- SITEGO SEO CROSS LINKS END -->
 
         <section class="footer-cta">
             <h2>Vrei un site mai clar pentru afacerea ta?</h2>
