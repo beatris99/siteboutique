@@ -1,4 +1,4 @@
-User-agent: *
-Disallow: /admin
+﻿User-agent: *
+Allow: /
 
-Sitemap: https://rentride.ro/sitemap.xml
+Sitemap: https://sitego.ro/sitemap.xml
