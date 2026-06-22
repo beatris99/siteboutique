@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 @php
     $locale = app()->getLocale() === 'en' ? 'en' : 'ro';
     $brand = trans('brand');
@@ -21,6 +21,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20JGBZL604"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-20JGBZL604');
+    </script>
 </head>
 <body class="bg-[#f7f4ef] text-[#171717] antialiased">
 <header class="sticky top-0 z-50 border-b border-black/10 bg-[#f7f4ef]/95 backdrop-blur">

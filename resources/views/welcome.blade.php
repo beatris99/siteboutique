@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 @php
     $locale = app()->getLocale() === 'en' ? 'en' : 'ro';
     $sitegoAppData = [
@@ -49,6 +49,14 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <meta name="google-site-verification" content="8Wp3PXaLXhT25xkld277MiKuu-PrIKrYvT6HKMXNeD4">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20JGBZL604"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-20JGBZL604');
+    </script>
 </head>
 <body>
 <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
