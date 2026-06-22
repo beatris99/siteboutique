@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 @php
     $locale = app()->getLocale() === 'en' ? 'en' : 'ro';
     $brand = trans('brand');
@@ -19,6 +19,8 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sitego-icon.svg') }}">
     <link rel="shortcut icon" href="{{ asset('images/sitego-icon.svg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 </head>
 <body class="bg-[#f7f4ef] text-[#171717] antialiased">
 <header class="sticky top-0 z-50 border-b border-black/10 bg-[#f7f4ef]/95 backdrop-blur">
@@ -50,3 +52,4 @@
 </footer>
 </body>
 </html>
+

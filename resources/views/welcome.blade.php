@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 @php
     $locale = app()->getLocale() === 'en' ? 'en' : 'ro';
     $sitegoAppData = [
@@ -46,9 +46,12 @@
     <meta name="theme-color" content="#f7f4ef">
     <link rel="canonical" href="{{ config('app.url') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 </head>
 <body>
 <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
 <div id="app"></div>
 </body>
 </html>
+
