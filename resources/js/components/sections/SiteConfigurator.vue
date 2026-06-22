@@ -21,10 +21,6 @@
                     <h3 class="text-lg font-semibold">
                         {{ group.category }}
                     </h3>
-
-                    <span class="text-sm text-black/40">
-                        {{ group.items.length }} {{ section.optionsLabel }}
-                    </span>
                 </div>
 
                 <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

@@ -96,7 +96,7 @@
                                 : 'bg-black text-white hover:bg-[#8b6f47]'"
                             @click="$emit('select-package', packageItem.id)"
                         >
-                            {{ common.chooseTemplate }}
+                            {{ common.choose_template || common.chooseTemplate || 'Alege pachetul' }}
                         </button>
                     </article>
                 </div>

@@ -18,17 +18,17 @@
 
                 <div class="rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-black/5">
                     <p class="text-sm font-semibold text-black">
-                        {{ section.helperTitle }}
+                        {{ section.helper_title || section.helperTitle }}
                     </p>
 
                     <p class="mt-2 text-sm leading-6 text-black/55">
-                        {{ section.helperText }}
+                        {{ section.helper_text || section.helperText }}
                     </p>
                 </div>
             </div>
 
             <p class="mt-6 text-sm text-black/40 sm:hidden">
-                {{ section.mobileHint }}
+                {{ section.mobile_hint || section.mobileHint }}
             </p>
 
             <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -98,7 +98,7 @@
 
                             <div class="flex items-center justify-between gap-4 text-sm">
                                 <span class="text-black/50">
-                                    {{ common.estimatedDelivery }}
+                                    {{ common.estimated_delivery || common.estimatedDelivery || 'Termen estimativ' }}
                                 </span>
 
                                 <strong>
@@ -112,7 +112,7 @@
                                 :href="`/templates/${template.slug}`"
                                 class="flex-1 rounded-full bg-black px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-[#8b6f47]"
                             >
-                                {{ common.viewDemo }}
+                                {{ common.view_demo || common.viewDemo || 'Vezi demo' }}
                             </a>
 
                             <button
@@ -120,7 +120,7 @@
                                 class="flex-1 rounded-full border border-black/10 bg-white px-6 py-4 text-sm font-semibold text-black transition hover:border-black/30"
                                 @click="chooseTemplate(template)"
                             >
-                                {{ common.chooseTemplate }}
+                                {{ common.choose_template || common.chooseTemplate || 'Alege modelul' }}
                             </button>
                         </div>
                     </div>

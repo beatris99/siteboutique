@@ -2,7 +2,7 @@
 
 return [
     'eyebrow' => 'Contact',
-    'title' => 'Spune-ne ce site ai nevoie.',
+    'title' => 'Spune-ne de ce tip de site ai nevoie.',
     'description' => 'Completează formularul și revenim cu întrebări clare despre proiect, preț și următorii pași.',
     'details_eyebrow' => 'SiteGo',
     'details_title' => 'Detalii rapide',
