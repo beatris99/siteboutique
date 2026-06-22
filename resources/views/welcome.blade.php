@@ -48,10 +48,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <meta name="google-site-verification" content="8Wp3PXaLXhT25xkld277MiKuu-PrIKrYvT6HKMXNeD4">
 </head>
 <body>
 <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
 <div id="app"></div>
 </body>
 </html>
+
 
