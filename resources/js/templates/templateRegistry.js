@@ -43,6 +43,10 @@ export const templateRegistry = {
     },
 }
 
-export function getRegisteredTemplate(slug) {
+export function getRegisteredTemplate(slug, locale = 'ro') {
+    if (locale === 'en') {
+        return null
+    }
+
     return templateRegistry[slug] || null
 }

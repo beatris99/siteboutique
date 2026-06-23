@@ -429,7 +429,7 @@ const content = {
                 "Site-uri moderne, configurabile și transparente pentru afaceri mici și locale care vor să se lanseze rapid.",
             copyright: "© 2026 SiteGo. Toate drepturile rezervate.",
             contactTitle: "Contact",
-            email: "contact@sitego.ro",
+            email: "sitegobv@gmail.com",
             phone: "+40 747 084 861",
             location: "Brașov, România",
             links: [
@@ -488,7 +488,7 @@ const content = {
             { label: "Templates", href: "/modele-site" },
             { label: "Features", href: "/configurator" },
             { label: "Pricing", href: "/preturi" },
-            { label: "Done for you", href: "/site-facut-pentru-tine" },
+            { label: "Done-for-you website", href: "/site-facut-pentru-tine" },
             { label: "FAQ", href: "/intrebari-frecvente" },
             { label: "Contact", href: "/contact" },
         ],
@@ -911,7 +911,7 @@ const content = {
                 "Modern, configurable, and transparent websites for small and local businesses that want to launch quickly.",
             copyright: "© 2026 SiteGo. All rights reserved.",
             contactTitle: "Contact",
-            email: "contact@sitego.ro",
+            email: "sitegobv@gmail.com",
             phone: "+40 747 084 861",
             location: "Brasov, Romania",
             links: [
@@ -922,7 +922,7 @@ const content = {
                         { label: "Configurator", href: "/configurator" },
                         { label: "Pricing", href: "/preturi" },
                         {
-                            label: "Done for you",
+                            label: "Done-for-you website",
                             href: "/site-facut-pentru-tine",
                         },
                         { label: "FAQ", href: "/intrebari-frecvente" },

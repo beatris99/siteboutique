@@ -18,6 +18,9 @@
             'whatYouGet' => trans('home.what_you_get'),
             'whyWorkWithMe' => trans('home.why_work_with_me'),
             'projectProcess' => trans('home.project_process'),
+            'popularServices' => trans('home.popular_services'),
+            'liveProof' => trans('home.live_proof'),
+            'productPaths' => trans('home.product_paths'),
             'floatingDock' => trans('home.floating_dock'),
         ],
         'builder' => trans('site_builder'),
@@ -62,22 +65,7 @@
 <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
 <div id="app"></div>
 
-<!-- SITEGO SEO INTERNAL LINKS START -->
-<section style="max-width:1120px;margin:0 auto 56px;padding:0 20px;font-family:Arial,sans-serif;">
-    <div style="background:#f7f4ef;border:1px solid rgba(22,32,51,.10);border-radius:28px;padding:28px;box-shadow:0 18px 60px rgba(22,32,51,.06);">
-        <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:.02em;color:#6f5f4f;text-transform:uppercase;">Servicii populare</p>
-        <h2 style="margin:0 0 18px;font-size:28px;line-height:1.15;color:#162033;">Alege tipul de site potrivit pentru afacerea ta</h2>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <a href="https://sitego.ro/creare-site-de-prezentare-brasov" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Creare site de prezentare Brașov</a>
-            <a href="https://sitego.ro/web-design-brasov" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Web design Brașov</a>
-            <a href="https://sitego.ro/realizare-website-brasov" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Realizare website Brașov</a>
-            <a href="https://sitego.ro/landing-page-afaceri" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Landing page pentru afaceri</a>
-            <a href="https://sitego.ro/site-salon-beauty" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Site pentru salon beauty</a>
-            <a href="https://sitego.ro/cat-costa-un-site-de-prezentare-2026" style="text-decoration:none;background:#fff;border:1px solid rgba(22,32,51,.12);border-radius:999px;padding:12px 16px;color:#162033;font-weight:700;">Cât costă un site de prezentare în 2026</a>
-        </div>
-    </div>
-</section>
-<!-- SITEGO SEO INTERNAL LINKS END -->
+
 
 </body>
 </html>

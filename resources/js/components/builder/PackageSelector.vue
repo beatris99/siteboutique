@@ -1,7 +1,7 @@
 <template>
     <section class="bg-[#f7f4ef] px-4 py-12 sm:px-6 lg:py-16">
         <div class="mx-auto max-w-7xl">
-            <div class="max-w-3xl">
+            <div class="max-w-4xl">
                 <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
                     {{ section.eyebrow }}
                 </p>
@@ -20,7 +20,7 @@
                     <article
                         v-for="packageItem in packages"
                         :key="packageItem.id"
-                        class="w-[82vw] max-w-[360px] shrink-0 rounded-[2rem] border p-6 transition lg:w-auto lg:max-w-none"
+                        class="flex w-[84vw] max-w-[380px] shrink-0 flex-col rounded-[2rem] border p-6 transition lg:w-auto lg:max-w-none"
                         :class="[
                             packageItem.key === 'premium'
                                 ? 'border-black bg-black text-white'
@@ -54,7 +54,7 @@
                         </div>
 
                         <p
-                            class="mt-5 min-h-[56px] leading-7"
+                            class="mt-5 min-h-[72px] leading-7"
                             :class="packageItem.key === 'premium' ? 'text-white/65' : 'text-black/60'"
                         >
                             {{ packageItem.description }}
@@ -76,27 +76,51 @@
                             </p>
                         </div>
 
+                        <div
+                            v-if="packageItem.bestFor"
+                            class="mt-5 rounded-2xl p-4 text-sm"
+                            :class="packageItem.key === 'premium' ? 'bg-white/10 text-white/75' : 'bg-[#f7f4ef] text-black/65'"
+                        >
+                            <p class="font-semibold" :class="packageItem.key === 'premium' ? 'text-white' : 'text-black'">
+                                {{ section.best_for_label }}
+                            </p>
+                            <p class="mt-2 leading-6">
+                                {{ packageItem.bestFor }}
+                            </p>
+                        </div>
+
+                        <div
+                            v-if="packageItem.mainDifference"
+                            class="mt-4 rounded-2xl border p-4 text-sm"
+                            :class="packageItem.key === 'premium' ? 'border-white/10 text-white/75' : 'border-black/10 text-black/65'"
+                        >
+                            <p class="font-semibold" :class="packageItem.key === 'premium' ? 'text-white' : 'text-black'">
+                                {{ section.difference_label }}
+                            </p>
+                            <p class="mt-2 leading-6">
+                                {{ packageItem.mainDifference }}
+                            </p>
+                        </div>
+
                         <ul
                             class="mt-6 grid gap-3 text-sm"
                             :class="packageItem.key === 'premium' ? 'text-white/80' : 'text-black/70'"
                         >
-                            <li
-                                v-for="feature in packageItem.features"
-                                :key="feature"
-                            >
-                                ✓ {{ feature }}
+                            <li v-for="feature in packageItem.features" :key="feature" class="flex gap-2">
+                                <span class="text-[#a67c3a]">✓</span>
+                                <span>{{ feature }}</span>
                             </li>
                         </ul>
 
                         <button
                             type="button"
-                            class="mt-8 w-full rounded-full px-6 py-4 text-sm font-semibold transition"
+                            class="mt-auto w-full rounded-full px-6 py-4 text-sm font-semibold transition"
                             :class="packageItem.key === 'premium'
                                 ? 'bg-white text-black hover:bg-[#d8c3a5]'
                                 : 'bg-black text-white hover:bg-[#8b6f47]'"
                             @click="$emit('select-package', packageItem.id)"
                         >
-                            {{ common.choose_template || common.chooseTemplate || 'Alege pachetul' }}
+                            {{ common.choose_package || common.choosePackage || 'Alege pachetul' }}
                         </button>
                     </article>
                 </div>

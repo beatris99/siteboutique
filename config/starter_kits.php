@@ -8,7 +8,7 @@ return [
     ],
 
     'business-essence' => [
-        'name' => 'Business Essence',
+        'name' => 'Site pentru firmă locală',
         'type' => 'Firmă locală / servicii',
         'recommended_pages' => ['Acasă', 'Servicii', 'Despre', 'Proces', 'Zone acoperite', 'FAQ', 'Contact'],
     ],

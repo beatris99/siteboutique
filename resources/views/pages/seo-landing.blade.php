@@ -13,7 +13,7 @@
             'name' => 'Brașov',
         ],
         'description' => $description,
-        'email' => 'heresbeatriselena@gmail.com',
+        'email' => 'sitegobv@gmail.com',
         'telephone' => '+40747084861',
         'address' => [
             '@type' => 'PostalAddress',

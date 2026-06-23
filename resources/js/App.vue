@@ -10,8 +10,8 @@
 
         <template v-else-if="isTemplatePage && publicTemplate">
             <component :is="realTemplateComponent" v-if="realTemplateComponent" :content="realTemplateData" />
-            <TemplatePublicPage v-else :template="publicTemplate" />
-            <TemplateProductDetailsSection :template="publicTemplate" />
+            <TemplatePublicPage v-else :template="publicTemplate" :locale="locale" />
+            <TemplateProductDetailsSection :template="publicTemplate" :locale="locale" />
             <WhatYouGetSection :section="siteContent.whatYouGet" />
             <WhyWorkWithMeSection :section="siteContent.whyWorkWithMe" />
             <TemplatePreparationSection v-if="templateClientInfo" :info="templateClientInfo" />
@@ -51,6 +51,22 @@
 
         <template v-else>
             <HeroSection :hero="siteContent.hero" />
+            <ProductPathsSection :section="siteContent.productPaths" />
+            <TemplateGallery
+                :section="siteContent.templateGallery"
+                :common="siteContent.common"
+                :categories="templateCategories"
+                :templates="filteredTemplates"
+                :selected-category-key="selectedCategoryKey"
+                :selected-template-id="selectedTemplateId"
+                :selected-template="selectedTemplate"
+                @select-category="selectCategory"
+                @select-template="handleTemplateSelect"
+            />
+            <PackageSelector :section="siteContent.packagesSection" :common="siteContent.common" :packages="packages" :selected-package-id="selectedPackageId" @select-package="selectPackage" />
+            <LiveProofSection :section="siteContent.liveProof" />
+            <ProjectProcessSection :section="siteContent.projectProcess" />
+            <PopularServicesSection :section="siteContent.popularServices" />
             <AppFooter :footer="siteContent.footer" :brand="siteContent.brand" :navigation="siteContent.navigation" :contact-info="contactInfo" :locale="locale" />
         </template>
     </main>
@@ -65,6 +81,10 @@ import AppHeader from './components/layout/AppHeader.vue'
 import AppFooter from './components/layout/AppFooter.vue'
 import FloatingContactDock from './components/layout/FloatingContactDock.vue'
 import HeroSection from './components/sections/HeroSection.vue'
+import ProductPathsSection from './components/sections/ProductPathsSection.vue'
+import LiveProofSection from './components/sections/LiveProofSection.vue'
+import ProjectProcessSection from './components/sections/ProjectProcessSection.vue'
+import PopularServicesSection from './components/sections/PopularServicesSection.vue'
 import WhatYouGetSection from './components/sections/WhatYouGetSection.vue'
 import WhyWorkWithMeSection from './components/sections/WhyWorkWithMeSection.vue'
 import TemplateGallery from './components/sections/TemplateGallery.vue'

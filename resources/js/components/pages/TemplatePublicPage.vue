@@ -3,11 +3,8 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
                 <div>
-                    <a
-                        href="/#templates"
-                        class="text-sm text-black/50 transition hover:text-black"
-                    >
-                        ← Înapoi la template-uri
+                    <a href="/modele-site" class="text-sm text-black/50 transition hover:text-black">
+                        {{ labels.back }}
                     </a>
 
                     <p class="mt-8 inline-flex rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-black/60">
@@ -15,7 +12,7 @@
                     </p>
 
                     <h1 class="mt-6 max-w-3xl text-5xl font-semibold tracking-tight md:text-7xl">
-                        {{ template.name }}
+                        {{ template.shortTitle || template.name }}
                     </h1>
 
                     <p class="mt-6 max-w-2xl text-lg leading-8 text-black/60">
@@ -23,18 +20,12 @@
                     </p>
 
                     <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-                        <a
-                            href="#builder"
-                            class="rounded-full bg-black px-7 py-4 text-center text-sm font-medium text-white transition hover:bg-[#8b6f47]"
-                        >
-                            Configurează acest template
+                        <a href="#builder" class="rounded-full bg-black px-7 py-4 text-center text-sm font-medium text-white transition hover:bg-[#8b6f47]">
+                            {{ labels.configure }}
                         </a>
 
-                        <a
-                            href="#contact"
-                            class="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-medium transition hover:border-black/30"
-                        >
-                            Vreau ofertă
+                        <a href="#contact" class="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-medium transition hover:border-black/30">
+                            {{ labels.request }}
                         </a>
                     </div>
                 </div>
@@ -47,15 +38,11 @@
             <div class="mt-16 grid gap-6 md:grid-cols-3">
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
                     <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                        Potrivit pentru
+                        {{ labels.idealFor }}
                     </p>
 
                     <div class="mt-5 flex flex-wrap gap-2">
-                        <span
-                            v-for="item in template.idealFor || []"
-                            :key="item"
-                            class="rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60"
-                        >
+                        <span v-for="item in template.idealFor || []" :key="item" class="rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
                             {{ item }}
                         </span>
                     </div>
@@ -63,15 +50,11 @@
 
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
                     <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                        Pagini incluse
+                        {{ labels.pages }}
                     </p>
 
                     <div class="mt-5 flex flex-wrap gap-2">
-                        <span
-                            v-for="page in template.pages || []"
-                            :key="page"
-                            class="rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60"
-                        >
+                        <span v-for="page in template.pages || []" :key="page" class="rounded-full bg-[#f7f4ef] px-3 py-1 text-xs text-black/60">
                             {{ page }}
                         </span>
                     </div>
@@ -79,22 +62,22 @@
 
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
                     <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                        Detalii rapide
+                        {{ labels.quickDetails }}
                     </p>
 
                     <div class="mt-5 grid gap-3 text-sm text-black/60">
-                        <div class="flex justify-between">
-                            <span>Preț bază</span>
-                            <strong class="text-black">{{ template.basePrice }} lei</strong>
+                        <div class="flex justify-between gap-4">
+                            <span>{{ labels.price }}</span>
+                            <strong class="text-black">{{ formatPrice(template.basePrice) }}</strong>
                         </div>
 
-                        <div class="flex justify-between">
-                            <span>Livrare</span>
-                            <strong class="text-black">{{ template.deliveryTime || 'Estimativ' }}</strong>
+                        <div class="flex justify-between gap-4">
+                            <span>{{ labels.delivery }}</span>
+                            <strong class="text-black">{{ template.deliveryTime || labels.estimated }}</strong>
                         </div>
 
-                        <div class="flex justify-between">
-                            <span>Categorie</span>
+                        <div class="flex justify-between gap-4">
+                            <span>{{ labels.category }}</span>
                             <strong class="text-black">{{ template.category }}</strong>
                         </div>
                     </div>
@@ -103,15 +86,11 @@
 
             <div class="mt-6 rounded-[2rem] border border-black/10 bg-white p-6">
                 <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                    Ce include
+                    {{ labels.includes }}
                 </p>
 
                 <ul class="mt-6 grid gap-4 md:grid-cols-2">
-                    <li
-                        v-for="item in template.includes || []"
-                        :key="item"
-                        class="flex gap-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-black/60"
-                    >
+                    <li v-for="item in includesList" :key="item" class="flex gap-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-black/60">
                         <span class="text-[#8b6f47]">✓</span>
                         <span>{{ item }}</span>
                     </li>
@@ -122,12 +101,51 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import TemplatePreviewMockup from '../ui/TemplatePreviewMockup.vue'
 
-defineProps({
+const props = defineProps({
     template: {
         type: Object,
         required: true,
     },
+    locale: {
+        type: String,
+        default: 'ro',
+    },
 })
+
+const labels = computed(() => props.locale === 'en' ? {
+    back: '← Back to templates',
+    configure: 'Configure this model',
+    request: 'Request offer',
+    idealFor: 'Best for',
+    pages: 'Included pages',
+    quickDetails: 'Quick details',
+    price: 'Starting price',
+    delivery: 'Delivery',
+    estimated: 'Estimated',
+    category: 'Category',
+    includes: 'What it can include',
+    defaultIncludes: ['Clear page structure', 'Responsive mobile and desktop design', 'Contact form or quick contact button', 'Basic SEO structure', 'Content adapted to your business', 'Launch support'],
+} : {
+    back: '← Înapoi la modele',
+    configure: 'Configurează acest model',
+    request: 'Vreau ofertă',
+    idealFor: 'Potrivit pentru',
+    pages: 'Pagini incluse',
+    quickDetails: 'Detalii rapide',
+    price: 'Preț de pornire',
+    delivery: 'Livrare',
+    estimated: 'Estimativ',
+    category: 'Categorie',
+    includes: 'Ce poate include',
+    defaultIncludes: ['Structură clară pentru pagini', 'Design responsive mobil și desktop', 'Formular sau buton de contact rapid', 'Structură SEO basic', 'Conținut adaptat afacerii tale', 'Suport pentru lansare'],
+})
+
+const includesList = computed(() => props.template.includes?.length ? props.template.includes : labels.value.defaultIncludes)
+
+function formatPrice(value) {
+    return `${Number(value || 0).toLocaleString('ro-RO')} lei`
+}
 </script>

@@ -44,7 +44,7 @@ export const templateClientInfo = {
     },
 
     'business-essence': {
-        title: 'Ce am nevoie de la tine pentru Business Essence',
+        title: 'Ce am nevoie de la tine pentru Site pentru firmă locală',
         description:
             'Pentru firme locale, consultanți, cabinete sau prestatori de servicii, claritatea serviciilor și încrederea sunt esențiale.',
         requirements: [
@@ -144,6 +144,10 @@ export const templateClientInfo = {
     },
 }
 
-export function getTemplateClientInfo(slug) {
+export function getTemplateClientInfo(slug, locale = 'ro') {
+    if (locale === 'en') {
+        return null
+    }
+
     return templateClientInfo[slug] || null
 }

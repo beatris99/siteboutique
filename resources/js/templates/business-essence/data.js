@@ -150,9 +150,9 @@ export const businessEssenceData = {
     ],
 
     finalCta: {
-        title: 'Îți place structura Business Essence?',
+        title: 'Îți place structura pentru firmă locală?',
         description:
             'Îl poți folosi ca bază pentru firma ta. Adaptăm textele, serviciile, culorile, zonele acoperite, datele de contact și formularul.',
-        button: 'Configurează Business Essence',
+        button: 'Configurează site pentru firmă locală',
     },
 }

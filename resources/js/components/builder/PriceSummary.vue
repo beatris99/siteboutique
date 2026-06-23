@@ -10,55 +10,49 @@
             </h2>
 
             <div class="mt-6 grid gap-4">
-                <div class="rounded-2xl bg-[#f7f4ef] p-4">
+                <div v-if="selectedTemplate?.name" class="rounded-2xl bg-[#f7f4ef] p-4">
                     <p class="text-sm text-black/50">
-                        {{ summary.templateLabel }}
+                        {{ label('template_label', 'templateLabel') }}
                     </p>
 
                     <p class="mt-2 font-semibold">
-                        {{ selectedTemplate?.name || "-" }}
+                        {{ selectedTemplate.name }}
+                    </p>
+                </div>
+
+                <div v-if="selectedPackage?.name" class="rounded-2xl bg-[#f7f4ef] p-4">
+                    <p class="text-sm text-black/50">
+                        {{ label('package_label', 'packageLabel') }}
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        {{ selectedPackage.name }}
                     </p>
                 </div>
 
                 <div class="rounded-2xl bg-[#f7f4ef] p-4">
                     <p class="text-sm text-black/50">
-                        {{ summary.packageLabel }}
+                        {{ label('features_label', 'featuresLabel') }}
                     </p>
 
-                    <p class="mt-2 font-semibold">
-                        {{ selectedPackage?.name || "-" }}
-                    </p>
-                </div>
-
-                <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                    <p class="text-sm text-black/50">
-                        {{ summary.featuresLabel }}
-                    </p>
-
-                    <div
-                        v-if="selectedFeatures.length"
-                        class="mt-3 flex flex-wrap gap-2"
-                    >
+                    <div v-if="visibleSelectedFeatures.length" class="mt-3 flex flex-wrap gap-2">
                         <span
-                            v-for="feature in selectedFeatures"
-                            :key="feature.id"
+                            v-for="feature in visibleSelectedFeatures"
+                            :key="feature.id || feature.name"
                             class="rounded-full bg-white px-3 py-1 text-xs text-black/60"
                         >
                             {{ feature.name }}
                         </span>
                     </div>
 
-                    <p
-                        v-else
-                        class="mt-2 text-sm text-black/50"
-                    >
-                        {{ summary.noFeatures }}
+                    <p v-else class="mt-2 text-sm text-black/50">
+                        {{ label('no_features', 'noFeatures') }}
                     </p>
                 </div>
 
                 <div class="rounded-[1.5rem] bg-black p-5 text-white">
                     <p class="text-sm text-white/50">
-                        {{ summary.totalLabel }}
+                        {{ label('total_label', 'totalLabel') }}
                     </p>
 
                     <p class="mt-2 text-4xl font-semibold">
@@ -66,14 +60,11 @@
                     </p>
 
                     <p class="mt-3 text-sm leading-6 text-white/60">
-                        {{ summary.totalDescription }}
+                        {{ label('total_description', 'totalDescription') }}
                     </p>
                 </div>
 
-                <a
-                    href="#contact"
-                    class="rounded-full bg-black px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-[#8b6f47]"
-                >
+                <a href="#contact" class="rounded-full bg-black px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-[#8b6f47]">
                     {{ summary.cta }}
                 </a>
             </div>
@@ -82,7 +73,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
     summary: {
         type: Object,
         required: true,
@@ -104,6 +97,12 @@ defineProps({
         required: true,
     },
 });
+
+const visibleSelectedFeatures = computed(() => (props.selectedFeatures || []).filter(feature => feature?.name && String(feature.name).trim() !== ''))
+
+function label(snakeKey, camelKey) {
+    return props.summary?.[snakeKey] || props.summary?.[camelKey] || ''
+}
 
 function formatPrice(value) {
     return `${Number(value || 0).toLocaleString("ro-RO")} lei`;

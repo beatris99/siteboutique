@@ -3,7 +3,7 @@
 return [
     'brand' => [
         'name' => 'SiteGo',
-        'email' => 'contact@sitego.ro',
+        'email' => 'sitegobv@gmail.com',
         'location' => 'Brasov, Romania',
     ],
 
@@ -20,7 +20,7 @@ return [
         'features' => 'Features',
         'pricing' => 'Pricing',
         'developers' => 'Developers',
-        'done_for_you' => 'Done for you',
+        'done_for_you' => 'Done-for-you website',
         'contact' => 'Contact',
     ],
 
