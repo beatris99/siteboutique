@@ -11,4 +11,8 @@ return [
         ['label' => 'Termeni și condiții', 'href' => '/termeni-conditii'],
         ['label' => 'Politica cookies', 'href' => '/politica-cookies'],
     ],
+    'social_title' => 'Urmărește-ne',
+    'social_links' => [
+        ['label' => 'Facebook', 'href' => 'https://www.facebook.com/share/1BQ9mzPgqy/?mibextid=wwXIfr'],
+    ],
 ];

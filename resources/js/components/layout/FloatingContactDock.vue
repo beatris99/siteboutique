@@ -1,13 +1,33 @@
 <template>
     <div class="fixed bottom-24 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
-        <Transition enter-active-class="transition duration-200 ease-out motion-reduce:transition-none" enter-from-class="translate-y-2 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition duration-150 ease-in motion-reduce:transition-none" leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-2 opacity-0">
+        <Transition
+            enter-active-class="transition duration-200 ease-out motion-reduce:transition-none"
+            enter-from-class="translate-y-2 opacity-0"
+            enter-to-class="translate-y-0 opacity-100"
+            leave-active-class="transition duration-150 ease-in motion-reduce:transition-none"
+            leave-from-class="translate-y-0 opacity-100"
+            leave-to-class="translate-y-2 opacity-0"
+        >
             <div v-show="isOpen" class="flex flex-col items-end gap-2">
+                <a
+                    :href="whatsappHref"
+                    target="_blank"
+                    rel="noopener"
+                    class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
+                    @click="isOpen = false"
+                >
+                    {{ dock.whatsapp_label || 'WhatsApp' }}
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white">
+                        <WhatsappIcon class="h-5 w-5" />
+                    </span>
+                </a>
+
                 <a
                     :href="emailHref"
                     class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.email_label }}
+                    {{ dock.email_label || 'Email' }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white">@</span>
                 </a>
 
@@ -17,9 +37,11 @@
                     class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.phone_label }}
+                    {{ dock.phone_label || 'Telefon' }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#a67c3a] text-white">
-                        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" /></svg>
+                        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor">
+                            <path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" />
+                        </svg>
                     </span>
                 </a>
 
@@ -28,7 +50,7 @@
                     class="flex items-center gap-3 rounded-full bg-black py-2.5 pl-4 pr-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.configurator_label }}
+                    {{ dock.configurator_label || 'Configurează site-ul' }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">→</span>
                 </a>
             </div>
@@ -38,7 +60,7 @@
             type="button"
             class="flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-xl ring-4 ring-black/10 transition hover:scale-105 motion-reduce:transition-none"
             :aria-expanded="isOpen"
-            :aria-label="isOpen ? dock.close_label : dock.open_label"
+            :aria-label="isOpen ? (dock.close_label || 'Închide') : (dock.open_label || 'Contact rapid')"
             @click="isOpen = !isOpen"
         >
             <span v-if="!isOpen">✉</span>
@@ -49,6 +71,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import WhatsappIcon from '../icons/WhatsappIcon.vue'
 
 const props = defineProps({
     dock: { type: Object, required: true },
@@ -56,7 +79,9 @@ const props = defineProps({
 })
 
 const isOpen = ref(false)
+
 const fallbackEmail = 'sitegobv@gmail.com'
+const fallbackPhone = '40747084861'
 
 const emailHref = computed(() => {
     const email = props.contactInfo.email || fallbackEmail
@@ -64,7 +89,18 @@ const emailHref = computed(() => {
 })
 
 const phoneHref = computed(() => {
-    const digits = (props.contactInfo.phone || '').replace(/\D/g, '')
+    const digits = (props.contactInfo.phone || fallbackPhone).replace(/\D/g, '')
     return digits ? `tel:+${digits}` : '#'
+})
+
+const whatsappHref = computed(() => {
+    let digits = (props.contactInfo.phone || fallbackPhone).replace(/\D/g, '')
+
+    if (digits.startsWith('0')) {
+        digits = `40${digits.slice(1)}`
+    }
+
+    const text = encodeURIComponent('Salut! Vreau un site pentru afacerea mea.')
+    return `https://wa.me/${digits}?text=${text}`
 })
 </script>

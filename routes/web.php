@@ -6,7 +6,6 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadNoteController;
 use Illuminate\Support\Facades\Route;
 
-// SITEGO SEO LANDING PAGES START
 $sitegoSeoPages = [
     'creare-site-de-prezentare-brasov' => [
         'title' => 'Creare site de prezentare Brașov',
@@ -114,7 +113,6 @@ foreach ($sitegoSeoPages as $slug => $page) {
         ]);
     })->name('seo.' . str_replace('-', '_', $slug));
 }
-// SITEGO SEO LANDING PAGES END
 
 Route::get('/language/{locale}', function (string $locale) {
     if (! in_array($locale, ['ro', 'en'], true)) {
@@ -236,6 +234,22 @@ Route::get('/sitemap.xml', function () {
         ->view('sitemap', compact('urls'))
         ->header('Content-Type', 'application/xml');
 })->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    $sitemap = rtrim(config('app.url'), '/') . '/sitemap.xml';
+
+    $lines = [
+        'User-agent: *',
+        'Allow: /',
+        'Disallow: /admin',
+        'Disallow: /admin/',
+        '',
+        'Sitemap: ' . $sitemap,
+        '',
+    ];
+
+    return response(implode("\n", $lines))->header('Content-Type', 'text/plain');
+})->name('robots');
 
 Route::post('/leads', [LeadController::class, 'store'])
     ->middleware('throttle:5,1')

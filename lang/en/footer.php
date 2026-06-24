@@ -11,4 +11,8 @@ return [
         ['label' => 'Terms and conditions', 'href' => '/termeni-conditii'],
         ['label' => 'Cookie policy', 'href' => '/politica-cookies'],
     ],
+    'social_title' => 'Follow us',
+    'social_links' => [
+        ['label' => 'Facebook', 'href' => 'https://www.facebook.com/share/1BQ9mzPgqy/?mibextid=wwXIfr'],
+    ],
 ];
