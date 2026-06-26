@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description' => 'Modern, configurable, and transparent websites for small and local businesses that want to launch quickly and properly.',
+    'description' => 'Clean websites, simple CRMs and digital solutions for businesses that want to start a clear conversation with their clients.',
     'copyright' => '© 2026 SiteGo. All rights reserved.',
     'contact_title' => 'Contact',
     'navigation_title' => 'Navigation',

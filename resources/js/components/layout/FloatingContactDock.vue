@@ -46,11 +46,11 @@
                 </a>
 
                 <a
-                    href="/configurator"
+                    :href="dock.primary_href || '/#cerere'"
                     class="flex items-center gap-3 rounded-full bg-black py-2.5 pl-4 pr-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.configurator_label || 'Configurează site-ul' }}
+                    {{ dock.primary_label || dock.configurator_label || 'Contact' }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">→</span>
                 </a>
             </div>

@@ -88,21 +88,21 @@
                         <div class="mt-5 grid gap-3 rounded-2xl bg-[#f7f4ef] p-4">
                             <div class="flex items-center justify-between gap-4 text-sm">
                                 <span class="text-black/50">
-                                    {{ common.realization }}
+                                    {{ common.estimated_delivery || common.estimatedDelivery || 'Termen estimativ' }}
                                 </span>
 
                                 <strong>
-                                    {{ common.from }} {{ formatPrice(template.buildPriceFrom || template.basePrice) }}
+                                    {{ template.deliveryTime || 'după discuție' }}
                                 </strong>
                             </div>
 
                             <div class="flex items-center justify-between gap-4 text-sm">
                                 <span class="text-black/50">
-                                    {{ common.estimated_delivery || common.estimatedDelivery || 'Termen estimativ' }}
+                                    {{ common.offer_after_discussion || 'Ofertă' }}
                                 </span>
 
                                 <strong>
-                                    {{ template.deliveryTime || '5-10 zile' }}
+                                    {{ common.after_discussion || 'după clarificări' }}
                                 </strong>
                             </div>
                         </div>
@@ -166,15 +166,11 @@ defineProps({
 
 const emit = defineEmits(['select-category', 'select-template'])
 
-function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString('ro-RO')} lei`
-}
-
 function chooseTemplate(template) {
     emit('select-template', template.id)
 
     setTimeout(() => {
-        document.getElementById('builder')?.scrollIntoView({
+        document.getElementById('cerere')?.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
         })

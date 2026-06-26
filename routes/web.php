@@ -76,7 +76,7 @@ $sitegoSeoPages = [
         'description' => 'Site de prezentare pentru salon beauty, coafor, makeup artist, stilist sau servicii de înfrumusețare.',
         'eyebrow' => 'Site pentru beauty',
         'h1' => 'Site pentru salon beauty, coafor sau servicii de înfrumusețare',
-        'intro' => 'Un salon are nevoie de poze bune, servicii clare, prețuri orientative și un mod rapid prin care clientele pot cere programare.',
+        'intro' => 'Un salon are nevoie de poze bune, servicii clare, portofoliu vizual și un mod rapid prin care clientele pot cere programare.',
         'service_type' => 'Site pentru salon beauty',
         'includes' => ['Servicii beauty', 'Galerie foto', 'Buton programare', 'WhatsApp', 'Recenzii', 'Hartă și program'],
         'for_who' => 'Pentru saloane, coafeze, makeup artiști, stiliste, cosmeticiene, nail artists și afaceri din zona de beauty.',
@@ -85,22 +85,6 @@ $sitegoSeoPages = [
             ['title' => 'Programări mai simple', 'text' => 'Clientele pot ajunge rapid la WhatsApp sau formular.'],
             ['title' => 'Servicii clare', 'text' => 'Fiecare serviciu este prezentat pe scurt, fără aglomerație.'],
             ['title' => 'Imagine premium', 'text' => 'Designul ajută salonul să pară îngrijit și profesionist.'],
-        ],
-    ],
-    'cat-costa-un-site-de-prezentare-2026' => [
-        'title' => 'Cât costă un site de prezentare în 2026',
-        'description' => 'Explicație clară despre cât poate costa un site de prezentare în 2026 și ce influențează prețul.',
-        'eyebrow' => 'Ghid de preț',
-        'h1' => 'Cât costă un site de prezentare în 2026?',
-        'intro' => 'Prețul unui site depinde de numărul de pagini, nivelul de personalizare, texte, poze, formulare, SEO și configurările tehnice necesare.',
-        'service_type' => 'Consultanță website',
-        'includes' => ['Estimare preț', 'Explicații clare', 'Ce include un site', 'Ce costă extra', 'Recomandări pentru început', 'Link către configurator'],
-        'for_who' => 'Pentru antreprenori care vor să înțeleagă realist ce buget trebuie să pregătească pentru un site de prezentare.',
-        'process' => 'Cel mai simplu este să pornești cu un site clar, nu cu multe funcții inutile. Ulterior poți adăuga pagini, blog, portofoliu sau funcționalități suplimentare.',
-        'benefits' => [
-            ['title' => 'Buget mai clar', 'text' => 'Înțelegi ce influențează costul înainte să ceri ofertă.'],
-            ['title' => 'Fără funcții inutile', 'text' => 'Poți începe cu exact ce ai nevoie acum.'],
-            ['title' => 'Configurator util', 'text' => 'Poți estima mai ușor varianta potrivită pentru afacerea ta.'],
         ],
     ],
 ];
@@ -115,7 +99,7 @@ foreach ($sitegoSeoPages as $slug => $page) {
 }
 
 Route::get('/language/{locale}', function (string $locale) {
-    if (! in_array($locale, ['ro', 'en'], true)) {
+    if (!in_array($locale, ['ro', 'en'], true)) {
         abort(404);
     }
 
@@ -124,87 +108,42 @@ Route::get('/language/{locale}', function (string $locale) {
     return back();
 })->name('language.switch');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', function () {return view('welcome');})->name('home');
 
-Route::get('/modele-site', function () {
-    return view('welcome');
-})->name('templates.index');
+Route::get('/modele-site', function () {return view('welcome');})->name('templates.index');
 
-Route::get('/configurator', function () {
-    return view('welcome');
-})->name('configurator');
+Route::get('/configurator', function () {return view('welcome');})->name('configurator');
 
-Route::get('/contact', function () {
-    return view('welcome');
-})->name('contact');
+Route::get('/contact', function () {return view('welcome');})->name('contact');
 
-Route::get('/templates/{slug}', function () {
-    return view('welcome');
-})->name('templates.show');
+Route::get('/templates/{slug}', function () {return view('welcome');})->name('templates.show');
 
-Route::get('/cum-lucram', function () {
-    return view('pages.work-process');
-})->name('work-process');
+Route::get('/cum-lucram', function () {return view('pages.work-process');})->name('work-process');
 
-Route::get('/realizare-site-uri', function () {
-    return view('pages.realizare-site-uri');
-})->name('seo.websites');
+Route::get('/realizare-site-uri', function () {return view('pages.realizare-site-uri');})->name('seo.websites');
 
-Route::get('/preturi', function () {
-    return view('pages.pricing');
-})->name('pricing');
+Route::redirect('/preturi', '/contact', 301)->name('pricing');
 
-Route::get('/intrebari-frecvente', function () {
-    return view('pages.faq');
-})->name('faq');
+Route::get('/intrebari-frecvente', function () {return view('pages.faq');})->name('faq');
 
-Route::get('/site-facut-pentru-tine', function () {
-    return view('pages.done-for-you');
-})->name('done-for-you');
+Route::get('/site-facut-pentru-tine', function () {return view('pages.done-for-you');})->name('done-for-you');
 
 Route::redirect('/realizare-site-brasov', '/realizare-site-uri', 301);
 
-/*
-|--------------------------------------------------------------------------
-| Temporar ascuns - partea pentru developeri
-|--------------------------------------------------------------------------
-*/
-Route::redirect('/pentru-developeri', '/', 302)->name('developers');
+Route::get('/politica-confidentialitate', function () {return view('legal.privacy');})->name('privacy');
 
-foreach (config('seo_pages', []) as $slug => $page) {
-    Route::get('/' . $slug, function () use ($page, $slug) {
-        return view('pages.seo.show', [
-            'page' => $page,
-            'slug' => $slug,
-        ]);
-    })->name('seo.' . $page['route_name']);
-}
+Route::get('/termeni-conditii', function () {return view('legal.terms');})->name('terms');
 
-Route::get('/politica-confidentialitate', function () {
-    return view('legal.privacy');
-})->name('privacy');
-
-Route::get('/termeni-conditii', function () {
-    return view('legal.terms');
-})->name('terms');
-
-Route::get('/politica-cookies', function () {
-    return view('legal.cookies');
-})->name('cookies');
+Route::get('/politica-cookies', function () {return view('legal.cookies');})->name('cookies');
 
 Route::get('/sitemap.xml', function () {
     $baseUrl = rtrim(config('app.url'), '/');
-
     $urls = [
         ['loc' => $baseUrl . '/', 'priority' => '1.0'],
         ['loc' => $baseUrl . '/modele-site', 'priority' => '0.9'],
-        ['loc' => $baseUrl . '/configurator', 'priority' => '0.9'],
         ['loc' => $baseUrl . '/contact', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
-        ['loc' => $baseUrl . '/preturi', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/intrebari-frecvente', 'priority' => '0.7'],
         ['loc' => $baseUrl . '/site-facut-pentru-tine', 'priority' => '0.8'],
 
@@ -230,8 +169,7 @@ Route::get('/sitemap.xml', function () {
         ];
     }
 
-    return response()
-        ->view('sitemap', compact('urls'))
+    return response()->view('sitemap', compact('urls'))
         ->header('Content-Type', 'application/xml');
 })->name('sitemap');
 

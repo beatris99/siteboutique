@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-[#f7f4ef] px-6 py-20">
+    <section class="bg-[#f7f4ef] px-6 py-16 lg:py-20">
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
                 <div>
@@ -20,12 +20,12 @@
                     </p>
 
                     <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-                        <a href="#builder" class="rounded-full bg-black px-7 py-4 text-center text-sm font-medium text-white transition hover:bg-[#8b6f47]">
-                            {{ labels.configure }}
+                        <a href="#cerere" class="rounded-full bg-black px-7 py-4 text-center text-sm font-medium text-white transition hover:bg-[#8b6f47]">
+                            {{ labels.request }}
                         </a>
 
-                        <a href="#contact" class="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-medium transition hover:border-black/30">
-                            {{ labels.request }}
+                        <a href="/#mockup" class="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-medium transition hover:border-black/30">
+                            {{ labels.examples }}
                         </a>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="mt-16 grid gap-6 md:grid-cols-3">
+            <div class="mt-14 grid gap-6 md:grid-cols-3">
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
                     <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
                         {{ labels.idealFor }}
@@ -66,11 +66,6 @@
                     </p>
 
                     <div class="mt-5 grid gap-3 text-sm text-black/60">
-                        <div class="flex justify-between gap-4">
-                            <span>{{ labels.price }}</span>
-                            <strong class="text-black">{{ formatPrice(template.basePrice) }}</strong>
-                        </div>
-
                         <div class="flex justify-between gap-4">
                             <span>{{ labels.delivery }}</span>
                             <strong class="text-black">{{ template.deliveryTime || labels.estimated }}</strong>
@@ -117,35 +112,29 @@ const props = defineProps({
 
 const labels = computed(() => props.locale === 'en' ? {
     back: '← Back to templates',
-    configure: 'Configure this model',
-    request: 'Request offer',
+    request: 'Request a discussion',
+    examples: 'View examples',
     idealFor: 'Best for',
-    pages: 'Included pages',
+    pages: 'Possible pages',
     quickDetails: 'Quick details',
-    price: 'Starting price',
-    delivery: 'Delivery',
-    estimated: 'Estimated',
+    delivery: 'Timeline',
+    estimated: 'Estimated after discussion',
     category: 'Category',
     includes: 'What it can include',
     defaultIncludes: ['Clear page structure', 'Responsive mobile and desktop design', 'Contact form or quick contact button', 'Basic SEO structure', 'Content adapted to your business', 'Launch support'],
 } : {
     back: '← Înapoi la modele',
-    configure: 'Configurează acest model',
-    request: 'Vreau ofertă',
+    request: 'Vreau să discutăm',
+    examples: 'Vezi exemple',
     idealFor: 'Potrivit pentru',
-    pages: 'Pagini incluse',
+    pages: 'Pagini posibile',
     quickDetails: 'Detalii rapide',
-    price: 'Preț de pornire',
-    delivery: 'Livrare',
-    estimated: 'Estimativ',
+    delivery: 'Termen',
+    estimated: 'Estimativ după discuție',
     category: 'Categorie',
     includes: 'Ce poate include',
     defaultIncludes: ['Structură clară pentru pagini', 'Design responsive mobil și desktop', 'Formular sau buton de contact rapid', 'Structură SEO basic', 'Conținut adaptat afacerii tale', 'Suport pentru lansare'],
 })
 
 const includesList = computed(() => props.template.includes?.length ? props.template.includes : labels.value.defaultIncludes)
-
-function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString('ro-RO')} lei`
-}
 </script>

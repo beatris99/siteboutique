@@ -160,6 +160,8 @@ return [
         'close_label' => 'Close contact options',
         'email_label' => 'Send email',
         'phone_label' => 'Call now',
-        'configurator_label' => 'Configure website',
+        'configurator_label' => 'Contact',
+        'primary_label' => 'Let’s talk',
+        'primary_href' => '/#cerere',
     ],
 ];

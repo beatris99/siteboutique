@@ -11,17 +11,10 @@
             'footer' => trans('footer'),
             'contact' => trans('contact'),
             'common' => trans('home.common'),
-            'hero' => trans('home.hero'),
+            'hero' => trans('home_lite.hero'),
+            'homeShowcase' => trans('home_lite.showcase'),
+            'leadCapture' => trans('home_lite.lead_capture'),
             'templateGallery' => trans('home.template_gallery'),
-            'packagesSection' => trans('home.packages_section'),
-            'configurator' => trans('home.configurator'),
-            'priceSummary' => trans('home.price_summary'),
-            'whatYouGet' => trans('home.what_you_get'),
-            'whyWorkWithMe' => trans('home.why_work_with_me'),
-            'projectProcess' => trans('home.project_process'),
-            'popularServices' => trans('home.popular_services'),
-            'liveProof' => trans('home.live_proof'),
-            'productPaths' => trans('home.product_paths'),
             'floatingDock' => trans('home.floating_dock'),
         ],
         'builder' => trans('site_builder'),
@@ -36,13 +29,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('home.meta.home_title') }}</title>
-    <meta name="description" content="{{ __('home.meta.home_description') }}">
+    <title>{{ __('home_lite.meta.home_title') }}</title>
+    <meta name="description" content="{{ __('home_lite.meta.home_description') }}">
     <meta name="robots" content="index, follow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta property="og:title" content="{{ __('home.meta.og_title') }}">
-    <meta property="og:description" content="{{ __('home.meta.og_description') }}">
+    <meta property="og:title" content="{{ __('home_lite.meta.og_title') }}">
+    <meta property="og:description" content="{{ __('home_lite.meta.og_description') }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $appUrl }}">
     <meta property="og:image" content="{{ $appUrl }}/images/og-cover.jpg">
@@ -50,13 +43,13 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="SiteGo - site-uri configurabile pentru afaceri locale">
+    <meta property="og:image:alt" content="SiteGo - site-uri, CRM-uri și soluții digitale pentru afaceri">
     <meta property="og:site_name" content="SiteGo">
     <meta property="og:locale" content="ro_RO">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ __('home.meta.og_title') }}">
-    <meta name="twitter:description" content="{{ __('home.meta.twitter_description') }}">
+    <meta name="twitter:title" content="{{ __('home_lite.meta.og_title') }}">
+    <meta name="twitter:description" content="{{ __('home_lite.meta.twitter_description') }}">
     <meta name="twitter:image" content="{{ $appUrl }}/images/og-cover.jpg">
 
     <link rel="canonical" href="{{ $appUrl }}">
@@ -140,7 +133,6 @@
             'image' => $appUrl . '/images/og-cover.jpg',
             'email' => 'sitegobv@gmail.com',
             'telephone' => '+40747084861',
-            'priceRange' => 'de la 2.500 lei',
             'areaServed' => [
                 '@type' => 'City',
                 'name' => 'Brașov',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description' => 'Site-uri moderne, configurabile și transparente pentru afaceri mici și locale care vor să se lanseze rapid, dar corect.',
+    'description' => 'Site-uri, CRM-uri simple și soluții digitale aerisite pentru afaceri care vor să pornească o conversație clară cu clienții.',
     'copyright' => '© 2026 SiteGo. Toate drepturile rezervate.',
     'contact_title' => 'Contact',
     'navigation_title' => 'Navigare',

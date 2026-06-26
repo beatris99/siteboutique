@@ -191,6 +191,8 @@ return [
         'close_label' => 'Închide opțiunile de contact',
         'email_label' => 'Trimite email',
         'phone_label' => 'Sună acum',
-        'configurator_label' => 'Configurează site-ul',
+        'configurator_label' => 'Contact',
+        'primary_label' => 'Hai să discutăm',
+        'primary_href' => '/#cerere',
     ],
 ];
