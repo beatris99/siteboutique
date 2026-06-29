@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'cta' => 'Hai să discutăm',
-    'cta_href' => '/#cerere',
+    'cta' => 'Hai să vorbim',
     'menu_open_label' => 'Deschide meniul',
     'menu_close_label' => 'Închide meniul',
     'language_ro' => 'RO',

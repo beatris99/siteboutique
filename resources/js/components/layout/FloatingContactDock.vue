@@ -46,11 +46,11 @@
                 </a>
 
                 <a
-                    :href="dock.primary_href || '/#cerere'"
+                    href="/#contact"
                     class="flex items-center gap-3 rounded-full bg-black py-2.5 pl-4 pr-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.primary_label || dock.configurator_label || 'Contact' }}
+                    {{ dock.cta_label || 'Hai să vorbim' }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">→</span>
                 </a>
             </div>

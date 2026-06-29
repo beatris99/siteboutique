@@ -80,8 +80,8 @@
             </a>
             <div class="nav-links">
                 <a href="https://sitego.ro/modele-site">Modele site</a>
-                <a href="https://sitego.ro/#mockup">Exemple</a>
-                <a href="https://sitego.ro/contact">Contact</a>
+                <a href="https://sitego.ro/configurator">Configurator</a>
+                <a href="https://sitego.ro/site-facut-pentru-tine">Site făcut pentru tine</a>
             </div>
         </nav>
 
@@ -91,7 +91,7 @@
                 <h1>{{ $page['h1'] }}</h1>
                 <p class="lead">{{ $page['intro'] }}</p>
                 <div class="buttons">
-                    <a class="btn btn-primary" href="https://sitego.ro/contact">Hai să discutăm</a>
+                    <a class="btn btn-primary" href="https://sitego.ro/configurator">Configurează site-ul</a>
                     <a class="btn btn-secondary" href="https://wa.me/40747084861">Scrie-ne pe WhatsApp</a>
                 </div>
             </div>
@@ -151,9 +151,9 @@
                     <h3>Site pentru salon beauty</h3>
                     <p>Prezentare elegantă pentru servicii beauty, programări și portofoliu.</p>
                 </a>
-                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/contact">
-                    <h3>Ai o idee diferită?</h3>
-                    <p>Trimite-ne pe scurt ce vrei să construim și stabilim direcția după discuție.</p>
+                <a class="mini" style="display:block;text-decoration:none;color:inherit;" href="https://sitego.ro/cat-costa-un-site-de-prezentare-2026">
+                    <h3>Cât costă un site în 2026?</h3>
+                    <p>Ghid simplu despre buget, ce include și ce poate costa extra.</p>
                 </a>
             </div>
         </section>
@@ -161,10 +161,10 @@
 
         <section class="footer-cta">
             <h2>Vrei un site mai clar pentru afacerea ta?</h2>
-            <p>Trimite-ne ideea ta, iar după clarificări îți propunem direcția potrivită pentru proiect.</p>
+            <p>Intră în configurator și vezi ce variantă ți se potrivește. Primești o estimare și putem discuta concret următorii pași.</p>
             <div class="buttons">
-                <a class="btn btn-secondary" href="https://sitego.ro/contact">Hai să discutăm</a>
-                <a class="btn btn-secondary" href="https://sitego.ro/#mockup">Vezi exemple</a>
+                <a class="btn btn-secondary" href="https://sitego.ro/configurator">Configurează site-ul</a>
+                <a class="btn btn-secondary" href="https://sitego.ro/modele-site">Vezi modele de site</a>
             </div>
         </section>
     </main>

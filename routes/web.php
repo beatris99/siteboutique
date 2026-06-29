@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\LeadNoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,7 +77,7 @@ $sitegoSeoPages = [
         'description' => 'Site de prezentare pentru salon beauty, coafor, makeup artist, stilist sau servicii de înfrumusețare.',
         'eyebrow' => 'Site pentru beauty',
         'h1' => 'Site pentru salon beauty, coafor sau servicii de înfrumusețare',
-        'intro' => 'Un salon are nevoie de poze bune, servicii clare, portofoliu vizual și un mod rapid prin care clientele pot cere programare.',
+        'intro' => 'Un salon are nevoie de poze bune, servicii clare, prețuri orientative și un mod rapid prin care clientele pot cere programare.',
         'service_type' => 'Site pentru salon beauty',
         'includes' => ['Servicii beauty', 'Galerie foto', 'Buton programare', 'WhatsApp', 'Recenzii', 'Hartă și program'],
         'for_who' => 'Pentru saloane, coafeze, makeup artiști, stiliste, cosmeticiene, nail artists și afaceri din zona de beauty.',
@@ -85,6 +86,22 @@ $sitegoSeoPages = [
             ['title' => 'Programări mai simple', 'text' => 'Clientele pot ajunge rapid la WhatsApp sau formular.'],
             ['title' => 'Servicii clare', 'text' => 'Fiecare serviciu este prezentat pe scurt, fără aglomerație.'],
             ['title' => 'Imagine premium', 'text' => 'Designul ajută salonul să pară îngrijit și profesionist.'],
+        ],
+    ],
+    'cat-costa-un-site-de-prezentare-2026' => [
+        'title' => 'Cât costă un site de prezentare în 2026',
+        'description' => 'Explicație clară despre cât poate costa un site de prezentare în 2026 și ce influențează prețul.',
+        'eyebrow' => 'Ghid de preț',
+        'h1' => 'Cât costă un site de prezentare în 2026?',
+        'intro' => 'Prețul unui site depinde de numărul de pagini, nivelul de personalizare, texte, poze, formulare, SEO și configurările tehnice necesare.',
+        'service_type' => 'Consultanță website',
+        'includes' => ['Estimare preț', 'Explicații clare', 'Ce include un site', 'Ce costă extra', 'Recomandări pentru început', 'Link către configurator'],
+        'for_who' => 'Pentru antreprenori care vor să înțeleagă realist ce buget trebuie să pregătească pentru un site de prezentare.',
+        'process' => 'Cel mai simplu este să pornești cu un site clar, nu cu multe funcții inutile. Ulterior poți adăuga pagini, blog, portofoliu sau funcționalități suplimentare.',
+        'benefits' => [
+            ['title' => 'Buget mai clar', 'text' => 'Înțelegi ce influențează costul înainte să ceri ofertă.'],
+            ['title' => 'Fără funcții inutile', 'text' => 'Poți începe cu exact ce ai nevoie acum.'],
+            ['title' => 'Configurator util', 'text' => 'Poți estima mai ușor varianta potrivită pentru afacerea ta.'],
         ],
     ],
 ];
@@ -122,7 +139,7 @@ Route::get('/cum-lucram', function () {return view('pages.work-process');})->nam
 
 Route::get('/realizare-site-uri', function () {return view('pages.realizare-site-uri');})->name('seo.websites');
 
-Route::redirect('/preturi', '/contact', 301)->name('pricing');
+Route::get('/preturi', function () {return view('pages.pricing');})->name('pricing');
 
 Route::get('/intrebari-frecvente', function () {return view('pages.faq');})->name('faq');
 
@@ -141,9 +158,11 @@ Route::get('/sitemap.xml', function () {
     $urls = [
         ['loc' => $baseUrl . '/', 'priority' => '1.0'],
         ['loc' => $baseUrl . '/modele-site', 'priority' => '0.9'],
+        ['loc' => $baseUrl . '/configurator', 'priority' => '0.9'],
         ['loc' => $baseUrl . '/contact', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/cum-lucram', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/realizare-site-uri', 'priority' => '0.9'],
+        ['loc' => $baseUrl . '/preturi', 'priority' => '0.8'],
         ['loc' => $baseUrl . '/intrebari-frecvente', 'priority' => '0.7'],
         ['loc' => $baseUrl . '/site-facut-pentru-tine', 'priority' => '0.8'],
 
@@ -192,6 +211,22 @@ Route::get('/robots.txt', function () {
 Route::post('/leads', [LeadController::class, 'store'])
     ->middleware('throttle:5,1')
     ->name('leads.store');
+
+Route::post('/subscribe', [SubscriptionController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('subscribe');
+
+Route::post('/newsletter/subscribe', [SubscriptionController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('newsletter.subscribe');
+
+Route::post('/newsletter/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
+    ->middleware('throttle:5,1')
+    ->name('newsletter.unsubscribe');
+
+Route::get('/newsletter/unsubscribe/{token}', [SubscriptionController::class, 'unsubscribeByToken'])
+    ->where('token', '[A-Za-z0-9]+')
+    ->name('newsletter.unsubscribe.token');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
 
