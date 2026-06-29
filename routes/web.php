@@ -225,7 +225,7 @@ Route::post('/newsletter/unsubscribe', [SubscriptionController::class, 'unsubscr
     ->name('newsletter.unsubscribe');
 
 Route::get('/newsletter/unsubscribe/{token}', [SubscriptionController::class, 'unsubscribeByToken'])
-    ->where('token', '[A-Za-z0-9]+')
+    ->where('token', '[A-Za-z0-9]{32,80}')
     ->name('newsletter.unsubscribe.token');
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');

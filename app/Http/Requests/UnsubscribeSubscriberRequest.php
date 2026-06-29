@@ -16,8 +16,16 @@ class UnsubscribeSubscriberRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'max:255'],
 
-            // Honeypot — must stay empty.
             'website' => ['nullable', 'max:0'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Te rugăm să introduci adresa de email.',
+            'email.email' => 'Te rugăm să introduci o adresă de email validă.',
+            'website.max' => 'Cererea nu a putut fi trimisă.',
         ];
     }
 }
