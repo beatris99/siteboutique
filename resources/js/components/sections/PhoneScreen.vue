@@ -1,12 +1,10 @@
 <template>
     <div class="px-4 pb-8 pt-12">
-        <!-- Google search pill (shared) -->
         <div class="mb-4 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
             <p class="text-[9px] font-bold uppercase tracking-[0.25em] text-black/35">Google</p>
             <p class="mt-1 truncate text-[12px] font-semibold text-black/65">{{ site.search }}</p>
         </div>
 
-        <!-- Header (shared) -->
         <header class="flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="grid h-11 w-11 place-items-center rounded-2xl text-white shadow-sm" :style="{ background: theme.accent }">
@@ -23,7 +21,6 @@
             </button>
         </header>
 
-        <!-- ===== BRAND STYLE (RentRide) ===== -->
         <template v-if="isBrand">
             <section class="relative mt-5 overflow-hidden rounded-[1.8rem] p-6 text-white shadow-sm" :style="{ background: theme.brandHero }">
                 <div class="pointer-events-none absolute -right-6 -top-8 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
@@ -64,7 +61,78 @@
             </section>
         </template>
 
-        <!-- ===== PHOTO STYLE (beauty / restaurant / ...) ===== -->
+        <template v-else-if="isCrm">
+            <section class="mt-5 rounded-[1.8rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
+                <div class="flex items-start justify-between gap-3">
+                    <div>
+                        <p class="text-[9px] font-bold uppercase tracking-[0.32em]" :style="{ color: theme.accent }">{{ site.eyebrow }}</p>
+                        <h3 class="mt-2 max-w-[220px] font-serif text-[26px] leading-[1.05] tracking-[-0.02em] text-[#171717]">
+                            {{ site.title }}
+                        </h3>
+                    </div>
+
+                    <span class="rounded-xl px-3 py-2 text-[11px] font-bold text-white shadow-sm" :style="{ backgroundColor: theme.accent }">
+                        {{ site.cta }}
+                    </span>
+                </div>
+
+                <div class="mt-4 grid grid-cols-2 gap-2.5">
+                    <article
+                        v-for="item in site.stats"
+                        :key="item.label"
+                        class="rounded-2xl bg-[#f8f7ff] p-3"
+                    >
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">{{ item.label }}</p>
+                        <p class="mt-2 text-[20px] font-bold text-[#171717]">{{ item.value }}</p>
+                    </article>
+                </div>
+
+                <div class="mt-4 rounded-[1.4rem] border border-black/6 p-4">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.24em]" :style="{ color: theme.accent }">
+                            {{ site.pipeline_label }}
+                        </p>
+                        <span class="text-[11px] font-semibold text-black/50">{{ site.pipeline_total }}</span>
+                    </div>
+
+                    <div class="grid gap-3">
+                        <div
+                            v-for="item in site.pipeline"
+                            :key="item.stage"
+                        >
+                            <div class="flex items-center justify-between gap-3 text-[11px] font-semibold text-[#171717]">
+                                <span>{{ item.stage }}</span>
+                                <span>{{ item.count }}</span>
+                            </div>
+                            <div class="mt-1.5 h-2 rounded-full bg-black/6">
+                                <div
+                                    class="h-2 rounded-full"
+                                    :style="{ width: `${item.progress}%`, backgroundColor: theme.accent }"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 rounded-[1.4rem] border border-black/6 p-4">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.24em]" :style="{ color: theme.accent }">
+                        {{ site.tasks_label }}
+                    </p>
+
+                    <div class="mt-3 grid gap-2.5">
+                        <article
+                            v-for="item in site.tasks"
+                            :key="item.title"
+                            class="rounded-2xl bg-[#fafafa] p-3"
+                        >
+                            <p class="text-[12px] font-semibold text-[#171717]">{{ item.title }}</p>
+                            <p class="mt-1 text-[10px] leading-5 text-black/50">{{ item.meta }}</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </template>
+
         <template v-else>
             <section class="relative mt-5 overflow-hidden rounded-[1.8rem] shadow-sm ring-1 ring-black/5">
                 <img :src="heroImage" :alt="site.brand" class="h-[300px] w-full object-cover" loading="lazy">
@@ -95,7 +163,6 @@
             </section>
         </template>
 
-        <!-- Footer (shared) -->
         <footer class="mt-4 grid grid-cols-3 gap-3 rounded-[1.8rem] bg-[#171717] p-5 text-white">
             <div>
                 <p class="text-[9px] font-bold text-white/50">Program</p>
@@ -124,6 +191,7 @@ const props = defineProps({
 })
 
 const isBrand = computed(() => props.site.style === 'brand')
+const isCrm = computed(() => props.site.style === 'crm')
 
 const base = '/images/showcase/phone'
 const heroImage = computed(() => `${base}/${props.site.key}-hero.jpg`)

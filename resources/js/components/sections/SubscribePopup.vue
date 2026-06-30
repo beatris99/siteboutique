@@ -2,22 +2,24 @@
     <transition name="popup-fade">
         <div
             v-if="visible"
-            class="fixed inset-0 z-[80] grid place-items-center bg-black/45 px-4 py-6 backdrop-blur-sm"
+            class="fixed inset-0 z-[80] bg-black/45 px-3 py-4 backdrop-blur-sm sm:grid sm:place-items-center sm:px-4 sm:py-6"
             role="dialog"
             aria-modal="true"
             @click.self="decline"
         >
-            <div class="relative grid w-full max-w-3xl overflow-hidden rounded-[2rem] bg-[#f7f4ef] shadow-[0_30px_90px_rgba(0,0,0,0.35)] lg:grid-cols-[0.95fr_1.05fr]">
+            <div
+                class="relative mx-auto flex max-h-[88vh] w-full max-w-[22rem] flex-col overflow-hidden rounded-[1.75rem] bg-[#f7f4ef] shadow-[0_30px_90px_rgba(0,0,0,0.35)] sm:max-w-3xl sm:grid sm:max-h-none sm:grid-cols-[0.95fr_1.05fr] sm:rounded-[2rem]"
+            >
                 <button
                     type="button"
-                    class="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-white/80 text-xl leading-none text-black/55 shadow-sm transition hover:bg-white hover:text-black"
+                    class="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/85 text-lg leading-none text-black/55 shadow-sm transition hover:bg-white hover:text-black sm:right-4 sm:top-4 sm:h-10 sm:w-10 sm:text-xl"
                     :aria-label="copy.close"
                     @click="decline"
                 >
                     ×
                 </button>
 
-                <div class="bg-[#171717] p-7 text-white sm:p-9">
+                <div class="hidden bg-[#171717] p-7 text-white sm:block sm:p-9">
                     <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8c3a5]">
                         {{ copy.eyebrow }}
                     </p>
@@ -42,25 +44,41 @@
                     </div>
                 </div>
 
-                <div class="p-7 sm:p-9">
-                    <div v-if="subscribed" class="flex h-full min-h-[20rem] flex-col justify-center text-center">
-                        <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-green-700 text-white">
+                <div class="overflow-y-auto p-5 sm:p-9">
+                    <div class="sm:hidden">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]">
+                            {{ copy.eyebrow }}
+                        </p>
+
+                        <h2 class="mt-3 text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#171717]">
+                            {{ copy.title }}
+                        </h2>
+
+                        <p class="mt-3 text-sm leading-6 text-black/60">
+                            {{ copy.description }}
+                        </p>
+                    </div>
+
+                    <div v-if="subscribed" class="flex min-h-[16rem] flex-col justify-center text-center sm:min-h-[20rem]">
+                        <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-green-700 text-white sm:h-14 sm:w-14">
                             ✓
                         </div>
-                        <h3 class="mt-6 text-2xl font-semibold tracking-[-0.04em] text-[#171717]">
+
+                        <h3 class="mt-5 text-xl font-semibold tracking-[-0.04em] text-[#171717] sm:mt-6 sm:text-2xl">
                             {{ copy.success_title }}
                         </h3>
-                        <p class="mt-3 text-sm leading-7 text-black/60">
+
+                        <p class="mt-3 text-sm leading-6 text-black/60 sm:leading-7">
                             {{ copy.success_text }}
                         </p>
                     </div>
 
-                    <form v-else class="grid gap-4" @submit.prevent="handleSubmit">
-                        <p class="text-xs font-semibold uppercase tracking-[0.26em] text-[#a67c3a]">
+                    <form v-else class="mt-5 grid gap-4 sm:mt-0" @submit.prevent="handleSubmit">
+                        <p class="hidden text-xs font-semibold uppercase tracking-[0.26em] text-[#a67c3a] sm:block">
                             {{ copy.form_eyebrow }}
                         </p>
 
-                        <h3 class="text-2xl font-semibold tracking-[-0.04em] text-[#171717]">
+                        <h3 class="hidden text-2xl font-semibold tracking-[-0.04em] text-[#171717] sm:block">
                             {{ copy.form_title }}
                         </h3>
 
@@ -87,7 +105,12 @@
                         </label>
 
                         <label class="flex cursor-pointer items-start gap-3 text-[13px] leading-5 text-black/55">
-                            <input v-model="consent" type="checkbox" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20">
+                            <input
+                                v-model="consent"
+                                type="checkbox"
+                                required
+                                class="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20"
+                            >
                             <span>{{ copy.consent }}</span>
                         </label>
 
@@ -106,7 +129,7 @@
 
                         <button
                             type="button"
-                            class="mx-auto -mb-1 text-[13px] font-medium text-black/40 underline-offset-4 transition hover:text-black/70 hover:underline"
+                            class="mx-auto text-[13px] font-medium text-black/40 underline-offset-4 transition hover:text-black/70 hover:underline"
                             @click="decline"
                         >
                             {{ copy.decline }}
@@ -128,13 +151,13 @@ const props = defineProps({
 
 const fallback = {
     eyebrow: 'Campanie de lansare',
-    title: 'Primește codul tău personal de 10%',
-    description: 'Lasă adresa de email și primești un cod unic pentru campania de lansare SiteGo. Îți trimitem și idei scurte despre site-uri și creștere digitală.',
+    title: 'Primește codul tău personal de -10%',
+    description: 'Lasă adresa de email și primești un cod unic pentru campania de lansare SiteGo.',
     form_eyebrow: 'Newsletter SiteGo',
     form_title: 'Codul ajunge pe email.',
     email_label: 'Adresa de email',
     email_placeholder: 'nume@email.com',
-    consent: 'Sunt de acord să primesc emailuri de la SiteGo și știu că mă pot dezabona oricând.',
+    consent: 'Sunt de acord să primesc oferta pe email.',
     submit: 'Primește codul',
     sending: 'Se trimite...',
     decline: 'Nu acum',
@@ -143,8 +166,8 @@ const fallback = {
     success_text: 'Verifică emailul. Dacă nu îl găsești, uită-te și în Spam/Promotions.',
     points: [
         { title: 'Cod unic', text: 'Fiecare abonat primește un cod personal.' },
-        { title: 'Fără spam', text: 'Trimitem doar mesaje utile și rare.' },
-        { title: 'Dezabonare simplă', text: 'Te poți dezabona oricând.' },
+        { title: 'Rapid', text: 'Abonarea durează doar câteva secunde.' },
+        { title: 'Util', text: 'Primești și idei scurte despre prezența online.' },
     ],
     messages: {},
 }
@@ -152,13 +175,16 @@ const fallback = {
 const copy = computed(() => ({
     ...fallback,
     ...props.popup,
+    eyebrow: props.popup?.eyebrow || props.popup?.badge || fallback.eyebrow,
+    description: props.popup?.description || props.popup?.subtitle || fallback.description,
+    close: props.popup?.close || props.popup?.dismiss || fallback.close,
     points: Array.isArray(props.popup?.points) ? props.popup.points : fallback.points,
     messages: { ...fallback.messages, ...(props.popup?.messages || {}) },
 }))
 
 const STORAGE_KEY = 'sitego_newsletter_popup_seen_random_discount_v1'
 const SHOW_DELAY = 4000
-const CLOSE_AFTER_SUCCESS = 2800
+const CLOSE_AFTER_SUCCESS = 2600
 
 const visible = ref(false)
 const subscribed = ref(false)
@@ -166,7 +192,7 @@ const email = ref('')
 const consent = ref(false)
 const website = ref('')
 
-const { isSubmitting, errorMessage, subscribe } = useNewsletter(copy.value.messages || {})
+const { isSubmitting, errorMessage, subscribe } = useNewsletter(props.popup?.messages || {})
 
 let showTimer = null
 let closeTimer = null
@@ -183,7 +209,7 @@ function markSeen() {
     try {
         window.localStorage.setItem(STORAGE_KEY, '1')
     } catch (error) {
-        // localStorage indisponibil — nu blocăm popup-ul
+        //
     }
 }
 
@@ -213,7 +239,9 @@ async function handleSubmit() {
 
 onMounted(() => {
     if (!alreadySeen()) {
-        showTimer = setTimeout(() => { visible.value = true }, SHOW_DELAY)
+        showTimer = setTimeout(() => {
+            visible.value = true
+        }, SHOW_DELAY)
     }
 })
 

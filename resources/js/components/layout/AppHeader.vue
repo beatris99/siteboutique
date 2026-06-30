@@ -18,7 +18,7 @@
                     <a href="/language/ro" class="rounded-full px-3 py-2" :class="locale === 'ro' ? 'bg-black text-white' : 'text-black/50'">{{ header.language_ro }}</a>
                     <a href="/language/en" class="rounded-full px-3 py-2" :class="locale === 'en' ? 'bg-black text-white' : 'text-black/50'">{{ header.language_en }}</a>
                 </div>
-                <a href="/#contact" class="hidden rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#8b6f47] sm:inline-flex">{{ header.cta }}</a>
+                <a href="/contact" class="hidden rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#8b6f47] sm:inline-flex">{{ header.cta }}</a>
                 <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-black transition hover:bg-white lg:hidden" :aria-expanded="isOpen" aria-controls="mobile-menu" :aria-label="isOpen ? header.menu_close_label : header.menu_open_label" @click="toggleMenu">
                     <svg v-if="!isOpen" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
                     <svg v-else viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
@@ -33,7 +33,7 @@
                         <a href="/language/ro" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'ro' ? 'bg-black text-white' : 'bg-white text-black/50'" @click="closeMenu">{{ header.language_ro }}</a>
                         <a href="/language/en" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'en' ? 'bg-black text-white' : 'bg-white text-black/50'" @click="closeMenu">{{ header.language_en }}</a>
                     </div>
-                    <a href="/#contact" class="mt-2 rounded-full bg-black px-5 py-3 text-center text-base font-semibold text-white transition hover:bg-[#8b6f47]" @click="closeMenu">{{ header.cta }}</a>
+                    <a href="/contact" class="mt-2 rounded-full bg-black px-5 py-3 text-center text-base font-semibold text-white transition hover:bg-[#8b6f47]" @click="closeMenu">{{ header.cta }}</a>
                 </nav>
             </div>
         </Transition>

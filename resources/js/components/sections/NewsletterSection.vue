@@ -5,9 +5,11 @@
                 <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#a67c3a]">
                     {{ t.eyebrow }}
                 </p>
+
                 <h2 class="mt-4 max-w-xl font-serif text-3xl font-medium leading-tight text-[#171717] sm:text-4xl">
                     {{ t.title }}
                 </h2>
+
                 <p class="mt-4 max-w-xl text-base leading-8 text-black/60">
                     {{ t.description }}
                 </p>
@@ -25,27 +27,8 @@
             </div>
 
             <div class="rounded-[1.5rem] bg-[#171717] p-5 text-white sm:p-6">
-                <div class="grid grid-cols-2 gap-2 rounded-full bg-white/10 p-1">
-                    <button
-                        type="button"
-                        class="rounded-full px-4 py-2.5 text-sm font-semibold transition"
-                        :class="mode === 'subscribe' ? 'bg-white text-[#171717]' : 'text-white/60 hover:text-white'"
-                        @click="setMode('subscribe')"
-                    >
-                        {{ t.tabs.subscribe }}
-                    </button>
-                    <button
-                        type="button"
-                        class="rounded-full px-4 py-2.5 text-sm font-semibold transition"
-                        :class="mode === 'unsubscribe' ? 'bg-white text-[#171717]' : 'text-white/60 hover:text-white'"
-                        @click="setMode('unsubscribe')"
-                    >
-                        {{ t.tabs.unsubscribe }}
-                    </button>
-                </div>
-
-                <div v-if="successMessage" class="mt-5 rounded-2xl bg-white px-5 py-5 text-[#171717]">
-                    <p class="font-semibold">{{ successTitle }}</p>
+                <div v-if="successMessage" class="rounded-2xl bg-white px-5 py-5 text-[#171717]">
+                    <p class="font-semibold">{{ t.success_subscribe_title }}</p>
                     <p class="mt-2 text-sm leading-6 text-black/60">{{ successMessage }}</p>
                     <button
                         type="button"
@@ -56,7 +39,7 @@
                     </button>
                 </div>
 
-                <form v-else class="mt-5 grid gap-4" @submit.prevent="handleSubmit">
+                <form v-else class="grid gap-4" @submit.prevent="handleSubmit">
                     <input v-model="website" type="text" name="website" autocomplete="off" tabindex="-1" class="hidden" aria-hidden="true">
 
                     <label class="grid gap-2">
@@ -70,10 +53,7 @@
                         >
                     </label>
 
-                    <label
-                        v-if="mode === 'subscribe'"
-                        class="flex cursor-pointer items-start gap-3 text-[13px] leading-5 text-white/55"
-                    >
+                    <label class="flex cursor-pointer items-start gap-3 text-[13px] leading-5 text-white/55">
                         <input v-model="consent" type="checkbox" class="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20">
                         <span>{{ t.consent }}</span>
                     </label>
@@ -85,13 +65,13 @@
                     <button
                         type="submit"
                         class="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#171717] transition hover:bg-[#d8c3a5] disabled:cursor-not-allowed disabled:opacity-60"
-                        :disabled="isSubmitting || (mode === 'subscribe' && !consent)"
+                        :disabled="isSubmitting || !consent"
                     >
-                        {{ buttonLabel }}
+                        {{ isSubmitting ? t.sending : t.submit_subscribe }}
                     </button>
 
                     <p class="text-center text-xs leading-5 text-white/40">
-                        {{ mode === 'subscribe' ? t.note_subscribe : t.note_unsubscribe }}
+                        {{ t.note_subscribe }}
                     </p>
                 </form>
             </div>
@@ -100,36 +80,19 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { useNewsletter } from '../../composables/useNewsletter'
 
 const props = defineProps({
     t: { type: Object, required: true },
 })
 
-const mode = ref('subscribe')
 const email = ref('')
 const consent = ref(false)
 const website = ref('')
 const successMessage = ref('')
 
-const { isSubmitting, errorMessage, subscribe, unsubscribe } = useNewsletter(props.t.messages || {})
-
-const buttonLabel = computed(() => {
-    if (isSubmitting.value) return props.t.sending
-    return mode.value === 'subscribe' ? props.t.submit_subscribe : props.t.submit_unsubscribe
-})
-
-const successTitle = computed(() => (
-    mode.value === 'subscribe' ? props.t.success_subscribe_title : props.t.success_unsubscribe_title
-))
-
-function setMode(nextMode) {
-    mode.value = nextMode
-    successMessage.value = ''
-    errorMessage.value = ''
-    consent.value = false
-}
+const { isSubmitting, errorMessage, subscribe } = useNewsletter(props.t.messages || {})
 
 function resetForm() {
     email.value = ''
@@ -140,21 +103,15 @@ function resetForm() {
 }
 
 async function handleSubmit() {
-    const payload = {
+    const result = await subscribe({
         email: email.value.trim(),
         privacyAccepted: consent.value ? '1' : '0',
         sourcePage: window.location.pathname,
         website: website.value,
-    }
-
-    const result = mode.value === 'subscribe'
-        ? await subscribe(payload)
-        : await unsubscribe({ email: payload.email, website: payload.website })
+    })
 
     if (!result) return
 
-    successMessage.value = result.message || (
-        mode.value === 'subscribe' ? props.t.success_subscribe_text : props.t.success_unsubscribe_text
-    )
+    successMessage.value = result.message || props.t.success_subscribe_text
 }
 </script>

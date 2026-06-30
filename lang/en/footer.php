@@ -10,6 +10,7 @@ return [
         ['label' => 'Privacy policy', 'href' => '/politica-confidentialitate'],
         ['label' => 'Terms and conditions', 'href' => '/termeni-conditii'],
         ['label' => 'Cookie policy', 'href' => '/politica-cookies'],
+        ['label' => 'Cookie settings', 'href' => '#cookie-settings'],
     ],
     'social_title' => 'Follow us',
     'social_links' => [

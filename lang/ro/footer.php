@@ -10,6 +10,7 @@ return [
         ['label' => 'Politica de confidențialitate', 'href' => '/politica-confidentialitate'],
         ['label' => 'Termeni și condiții', 'href' => '/termeni-conditii'],
         ['label' => 'Politica cookies', 'href' => '/politica-cookies'],
+        ['label' => 'Setări cookies', 'href' => '#cookie-settings'],
     ],
     'social_title' => 'Urmărește-ne',
     'social_links' => [

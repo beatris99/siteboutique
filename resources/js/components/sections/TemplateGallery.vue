@@ -31,12 +31,12 @@
                 {{ section.mobile_hint || section.mobileHint }}
             </p>
 
-            <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <div class="mt-6 flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-5">
                 <button
                     v-for="category in categories"
                     :key="category.key"
                     type="button"
-                    class="rounded-[1.25rem] border p-4 text-left transition hover:-translate-y-1 hover:shadow-lg"
+                    class="min-w-[16rem] snap-start rounded-[1.25rem] border p-4 text-left transition hover:-translate-y-1 hover:shadow-lg sm:min-w-0"
                     :class="selectedCategoryKey === category.key
                         ? 'border-black bg-black text-white'
                         : 'border-black/10 bg-white text-black'"

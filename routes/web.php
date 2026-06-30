@@ -3,8 +3,8 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\LeadController;
-use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\LeadNoteController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 $sitegoSeoPages = [
@@ -54,6 +54,86 @@ $sitegoSeoPages = [
             ['title' => 'Proces simplu', 'text' => 'Nu trebuie să știi partea tehnică. Primești pașii clari.'],
             ['title' => 'Imagine coerentă', 'text' => 'Site-ul este construit în jurul serviciilor și obiectivului tău.'],
             ['title' => 'Pregătit pentru promovare', 'text' => 'Poți folosi site-ul în Google Business, social media și campanii.'],
+        ],
+    ],
+    'realizare-site-brasov' => [
+        'title' => 'Realizare site Brașov',
+        'description' => 'Realizare site în Brașov pentru firme locale, saloane, servicii, cabinete și afaceri care vor o prezență online profesionistă.',
+        'eyebrow' => 'Realizare site Brașov',
+        'h1' => 'Realizare site în Brașov pentru afacerea ta',
+        'intro' => 'Un site realizat corect trebuie să fie clar, rapid, adaptat pentru mobil și ușor de folosit de clienți. SiteGo te ajută să pornești de la o structură potrivită.',
+        'service_type' => 'Realizare site',
+        'includes' => ['Structură pentru servicii', 'Design responsive', 'Texte adaptate', 'Formular contact', 'WhatsApp', 'SEO local de bază'],
+        'for_who' => 'Pentru afaceri din Brașov care au nevoie de un site nou sau de o variantă mai clară decât pagina de Facebook.',
+        'process' => 'Discutăm obiectivul, alegem structura, pregătim textele, construim site-ul, testăm varianta de mobil și îl publicăm.',
+        'benefits' => [
+            ['title' => 'Prezență proprie', 'text' => 'Nu depinzi doar de social media sau recomandări.'],
+            ['title' => 'Mai multă claritate', 'text' => 'Clientul vede rapid serviciile, programul și modalitățile de contact.'],
+            ['title' => 'Pregătit pentru Google', 'text' => 'Pagina are structură și elemente de bază pentru indexare.'],
+        ],
+    ],
+    'creare-site-brasov' => [
+        'title' => 'Creare site Brașov',
+        'description' => 'Creare site în Brașov pentru afaceri mici și locale: site de prezentare, pagină de servicii, formular și structură pentru Google.',
+        'eyebrow' => 'Creare site Brașov',
+        'h1' => 'Creare site în Brașov pentru afaceri locale',
+        'intro' => 'Dacă ai o afacere locală, site-ul trebuie să explice rapid ce oferi, pentru cine este serviciul și cum poate clientul să te contacteze.',
+        'service_type' => 'Creare site',
+        'includes' => ['Pagină principală clară', 'Secțiuni pentru servicii', 'Contact rapid', 'Variantă mobilă', 'SEO basic', 'Pregătire pentru lansare'],
+        'for_who' => 'Pentru firme locale, saloane, fotografi, freelanceri, cabinete, restaurante și servicii care vor o imagine mai profesionistă.',
+        'process' => 'Pornim de la obiectiv, alegem structura potrivită, adaptăm textele și construim site-ul final.',
+        'benefits' => [
+            ['title' => 'Start rapid', 'text' => 'Poți începe cu o structură simplă și clară.'],
+            ['title' => 'Cost controlat', 'text' => 'Nu adăugăm funcții inutile din prima etapă.'],
+            ['title' => 'Extindere ușoară', 'text' => 'Site-ul poate crește ulterior cu pagini, blog, rezervări sau catalog.'],
+        ],
+    ],
+    'constructie-site-brasov' => [
+        'title' => 'Construcție site Brașov',
+        'description' => 'Construcție site în Brașov: structură, design, dezvoltare, formular, publicare pe domeniu și optimizare de bază.',
+        'eyebrow' => 'Construcție site',
+        'h1' => 'Construcție site în Brașov, de la structură la lansare',
+        'intro' => 'Construcția unui site nu înseamnă doar design. Înseamnă pagini clare, funcții potrivite, formulare, testare și publicare corectă.',
+        'service_type' => 'Construcție site',
+        'includes' => ['Structură site', 'Design responsive', 'Dezvoltare tehnică', 'Formular de contact', 'Testare mobil', 'Publicare pe domeniu'],
+        'for_who' => 'Pentru antreprenori care vor un site construit corect, cu pași clari și fără discuții tehnice complicate.',
+        'process' => 'Stabilim ce trebuie să facă site-ul, construim secțiunile, testăm formularele și pregătim publicarea.',
+        'benefits' => [
+            ['title' => 'Mai puține blocaje', 'text' => 'Ai un proces clar, nu o listă confuză de termeni tehnici.'],
+            ['title' => 'Funcții potrivite', 'text' => 'Adăugăm doar ce ajută afacerea acum.'],
+            ['title' => 'Site pregătit de lansare', 'text' => 'Verificăm aspectul, contactul și funcționarea înainte de publicare.'],
+        ],
+    ],
+    'firma-web-design-brasov' => [
+        'title' => 'Firmă web design Brașov',
+        'description' => 'Firmă de web design în Brașov pentru afaceri locale care au nevoie de site de prezentare, landing page sau soluții digitale.',
+        'eyebrow' => 'Firmă web design Brașov',
+        'h1' => 'Firmă de web design în Brașov pentru afaceri locale',
+        'intro' => 'SiteGo lucrează cu afaceri care vor o prezență online clară: site-uri de prezentare, pagini de campanie, formulare și soluții digitale adaptate.',
+        'service_type' => 'Firmă web design',
+        'includes' => ['Consultanță inițială', 'Structură site', 'Design modern', 'Dezvoltare', 'Contact rapid', 'Lansare asistată'],
+        'for_who' => 'Pentru firme care vor să lucreze organizat, să aibă o direcție clară și să primească un site ușor de folosit.',
+        'process' => 'Începem cu nevoia reală a businessului, alegem direcția potrivită și construim site-ul în pași clari.',
+        'benefits' => [
+            ['title' => 'Colaborare clară', 'text' => 'Știi ce primești și ce urmează.'],
+            ['title' => 'Orientare pe business', 'text' => 'Site-ul este gândit pentru contact, încredere și conversii.'],
+            ['title' => 'Suport după lansare', 'text' => 'Putem continua cu mentenanță, ajustări și extinderi.'],
+        ],
+    ],
+    'agentie-web-design-brasov' => [
+        'title' => 'Agenție web design Brașov',
+        'description' => 'Agenție web design Brașov pentru site-uri moderne, responsive și orientate spre cereri reale din partea clienților.',
+        'eyebrow' => 'Agenție web design',
+        'h1' => 'Agenție web design Brașov pentru site-uri moderne',
+        'intro' => 'SiteGo oferă o abordare practică pentru afaceri locale: structură clară, design modern, funcții utile și pași simpli până la lansare.',
+        'service_type' => 'Agenție web design',
+        'includes' => ['Strategie de pagină', 'Design UI', 'Dezvoltare web', 'SEO basic', 'Analytics la cerere', 'Suport lansare'],
+        'for_who' => 'Pentru afaceri care vor un partener digital, nu doar o pagină făcută rapid și abandonată după lansare.',
+        'process' => 'Analizăm obiectivul, alegem structura, construim site-ul și îl pregătim pentru folosire reală.',
+        'benefits' => [
+            ['title' => 'Imagine profesională', 'text' => 'Site-ul transmite mai multă încredere.'],
+            ['title' => 'Experiență bună pe mobil', 'text' => 'Structura este gândită pentru utilizatori care intră de pe telefon.'],
+            ['title' => 'Direcție clară', 'text' => 'Ai pagini, secțiuni și CTA-uri gândite cu scop.'],
         ],
     ],
     'landing-page-afaceri' => [
@@ -125,36 +205,61 @@ Route::get('/language/{locale}', function (string $locale) {
     return back();
 })->name('language.switch');
 
-Route::get('/', function () {return view('welcome');})->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
-Route::get('/modele-site', function () {return view('welcome');})->name('templates.index');
+Route::get('/modele-site', function () {
+    return view('welcome');
+})->name('templates.index');
 
-Route::get('/configurator', function () {return view('welcome');})->name('configurator');
+Route::get('/configurator', function () {
+    return view('welcome');
+})->name('configurator');
 
-Route::get('/contact', function () {return view('welcome');})->name('contact');
+Route::get('/contact', function () {
+    return view('welcome');
+})->name('contact');
 
-Route::get('/templates/{slug}', function () {return view('welcome');})->name('templates.show');
+Route::get('/templates/{slug}', function () {
+    return view('welcome');
+})->name('templates.show');
 
-Route::get('/cum-lucram', function () {return view('pages.work-process');})->name('work-process');
+Route::get('/cum-lucram', function () {
+    return view('pages.work-process');
+})->name('work-process');
 
-Route::get('/realizare-site-uri', function () {return view('pages.realizare-site-uri');})->name('seo.websites');
+Route::get('/realizare-site-uri', function () {
+    return view('pages.realizare-site-uri');
+})->name('seo.websites');
 
-Route::get('/preturi', function () {return view('pages.pricing');})->name('pricing');
+Route::get('/preturi', function () {
+    return view('pages.pricing');
+})->name('pricing');
 
-Route::get('/intrebari-frecvente', function () {return view('pages.faq');})->name('faq');
+Route::get('/intrebari-frecvente', function () {
+    return view('pages.faq');
+})->name('faq');
 
-Route::get('/site-facut-pentru-tine', function () {return view('pages.done-for-you');})->name('done-for-you');
+Route::get('/site-facut-pentru-tine', function () {
+    return view('pages.done-for-you');
+})->name('done-for-you');
 
-Route::redirect('/realizare-site-brasov', '/realizare-site-uri', 301);
+Route::get('/politica-confidentialitate', function () {
+    return view('legal.privacy');
+})->name('privacy');
 
-Route::get('/politica-confidentialitate', function () {return view('legal.privacy');})->name('privacy');
+Route::get('/termeni-conditii', function () {
+    return view('legal.terms');
+})->name('terms');
 
-Route::get('/termeni-conditii', function () {return view('legal.terms');})->name('terms');
+Route::get('/politica-cookies', function () {
+    return view('legal.cookies');
+})->name('cookies');
 
-Route::get('/politica-cookies', function () {return view('legal.cookies');})->name('cookies');
-
-Route::get('/sitemap.xml', function () {
+Route::get('/sitemap.xml', function () use ($sitegoSeoPages) {
     $baseUrl = rtrim(config('app.url'), '/');
+
     $urls = [
         ['loc' => $baseUrl . '/', 'priority' => '1.0'],
         ['loc' => $baseUrl . '/modele-site', 'priority' => '0.9'],
@@ -181,12 +286,17 @@ Route::get('/sitemap.xml', function () {
         ['loc' => $baseUrl . '/politica-cookies', 'priority' => '0.3'],
     ];
 
-    foreach (config('seo_pages', []) as $slug => $page) {
+    foreach (array_keys($sitegoSeoPages) as $slug) {
         $urls[] = [
             'loc' => $baseUrl . '/' . $slug,
-            'priority' => '0.8',
+            'priority' => '0.85',
         ];
     }
+
+    $urls = collect($urls)
+        ->unique('loc')
+        ->values()
+        ->all();
 
     return response()->view('sitemap', compact('urls'))
         ->header('Content-Type', 'application/xml');
@@ -205,7 +315,8 @@ Route::get('/robots.txt', function () {
         '',
     ];
 
-    return response(implode("\n", $lines))->header('Content-Type', 'text/plain');
+    return response(implode("\n", $lines))
+        ->header('Content-Type', 'text/plain');
 })->name('robots');
 
 Route::post('/leads', [LeadController::class, 'store'])
@@ -228,13 +339,15 @@ Route::get('/newsletter/unsubscribe/{token}', [SubscriptionController::class, 'u
     ->where('token', '[A-Za-z0-9]{32,80}')
     ->name('newsletter.unsubscribe.token');
 
-Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])
+    ->name('admin.login');
 
 Route::post('/admin/login', [AdminAuthController::class, 'login'])
     ->middleware('throttle:5,1')
     ->name('admin.login.store');
 
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])
+    ->name('admin.logout');
 
 Route::middleware('admin.auth')
     ->prefix('admin')

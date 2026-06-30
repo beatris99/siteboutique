@@ -27,20 +27,52 @@
     ];
 
     $appUrl = rtrim(config('app.url'), '/');
+    $currentPath = trim(request()->path(), '/');
+    $currentUrl = url()->current();
+
+    $metaByPath = [
+        '' => [
+            'title' => 'SiteGo - Web design Brașov și site-uri pentru afaceri locale',
+            'description' => 'SiteGo construiește site-uri de prezentare, landing page-uri, magazine simple și soluții digitale pentru afaceri locale din Brașov și România.',
+        ],
+        'contact' => [
+            'title' => 'Contact SiteGo - Cere ofertă pentru site-ul tău',
+            'description' => 'Trimite o cerere către SiteGo și discutăm despre site-ul, landing page-ul, magazinul sau soluția digitală de care ai nevoie.',
+        ],
+        'modele-site' => [
+            'title' => 'Modele de site - Alege structura potrivită pentru afacerea ta',
+            'description' => 'Vezi modele de site pentru prezentare, rezervări, vânzare, magazin online sau platformă custom și alege direcția potrivită.',
+        ],
+        'configurator' => [
+            'title' => 'Configurator site - Alege funcționalitățile pentru website-ul tău',
+            'description' => 'Configurează site-ul dorit: alegi pachetul, funcționalitățile și primești o estimare orientativă pentru proiect.',
+        ],
+    ];
+
+    if (str_starts_with($currentPath, 'templates/')) {
+        $pageMeta = [
+            'title' => 'Demo site și template configurabil - SiteGo',
+            'description' => 'Vezi un model de site configurabil și alege pachetul potrivit pentru afacerea ta.',
+        ];
+    } else {
+        $pageMeta = $metaByPath[$currentPath] ?? $metaByPath[''];
+    }
+
+    $ogLocale = $locale === 'ro' ? 'ro_RO' : 'en_US';
 @endphp
 <html lang="{{ $locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('home.meta.home_title') }}</title>
-    <meta name="description" content="{{ __('home.meta.home_description') }}">
+    <title>{{ $pageMeta['title'] }}</title>
+    <meta name="description" content="{{ $pageMeta['description'] }}">
     <meta name="robots" content="index, follow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta property="og:title" content="{{ __('home.meta.og_title') }}">
-    <meta property="og:description" content="{{ __('home.meta.og_description') }}">
+    <meta property="og:title" content="{{ $pageMeta['title'] }}">
+    <meta property="og:description" content="{{ $pageMeta['description'] }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ $appUrl }}">
+    <meta property="og:url" content="{{ $currentUrl }}">
     <meta property="og:image" content="{{ $appUrl }}/images/og-cover.jpg">
     <meta property="og:image:secure_url" content="{{ $appUrl }}/images/og-cover.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -48,14 +80,14 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="SiteGo - site-uri configurabile pentru afaceri locale">
     <meta property="og:site_name" content="SiteGo">
-    <meta property="og:locale" content="ro_RO">
+    <meta property="og:locale" content="{{ $ogLocale }}">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ __('home.meta.og_title') }}">
-    <meta name="twitter:description" content="{{ __('home.meta.twitter_description') }}">
+    <meta name="twitter:title" content="{{ $pageMeta['title'] }}">
+    <meta name="twitter:description" content="{{ $pageMeta['description'] }}">
     <meta name="twitter:image" content="{{ $appUrl }}/images/og-cover.jpg">
 
-    <link rel="canonical" href="{{ $appUrl }}">
+    <link rel="canonical" href="{{ $currentUrl }}">
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sitego-icon.svg') }}?v=1">
     <link rel="shortcut icon" href="{{ asset('images/sitego-icon.svg') }}?v=1">
     <meta name="theme-color" content="#f7f4ef">
@@ -70,69 +102,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20JGBZL604"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            window.dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'G-20JGBZL604');
-    </script>
-    <!-- End Google Analytics -->
-
-    <!-- Meta Pixel -->
-    <script>
-        !function(f,b,e,v,n,t,s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = true;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = true;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s);
-        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-        fbq('init', '1721525405849532');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img
-            height="1"
-            width="1"
-            style="display:none"
-            src="https://www.facebook.com/tr?id=1721525405849532&ev=PageView&noscript=1"
-            alt=""
-        >
-    </noscript>
-    <!-- End Meta Pixel -->
-
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y) {
-            c[a] = c[a] || function() {
-                (c[a].q = c[a].q || []).push(arguments);
-            };
-            t = l.createElement(r);
-            t.async = 1;
-            t.src = 'https://www.clarity.ms/tag/' + i;
-            y = l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t, y);
-        })(window, document, 'clarity', 'script', 'xbyogs1xur');
-    </script>
-    <!-- End Microsoft Clarity -->
-
-    <!-- Structured data -->
     <script type="application/ld+json">
         {!! json_encode([
             '@context' => 'https://schema.org',
@@ -161,5 +130,7 @@
 <body>
 <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
 <div id="app"></div>
+
+@include('partials.cookie-consent')
 </body>
 </html>

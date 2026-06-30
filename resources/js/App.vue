@@ -176,6 +176,11 @@
                 @lead-created="resetSelectedFeatures"
             />
 
+            <ContactNewsletterCard
+                v-if="siteContent.landing.newsletter"
+                :t="siteContent.landing.newsletter"
+            />
+
             <AppFooter
                 :footer="siteContent.footer"
                 :brand="siteContent.brand"
@@ -188,27 +193,11 @@
         <template v-else>
             <SubscribePopup :popup="siteContent.landing.popup" />
 
-            <HeroSection
-                :t="siteContent.landing.hero"
-                :showcase="siteContent.landing.showcase"
-            />
+            <HeroSection :t="siteContent.landing.hero" :showcase="siteContent.landing.showcase"/>
 
             <CapabilitiesSection :t="siteContent.landing.capabilities" />
 
-            <SubscriptionCareSection
-                v-if="siteContent.landing.subscription"
-                :t="siteContent.landing.subscription"
-            />
-
-            <NewsletterSection
-                v-if="siteContent.landing.newsletter"
-                :t="siteContent.landing.newsletter"
-            />
-
-            <InvitationSection
-                :t="siteContent.landing.invitation"
-                @lead-created="resetSelectedFeatures"
-            />
+            <SubscriptionCareSection v-if="siteContent.landing.subscription" :t="siteContent.landing.subscription"/>
 
             <AppFooter
                 :footer="siteContent.footer"
@@ -234,7 +223,6 @@ import FloatingContactDock from './components/layout/FloatingContactDock.vue'
 import HeroSection from './components/sections/HeroSection.vue'
 import CapabilitiesSection from './components/sections/CapabilitiesSection.vue'
 import SubscriptionCareSection from './components/sections/SubscriptionCareSection.vue'
-import NewsletterSection from './components/sections/NewsletterSection.vue'
 import InvitationSection from './components/sections/InvitationSection.vue'
 import SubscribePopup from './components/sections/SubscribePopup.vue'
 
@@ -252,6 +240,7 @@ import PriceSummary from './components/builder/PriceSummary.vue'
 
 import TemplatePublicPage from './components/pages/TemplatePublicPage.vue'
 import TemplateNotFoundPage from './components/pages/TemplateNotFoundPage.vue'
+import ContactNewsletterCard from './components/sections/ContactNewsletterCard.vue'
 
 const props = defineProps({
     initialLocale: { type: String, default: 'ro' },
