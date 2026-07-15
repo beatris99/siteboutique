@@ -1,5 +1,41 @@
 import { ref } from "vue";
 
+function normalizeValue(value) {
+    const parsedValue = Number(value);
+
+    return Number.isFinite(parsedValue) ? parsedValue : 0;
+}
+
+function trackSuccessfulLead(payload = {}) {
+    try {
+        const value = normalizeValue(payload.totalPrice);
+
+        const eventParameters = {
+            currency: "RON",
+            value,
+            form_name: payload.requestType || "lead_form",
+            source_page: payload.sourcePage || window.location.pathname,
+            project_type: payload.businessType || "not_selected",
+            template_name: payload.template || "not_selected",
+            package_name: payload.packageName || "not_selected",
+        };
+
+        if (typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", eventParameters);
+        }
+
+        if (typeof window.fbq === "function") {
+            window.fbq("track", "Lead", {
+                currency: eventParameters.currency,
+                value: eventParameters.value,
+                content_name: eventParameters.form_name,
+            });
+        }
+    } catch (error) {
+        console.warn("Lead tracking could not be sent.", error);
+    }
+}
+
 export function useLeadSubmission(messages = {}) {
     const isSubmitting = ref(false);
     const errorMessage = ref("");
@@ -48,11 +84,13 @@ export function useLeadSubmission(messages = {}) {
             if (!response.ok) {
                 if (response.status === 429) {
                     errorMessage.value = text.tooManyRequests;
+
                     return null;
                 }
 
                 if (data.errors) {
                     const firstError = Object.values(data.errors)[0]?.[0];
+
                     errorMessage.value = firstError || text.checkData;
                 } else {
                     errorMessage.value = data.message || text.genericError;
@@ -63,10 +101,14 @@ export function useLeadSubmission(messages = {}) {
 
             successMessage.value = data.message || text.success;
 
+            trackSuccessfulLead(payload);
+
             return data;
         } catch (error) {
             console.error(error);
+
             errorMessage.value = text.requestFailed;
+
             return null;
         } finally {
             isSubmitting.value = false;
