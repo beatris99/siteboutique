@@ -2,6 +2,12 @@
 @php
     $locale = app()->getLocale() === 'en' ? 'en' : 'ro';
 
+    $landingContent = trans('home.landing');
+    $newsletterContent = trans('newsletter.frontend');
+
+    $landingContent['popup'] = $newsletterContent['popup'] ?? [];
+    $landingContent['newsletter'] = $newsletterContent['contact_card'] ?? [];
+
     $sitegoAppData = [
         'locale' => $locale,
         'content' => [
@@ -11,7 +17,7 @@
             'footer' => trans('footer'),
             'contact' => trans('contact'),
             'common' => trans('home.common'),
-            'landing' => trans('home.landing'),
+            'landing' => $landingContent,
             'templateGallery' => trans('home.template_gallery'),
             'packagesSection' => trans('home.packages_section'),
             'configurator' => trans('home.configurator'),

@@ -14,14 +14,23 @@ class AdminLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => ['required', 'string'],
+            'email' => ['required', 'string', 'email:rfc', 'max:254'],
+            'password' => ['required', 'string', 'max:255'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'password.required' => 'Parola este obligatorie.',
+            'email.required' =>  __('admin_auth.validation.email_required'),
+
+            'email.email' => __('admin_auth.validation.email_invalid'),
+
+            'email.max' => __('admin_auth.validation.email_invalid'),
+
+            'password.required' => __('admin_auth.validation.password_required'),
+
+            'password.max' => __('admin_auth.validation.password_invalid'),
         ];
     }
 }

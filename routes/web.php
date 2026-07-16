@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LeadNoteController;
 use App\Http\Controllers\SubscriptionController;
@@ -339,21 +340,23 @@ Route::get('/newsletter/unsubscribe/{token}', [SubscriptionController::class, 'u
     ->where('token', '[A-Za-z0-9]{32,80}')
     ->name('newsletter.unsubscribe.token');
 
-Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])
-    ->name('admin.login');
+Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
 
-Route::post('/admin/login', [AdminAuthController::class, 'login'])
-    ->middleware('throttle:5,1')
-    ->name('admin.login.store');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->middleware('throttle:admin-login')->name('admin.login.store');
 
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])
-    ->name('admin.logout');
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->middleware('admin.auth')->name('admin.logout');
 
 Route::middleware('admin.auth')
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
         Route::get('/', AdminDashboardController::class)->name('dashboard');
+
+        Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscribers.index');
+        Route::get('/subscribers/export', [SubscriberController::class, 'export'])->name('subscribers.export');
+        Route::post('/subscribers/{subscriber}/resend', [SubscriberController::class, 'resend'])->name('subscribers.resend');
+        Route::patch('/subscribers/{subscriber}/mark-used', [SubscriberController::class, 'markUsed'])->name('subscribers.mark-used');
+        Route::patch('/subscribers/{subscriber}/mark-unused', [SubscriberController::class, 'markUnused'])->name('subscribers.mark-unused');
 
         Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
         Route::get('/leads/export', [LeadController::class, 'export'])->name('leads.export');

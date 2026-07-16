@@ -2,94 +2,153 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSubscriberRequest;
 use App\Mail\DiscountCodeMail;
 use App\Models\Subscriber;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Throwable;
 
 class SubscriptionController extends Controller
 {
-    public function store(Request $request): JsonResponse
-    {
-        $validated = $request->validate([
-            'email' => ['required', 'email:rfc,dns', 'max:255'],
-            'consent' => ['nullable'],
-            'privacyAccepted' => ['nullable'],
-            'locale' => ['nullable', 'in:ro,en'],
-        ]);
-
-        $hasConsent = $request->boolean('consent') || $request->boolean('privacyAccepted');
-
-        if (! $hasConsent) {
-            return response()->json([
-                'message' => 'Acordul pentru emailuri este obligatoriu.',
-                'errors' => [
-                    'consent' => ['Acordul pentru emailuri este obligatoriu.'],
-                ],
-            ], 422);
-        }
-
-        $locale = $validated['locale']
-            ?? session('locale')
-            ?? app()->getLocale();
-
-        if (! in_array($locale, ['ro', 'en'], true)) {
-            $locale = 'ro';
-        }
-
+    public function store(
+        StoreSubscriberRequest $request
+    ): JsonResponse {
+        $validated = $request->validated();
         $email = Str::lower(trim($validated['email']));
+        $locale = $this->resolveLocale(
+            $validated['locale'] ?? null
+        );
 
         $subscriber = Subscriber::firstOrNew([
             'email' => $email,
         ]);
 
-        if (! $subscriber->exists) {
-            $subscriber->fill([
-                'locale' => $locale,
-                'is_active' => true,
-                'unsubscribe_token' => Str::random(48),
-                'discount_code' => $this->generateUniqueDiscountCode(),
-                'discount_percent' => 10,
-                'discount_expires_at' => now()->addDays(14),
-                'subscribed_at' => now(),
-                'unsubscribed_at' => null,
-            ]);
+        $needsNewCode =
+            ! $subscriber->exists ||
+            ! $subscriber->discount_code ||
+            $subscriber->used_at !== null ||
+            ($subscriber->discount_expires_at?->isPast() ?? false);
+
+        if ($needsNewCode) {
+            $subscriber->discount_code =
+                Subscriber::generateUniqueDiscountCode();
+            $subscriber->discount_percent = 10;
+            $subscriber->discount_expires_at =
+                now()->addDays(14);
+            $subscriber->used_at = null;
         } else {
-            $subscriber->fill([
-                'locale' => $locale,
-                'is_active' => true,
-                'unsubscribe_token' => $subscriber->unsubscribe_token ?: Str::random(48),
-                'discount_code' => $subscriber->discount_code ?: $this->generateUniqueDiscountCode(),
-                'discount_percent' => $subscriber->discount_percent ?: 10,
-                'discount_expires_at' => $subscriber->discount_expires_at ?: now()->addDays(14),
-                'subscribed_at' => $subscriber->subscribed_at ?: now(),
-                'unsubscribed_at' => null,
-            ]);
+            $subscriber->discount_percent =
+                $subscriber->discount_percent ?: 10;
+            $subscriber->discount_expires_at =
+                $subscriber->discount_expires_at ?: now()->addDays(14);
         }
 
+        $sourcePage =
+            $validated['sourcePage'] ??
+            $request->headers->get('referer') ??
+            '/';
+
+        $subscriber->email = $email;
+        $subscriber->locale = $locale;
+        $subscriber->is_active = true;
+        $subscriber->subscribed_at =
+            $subscriber->subscribed_at ?: now();
+        $subscriber->unsubscribe_token =
+            $subscriber->unsubscribe_token ?:
+            Subscriber::generateUniqueUnsubscribeToken();
+        $subscriber->unsubscribed_at = null;
+        $subscriber->privacy_accepted_at = now();
+        $subscriber->last_requested_at = now();
+        $subscriber->request_count =
+            ((int) $subscriber->request_count) + 1;
+        $subscriber->source_page = Str::limit(
+            (string) $sourcePage,
+            255,
+            ''
+        );
         $subscriber->save();
 
-        Mail::to($subscriber->email)
-            ->locale($locale)
-            ->send(new DiscountCodeMail($subscriber));
+        try {
+            Mail::to($subscriber->email)
+                ->locale($locale)
+                ->send(
+                    new DiscountCodeMail(
+                        $subscriber,
+                        $locale
+                    )
+                );
+
+            $subscriber->forceFill([
+                'last_sent_at' => now(),
+            ])->save();
+        } catch (Throwable $exception) {
+            Log::error(
+                'SiteGo discount email could not be sent.',
+                [
+                    'subscriber_id' => $subscriber->id,
+                    'email' => $subscriber->email,
+                    'exception' => $exception->getMessage(),
+                ]
+            );
+
+            return response()->json([
+                'message' => Lang::get(
+                    'newsletter.api.mail_failed',
+                    [],
+                    $locale
+                ),
+            ], 503);
+        }
 
         return response()->json([
-            'message' => $locale === 'en'
-                ? 'You are subscribed. Your personal campaign code was sent by email.'
-                : 'Te-ai abonat. Codul tău personal de campanie a fost trimis pe email.',
+            'message' => Lang::get(
+                'newsletter.api.discount_sent',
+                [
+                    'percent' =>
+                    $subscriber->discount_percent ?? 10,
+                ],
+                $locale
+            ),
         ]);
     }
 
     public function unsubscribe(Request $request): JsonResponse
     {
+        $locale = $this->resolveLocale(
+            $request->input('locale')
+        );
+
         $validated = $request->validate([
-            'email' => ['required', 'email', 'max:255'],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+            ],
+        ], [
+            'email.required' => Lang::get(
+                'newsletter.validation.email_required',
+                [],
+                $locale
+            ),
+            'email.email' => Lang::get(
+                'newsletter.validation.email_invalid',
+                [],
+                $locale
+            ),
         ]);
 
-        $subscriber = Subscriber::where('email', Str::lower(trim($validated['email'])))->first();
+        $subscriber = Subscriber::query()
+            ->where(
+                'email',
+                Str::lower(trim($validated['email']))
+            )
+            ->first();
 
         if ($subscriber) {
             $subscriber->update([
@@ -99,36 +158,49 @@ class SubscriptionController extends Controller
         }
 
         return response()->json([
-            'message' => 'Adresa a fost dezabonată, dacă exista în lista noastră.',
+            'message' => Lang::get(
+                'newsletter.api.unsubscribed',
+                [],
+                $locale
+            ),
         ]);
     }
 
-    public function unsubscribeByToken(Request $request, string $token): View
-    {
-        $locale = $request->query('locale');
+    public function unsubscribeByToken(
+        Request $request,
+        string $token
+    ): View {
+        $locale = $this->resolveLocale(
+            $request->query('locale')
+        );
 
-        if (in_array($locale, ['ro', 'en'], true)) {
-            app()->setLocale($locale);
-        }
+        app()->setLocale($locale);
 
-        $subscriber = Subscriber::where('unsubscribe_token', $token)->firstOrFail();
+        $subscriber = Subscriber::query()
+            ->where('unsubscribe_token', $token)
+            ->firstOrFail();
 
         $subscriber->update([
             'is_active' => false,
             'unsubscribed_at' => now(),
         ]);
 
-        return view('newsletter.unsubscribed', [
+        return view('newsletter-unsubscribed', [
             'subscriber' => $subscriber,
         ]);
     }
 
-    private function generateUniqueDiscountCode(): string
-    {
-        do {
-            $code = 'SG-' . Str::upper(Str::random(6));
-        } while (Subscriber::where('discount_code', $code)->exists());
+    private function resolveLocale(
+        mixed $locale = null
+    ): string {
+        $resolved = (string) (
+            $locale ??
+            session('locale') ??
+            app()->getLocale()
+        );
 
-        return $code;
+        return in_array($resolved, ['ro', 'en'], true)
+            ? $resolved
+            : 'ro';
     }
 }

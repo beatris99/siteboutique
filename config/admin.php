@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'username' => env('ADMIN_EMAIL', 'heresbeatriselena@gmail.com'),
-    'password' => env('ADMIN_PASSWORD', 'AdminPassword123!'),
+    'email' => env('ADMIN_EMAIL', 'heresbeatriselena@gmail.com'),
+
+    'name' => env('ADMIN_NAME', 'Beatris Lupuleț'),
 ];

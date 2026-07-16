@@ -13,6 +13,13 @@
     </a>
 
     <a
+        href="{{ route('admin.subscribers.index') }}"
+        class="rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium transition hover:border-black/30"
+    >
+        {{ __('admin.subscribers.navigation') }}
+    </a>
+
+    <a
         href="{{ route('admin.leads.index') }}"
         class="rounded-full bg-black px-5 py-3 text-sm font-medium text-white transition hover:bg-[#8b6f47]"
     >

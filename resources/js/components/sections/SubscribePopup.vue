@@ -20,11 +20,15 @@
                 </button>
 
                 <div class="hidden bg-[#171717] p-7 text-white sm:block sm:p-9">
-                    <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8c3a5]">
+                    <p
+                        class="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8c3a5]"
+                    >
                         {{ copy.eyebrow }}
                     </p>
 
-                    <h2 class="mt-5 text-3xl font-semibold leading-tight tracking-[-0.05em] sm:text-4xl">
+                    <h2
+                        class="mt-5 text-3xl font-semibold leading-tight tracking-[-0.05em] sm:text-4xl"
+                    >
                         {{ copy.title }}
                     </h2>
 
@@ -38,19 +42,27 @@
                             :key="item.title"
                             class="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4"
                         >
-                            <p class="text-sm font-semibold text-white">{{ item.title }}</p>
-                            <p class="mt-1 text-sm leading-6 text-white/55">{{ item.text }}</p>
+                            <p class="text-sm font-semibold text-white">
+                                {{ item.title }}
+                            </p>
+                            <p class="mt-1 text-sm leading-6 text-white/55">
+                                {{ item.text }}
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="overflow-y-auto p-5 sm:p-9">
                     <div class="sm:hidden">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]">
+                        <p
+                            class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                        >
                             {{ copy.eyebrow }}
                         </p>
 
-                        <h2 class="mt-3 text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#171717]">
+                        <h2
+                            class="mt-3 text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#171717]"
+                        >
                             {{ copy.title }}
                         </h2>
 
@@ -59,26 +71,43 @@
                         </p>
                     </div>
 
-                    <div v-if="subscribed" class="flex min-h-[16rem] flex-col justify-center text-center sm:min-h-[20rem]">
-                        <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-green-700 text-white sm:h-14 sm:w-14">
+                    <div
+                        v-if="subscribed"
+                        class="flex min-h-[16rem] flex-col justify-center text-center sm:min-h-[20rem]"
+                    >
+                        <div
+                            class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-green-700 text-white sm:h-14 sm:w-14"
+                        >
                             ✓
                         </div>
 
-                        <h3 class="mt-5 text-xl font-semibold tracking-[-0.04em] text-[#171717] sm:mt-6 sm:text-2xl">
+                        <h3
+                            class="mt-5 text-xl font-semibold tracking-[-0.04em] text-[#171717] sm:mt-6 sm:text-2xl"
+                        >
                             {{ copy.success_title }}
                         </h3>
 
-                        <p class="mt-3 text-sm leading-6 text-black/60 sm:leading-7">
-                            {{ copy.success_text }}
+                        <p
+                            class="mt-3 text-sm leading-6 text-black/60 sm:leading-7"
+                        >
+                            {{ successMessage || copy.success_text }}
                         </p>
                     </div>
 
-                    <form v-else class="mt-5 grid gap-4 sm:mt-0" @submit.prevent="handleSubmit">
-                        <p class="hidden text-xs font-semibold uppercase tracking-[0.26em] text-[#a67c3a] sm:block">
+                    <form
+                        v-else
+                        class="mt-5 grid gap-4 sm:mt-0"
+                        @submit.prevent="handleSubmit"
+                    >
+                        <p
+                            class="hidden text-xs font-semibold uppercase tracking-[0.26em] text-[#a67c3a] sm:block"
+                        >
                             {{ copy.form_eyebrow }}
                         </p>
 
-                        <h3 class="hidden text-2xl font-semibold tracking-[-0.04em] text-[#171717] sm:block">
+                        <h3
+                            class="hidden text-2xl font-semibold tracking-[-0.04em] text-[#171717] sm:block"
+                        >
                             {{ copy.form_title }}
                         </h3>
 
@@ -90,10 +119,13 @@
                             tabindex="-1"
                             class="hidden"
                             aria-hidden="true"
-                        >
+                        />
 
                         <label class="grid gap-2">
-                            <span class="text-sm font-medium text-black/70">{{ copy.email_label }}</span>
+                            <span class="text-sm font-medium text-black/70">
+                                {{ copy.email_label }}
+                            </span>
+
                             <input
                                 v-model="email"
                                 type="email"
@@ -101,20 +133,25 @@
                                 :placeholder="copy.email_placeholder"
                                 class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3.5 text-[#171717] outline-none transition placeholder:text-black/35 focus:border-[#a67c3a] focus:shadow-[0_0_0_3px_rgba(166,124,58,0.12)]"
                                 autocomplete="email"
-                            >
+                            />
                         </label>
 
-                        <label class="flex cursor-pointer items-start gap-3 text-[13px] leading-5 text-black/55">
+                        <label
+                            class="flex cursor-pointer items-start gap-3 text-[13px] leading-5 text-black/55"
+                        >
                             <input
                                 v-model="consent"
                                 type="checkbox"
                                 required
                                 class="mt-0.5 h-4 w-4 shrink-0 rounded border-black/20"
-                            >
+                            />
                             <span>{{ copy.consent }}</span>
                         </label>
 
-                        <p v-if="errorMessage" class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+                        <p
+                            v-if="errorMessage"
+                            class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
+                        >
                             {{ errorMessage }}
                         </p>
 
@@ -142,113 +179,103 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useNewsletter } from '../../composables/useNewsletter'
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { useNewsletter } from "../../composables/useNewsletter";
 
 const props = defineProps({
-    popup: { type: Object, default: () => ({}) },
-})
-
-const fallback = {
-    eyebrow: 'Campanie de lansare',
-    title: 'Primește codul tău personal de -10%',
-    description: 'Lasă adresa de email și primești un cod unic pentru campania de lansare SiteGo.',
-    form_eyebrow: 'Newsletter SiteGo',
-    form_title: 'Codul ajunge pe email.',
-    email_label: 'Adresa de email',
-    email_placeholder: 'nume@email.com',
-    consent: 'Sunt de acord să primesc oferta pe email.',
-    submit: 'Primește codul',
-    sending: 'Se trimite...',
-    decline: 'Nu acum',
-    close: 'Închide popup-ul',
-    success_title: 'Codul a fost trimis.',
-    success_text: 'Verifică emailul. Dacă nu îl găsești, uită-te și în Spam/Promotions.',
-    points: [
-        { title: 'Cod unic', text: 'Fiecare abonat primește un cod personal.' },
-        { title: 'Rapid', text: 'Abonarea durează doar câteva secunde.' },
-        { title: 'Util', text: 'Primești și idei scurte despre prezența online.' },
-    ],
-    messages: {},
-}
+    popup: {
+        type: Object,
+        required: true,
+    },
+});
 
 const copy = computed(() => ({
-    ...fallback,
     ...props.popup,
-    eyebrow: props.popup?.eyebrow || props.popup?.badge || fallback.eyebrow,
-    description: props.popup?.description || props.popup?.subtitle || fallback.description,
-    close: props.popup?.close || props.popup?.dismiss || fallback.close,
-    points: Array.isArray(props.popup?.points) ? props.popup.points : fallback.points,
-    messages: { ...fallback.messages, ...(props.popup?.messages || {}) },
-}))
+    eyebrow: props.popup.eyebrow || props.popup.badge || "",
+    description: props.popup.description || props.popup.subtitle || "",
+    close: props.popup.close || props.popup.dismiss || "",
+    points: Array.isArray(props.popup.points) ? props.popup.points : [],
+    messages: props.popup.messages || {},
+}));
 
-const STORAGE_KEY = 'sitego_newsletter_popup_seen_random_discount_v1'
-const SHOW_DELAY = 4000
-const CLOSE_AFTER_SUCCESS = 2600
+const STORAGE_KEY = "sitego_newsletter_popup_seen_random_discount_v1";
+const SHOW_DELAY = 4000;
+const CLOSE_AFTER_SUCCESS = 2600;
 
-const visible = ref(false)
-const subscribed = ref(false)
-const email = ref('')
-const consent = ref(false)
-const website = ref('')
+const visible = ref(false);
+const subscribed = ref(false);
+const successMessage = ref("");
+const email = ref("");
+const consent = ref(false);
+const website = ref("");
 
-const { isSubmitting, errorMessage, subscribe } = useNewsletter(props.popup?.messages || {})
+const { isSubmitting, errorMessage, subscribe } = useNewsletter(
+    copy.value.messages,
+);
 
-let showTimer = null
-let closeTimer = null
+let showTimer = null;
+let closeTimer = null;
 
 function alreadySeen() {
     try {
-        return window.localStorage.getItem(STORAGE_KEY) === '1'
+        return window.localStorage.getItem(STORAGE_KEY) === "1";
     } catch (error) {
-        return false
+        return false;
     }
 }
 
 function markSeen() {
     try {
-        window.localStorage.setItem(STORAGE_KEY, '1')
+        window.localStorage.setItem(STORAGE_KEY, "1");
     } catch (error) {
-        //
+        // Local storage can be unavailable in private browsers.
     }
 }
 
 function close() {
-    visible.value = false
+    visible.value = false;
 }
 
 function decline() {
-    markSeen()
-    close()
+    markSeen();
+    close();
 }
 
 async function handleSubmit() {
     const result = await subscribe({
         email: email.value.trim(),
-        privacyAccepted: consent.value ? '1' : '0',
-        sourcePage: window.location.pathname,
+        privacyAccepted: consent.value ? "1" : "0",
+        sourcePage: window.location.href,
         website: website.value,
-    })
+    });
 
-    if (!result) return
+    if (!result) {
+        return;
+    }
 
-    markSeen()
-    subscribed.value = true
-    closeTimer = setTimeout(close, CLOSE_AFTER_SUCCESS)
+    successMessage.value = result.message || copy.value.success_text;
+    markSeen();
+    subscribed.value = true;
+    closeTimer = setTimeout(close, CLOSE_AFTER_SUCCESS);
 }
 
 onMounted(() => {
     if (!alreadySeen()) {
         showTimer = setTimeout(() => {
-            visible.value = true
-        }, SHOW_DELAY)
+            visible.value = true;
+        }, SHOW_DELAY);
     }
-})
+});
 
 onBeforeUnmount(() => {
-    if (showTimer) clearTimeout(showTimer)
-    if (closeTimer) clearTimeout(closeTimer)
-})
+    if (showTimer) {
+        clearTimeout(showTimer);
+    }
+
+    if (closeTimer) {
+        clearTimeout(closeTimer);
+    }
+});
 </script>
 
 <style scoped>
