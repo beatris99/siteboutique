@@ -1,4 +1,7 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /language/
 
 Sitemap: https://sitego.ro/sitemap.xml

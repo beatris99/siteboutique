@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description' => 'Site-uri moderne, configurabile și transparente pentru afaceri care vor să se lanseze rapid, dar corect.',
+    'description' => 'Site-uri moderne și soluții web personalizate pentru afaceri care vor să se lanseze clar, să crească online și să poată colabora cu noi de oriunde.',
     'copyright' => '© 2026 SiteGo. Toate drepturile rezervate.',
     'contact_title' => 'Contact',
     'navigation_title' => 'Navigare',

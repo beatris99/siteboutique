@@ -196,11 +196,6 @@
                 @lead-created="resetSelectedFeatures"
             />
 
-            <ContactNewsletterCard
-                v-if="siteContent.landing.newsletter"
-                :t="siteContent.landing.newsletter"
-            />
-
             <AppFooter
                 :footer="siteContent.footer"
                 :brand="siteContent.brand"
@@ -211,8 +206,6 @@
         </template>
 
         <template v-else>
-            <SubscribePopup :popup="siteContent.landing.popup" />
-
             <HeroSection
                 :t="siteContent.landing.hero"
                 :showcase="siteContent.landing.showcase"
@@ -253,8 +246,6 @@ import HeroSection from "./components/sections/HeroSection.vue";
 import CapabilitiesSection from "./components/sections/CapabilitiesSection.vue";
 import SubscriptionCareSection from "./components/sections/SubscriptionCareSection.vue";
 import InvitationSection from "./components/sections/InvitationSection.vue";
-import SubscribePopup from "./components/sections/SubscribePopup.vue";
-import ContactNewsletterCard from "./components/sections/ContactNewsletterCard.vue";
 
 import WhatYouGetSection from "./components/sections/WhatYouGetSection.vue";
 import WhyWorkWithMeSection from "./components/sections/WhyWorkWithMeSection.vue";

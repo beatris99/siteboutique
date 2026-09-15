@@ -28,11 +28,16 @@ Route::view('/contact', 'welcome')
 Route::view('/portofoliu', 'welcome')
     ->name('portfolio.index');
 
+Route::redirect('/portofoliu/sitego', '/portofoliu', 301);
+
 Route::view('/portofoliu/rentride', 'welcome')
     ->name('portfolio.rentride');
 
 Route::view('/portofoliu/access-bars-beatris', 'welcome')
     ->name('portfolio.access-bars-beatris');
+
+Route::view('/portofoliu/happiness-atelier', 'welcome')
+    ->name('portfolio.happiness-atelier');
 
 Route::view('/templates/{slug}', 'welcome')
     ->where('slug', '[A-Za-z0-9-]+')

@@ -26,7 +26,7 @@
 
                 <div class="mt-10 flex flex-wrap items-center gap-4">
                     <a
-                        href="#contact"
+                        :href="t.primary_href || '/contact'"
                         class="group inline-flex items-center gap-2 rounded-full bg-[#171717] px-8 py-4 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#a67c3a]"
                     >
                         {{ t.primary_cta }}

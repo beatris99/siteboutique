@@ -2,21 +2,22 @@
 
 return [
     'meta' => [
-        'home_title' => 'SiteGo - Site-uri configurabile',
-        'home_description' => 'SiteGo - alegi un model, alegi funcționalitățile și primești un site la cheie.',
-        'og_title' => 'SiteGo - Site-uri configurabile',
-        'og_description' => 'Alegi modelul, alegi funcționalitățile, iar noi construim site-ul final pentru afacerea ta.',
-        'twitter_description' => 'Site-uri configurabile și realizare site la cheie.',
+        'home_title' => 'Creare site web în România | Web design & dezvoltare custom | SiteGo',
+        'home_description' => 'Creare site web pentru afaceri din România: site-uri de prezentare, magazine online, rezervări și dezvoltare web custom. Colaborare online, proiecte clare și responsive.',
+        'og_title' => 'SiteGo | Creare site web și dezvoltare web',
+        'og_description' => 'Site-uri de prezentare, magazine online, rezervări și soluții web custom pentru afaceri din România și colaborări online internaționale.',
+        'twitter_description' => 'Creare site web, magazine online, rezervări și dezvoltare custom pentru România și colaborări online internaționale.',
     ],
 
     'landing' => [
         'hero' => [
-            'eyebrow' => 'Web design în Brașov',
-            'title_line_1' => 'Hai să aflăm',
-            'title_line_2' => 'ce putem face',
-            'title_line_3' => 'pentru afacerea ta.',
-            'description' => 'Construim site-uri, magazine sau un CRM — și aproape orice altceva are nevoie afacerea ta online. Tu vii cu ideea, noi o transformăm în ceva real.',
+            'eyebrow' => 'Creare site web · Web design · Dezvoltare custom',
+            'title_line_1' => 'Site-uri gândite pentru',
+            'title_line_2' => 'afacerea ta.',
+            'title_line_3' => 'Oriunde ai fi.',
+            'description' => 'Construim site-uri de prezentare, magazine online, sisteme de rezervări și soluții web custom pentru afaceri din toată România. Colaborăm online, simplu și clar, indiferent de oraș.',
             'primary_cta' => 'Hai să vorbim',
+            'primary_href' => '/contact',
             'secondary_cta' => 'Vezi ce putem construi',
             'scroll_hint' => 'Derulează',
         ],
@@ -24,7 +25,7 @@ return [
         'capabilities' => [
             'eyebrow' => 'Ce putem construi',
             'title' => 'Un singur loc pentru tot ce ai nevoie online.',
-            'description' => 'Nu trebuie să știi de la început exact ce vrei. Ne spui unde te blochezi, iar noi îți arătăm varianta potrivită.',
+            'description' => 'Nu trebuie să știi exact ce ai nevoie. Spune-ne ce vrei să rezolvi, iar noi găsim soluția potrivită pentru proiectul tău.',
             'items' => [
                 [
                     'icon' => 'globe',
@@ -49,11 +50,21 @@ return [
             ],
         ],
 
+
+        'portfolio_preview' => [
+            'eyebrow' => 'Proiecte reale',
+            'title' => 'Finalizate. Publicate. Folosite în business-uri reale.',
+            'description' => 'Trei proiecte diferite, construite în jurul unor nevoi reale: închirieri, servicii și rezervări.',
+            'cta' => 'Vezi portofoliul complet',
+            'cta_href' => '/portofoliu',
+        ],
+
         'subscription' => [
             'eyebrow' => 'Abonament digital',
             'title' => 'După lansare, site-ul poate crește împreună cu afacerea ta.',
             'description' => 'Pentru proiectele care au nevoie de suport constant, putem lucra pe bază de abonament lunar: mentenanță, mici ajustări, optimizări și dezvoltări treptate. Detaliile se stabilesc după ce înțelegem proiectul.',
             'cta' => 'Discută despre abonament',
+            'cta_href' => '/contact?topic=abonament',
             'items' => [
                 ['label' => '01', 'title' => 'Mentenanță', 'text' => 'Actualizări, verificări tehnice și mici ajustări pentru ca site-ul să rămână stabil.'],
                 ['label' => '02', 'title' => 'Evoluție', 'text' => 'Secțiuni noi, modificări de conținut, formulare sau funcționalități adăugate în timp.'],
@@ -61,34 +72,7 @@ return [
             ],
         ],
 
-        'newsletter' => [
-            'eyebrow' => 'Newsletter SiteGo',
-            'compact_eyebrow' => 'Newsletter SiteGo',
-            'compact_title' => 'Vrei să primești idei utile și coduri de lansare?',
-            'compact_description' => 'Abonare opțională, separată de cererea de contact. Trimitem rar, doar când avem ceva util.',
-            'title' => 'Primește idei scurte despre site-uri, prezență online și creștere digitală.',
-            'description' => 'Lasă-ne emailul și îți trimitem ocazional idei utile, noutăți și oferte de lansare SiteGo.',
-            'points' => [
-                ['title' => 'Idei aplicabile', 'text' => 'Mesaje scurte, fără teorie inutilă.'],
-                ['title' => 'Fără spam', 'text' => 'Trimitem doar când avem ceva util de spus.'],
-                ['title' => 'Oferte de lansare', 'text' => 'Poți primi și coduri promoționale sau invitații la discuție.'],
-            ],
-            'email_label' => 'Adresa de email',
-            'email_placeholder' => 'nume@email.com',
-            'consent' => 'Sunt de acord să primesc emailuri de la SiteGo.',
-            'submit_subscribe' => 'Abonează-mă',
-            'sending' => 'Se trimite...',
-            'success_subscribe_title' => 'Abonarea a fost salvată.',
-            'success_subscribe_text' => 'Verifică inboxul pentru mesajul nostru.',
-            'send_another' => 'Folosește altă adresă',
-            'note_subscribe' => 'Datele sunt folosite doar pentru comunicarea SiteGo.',
-            'messages' => [
-                'too_many_requests' => 'Ai trimis prea multe cereri într-un timp scurt. Încearcă din nou peste un minut.',
-                'check_email' => 'Verifică adresa de email.',
-                'generic_error' => 'A apărut o eroare.',
-                'request_failed' => 'Nu s-a putut trimite cererea. Încearcă din nou.',
-            ],
-        ],
+        'newsletter' => [],
 
         // Invitația la conversație (înlocuiește formularul complex)
         'invitation' => [
@@ -110,41 +94,23 @@ return [
                 'contact_placeholder' => 'Cum te putem contacta',
                 'message' => 'Ce ai în minte?',
                 'message_placeholder' => 'Ex: vreau un site pentru salonul meu, cu programări și o galerie cu lucrările mele.',
-                'discount_label' => 'Ai un cod de reducere? (opțional)',
-                'discount_placeholder' => 'Ex: SITEGO10',
+                'subscription_message' => 'Vreau să discutăm despre un abonament lunar pentru mentenanță, suport și dezvoltări ulterioare.',
                 'consent' => 'Sunt de acord să fiu contactat/ă în legătură cu această cerere.',
                 'submit' => 'Trimite mesajul',
                 'sending' => 'Se trimite...',
                 'success_title' => 'Am primit mesajul tău.',
                 'success_text' => 'Revenim în curând cu câteva întrebări ca să înțelegem exact ce ai nevoie.',
                 'send_another' => 'Trimite alt mesaj',
+                'validation' => [
+                    'name_required' => 'Spune-ne cum te numești.',
+                    'contact_required' => 'Lasă-ne un număr de telefon sau o adresă de email.',
+                    'contact_invalid' => 'Introdu un email sau un număr de telefon valid.',
+                    'message_required' => 'Spune-ne pe scurt cu ce te putem ajuta.',
+                    'consent_required' => 'Bifează acordul pentru a putea trimite mesajul.',
+                ],
             ],
         ],
-        'popup' => [
-            'badge' => '−10%',
-            'title' => 'Primește codul tău personal de -10%.',
-            'subtitle' => 'Abonează-te cu emailul tău și îți trimitem un cod promoțional personal pentru campania de lansare SiteGo.',
-            'email_label' => 'Adresa ta de email',
-            'email_placeholder' => 'nume@email.com',
-            'consent' => 'Sunt de acord să primesc oferta pe email.',
-            'submit' => 'Abonează-te și primește codul',
-            'sending' => 'Se trimite...',
-            'success_title' => 'Gata, te-ai abonat!',
-            'success_text' => 'Ți-am trimis codul tău promoțional pe email. Verifică inboxul.',
-            'decline' => 'Nu acum',
-            'dismiss' => 'Închide',
-            'points' => [
-                ['title' => 'Cod unic', 'text' => 'Primești un cod personal, generat special pentru tine.'],
-                ['title' => 'Rapid', 'text' => 'Abonarea durează doar câteva secunde.'],
-                ['title' => 'Util', 'text' => 'Primești și idei utile despre prezența online.'],
-            ],
-            'messages' => [
-                'too_many_requests' => 'Ai trimis prea multe cereri într-un timp scurt. Încearcă din nou peste un minut.',
-                'check_email' => 'Verifică adresa de email.',
-                'generic_error' => 'A apărut o eroare.',
-                'request_failed' => 'Nu s-a putut trimite cererea. Încearcă din nou.',
-            ],
-        ],
+        'popup' => [],
 
         // Conținutul telefoanelor (mockup-uri: ce pot cere clienții)
         'showcase' => [
@@ -418,7 +384,7 @@ return [
         'steps' => [
             ['number' => '01', 'title' => 'Alegi tipul de site', 'description' => 'Pornești de la o direcție concretă: firmă locală, salon, închirieri, pensiune, landing page, magazin sau platformă.'],
             ['number' => '02', 'title' => 'Alegi pachetul', 'description' => 'Vezi diferența dintre Start, Pro și Premium: câte secțiuni primești, câtă personalizare ai și ce funcții se potrivesc.'],
-            ['number' => '03', 'title' => 'Primești o ofertă clară', 'description' => 'Configuratorul îți arată o estimare, iar după cerere discutăm ce trebuie adaptat: texte, imagini, pagini, obiectiv, termen și buget final.', 'highlight' => true, 'button' => ['label' => 'Trimite cererea', 'href' => '#contact']],
+            ['number' => '03', 'title' => 'Primești o ofertă clară', 'description' => 'Configuratorul îți arată o estimare, iar după cerere discutăm ce trebuie adaptat: texte, imagini, pagini, obiectiv, termen și buget final.', 'highlight' => true, 'button' => ['label' => 'Trimite cererea', 'href' => '/contact']],
         ],
     ],
     'live_proof' => [
@@ -433,16 +399,14 @@ return [
         ],
     ],
     'popular_services' => [
-        'eyebrow' => 'Tipuri de site disponibile',
-        'title' => 'Ce site poți cere prin SiteGo',
-        'description' => 'Aici găsești cele mai cerute direcții: site de prezentare, web design local, landing page, site pentru salon sau pagini dedicate pentru servicii. Secțiunea ajută utilizatorul să aleagă rapid ce i se potrivește.',
+        'eyebrow' => 'Servicii web',
+        'title' => 'Alege direcția de care ai nevoie',
+        'description' => 'SiteGo lucrează online cu afaceri din toată România și poate colabora internațional. Paginile de mai jos separă serviciile după nevoie, nu după oraș.',
         'items' => [
-            ['label' => 'Creare site de prezentare Brașov', 'href' => '/creare-site-de-prezentare-brasov'],
+            ['label' => 'Creare site web', 'href' => '/creare-site-web'],
+            ['label' => 'Mentenanță site', 'href' => '/mentenanta-site'],
+            ['label' => 'Landing page', 'href' => '/landing-page'],
             ['label' => 'Web design Brașov', 'href' => '/web-design-brasov'],
-            ['label' => 'Realizare website Brașov', 'href' => '/realizare-website-brasov'],
-            ['label' => 'Landing page pentru afaceri', 'href' => '/landing-page-afaceri'],
-            ['label' => 'Site pentru salon beauty', 'href' => '/site-salon-beauty'],
-            ['label' => 'Cât costă un site de prezentare în 2026', 'href' => '/cat-costa-un-site-de-prezentare-2026'],
         ],
     ],
     'floating_dock' => [

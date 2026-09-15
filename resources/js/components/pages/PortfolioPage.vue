@@ -5,46 +5,42 @@
             class="overflow-hidden bg-[#f7f4ef] px-4 py-16 sm:px-6 lg:py-24"
         >
             <div class="mx-auto max-w-7xl">
-                <div
-                    class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end"
-                >
-                    <div>
-                        <p
-                            class="text-sm font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
-                        >
-                            {{ portfolio.hero.eyebrow }}
-                        </p>
+                <div>
+                    <p
+                        class="text-sm font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                    >
+                        {{ portfolio.hero.eyebrow }}
+                    </p>
 
-                        <h1
-                            class="mt-5 max-w-4xl font-serif text-5xl leading-[0.98] tracking-tight text-black sm:text-6xl lg:text-7xl"
-                        >
-                            {{ portfolio.hero.title }}
-                        </h1>
-
-                        <p
-                            class="mt-6 max-w-3xl text-lg leading-8 text-black/60"
-                        >
-                            {{ portfolio.hero.description }}
-                        </p>
-                    </div>
+                    <h1
+                        class="mt-5 font-serif text-5xl leading-[0.98] tracking-tight text-black sm:text-6xl xl:whitespace-nowrap xl:text-[64px]"
+                    >
+                        {{ portfolio.hero.title }}
+                    </h1>
 
                     <div
-                        class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3"
+                        class="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"
                     >
-                        <div
-                            v-for="item in portfolio.hero.stats"
-                            :key="`${item.value}-${item.label}`"
-                            class="rounded-[1.5rem] border border-black/10 bg-white p-5"
-                        >
-                            <p
-                                class="text-3xl font-semibold tracking-tight text-black"
-                            >
-                                {{ item.value }}
-                            </p>
+                        <p class="max-w-3xl text-lg leading-8 text-black/60">
+                            {{ portfolio.hero.description }}
+                        </p>
 
-                            <p class="mt-1 text-sm leading-5 text-black/50">
-                                {{ item.label }}
-                            </p>
+                        <div class="grid gap-3 sm:grid-cols-3">
+                            <div
+                                v-for="item in portfolio.hero.stats"
+                                :key="`${item.value}-${item.label}`"
+                                class="min-w-[150px] rounded-[1.5rem] border border-black/10 bg-white p-5"
+                            >
+                                <p
+                                    class="text-3xl font-semibold tracking-tight text-black"
+                                >
+                                    {{ item.value }}
+                                </p>
+
+                                <p class="mt-1 text-sm leading-5 text-black/50">
+                                    {{ item.label }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,11 +55,36 @@
                             class="relative aspect-[16/9] overflow-hidden bg-black/5"
                         >
                             <img
+                                v-if="project.image"
                                 :src="project.image"
                                 :alt="project.image_alt"
                                 class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
                                 loading="lazy"
                             />
+
+                            <div
+                                v-else
+                                class="flex h-full w-full items-center justify-center p-8 text-center"
+                                :style="{
+                                    background: `linear-gradient(135deg, ${project.accent_soft}, #171717)`,
+                                }"
+                            >
+                                <div>
+                                    <p
+                                        class="text-xs font-semibold uppercase tracking-[0.28em] text-white/60"
+                                    >
+                                        {{
+                                            portfolio.labels.image_fallback ||
+                                            "Proiect live"
+                                        }}
+                                    </p>
+                                    <p
+                                        class="mt-4 font-serif text-4xl text-white sm:text-5xl"
+                                    >
+                                        {{ project.name }}
+                                    </p>
+                                </div>
+                            </div>
 
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"
@@ -226,11 +247,36 @@
                             class="overflow-hidden rounded-[2rem] border border-black/10 bg-white p-2 shadow-[0_30px_90px_rgba(23,23,23,0.12)]"
                         >
                             <img
+                                v-if="activeProject.image"
                                 :src="activeProject.image"
                                 :alt="activeProject.image_alt"
                                 class="aspect-[16/9] w-full rounded-[1.55rem] object-cover"
                                 loading="eager"
                             />
+
+                            <div
+                                v-else
+                                class="flex aspect-[16/9] w-full items-center justify-center rounded-[1.55rem] p-8 text-center"
+                                :style="{
+                                    background: `linear-gradient(135deg, ${activeProject.accent_soft}, #171717)`,
+                                }"
+                            >
+                                <div>
+                                    <p
+                                        class="text-xs font-semibold uppercase tracking-[0.28em] text-white/60"
+                                    >
+                                        {{
+                                            portfolio.labels.image_fallback ||
+                                            "Proiect live"
+                                        }}
+                                    </p>
+                                    <p
+                                        class="mt-4 font-serif text-5xl text-white"
+                                    >
+                                        {{ activeProject.name }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -327,11 +373,24 @@
                         class="group mt-6 grid overflow-hidden rounded-[2rem] border border-black/10 bg-white lg:grid-cols-[0.95fr_1.05fr]"
                     >
                         <img
+                            v-if="nextProject.image"
                             :src="nextProject.image"
                             :alt="nextProject.image_alt"
                             class="aspect-[16/9] h-full w-full object-cover"
                             loading="lazy"
                         />
+
+                        <div
+                            v-else
+                            class="flex aspect-[16/9] h-full w-full items-center justify-center p-8 text-center"
+                            :style="{
+                                background: `linear-gradient(135deg, ${nextProject.accent_soft}, #171717)`,
+                            }"
+                        >
+                            <p class="font-serif text-4xl text-white">
+                                {{ nextProject.name }}
+                            </p>
+                        </div>
 
                         <div class="flex flex-col justify-center p-7 sm:p-10">
                             <p

@@ -34,7 +34,7 @@ return [
             ['question' => 'Why a subscription and not a single payment?', 'answer' => 'Because a website isn’t something you build once and forget: it needs hosting, maintenance and constant updates. The subscription keeps your site alive and well cared for, and you pay less at the start instead of a large amount at once.'],
             ['question' => 'What happens if I cancel the subscription?', 'answer' => 'The site is hosted and maintained through the subscription, so it stays online as long as the subscription is active. If you cancel, the site is no longer published. We tell you this clearly from the start, so you know exactly what you’re choosing.'],
             ['question' => 'For how long is the subscription?', 'answer' => 'The subscription is set for a period we agree on together when we start the project, with terms written clearly in the contract. We explain everything in advance, no surprises.'],
-            ['question' => 'How much does it cost?', 'answer' => 'For now we don’t show prices or fixed packages. We prefer to understand what you need first, then make an offer that fits your project. If you subscribe now, you get 10% off building your website.'],
+            ['question' => 'How much does it cost?', 'answer' => 'We do not use one fixed offer for every project. We prefer to understand what you need first, then make a proposal that fits the project’s complexity and goal.'],
             ['question' => 'What’s the difference between a presentation website and a landing page?', 'answer' => 'A presentation website has several sections and explains the business, services, trust and contact. A landing page has a single goal: to promote an offer or service and lead quickly to a request.'],
             ['question' => 'When do I need a website for a local business?', 'answer' => 'You choose it if you have a service business, practice, workshop, local provider or personal brand and want people to quickly understand what you offer and how to reach you.'],
             ['question' => 'When do I need a website for a salon or studio?', 'answer' => 'For beauty, nails, make-up, wellness, photography or visual services, where the image, gallery and quick booking matter a lot.'],
@@ -44,7 +44,7 @@ return [
             ['question' => 'Who prepares the texts and structure?', 'answer' => 'You send the basic information and we structure it clearly for the site. If you need longer texts or advanced copywriting, we agree on that separately.'],
             ['question' => 'Can I add features later?', 'answer' => 'Yes. You can start with a simple site and later add bookings, a blog, a catalog, online payment, a client account or more advanced forms as you grow.'],
             ['question' => 'Do you have real examples?', 'answer' => 'Yes. One example is RentRide, a live website for scooter and e-bike rentals in Brașov, built with optimized pages and quick contact via WhatsApp.'],
-            ['question' => 'What happens after I reach out?', 'answer' => 'We contact you, understand what you need and get back with clarifying questions, then with a proposal that fits your project. If you subscribed, your 10% is already reserved.'],
+            ['question' => 'What happens after I reach out?', 'answer' => 'We contact you, understand what you need and get back with clarifying questions, then with a proposal that fits your project.'],
         ],
     ],
     'pricing' => [

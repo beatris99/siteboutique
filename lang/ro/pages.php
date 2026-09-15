@@ -36,7 +36,7 @@ return [
             ['question' => 'De ce abonament și nu o singură plată?', 'answer' => 'Pentru că un site nu este un lucru pe care îl faci o dată și îl uiți: are nevoie de găzduire, întreținere și actualizări constante. Abonamentul îți ține site-ul viu și îngrijit, iar tu plătești mai puțin la început, în loc de o sumă mare dintr-o dată.'],
             ['question' => 'Ce se întâmplă dacă renunț la abonament?', 'answer' => 'Site-ul este găzduit și întreținut prin abonament, deci rămâne online cât timp abonamentul este activ. Dacă renunți, site-ul nu mai este publicat. Îți spunem clar acest lucru de la început, ca să știi exact ce alegi.'],
             ['question' => 'Pe ce perioadă se face abonamentul?', 'answer' => 'Abonamentul se stabilește pe o perioadă agreată împreună atunci când pornim proiectul, cu termeni scriși clar în contract. Îți explicăm totul din timp, fără surprize.'],
-            ['question' => 'Cât costă?', 'answer' => 'Momentan nu afișăm prețuri sau pachete fixe. Preferăm să înțelegem întâi ce ai nevoie, iar apoi îți facem o ofertă potrivită pentru proiectul tău. Dacă te abonezi acum, primești 10% la realizarea site-ului.'],
+            ['question' => 'Cât costă?', 'answer' => 'Momentan nu afișăm o ofertă unică pentru toate proiectele. Preferăm să înțelegem întâi ce ai nevoie, apoi îți facem o propunere potrivită pentru complexitatea și obiectivul proiectului tău.'],
             ['question' => 'Care este diferența dintre un site de prezentare și un landing page?', 'answer' => 'Un site de prezentare are mai multe secțiuni și explică afacerea, serviciile, încrederea și contactul. Un landing page are un singur obiectiv: să promoveze o ofertă sau un serviciu și să ducă rapid spre cerere.'],
             ['question' => 'Când am nevoie de un site pentru firmă locală?', 'answer' => 'Îl alegi dacă ai o firmă de servicii, cabinet, atelier, prestator local sau brand personal și vrei ca oamenii să înțeleagă rapid ce oferi și cum te pot contacta.'],
             ['question' => 'Când am nevoie de site pentru salon sau studio?', 'answer' => 'Pentru beauty, nails, make-up, wellness, fotografie sau servicii vizuale, unde imaginea, galeria și programarea rapidă contează foarte mult.'],
@@ -46,7 +46,7 @@ return [
             ['question' => 'Cine pregătește textele și structura?', 'answer' => 'Tu trimiți informațiile de bază, iar noi le structurăm clar pentru site. Dacă ai nevoie de texte mai ample sau copywriting avansat, stabilim asta separat.'],
             ['question' => 'Pot adăuga ulterior funcționalități?', 'answer' => 'Da. Poți începe cu un site simplu și poți adăuga ulterior rezervări, blog, catalog, plată online, cont client sau formulare mai avansate, pe măsură ce crești.'],
             ['question' => 'Aveți exemple reale?', 'answer' => 'Da. Un exemplu este RentRide, un site live pentru închirieri de scutere și biciclete electrice în Brașov, construit cu pagini optimizate și contact rapid prin WhatsApp.'],
-            ['question' => 'Ce se întâmplă după ce vă scriu?', 'answer' => 'Te contactăm, înțelegem ce ai nevoie și revenim cu întrebări de clarificare, apoi cu o propunere potrivită proiectului tău. Dacă te-ai abonat, ai deja 10% rezervat.'],
+            ['question' => 'Ce se întâmplă după ce vă scriu?', 'answer' => 'Te contactăm, înțelegem ce ai nevoie și revenim cu întrebări de clarificare, apoi cu o propunere potrivită proiectului tău.'],
         ],
     ],
     'pricing' => [

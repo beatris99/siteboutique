@@ -1,7 +1,6 @@
 <template>
     <section id="capabilities" class="bg-white px-4 py-20 sm:px-6 lg:py-28">
         <div class="mx-auto max-w-7xl">
-            <!-- Header -->
             <div class="max-w-3xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#a67c3a]">
                     {{ t.eyebrow }}
@@ -14,11 +13,12 @@
                 </p>
             </div>
 
-            <!-- Cards -->
             <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                <article
+                <component
+                    :is="item.href ? 'a' : 'article'"
                     v-for="(item, index) in t.items"
                     :key="item.title"
+                    :href="item.href || undefined"
                     class="group flex flex-col rounded-[1.75rem] border border-black/10 bg-[#f7f4ef] p-7 transition duration-300 hover:-translate-y-1.5 hover:border-[#a67c3a]/30 hover:bg-white hover:shadow-xl"
                 >
                     <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white text-[#a67c3a] shadow-sm ring-1 ring-black/5 transition group-hover:bg-[#a67c3a] group-hover:text-white">
@@ -33,10 +33,15 @@
                         {{ item.description }}
                     </p>
 
-                    <span class="mt-6 text-[11px] font-bold uppercase tracking-[0.2em] text-black/25 transition group-hover:text-[#a67c3a]">
-                        0{{ index + 1 }}
-                    </span>
-                </article>
+                    <div class="mt-6 flex items-center justify-between gap-3">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-black/25 transition group-hover:text-[#a67c3a]">
+                            0{{ index + 1 }}
+                        </span>
+                        <span v-if="item.href" class="text-sm text-black/25 transition group-hover:translate-x-1 group-hover:text-[#a67c3a]">
+                            →
+                        </span>
+                    </div>
+                </component>
             </div>
         </div>
     </section>

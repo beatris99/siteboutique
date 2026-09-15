@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import WhatsappIcon from '../icons/WhatsappIcon.vue'
 
 const props = defineProps({
@@ -110,9 +110,4 @@ const whatsappHref = computed(() => {
     return digits ? `https://wa.me/${digits}?text=${text}` : '#'
 })
 
-onMounted(() => {
-    if (window.innerWidth >= 1024) {
-        isOpen.value = true
-    }
-})
 </script>

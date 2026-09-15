@@ -2,21 +2,22 @@
 
 return [
     'meta' => [
-        'home_title' => 'SiteGo - Configurable websites',
-        'home_description' => 'SiteGo - choose a template, choose the features, and receive a done-for-you website.',
-        'og_title' => 'SiteGo - Configurable websites',
-        'og_description' => 'Choose the template and features, and we build the final website for your business.',
-        'twitter_description' => 'Configurable websites and done-for-you website creation.',
+        'home_title' => 'Website development & web design for businesses | SiteGo',
+        'home_description' => 'SiteGo builds presentation websites, online stores, booking systems and custom web solutions for businesses in Romania and remote international clients.',
+        'og_title' => 'SiteGo | Website development & web design',
+        'og_description' => 'Presentation websites, online stores, booking systems and custom web development for businesses in Romania and remote international clients.',
+        'twitter_description' => 'Website development, online stores, bookings and custom web solutions for remote business collaboration.',
     ],
     // === Landing page (simplified, no prices) ===
     'landing' => [
         'hero' => [
-            'eyebrow' => 'Web design in Brașov',
-            'title_line_1' => 'Let’s find out',
-            'title_line_2' => 'what we can build',
-            'title_line_3' => 'for your business.',
-            'description' => 'We build websites, shops or a CRM — and almost anything else your business needs online. You bring the idea, we turn it into something real.',
+            'eyebrow' => 'Website development · Web design · Custom solutions',
+            'title_line_1' => 'Websites built around',
+            'title_line_2' => 'your business.',
+            'title_line_3' => 'Wherever you are.',
+            'description' => 'We build presentation websites, online stores, booking systems and custom web solutions. We work remotely across Romania and can collaborate internationally in English.',
             'primary_cta' => 'Let’s talk',
+            'primary_href' => '/contact',
             'secondary_cta' => 'See what we can build',
             'scroll_hint' => 'Scroll',
         ],
@@ -24,7 +25,7 @@ return [
         'capabilities' => [
             'eyebrow' => 'What we can build',
             'title' => 'One place for everything you need online.',
-            'description' => 'You don’t need to know exactly what you want from the start. Tell us where you’re stuck and we’ll show you the right option.',
+            'description' => 'You don’t need to know exactly what you need. Tell us what you want to solve, and we’ll find the right solution for your project.',
             'items' => [
                 [
                     'icon' => 'globe',
@@ -49,11 +50,21 @@ return [
             ],
         ],
 
+
+        'portfolio_preview' => [
+            'eyebrow' => 'Real projects',
+            'title' => 'Finished. Published. Used by real businesses.',
+            'description' => 'Three different projects built around real needs: rentals, services and bookings.',
+            'cta' => 'View full portfolio',
+            'cta_href' => '/portofoliu',
+        ],
+
         'subscription' => [
             'eyebrow' => 'Digital subscription',
             'title' => 'After launch, the website can grow together with your business.',
             'description' => 'For projects that need continuous support, we can work on a monthly subscription: maintenance, small adjustments, optimisations and gradual development. Details are defined after we understand the project.',
             'cta' => 'Discuss a subscription',
+            'cta_href' => '/contact?topic=subscription',
             'items' => [
                 ['label' => '01', 'title' => 'Maintenance', 'text' => 'Updates, technical checks and small adjustments so the website stays stable.'],
                 ['label' => '02', 'title' => 'Evolution', 'text' => 'New sections, content changes, forms or features added over time.'],
@@ -61,34 +72,7 @@ return [
             ],
         ],
 
-        'newsletter' => [
-            'eyebrow' => 'SiteGo newsletter',
-            'compact_eyebrow' => 'SiteGo newsletter',
-            'compact_title' => 'Want useful ideas and launch codes?',
-            'compact_description' => 'Optional subscription, separate from your contact request. We send rarely, only when we have something useful.',
-            'title' => 'Get short ideas about websites, online presence and digital growth.',
-            'description' => 'Leave your email and we will occasionally send useful ideas, updates and SiteGo launch offers.',
-            'points' => [
-                ['title' => 'Practical ideas', 'text' => 'Short messages without unnecessary theory.'],
-                ['title' => 'No spam', 'text' => 'We only send something when it is useful.'],
-                ['title' => 'Launch offers', 'text' => 'You may also receive promo codes or invitations to talk.'],
-            ],
-            'email_label' => 'Email address',
-            'email_placeholder' => 'name@email.com',
-            'consent' => 'I agree to receive emails from SiteGo.',
-            'submit_subscribe' => 'Subscribe me',
-            'sending' => 'Sending...',
-            'success_subscribe_title' => 'Subscription saved.',
-            'success_subscribe_text' => 'Check your inbox for our message.',
-            'send_another' => 'Use another address',
-            'note_subscribe' => 'Your data is used only for SiteGo communication.',
-            'messages' => [
-                'too_many_requests' => 'You sent too many requests in a short time. Try again in a minute.',
-                'check_email' => 'Check the email address.',
-                'generic_error' => 'Something went wrong.',
-                'request_failed' => 'The request could not be sent. Try again.',
-            ],
-        ],
+        'newsletter' => [],
 
         'invitation' => [
             'eyebrow' => 'Let’s talk',
@@ -109,41 +93,23 @@ return [
                 'contact_placeholder' => 'How we can reach you',
                 'message' => 'What do you have in mind?',
                 'message_placeholder' => 'E.g. I want a website for my salon, with appointments and a gallery of my work.',
-                'discount_label' => 'Have a discount code? (optional)',
-                'discount_placeholder' => 'E.g. SITEGO10',
+                'subscription_message' => 'I would like to discuss a monthly subscription for maintenance, support and ongoing development.',
                 'consent' => 'I agree to be contacted regarding this request.',
                 'submit' => 'Send message',
                 'sending' => 'Sending...',
                 'success_title' => 'We received your message.',
                 'success_text' => 'We’ll get back soon with a few questions to understand exactly what you need.',
                 'send_another' => 'Send another message',
+                'validation' => [
+                    'name_required' => 'Please tell us your name.',
+                    'contact_required' => 'Leave a phone number or email address.',
+                    'contact_invalid' => 'Enter a valid email address or phone number.',
+                    'message_required' => 'Tell us briefly what we can help you with.',
+                    'consent_required' => 'Please accept the contact consent before sending.',
+                ],
             ],
         ],
-        'popup' => [
-            'badge' => '−10%',
-            'title' => 'Get your personal -10% code.',
-            'subtitle' => 'Subscribe with your email and we’ll send you a personal promo code for the SiteGo launch campaign.',
-            'email_label' => 'Your email address',
-            'email_placeholder' => 'name@email.com',
-            'consent' => 'I agree to receive the offer by email.',
-            'submit' => 'Subscribe and get the code',
-            'sending' => 'Sending...',
-            'success_title' => 'Done, you’re subscribed!',
-            'success_text' => 'We’ve sent your promo code by email. Check your inbox.',
-            'decline' => 'Not now',
-            'dismiss' => 'Close',
-            'points' => [
-                ['title' => 'Unique code', 'text' => 'You receive a personal code generated especially for you.'],
-                ['title' => 'Fast', 'text' => 'Subscription takes only a few seconds.'],
-                ['title' => 'Useful', 'text' => 'You also receive useful ideas about online presence.'],
-            ],
-            'messages' => [
-                'too_many_requests' => 'You sent too many requests in a short time. Try again in a minute.',
-                'check_email' => 'Check the email address.',
-                'generic_error' => 'Something went wrong.',
-                'request_failed' => 'The request could not be sent. Try again.',
-            ],
-        ],
+        'popup' => [],
 
         'showcase' => [
             'caption_label' => 'Example',
@@ -365,7 +331,7 @@ return [
         'steps' => [
             ['number' => '01', 'title' => 'Choose the website type', 'description' => 'Start from a concrete direction: local company, salon, rentals, accommodation, landing page, store, or platform.'],
             ['number' => '02', 'title' => 'Choose the package', 'description' => 'See the difference between Start, Pro, and Premium: sections, personalization level, and suitable features.'],
-            ['number' => '03', 'title' => 'Receive a clear offer', 'description' => 'The configurator shows an estimate, and after the request we clarify what needs to be adapted: content, images, pages, goals, timeline, and budget.', 'highlight' => true, 'button' => ['label' => 'Send request', 'href' => '#contact']],
+            ['number' => '03', 'title' => 'Receive a clear offer', 'description' => 'The configurator shows an estimate, and after the request we clarify what needs to be adapted: content, images, pages, goals, timeline, and budget.', 'highlight' => true, 'button' => ['label' => 'Send request', 'href' => '/contact']],
         ],
     ],
     'live_proof' => [
@@ -380,16 +346,14 @@ return [
         ],
     ],
     'popular_services' => [
-        'eyebrow' => 'Available website types',
-        'title' => 'What kind of website you can request through SiteGo',
-        'description' => 'Here you can find the most requested directions: presentation website, local web design, landing page, website for a salon, or dedicated service pages. This section helps visitors quickly choose what fits their business.',
+        'eyebrow' => 'Web services',
+        'title' => 'Choose the direction you need',
+        'description' => 'SiteGo works remotely across Romania and can collaborate internationally. These pages are organised by business need rather than by city.',
         'items' => [
-            ['label' => 'Presentation website Brașov', 'href' => '/creare-site-de-prezentare-brasov'],
+            ['label' => 'Website development', 'href' => '/creare-site-web'],
+            ['label' => 'Website maintenance', 'href' => '/mentenanta-site'],
+            ['label' => 'Landing page', 'href' => '/landing-page'],
             ['label' => 'Web design Brașov', 'href' => '/web-design-brasov'],
-            ['label' => 'Website development Brașov', 'href' => '/realizare-website-brasov'],
-            ['label' => 'Landing page for businesses', 'href' => '/landing-page-afaceri'],
-            ['label' => 'Website for beauty salon', 'href' => '/site-salon-beauty'],
-            ['label' => 'How much does a presentation website cost in 2026', 'href' => '/cat-costa-un-site-de-prezentare-2026'],
         ],
     ],
     'floating_dock' => [

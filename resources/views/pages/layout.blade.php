@@ -13,11 +13,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') - {{ $brand['name'] }}</title>
+    <title>@yield('title')</title>
     <meta name="description" content="@yield('description', __('pages.layout.default_description'))">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SiteGo">
+    <meta property="og:locale" content="{{ $locale === 'ro' ? 'ro_RO' : 'en_US' }}">
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:description" content="@yield('description', __('pages.layout.default_description'))">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.jpg">
+    <meta property="og:image:alt" content="SiteGo - creare site web și dezvoltare web pentru afaceri">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title')">
+    <meta name="twitter:description" content="@yield('description', __('pages.layout.default_description'))">
+    <meta name="twitter:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.jpg">
+
+    <meta name="google-site-verification" content="8Wp3PXaLXhT25xkld277MiKuu-PrIKrYvT6HKMXNeD4">
 
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sitego-icon.svg') }}?v=1">
     <link rel="shortcut icon" href="{{ asset('images/sitego-icon.svg') }}?v=1">
@@ -29,6 +45,8 @@
     >
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @stack('structured-data')
 </head>
 <body class="bg-[#f7f4ef] text-[#171717] antialiased">
 <header class="sticky top-0 z-50 border-b border-black/10 bg-[#f7f4ef]/95 backdrop-blur">
