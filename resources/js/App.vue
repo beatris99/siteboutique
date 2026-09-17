@@ -8,12 +8,27 @@
         />
 
         <FloatingContactDock
+            v-if="!isLeadSuccessPage"
             :dock="siteContent.floatingDock"
             :contact-info="contactInfo"
         />
 
-        <template v-if="isTemplatePage && !publicTemplate">
-            <TemplateNotFoundPage :content="builder.template_ui?.not_found || {}" />
+        <template v-if="isLeadSuccessPage">
+            <LeadSuccessPage :content="siteContent.leadSuccess" />
+
+            <AppFooter
+                :footer="siteContent.footer"
+                :brand="siteContent.brand"
+                :navigation="siteContent.navigation"
+                :contact-info="contactInfo"
+                :locale="locale"
+            />
+        </template>
+
+        <template v-else-if="isTemplatePage && !publicTemplate">
+            <TemplateNotFoundPage
+                :content="builder.template_ui?.not_found || {}"
+            />
 
             <AppFooter
                 :footer="siteContent.footer"
@@ -101,7 +116,7 @@
                 :total-price="totalPrice"
                 :currency-label="pricingConfig.currencyLabel"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="resetSelectedFeatures"
+                @lead-created="handleLeadCreated"
             />
 
             <AppFooter
@@ -178,7 +193,7 @@
                 :total-price="totalPrice"
                 :currency-label="pricingConfig.currencyLabel"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="resetSelectedFeatures"
+                @lead-created="handleLeadCreated"
             />
 
             <AppFooter
@@ -210,7 +225,7 @@
                 :t="siteContent.landing.invitation"
                 :messages="siteContent.contact.messages || {}"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="resetSelectedFeatures"
+                @lead-created="handleLeadCreated"
             />
 
             <AppFooter
@@ -250,7 +265,6 @@
 import { computed, onMounted } from "vue";
 
 import { useSiteBuilder } from "./composables/useSiteBuilder";
-
 import { getRegisteredTemplate } from "./templates/templateRegistry";
 
 import AppHeader from "./components/layout/AppHeader.vue";
@@ -261,7 +275,6 @@ import HeroSection from "./components/sections/HeroSection.vue";
 import CapabilitiesSection from "./components/sections/CapabilitiesSection.vue";
 import SubscriptionCareSection from "./components/sections/SubscriptionCareSection.vue";
 import InvitationSection from "./components/sections/InvitationSection.vue";
-
 import WhatYouGetSection from "./components/sections/WhatYouGetSection.vue";
 import WhyWorkWithMeSection from "./components/sections/WhyWorkWithMeSection.vue";
 import TemplateGallery from "./components/sections/TemplateGallery.vue";
@@ -277,6 +290,7 @@ import PriceSummary from "./components/builder/PriceSummary.vue";
 import TemplatePublicPage from "./components/pages/TemplatePublicPage.vue";
 import TemplateNotFoundPage from "./components/pages/TemplateNotFoundPage.vue";
 import PortfolioPage from "./components/pages/PortfolioPage.vue";
+import LeadSuccessPage from "./components/pages/LeadSuccessPage.vue";
 
 const props = defineProps({
     initialLocale: {
@@ -296,7 +310,6 @@ const props = defineProps({
 
     siteConfig: {
         type: Object,
-
         default: () => ({
             contact: {},
         }),
@@ -310,20 +323,16 @@ const builder = props.initialBuilder;
 
 const contactInfo = {
     email: props.siteConfig?.contact?.email || "",
-
     phone: props.siteConfig?.contact?.phone || "",
-
     location: props.siteConfig?.contact?.location || "",
-
     area: props.siteConfig?.contact?.area || "",
 };
 
 const features = builder.features || [];
 const packages = builder.packages || [];
-
 const templateCategories = builder.template_categories || [];
-
 const templates = builder.templates || [];
+
 const pricingConfig = {
     currencyCode: builder.pricing?.currency_code || "",
     currencyLabel: builder.pricing?.currency_label || "",
@@ -348,6 +357,10 @@ const {
 } = useSiteBuilder(templates, features, templateCategories, packages);
 
 const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+
+const isLeadSuccessPage = computed(() => {
+    return currentPath === "/cerere-trimisa";
+});
 
 const isTemplatePage = computed(() => {
     return currentPath.startsWith("/templates/");
@@ -427,6 +440,14 @@ const templateClientInfo = computed(() => {
     };
 });
 
+function handleLeadCreated() {
+    resetSelectedFeatures();
+
+    sessionStorage.removeItem("sitego_selected_template_id");
+
+    window.location.href = "/cerere-trimisa";
+}
+
 function handleTemplateSelect(templateId) {
     selectTemplate(templateId);
 
@@ -445,6 +466,12 @@ function handleTemplateSelect(templateId) {
 }
 
 onMounted(() => {
+    if (isLeadSuccessPage.value) {
+        sessionStorage.removeItem("sitego_selected_template_id");
+
+        return;
+    }
+
     if (publicTemplate.value) {
         selectCategory(publicTemplate.value.categoryKey);
 
@@ -470,7 +497,6 @@ onMounted(() => {
     }
 
     selectCategory(storedTemplate.categoryKey);
-
     selectTemplate(storedTemplate.id);
 
     sessionStorage.removeItem("sitego_selected_template_id");
