@@ -42,14 +42,7 @@
                                         ? 'bg-white text-black'
                                         : 'bg-[#f7f4ee] text-[#a67c3a]'"
                                 >
-                                    <WhatsappIcon
-                                        v-if="feature.name === 'Buton WhatsApp' || feature.name === 'WhatsApp button'"
-                                        class="h-5 w-5"
-                                    />
-
-                                    <span v-else>
-                                        {{ getIcon(feature.name) }}
-                                    </span>
+                                    <span>{{ feature.icon }}</span>
                                 </div>
 
                                 <div>
@@ -95,8 +88,9 @@
 </template>
 
 <script setup>
+import { formatPrice as formatCurrency } from "../../utils/formatPrice";
+
 import { computed } from "vue";
-import WhatsappIcon from "../icons/WhatsappIcon.vue";
 
 const props = defineProps({
     section: {
@@ -109,6 +103,10 @@ const props = defineProps({
     },
     selectedFeatureIds: {
         type: Array,
+        required: true,
+    },
+    currencyLabel: {
+        type: String,
         required: true,
     },
 });
@@ -137,51 +135,6 @@ function isSelected(featureId) {
 }
 
 function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString("ro-RO")} lei`;
-}
-
-function getIcon(name) {
-    const icons = {
-        "Formular de contact": "✉",
-        "Contact form": "✉",
-        "Buton WhatsApp": "WA",
-        "WhatsApp button": "WA",
-        "Formular de rezervare": "📅",
-        "Booking form": "📅",
-        "Galerie foto / video": "▣",
-        "Photo / video gallery": "▣",
-        "Listă servicii și prețuri": "☰",
-        "Services and pricing list": "☰",
-        "Întrebări frecvente": "?",
-        "Frequently asked questions": "?",
-        "Testimoniale / recenzii": "★",
-        "Testimonials / reviews": "★",
-        "Google Maps": "⌖",
-        "Catalog produse": "□",
-        "Product catalog": "□",
-        "Coș de cumpărături": "🛒",
-        "Shopping cart": "🛒",
-        "Checkout / comandă": "✓",
-        "Checkout / order": "✓",
-        "Plată online": "💳",
-        "Online payment": "💳",
-        "Newsletter / abonare": "↗",
-        "Newsletter / subscription": "↗",
-        "Google Analytics": "GA",
-        "Pixel Facebook / TikTok": "PX",
-        "Facebook / TikTok pixel": "PX",
-        "Panou cereri clienți": "ADM",
-        "Client requests dashboard": "ADM",
-        "Administrare produse / servicii": "⚙",
-        "Products / services management": "⚙",
-        "Setări Google de bază": "SEO",
-        "Basic Google setup": "SEO",
-        "Site în română și engleză": "RO",
-        "Romanian and English website": "EN",
-        "Cont client / autentificare": "🔐",
-        "Client account / login": "🔐",
-    };
-
-    return icons[name] || "+";
+    return formatCurrency(value, props.currencyLabel);
 }
 </script>

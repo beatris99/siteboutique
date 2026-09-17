@@ -60,11 +60,11 @@ return [
         ],
 
         'subscription' => [
-            'eyebrow' => 'Abonament digital',
-            'title' => 'După lansare, site-ul poate crește împreună cu afacerea ta.',
-            'description' => 'Pentru proiectele care au nevoie de suport constant, putem lucra pe bază de abonament lunar: mentenanță, mici ajustări, optimizări și dezvoltări treptate. Detaliile se stabilesc după ce înțelegem proiectul.',
-            'cta' => 'Discută despre abonament',
-            'cta_href' => '/contact?topic=abonament',
+            'eyebrow' => 'Mentenanță după lansare',
+            'title' => 'După lansare, alegi cât suport vrei să păstrăm.',
+            'description' => 'Realizarea site-ului este un proiect separat. După lansare, mentenanța rămâne opțională și poate include verificări, mici ajustări, optimizări și suport recurent, în funcție de pachet.',
+            'cta' => 'Vezi pachetele de mentenanță',
+            'cta_href' => '/preturi#mentenanta',
             'items' => [
                 ['label' => '01', 'title' => 'Mentenanță', 'text' => 'Actualizări, verificări tehnice și mici ajustări pentru ca site-ul să rămână stabil.'],
                 ['label' => '02', 'title' => 'Evoluție', 'text' => 'Secțiuni noi, modificări de conținut, formulare sau funcționalități adăugate în timp.'],
@@ -74,7 +74,6 @@ return [
 
         'newsletter' => [],
 
-        // Invitația la conversație (înlocuiește formularul complex)
         'invitation' => [
             'eyebrow' => 'Hai să vorbim',
             'title' => 'Spune-ne ideea ta. Restul stabilim împreună.',
@@ -92,9 +91,11 @@ return [
                 'name_placeholder' => 'Numele tău',
                 'contact' => 'Telefon sau email',
                 'contact_placeholder' => 'Cum te putem contacta',
+                'company' => 'Companie / proiect, opțional',
+                'company_placeholder' => 'Ex: salon, cabinet, pensiune, serviciu local',
                 'message' => 'Ce ai în minte?',
                 'message_placeholder' => 'Ex: vreau un site pentru salonul meu, cu programări și o galerie cu lucrările mele.',
-                'subscription_message' => 'Vreau să discutăm despre un abonament lunar pentru mentenanță, suport și dezvoltări ulterioare.',
+                'subscription_message' => 'Vreau să discutăm despre mentenanță după lansare, suport și dezvoltări ulterioare.',
                 'consent' => 'Sunt de acord să fiu contactat/ă în legătură cu această cerere.',
                 'submit' => 'Trimite mesajul',
                 'sending' => 'Se trimite...',
@@ -102,18 +103,39 @@ return [
                 'success_text' => 'Revenim în curând cu câteva întrebări ca să înțelegem exact ce ai nevoie.',
                 'send_another' => 'Trimite alt mesaj',
                 'validation' => [
-                    'name_required' => 'Spune-ne cum te numești.',
-                    'contact_required' => 'Lasă-ne un număr de telefon sau o adresă de email.',
+                    'name_required' => 'Completează numele ca să știm cum să ne adresăm.',
+                    'name_short' => 'Numele pare puțin prea scurt.',
+                    'contact_required' => 'Lasă-ne un telefon sau un email ca să putem reveni.',
+                    'email_invalid' => 'Emailul pare incomplet. Verifică-l, te rog.',
+                    'phone_invalid' => 'Verifică numărul de telefon introdus.',
                     'contact_invalid' => 'Introdu un email sau un număr de telefon valid.',
-                    'message_required' => 'Spune-ne pe scurt cu ce te putem ajuta.',
-                    'consent_required' => 'Bifează acordul pentru a putea trimite mesajul.',
+                    'message_required' => 'Spune-ne în câteva cuvinte cu ce te putem ajuta.',
+                    'message_short' => 'Mai spune-ne doar câteva detalii despre idee.',
+                    'consent_required' => 'Avem nevoie de acordul tău pentru a putea reveni.',
+                ],
+                'lead' => [
+                    'company_prefix' => 'Companie / proiect',
+                    'request_type' => 'conversation',
+                    'site_goal' => 'Conversație despre proiect',
+                    'template' => 'Cerere de conversație SiteGo',
+                    'category_key' => 'conversation',
+                    'category_label' => 'Conversație',
+                    'package_key' => 'custom-offer',
+                    'package_name' => 'Ofertă după discuție',
                 ],
             ],
         ],
         'popup' => [],
 
-        // Conținutul telefoanelor (mockup-uri: ce pot cere clienții)
         'showcase' => [
+            'ui' => [
+                'search_engine' => 'Google',
+                'program' => 'Program',
+                'location' => 'Locație',
+                'contact' => 'Contact',
+                'previous' => 'Exemplul anterior',
+                'next' => 'Exemplul următor',
+            ],
             'caption_label' => 'Exemplu',
             'items' => [
                 [
@@ -416,5 +438,6 @@ return [
         'email_label' => 'Trimite email',
         'phone_label' => 'Sună acum',
         'cta_label' => 'Hai să vorbim',
+        'whatsapp_message' => 'Bună! Aș vrea să discutăm despre un site.',
     ],
 ];

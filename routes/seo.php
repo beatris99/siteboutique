@@ -4,16 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 $sitegoSeoPages = config('sitego-seo', []);
 
-/*
-|--------------------------------------------------------------------------
-| Canonical SEO pages
-|--------------------------------------------------------------------------
-|
-| Only distinct search intents receive their own indexable URL. Generic
-| service pages target Romania / remote work. A single dedicated local page
-| remains for Brașov because it already receives local-search impressions.
-|
-*/
 foreach ($sitegoSeoPages as $slug => $page) {
     Route::view('/' . $slug, 'pages.seo-landing', [
         'page' => $page,
@@ -21,15 +11,6 @@ foreach ($sitegoSeoPages as $slug => $page) {
     ])->name('seo.' . str_replace('-', '_', $slug));
 }
 
-/*
-|--------------------------------------------------------------------------
-| Legacy URL redirects
-|--------------------------------------------------------------------------
-|
-| Keep old URLs alive as permanent redirects instead of allowing 404s or
-| leaving near-duplicate pages in the index.
-|
-*/
 $removedServicePages = [
     '/site-de-prezentare' => '/realizare-site-uri',
     '/magazin-online' => '/realizare-site-uri',
@@ -60,11 +41,6 @@ foreach ($seoRedirects as $from => $to) {
     Route::redirect($from, $to, 301);
 }
 
-/*
-|--------------------------------------------------------------------------
-| XML sitemap
-|--------------------------------------------------------------------------
-*/
 Route::get('/sitemap.xml', function () use ($sitegoSeoPages) {
     $baseUrl = rtrim(config('app.url'), '/');
 
@@ -116,11 +92,6 @@ Route::get('/sitemap.xml', function () use ($sitegoSeoPages) {
         ->header('Content-Type', 'application/xml; charset=UTF-8');
 })->name('sitemap');
 
-/*
-|--------------------------------------------------------------------------
-| robots.txt
-|--------------------------------------------------------------------------
-*/
 Route::get('/robots.txt', function () {
     $sitemap = rtrim(config('app.url'), '/') . '/sitemap.xml';
 

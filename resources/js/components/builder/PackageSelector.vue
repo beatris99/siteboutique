@@ -120,7 +120,7 @@
                                 : 'bg-black text-white hover:bg-[#8b6f47]'"
                             @click="$emit('select-package', packageItem.id)"
                         >
-                            {{ common.choose_package || common.choosePackage || 'Alege pachetul' }}
+                            {{ common.choose_package }}
                         </button>
                     </article>
                 </div>
@@ -130,7 +130,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { formatPrice as formatCurrency } from "../../utils/formatPrice";
+
+const props = defineProps({
     section: {
         type: Object,
         required: true,
@@ -147,11 +149,15 @@ defineProps({
         type: Number,
         required: true,
     },
+    currencyLabel: {
+        type: String,
+        required: true,
+    },
 });
 
 defineEmits(["select-package"]);
 
 function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString("ro-RO")} lei`;
+    return formatCurrency(value, props.currencyLabel);
 }
 </script>

@@ -24,7 +24,7 @@
 
             <p><strong>Template:</strong> {{ $lead->selected_template ?: '-' }}</p>
             <p><strong>Pachet:</strong> {{ $lead->selected_package_name ?: '-' }}</p>
-            <p><strong>Preț estimativ:</strong> {{ $lead->total_price }} lei</p>
+            <p><strong>Preț estimativ:</strong> {{ $lead->total_price }} {{ config('sitego-pricing.currency_label') }}</p>
             <p><strong>Buget aproximativ:</strong> {{ $lead->budget_range ?: 'Nespecificat' }}</p>
             <p><strong>Urgență:</strong> {{ $lead->urgency ?: 'Nespecificat' }}</p>
 

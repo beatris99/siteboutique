@@ -13,7 +13,7 @@
                         {{ t.description }}
                     </p>
                     <a
-                        :href="t.cta_href || '/contact?topic=abonament'"
+                        :href="t.cta_href || '/preturi#mentenanta'"
                         class="mt-7 inline-flex rounded-full bg-[#171717] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#a67c3a]"
                     >
                         {{ t.cta }}

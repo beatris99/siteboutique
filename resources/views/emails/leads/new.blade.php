@@ -52,7 +52,7 @@
             <p><strong>Template:</strong> {{ $lead->selected_template ?: '-' }}</p>
             <p><strong>Categorie:</strong> {{ $lead->selected_category_label ?: '-' }}</p>
             <p><strong>Pachet:</strong> {{ $lead->selected_package_name ?: '-' }}</p>
-            <p><strong>Preț estimativ:</strong> {{ $lead->total_price }} lei</p>
+            <p><strong>Preț estimativ:</strong> {{ $lead->total_price }} {{ config('sitego-pricing.currency_label') }}</p>
 
             @if(!empty($lead->selected_features))
                 <p><strong>Extra-uri:</strong></p>

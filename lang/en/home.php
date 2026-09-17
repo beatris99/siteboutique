@@ -8,7 +8,6 @@ return [
         'og_description' => 'Presentation websites, online stores, booking systems and custom web development for businesses in Romania and remote international clients.',
         'twitter_description' => 'Website development, online stores, bookings and custom web solutions for remote business collaboration.',
     ],
-    // === Landing page (simplified, no prices) ===
     'landing' => [
         'hero' => [
             'eyebrow' => 'Website development · Web design · Custom solutions',
@@ -60,11 +59,11 @@ return [
         ],
 
         'subscription' => [
-            'eyebrow' => 'Digital subscription',
-            'title' => 'After launch, the website can grow together with your business.',
-            'description' => 'For projects that need continuous support, we can work on a monthly subscription: maintenance, small adjustments, optimisations and gradual development. Details are defined after we understand the project.',
-            'cta' => 'Discuss a subscription',
-            'cta_href' => '/contact?topic=subscription',
+            'eyebrow' => 'Post-launch maintenance',
+            'title' => 'After launch, choose how much ongoing support you need.',
+            'description' => 'Website creation is a separate project. After launch, maintenance remains optional and can include checks, small adjustments, optimisation and recurring support depending on the plan.',
+            'cta' => 'See maintenance plans',
+            'cta_href' => '/preturi#mentenanta',
             'items' => [
                 ['label' => '01', 'title' => 'Maintenance', 'text' => 'Updates, technical checks and small adjustments so the website stays stable.'],
                 ['label' => '02', 'title' => 'Evolution', 'text' => 'New sections, content changes, forms or features added over time.'],
@@ -93,7 +92,7 @@ return [
                 'contact_placeholder' => 'How we can reach you',
                 'message' => 'What do you have in mind?',
                 'message_placeholder' => 'E.g. I want a website for my salon, with appointments and a gallery of my work.',
-                'subscription_message' => 'I would like to discuss a monthly subscription for maintenance, support and ongoing development.',
+                'subscription_message' => 'I would like to discuss post-launch maintenance, support and ongoing development.',
                 'consent' => 'I agree to be contacted regarding this request.',
                 'submit' => 'Send message',
                 'sending' => 'Sending...',
@@ -107,11 +106,29 @@ return [
                     'message_required' => 'Tell us briefly what we can help you with.',
                     'consent_required' => 'Please accept the contact consent before sending.',
                 ],
+                'lead' => [
+                    'company_prefix' => 'Company / project',
+                    'request_type' => 'conversation',
+                    'site_goal' => 'Project conversation',
+                    'template' => 'SiteGo conversation request',
+                    'category_key' => 'conversation',
+                    'category_label' => 'Conversation',
+                    'package_key' => 'custom-offer',
+                    'package_name' => 'Offer after discussion',
+                ],
             ],
         ],
         'popup' => [],
 
         'showcase' => [
+            'ui' => [
+                'search_engine' => 'Google',
+                'program' => 'Hours',
+                'location' => 'Location',
+                'contact' => 'Contact',
+                'previous' => 'Previous example',
+                'next' => 'Next example',
+            ],
             'caption_label' => 'Example',
             'items' => [
                 [
@@ -363,5 +380,6 @@ return [
         'email_label' => 'Send email',
         'phone_label' => 'Call now',
         'cta_label' => 'Let’s talk',
+        'whatsapp_message' => 'Hello! I would like to discuss a website project.',
     ],
 ];

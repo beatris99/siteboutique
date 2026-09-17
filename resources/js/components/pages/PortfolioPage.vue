@@ -74,8 +74,7 @@
                                         class="text-xs font-semibold uppercase tracking-[0.28em] text-white/60"
                                     >
                                         {{
-                                            portfolio.labels.image_fallback ||
-                                            "Proiect live"
+                                            portfolio.labels.image_fallback
                                         }}
                                     </p>
                                     <p
@@ -266,8 +265,7 @@
                                         class="text-xs font-semibold uppercase tracking-[0.28em] text-white/60"
                                     >
                                         {{
-                                            portfolio.labels.image_fallback ||
-                                            "Proiect live"
+                                            portfolio.labels.image_fallback
                                         }}
                                     </p>
                                     <p

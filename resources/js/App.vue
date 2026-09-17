@@ -13,7 +13,7 @@
         />
 
         <template v-if="isTemplatePage && !publicTemplate">
-            <TemplateNotFoundPage />
+            <TemplateNotFoundPage :content="builder.template_ui?.not_found || {}" />
 
             <AppFooter
                 :footer="siteContent.footer"
@@ -34,12 +34,14 @@
             <TemplatePublicPage
                 v-else
                 :template="publicTemplate"
-                :locale="locale"
+                :labels="builder.template_ui?.public || {}"
+                :currency-label="pricingConfig.currencyLabel"
             />
 
             <TemplateProductDetailsSection
                 :template="publicTemplate"
-                :locale="locale"
+                :labels="builder.template_ui?.product_details || {}"
+                :currency-label="pricingConfig.currencyLabel"
             />
 
             <WhatYouGetSection :section="siteContent.whatYouGet" />
@@ -49,11 +51,13 @@
             <TemplatePreparationSection
                 v-if="templateClientInfo"
                 :info="templateClientInfo"
+                :labels="builder.template_ui?.preparation || {}"
             />
 
             <TemplateScopeSection
                 v-if="templateClientInfo"
                 :info="templateClientInfo"
+                :labels="builder.template_ui?.scope || {}"
             />
 
             <PackageSelector
@@ -61,6 +65,7 @@
                 :common="siteContent.common"
                 :packages="packages"
                 :selected-package-id="selectedPackageId"
+                :currency-label="pricingConfig.currencyLabel"
                 @select-package="selectPackage"
             />
 
@@ -72,6 +77,7 @@
                         :section="siteContent.configurator"
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
+                        :currency-label="pricingConfig.currencyLabel"
                         @toggle-feature="toggleFeature"
                     />
 
@@ -81,6 +87,7 @@
                         :selected-package="selectedPackage"
                         :selected-features="selectedFeatures"
                         :total-price="totalPrice"
+                        :currency-label="pricingConfig.currencyLabel"
                     />
                 </div>
             </section>
@@ -92,6 +99,8 @@
                 :selected-package="selectedPackage"
                 :selected-features="selectedFeatures"
                 :total-price="totalPrice"
+                :currency-label="pricingConfig.currencyLabel"
+                :currency-code="pricingConfig.currencyCode"
                 @lead-created="resetSelectedFeatures"
             />
 
@@ -113,6 +122,7 @@
                 :selected-category-key="selectedCategoryKey"
                 :selected-template-id="selectedTemplateId"
                 :selected-template="selectedTemplate"
+                :currency-label="pricingConfig.currencyLabel"
                 @select-category="selectCategory"
                 @select-template="handleTemplateSelect"
             />
@@ -132,6 +142,7 @@
                 :common="siteContent.common"
                 :packages="packages"
                 :selected-package-id="selectedPackageId"
+                :currency-label="pricingConfig.currencyLabel"
                 @select-package="selectPackage"
             />
 
@@ -143,6 +154,7 @@
                         :section="siteContent.configurator"
                         :features="availableFeatures"
                         :selected-feature-ids="selectedFeatureIds"
+                        :currency-label="pricingConfig.currencyLabel"
                         @toggle-feature="toggleFeature"
                     />
 
@@ -152,6 +164,7 @@
                         :selected-package="selectedPackage"
                         :selected-features="selectedFeatures"
                         :total-price="totalPrice"
+                        :currency-label="pricingConfig.currencyLabel"
                     />
                 </div>
             </section>
@@ -163,6 +176,8 @@
                 :selected-package="selectedPackage"
                 :selected-features="selectedFeatures"
                 :total-price="totalPrice"
+                :currency-label="pricingConfig.currencyLabel"
+                :currency-code="pricingConfig.currencyCode"
                 @lead-created="resetSelectedFeatures"
             />
 
@@ -193,6 +208,8 @@
         <template v-else-if="isContactPage">
             <InvitationSection
                 :t="siteContent.landing.invitation"
+                :messages="siteContent.contact.messages || {}"
+                :currency-code="pricingConfig.currencyCode"
                 @lead-created="resetSelectedFeatures"
             />
 
@@ -235,8 +252,6 @@ import { computed, onMounted } from "vue";
 import { useSiteBuilder } from "./composables/useSiteBuilder";
 
 import { getRegisteredTemplate } from "./templates/templateRegistry";
-
-import { getTemplateClientInfo } from "./templates/templateClientInfo";
 
 import AppHeader from "./components/layout/AppHeader.vue";
 import AppFooter from "./components/layout/AppFooter.vue";
@@ -309,6 +324,10 @@ const packages = builder.packages || [];
 const templateCategories = builder.template_categories || [];
 
 const templates = builder.templates || [];
+const pricingConfig = {
+    currencyCode: builder.pricing?.currency_code || "",
+    currencyLabel: builder.pricing?.currency_label || "",
+};
 
 const {
     selectedCategoryKey,
@@ -391,7 +410,21 @@ const realTemplateData = computed(() => {
 });
 
 const templateClientInfo = computed(() => {
-    return getTemplateClientInfo(templateSlug.value, locale);
+    if (!templateSlug.value) {
+        return null;
+    }
+
+    const current = builder.template_client_info?.[templateSlug.value];
+
+    if (!current) {
+        return null;
+    }
+
+    return {
+        ...current,
+        canCustomize: builder.template_client_info?.common?.can_customize || [],
+        notIncluded: builder.template_client_info?.common?.not_included || [],
+    };
 });
 
 function handleTemplateSelect(templateId) {

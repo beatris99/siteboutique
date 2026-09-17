@@ -9,6 +9,7 @@
             <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">{{ __('pages.faq.eyebrow') }}</p>
             <h2 class="mt-4 text-4xl font-semibold leading-tight">{{ __('pages.faq.section_title') }}</h2>
             <p class="mt-5 leading-8 text-black/60">{{ __('pages.faq.section_text') }}</p>
+            <a href="{{ __('pages.faq.button_href') }}" class="mt-6 inline-flex rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8b6f47]">{{ __('pages.faq.button') }}</a>
         </div>
         <div class="grid gap-4">@foreach(__('pages.faq.items') as $item)
                 <details class="group rounded-2xl border border-black/10 bg-white p-5">

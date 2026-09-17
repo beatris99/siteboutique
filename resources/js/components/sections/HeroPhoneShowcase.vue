@@ -48,7 +48,7 @@
                                         : 'none',
                                 }"
                             >
-                                <PhoneScreen :site="pane" :theme="paneTheme(paneIndex)" />
+                                <PhoneScreen :site="pane" :theme="paneTheme(paneIndex)" :labels="showcase.ui" />
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
             <button
                 type="button"
                 class="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-[#171717] shadow-sm transition hover:bg-black hover:text-white"
-                aria-label="Previous"
+                :aria-label="showcase.ui.previous"
                 @click="prevSlide"
             >
                 ←
@@ -85,7 +85,7 @@
             <button
                 type="button"
                 class="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-white text-[#171717] shadow-sm transition hover:bg-black hover:text-white"
-                aria-label="Next"
+                :aria-label="showcase.ui.next"
                 @click="nextSlide"
             >
                 →

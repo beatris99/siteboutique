@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'email' => env('ADMIN_EMAIL', 'heresbeatriselena@gmail.com'),
+    'email' => env('ADMIN_EMAIL', 'admin@example.com'),
 
-    'name' => env('ADMIN_NAME', 'Beatris Lupuleț'),
+    'name' => env('ADMIN_NAME', 'SiteGo Admin'),
 ];

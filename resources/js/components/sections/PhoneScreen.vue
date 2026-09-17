@@ -1,7 +1,7 @@
 <template>
     <div class="px-4 pb-8 pt-12">
         <div class="mb-4 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
-            <p class="text-[9px] font-bold uppercase tracking-[0.25em] text-black/35">Google</p>
+            <p class="text-[9px] font-bold uppercase tracking-[0.25em] text-black/35">{{ labels.search_engine }}</p>
             <p class="mt-1 truncate text-[12px] font-semibold text-black/65">{{ site.search }}</p>
         </div>
 
@@ -165,15 +165,15 @@
 
         <footer class="mt-4 grid grid-cols-3 gap-3 rounded-[1.8rem] bg-[#171717] p-5 text-white">
             <div>
-                <p class="text-[9px] font-bold text-white/50">Program</p>
+                <p class="text-[9px] font-bold text-white/50">{{ labels.program }}</p>
                 <p class="mt-1 text-[11px] leading-5 text-white/80">{{ site.footer.program }}</p>
             </div>
             <div>
-                <p class="text-[9px] font-bold text-white/50">Locație</p>
+                <p class="text-[9px] font-bold text-white/50">{{ labels.location }}</p>
                 <p class="mt-1 text-[11px] leading-5 text-white/80">{{ site.footer.location }}</p>
             </div>
             <div>
-                <p class="text-[9px] font-bold text-white/50">Contact</p>
+                <p class="text-[9px] font-bold text-white/50">{{ labels.contact }}</p>
                 <p class="mt-1 text-[11px] leading-5 text-white/80">{{ site.footer.contact }}</p>
             </div>
         </footer>
@@ -188,6 +188,7 @@ import ScooterIcon from '../icons/ScooterIcon.vue'
 const props = defineProps({
     site: { type: Object, required: true },
     theme: { type: Object, required: true },
+    labels: { type: Object, required: true },
 })
 
 const isBrand = computed(() => props.site.style === 'brand')

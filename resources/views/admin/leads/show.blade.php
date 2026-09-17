@@ -135,7 +135,7 @@
 
                     <div>
                         <p class="text-sm text-black/40">Preț estimativ</p>
-                        <p class="mt-1 text-2xl font-semibold">{{ $lead->total_price }} lei</p>
+                        <p class="mt-1 text-2xl font-semibold">{{ $lead->total_price }} {{ config('sitego-pricing.currency_label') }}</p>
                     </div>
                 </div>
 

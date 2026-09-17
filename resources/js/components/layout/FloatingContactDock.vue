@@ -16,7 +16,7 @@
                     class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.whatsapp_label || 'Scrie pe WhatsApp' }}
+                    {{ dock.whatsapp_label }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white">
                         <WhatsappIcon class="h-5 w-5" />
                     </span>
@@ -27,7 +27,7 @@
                     class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.email_label || 'Trimite email' }}
+                    {{ dock.email_label }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white">
                         <svg viewBox="0 0 24 24" class="h-4.5 w-4.5" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 6h16v12H4z" />
@@ -42,7 +42,7 @@
                     class="flex items-center gap-3 rounded-full bg-white py-2.5 pl-4 pr-2.5 text-sm font-semibold text-black shadow-lg ring-1 ring-black/5 transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.phone_label || 'Sună acum' }}
+                    {{ dock.phone_label }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#a67c3a] text-white">
                         <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor">
                             <path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .58 3.6 1 1 0 0 1-.24 1z" />
@@ -55,7 +55,7 @@
                     class="flex items-center gap-3 rounded-full bg-black py-2.5 pl-4 pr-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-x-1"
                     @click="isOpen = false"
                 >
-                    {{ dock.cta_label || 'Hai să vorbim' }}
+                    {{ dock.cta_label }}
                     <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">→</span>
                 </a>
             </div>
@@ -65,7 +65,7 @@
             type="button"
             class="flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-xl ring-4 ring-black/10 transition hover:scale-105 motion-reduce:transition-none"
             :aria-expanded="isOpen"
-            :aria-label="isOpen ? (dock.close_label || 'Închide') : (dock.open_label || 'Contact rapid')"
+            :aria-label="isOpen ? dock.close_label : dock.open_label"
             @click="isOpen = !isOpen"
         >
             <span v-if="!isOpen" class="relative">
@@ -91,22 +91,18 @@ const props = defineProps({
 
 const isOpen = ref(false)
 
-const fallbackEmail = 'sitegobv@gmail.com'
-const fallbackPhone = '40747084861'
-
 const emailHref = computed(() => {
-    const email = props.contactInfo.email || fallbackEmail
-    return `mailto:${email}`
+    return props.contactInfo.email ? `mailto:${props.contactInfo.email}` : '#'
 })
 
 const phoneHref = computed(() => {
-    const digits = (props.contactInfo.phone || fallbackPhone).replace(/\D/g, '')
+    const digits = (props.contactInfo.phone || '').replace(/\D/g, '')
     return digits ? `tel:+${digits}` : '#'
 })
 
 const whatsappHref = computed(() => {
-    const digits = (props.contactInfo.phone || fallbackPhone).replace(/\D/g, '')
-    const text = encodeURIComponent('Bună! Aș vrea să discutăm despre un site.')
+    const digits = (props.contactInfo.phone || '').replace(/\D/g, '')
+    const text = encodeURIComponent(props.dock.whatsapp_message || '')
     return digits ? `https://wa.me/${digits}?text=${text}` : '#'
 })
 

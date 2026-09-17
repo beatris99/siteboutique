@@ -73,7 +73,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
+import { formatPrice as formatCurrency } from "../../utils/formatPrice";
 
 const props = defineProps({
     summary: {
@@ -96,6 +97,10 @@ const props = defineProps({
         type: Number,
         required: true,
     },
+    currencyLabel: {
+        type: String,
+        required: true,
+    },
 });
 
 const visibleSelectedFeatures = computed(() => (props.selectedFeatures || []).filter(feature => feature?.name && String(feature.name).trim() !== ''))
@@ -105,6 +110,6 @@ function label(snakeKey, camelKey) {
 }
 
 function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString("ro-RO")} lei`;
+    return formatCurrency(value, props.currencyLabel);
 }
 </script>

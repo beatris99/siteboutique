@@ -292,91 +292,30 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+    messages: {
+        type: Object,
+        required: true,
+    },
+    currencyCode: {
+        type: String,
+        required: true,
+    },
 });
 
 const emit = defineEmits(["lead-created"]);
 
-const fallback = {
-    eyebrow: "Hai să vorbim",
-
-    title: "Spune-ne ideea ta. Restul stabilim împreună.",
-
-    description:
-        "Nu trebuie să știi exact ce ai nevoie. Spune-ne ce vrei să rezolvi, iar noi găsim soluția potrivită pentru proiectul tău.",
-
-    points: [
-        {
-            title: "Îmi spui ce ai nevoie",
-            text: "Pe scurt, cu cuvintele tale. Nu ai nevoie de termeni tehnici.",
-        },
-        {
-            title: "Discutăm varianta potrivită",
-            text: "Îți arătăm ce se poate face și cum ar arăta pentru afacerea ta.",
-        },
-        {
-            title: "Stabilim pașii",
-            text: "Abia după ce înțelegem proiectul, vorbim despre detalii și preț.",
-        },
-    ],
-
-    form: {
-        eyebrow: "Trimite un mesaj",
-
-        title: "Începem o conversație.",
-
-        description:
-            "Completează câteva date și revenim cu întrebări clare despre ideea ta.",
-
-        name: "Cum te numești?",
-
-        name_placeholder: "Numele tău",
-
-        contact: "Telefon sau email",
-
-        contact_placeholder: "Cum te putem contacta",
-
-        company: "Companie / proiect, opțional",
-
-        company_placeholder: "Ex: salon, cabinet, pensiune, serviciu local",
-
-        message: "Ce ai în minte?",
-
-        message_placeholder:
-            "Ex: vreau un site pentru salonul meu, cu programări și o galerie cu lucrările mele.",
-
-        consent:
-            "Sunt de acord să fiu contactat/ă în legătură cu această cerere.",
-
-        submit: "Trimite mesajul",
-
-        sending: "Se trimite...",
-
-        success_title: "Mesaj trimis",
-
-        success_text: "Mulțumim. Revenim cât mai curând cu un răspuns.",
-
-        send_another: "Trimite alt mesaj",
-    },
-};
-
-const copy = computed(() => ({
-    ...fallback,
-    ...props.t,
-
-    points: Array.isArray(props.t?.points) ? props.t.points : fallback.points,
-
-    form: {
-        ...fallback.form,
-        ...(props.t?.form || {}),
-    },
-}));
+const copy = computed(() => props.t);
 
 const points = computed(() => copy.value.points);
 
 const { isSubmitting, errorMessage, submitLead, resetMessages } =
-    useLeadSubmission({
-        success: copy.value.form.success_title || "Mesaj trimis",
-    });
+    useLeadSubmission(
+        {
+            ...props.messages,
+            success: copy.value.form.success_title,
+        },
+        { currencyCode: props.currencyCode },
+    );
 
 const hasSubmitted = ref(false);
 
@@ -415,18 +354,18 @@ const touched = ref({
     ...emptyTouched,
 });
 
-const topicPrefillMap = {
-    abonament:
-        "Vreau să discutăm despre un abonament lunar pentru mentenanță, suport și dezvoltări ulterioare.",
-};
+const topicPrefillMap = computed(() => ({
+    abonament: copy.value.form.subscription_message,
+    subscription: copy.value.form.subscription_message,
+}));
 
 onMounted(() => {
     const search = new URLSearchParams(window.location.search);
 
     const topic = search.get("topic");
 
-    if (topic && topicPrefillMap[topic] && !form.value.message.trim()) {
-        form.value.message = topicPrefillMap[topic];
+    if (topic && topicPrefillMap.value[topic] && !form.value.message.trim()) {
+        form.value.message = topicPrefillMap.value[topic];
     }
 });
 
@@ -458,11 +397,11 @@ function validateName() {
     const value = form.value.name.trim();
 
     if (!value) {
-        return "Completează numele ca să știm cum să ne adresăm.";
+        return copy.value.form.validation.name_required;
     }
 
     if (value.length < 2) {
-        return "Numele pare puțin prea scurt.";
+        return copy.value.form.validation.name_short;
     }
 
     return "";
@@ -472,14 +411,14 @@ function validateContact() {
     const value = form.value.contact.trim();
 
     if (!value) {
-        return "Lasă-ne un telefon sau un email ca să putem reveni.";
+        return copy.value.form.validation.contact_required;
     }
 
     if (value.includes("@")) {
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
         if (!isValidEmail) {
-            return "Emailul pare incomplet. Verifică-l, te rog.";
+            return copy.value.form.validation.email_invalid;
         }
 
         return "";
@@ -488,7 +427,7 @@ function validateContact() {
     const digits = value.replace(/\D/g, "");
 
     if (digits.length < 7) {
-        return "Verifică numărul de telefon introdus.";
+        return copy.value.form.validation.phone_invalid;
     }
 
     return "";
@@ -498,11 +437,11 @@ function validateMessage() {
     const value = form.value.message.trim();
 
     if (!value) {
-        return "Spune-ne în câteva cuvinte cu ce te putem ajuta.";
+        return copy.value.form.validation.message_required;
     }
 
     if (value.length < 8) {
-        return "Mai spune-ne doar câteva detalii despre idee.";
+        return copy.value.form.validation.message_short;
     }
 
     return "";
@@ -510,7 +449,7 @@ function validateMessage() {
 
 function validatePrivacyAccepted() {
     if (!form.value.privacyAccepted) {
-        return "Avem nevoie de acordul tău pentru a putea reveni.";
+        return copy.value.form.validation.consent_required;
     }
 
     return "";
@@ -636,7 +575,9 @@ async function handleSubmit() {
     const { email, phone } = splitContact(form.value.contact);
 
     const message = [
-        form.value.company ? `Companie / proiect: ${form.value.company}` : null,
+        form.value.company
+            ? `${copy.value.form.lead.company_prefix}: ${form.value.company}`
+            : null,
 
         form.value.message,
     ]
@@ -652,19 +593,19 @@ async function handleSubmit() {
 
         message,
 
-        requestType: "conversation",
+        requestType: copy.value.form.lead.request_type,
 
-        siteGoal: "Conversație despre proiect",
+        siteGoal: copy.value.form.lead.site_goal,
 
-        template: "Cerere de conversație SiteGo",
+        template: copy.value.form.lead.template,
 
-        categoryKey: "conversation",
+        categoryKey: copy.value.form.lead.category_key,
 
-        categoryLabel: "Conversație",
+        categoryLabel: copy.value.form.lead.category_label,
 
-        packageKey: "custom-offer",
+        packageKey: copy.value.form.lead.package_key,
 
-        packageName: "Ofertă după discuție",
+        packageName: copy.value.form.lead.package_name,
 
         features: [],
 

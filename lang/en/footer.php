@@ -5,6 +5,14 @@ return [
     'copyright' => '© 2026 SiteGo. All rights reserved.',
     'contact_title' => 'Contact',
     'navigation_title' => 'Navigation',
+    'services_title' => 'Services',
+    'service_links' => [
+        ['label' => 'Website development', 'href' => '/creare-site-web'],
+        ['label' => 'Website creation', 'href' => '/realizare-site-uri'],
+        ['label' => 'Website maintenance', 'href' => '/mentenanta-site'],
+        ['label' => 'Landing page', 'href' => '/landing-page'],
+        ['label' => 'Web design Brașov', 'href' => '/web-design-brasov'],
+    ],
     'legal_title' => 'Legal',
     'legal_links' => [
         ['label' => 'Privacy policy', 'href' => '/politica-confidentialitate'],

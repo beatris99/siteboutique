@@ -53,7 +53,7 @@
         <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
             <p class="text-sm text-black/50">Valoare estimată</p>
             <p class="mt-2 text-3xl font-semibold">
-                {{ number_format($stats['estimated_value'], 0, ',', '.') }} lei
+                {{ number_format($stats['estimated_value'], 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
             </p>
         </div>
     </div>
@@ -83,7 +83,7 @@
         <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
             <p class="text-sm text-black/50">Valoare câștigată</p>
             <p class="mt-2 text-3xl font-semibold">
-                {{ number_format($stats['won_value'], 0, ',', '.') }} lei
+                {{ number_format($stats['won_value'], 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
             </p>
         </div>
     </div>
@@ -122,7 +122,7 @@
                                 </p>
 
                                 <p class="mt-1 text-sm text-black/50">
-                                    {{ $lead->selected_template }} · {{ number_format($lead->total_price, 0, ',', '.') }} lei
+                                    {{ $lead->selected_template }} · {{ number_format($lead->total_price, 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
                                 </p>
                             </div>
 
@@ -242,7 +242,7 @@
                         </td>
 
                         <td class="py-4 pr-4 font-semibold">
-                            {{ number_format($summary['total'], 0, ',', '.') }} lei
+                            {{ number_format($summary['total'], 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
                         </td>
                     </tr>
                 @endforeach

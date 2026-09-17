@@ -36,7 +36,7 @@ return [
             ['question' => 'Puteți lucra pe un site existent?', 'answer' => 'Da. Putem reface structura, designul, performanța, SEO-ul tehnic sau anumite funcționalități ale unui proiect existent.'],
         ],
         'related' => [
-            ['title' => 'Landing page', 'href' => '/landing-page'],
+            ['title' => 'Prețuri creare site', 'href' => '/preturi'],
             ['title' => 'Mentenanță și dezvoltări', 'href' => '/mentenanta-site'],
             ['title' => 'Portofoliu', 'href' => '/portofoliu'],
         ],
@@ -102,8 +102,8 @@ return [
         ],
         'related' => [
             ['title' => 'Creare site web', 'href' => '/creare-site-web'],
+            ['title' => 'Prețuri mentenanță', 'href' => '/preturi#mentenanta'],
             ['title' => 'Portofoliu', 'href' => '/portofoliu'],
-            ['title' => 'Contact', 'href' => '/contact?topic=abonament'],
         ],
         'en' => [
             'title' => 'Website maintenance and ongoing development | SiteGo',

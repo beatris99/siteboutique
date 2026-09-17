@@ -120,7 +120,7 @@
                                 class="flex-1 rounded-full border border-black/10 bg-white px-6 py-4 text-sm font-semibold text-black transition hover:border-black/30"
                                 @click="chooseTemplate(template)"
                             >
-                                {{ common.choose_template || common.chooseTemplate || 'Alege modelul' }}
+                                {{ common.choose_template }}
                             </button>
                         </div>
                     </div>
@@ -131,9 +131,10 @@
 </template>
 
 <script setup>
-import TemplateMiniPreview from '../templates/TemplateMiniPreview.vue'
+import TemplateMiniPreview from "../templates/TemplateMiniPreview.vue";
+import { formatPrice as formatCurrency } from "../../utils/formatPrice";
 
-defineProps({
+const props = defineProps({
     section: {
         type: Object,
         required: true,
@@ -162,12 +163,16 @@ defineProps({
         type: Object,
         default: null,
     },
-})
+    currencyLabel: {
+        type: String,
+        required: true,
+    },
+});
 
 const emit = defineEmits(['select-category', 'select-template'])
 
 function formatPrice(value) {
-    return `${Number(value || 0).toLocaleString('ro-RO')} lei`
+    return formatCurrency(value, props.currencyLabel);
 }
 
 function chooseTemplate(template) {

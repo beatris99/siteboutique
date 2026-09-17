@@ -4,18 +4,15 @@
             <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
                 <div>
                     <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
-                        Materiale necesare
+                        {{ labels.eyebrow }}
                     </p>
-
                     <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
                         {{ info.title }}
                     </h2>
-
                     <p class="mt-5 leading-8 text-black/60">
                         {{ info.description }}
                     </p>
                 </div>
-
                 <div class="grid gap-4 md:grid-cols-2">
                     <div
                         v-for="item in info.requirements"
@@ -37,5 +34,9 @@ defineProps({
         type: Object,
         required: true,
     },
-})
+    labels: {
+        type: Object,
+        required: true,
+    },
+});
 </script>

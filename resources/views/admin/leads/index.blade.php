@@ -60,7 +60,7 @@
         <div class="rounded-[1.5rem] border border-black/10 bg-white p-5">
             <p class="text-sm text-black/50">Valoare estimată</p>
             <p class="mt-2 text-3xl font-semibold">
-                {{ number_format($stats['estimated_value'] ?? 0, 0, ',', '.') }} lei
+                {{ number_format($stats['estimated_value'] ?? 0, 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
             </p>
         </div>
     </div>
@@ -270,7 +270,7 @@
                         </td>
 
                         <td class="whitespace-nowrap px-5 py-4 font-semibold">
-                            {{ number_format($lead->total_price, 0, ',', '.') }} lei
+                            {{ number_format($lead->total_price, 0, ',', '.') }} {{ config('sitego-pricing.currency_label') }}
                         </td>
 
                         <td class="whitespace-nowrap px-5 py-4 text-black/50">

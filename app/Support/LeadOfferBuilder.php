@@ -12,7 +12,7 @@ class LeadOfferBuilder
         $requirements = $this->formatList(TemplateRequirementResolver::requirements($lead));
         $notIncluded = $this->formatList(TemplateRequirementResolver::notIncluded());
 
-        $estimatedPrice = number_format((int) $lead->total_price, 0, ',', '.') . ' lei';
+        $estimatedPrice = trim(number_format((int) $lead->total_price, 0, ',', '.') . ' ' . config('sitego-pricing.currency_label'));
 
         $requestType = $lead->request_type === 'developer_template'
             ? 'Cumpărare template pentru developer'

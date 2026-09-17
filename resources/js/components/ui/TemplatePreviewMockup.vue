@@ -25,11 +25,11 @@
 
             <div class="mt-5 flex flex-wrap gap-2">
                 <span class="rounded-full bg-white px-4 py-2 text-xs font-semibold text-black">
-                    {{ template.preview?.primaryButton || 'Cere ofertă' }}
+                    {{ template.preview?.primaryButton || labels.preview_primary }}
                 </span>
 
                 <span class="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white">
-                    {{ template.preview?.secondaryButton || 'Află detalii' }}
+                    {{ template.preview?.secondaryButton || labels.preview_secondary }}
                 </span>
             </div>
 
@@ -71,6 +71,10 @@
 <script setup>
 defineProps({
     template: {
+        type: Object,
+        required: true,
+    },
+    labels: {
         type: Object,
         required: true,
     },

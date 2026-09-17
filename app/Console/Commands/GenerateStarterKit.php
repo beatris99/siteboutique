@@ -163,6 +163,8 @@ MD;
 
     private function offerDraft(string $clientName, array $kit): string
     {
+        $currencyLabel = config('sitego-pricing.currency_label');
+
         return <<<MD
 # Ofertă draft - {$clientName}
 
@@ -181,7 +183,7 @@ Pentru proiectul tău, propun să pornim de la template-ul {$kit['name']}, potri
 
 ## Preț
 
-Estimare: ______ lei
+Estimare: ______ {$currencyLabel}
 
 ## Termen
 
