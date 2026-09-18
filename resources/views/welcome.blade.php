@@ -44,87 +44,111 @@
                 'home_title',
                 $locale === 'en'
                     ? 'Website development for businesses | SiteGo'
-                    : 'Creare site web și dezvoltare pentru afaceri | SiteGo'
+                    : 'Creare site web și dezvoltare pentru afaceri | SiteGo',
             ),
             'description' => data_get(
                 $homeMeta,
                 'home_description',
                 $locale === 'en'
                     ? 'SiteGo builds presentation websites, online stores, booking systems and custom web solutions for businesses in Romania and remote international collaborations.'
-                    : 'SiteGo construiește site-uri de prezentare, magazine online, sisteme de rezervări și soluții web personalizate pentru afaceri din România și colaborări online internaționale.'
+                    : 'SiteGo construiește site-uri de prezentare, magazine online, sisteme de rezervări și soluții web personalizate pentru afaceri din România și colaborări online internaționale.',
             ),
         ],
         'contact' => [
-            'title' => $locale === 'en'
-                ? 'Contact SiteGo - Tell us about your web project'
-                : 'Contact SiteGo - Spune-ne despre proiectul tău web',
-            'description' => $locale === 'en'
-                ? 'Send SiteGo a short brief for a website, shop, booking flow, landing page or custom web application.'
-                : 'Trimite o cerere către SiteGo pentru un site, magazin online, sistem de rezervări, landing page sau aplicație web personalizată.',
+            'title' =>
+                $locale === 'en'
+                    ? 'Contact SiteGo - Tell us about your web project'
+                    : 'Contact SiteGo - Spune-ne despre proiectul tău web',
+            'description' =>
+                $locale === 'en'
+                    ? 'Send SiteGo a short brief for a website, shop, booking flow, landing page or custom web application.'
+                    : 'Trimite o cerere către SiteGo pentru un site, magazin online, sistem de rezervări, landing page sau aplicație web personalizată.',
         ],
         'cerere-trimisa' => [
-            'title' => $locale === 'en'
-                ? 'Request sent | SiteGo'
-                : 'Cerere trimisă | SiteGo',
-            'description' => $locale === 'en'
-                ? 'Your request has been received by SiteGo.'
-                : 'Cererea ta a fost primită de SiteGo.',
+            'title' => $locale === 'en' ? 'Request sent | SiteGo' : 'Cerere trimisă | SiteGo',
+            'description' =>
+                $locale === 'en' ? 'Your request has been received by SiteGo.' : 'Cererea ta a fost primită de SiteGo.',
         ],
         'modele-site' => [
-            'title' => $locale === 'en'
-                ? 'Website models and interactive demos | SiteGo'
-                : 'Modele de site și demo-uri interactive | SiteGo',
-            'description' => $locale === 'en'
-                ? 'Explore website models for services, bookings, shops and custom digital products.'
-                : 'Vezi modele de site pentru servicii, rezervări, magazine și soluții digitale personalizate.',
+            'title' =>
+                $locale === 'en'
+                    ? 'Website models and interactive demos | SiteGo'
+                    : 'Modele de site și demo-uri interactive | SiteGo',
+            'description' =>
+                $locale === 'en'
+                    ? 'Explore website models for services, bookings, shops and custom digital products.'
+                    : 'Vezi modele de site pentru servicii, rezervări, magazine și soluții digitale personalizate.',
         ],
         'configurator' => [
-            'title' => $locale === 'en'
-                ? 'Website configurator - Choose the features you need | SiteGo'
-                : 'Configurator site - Alege funcționalitățile de care ai nevoie | SiteGo',
-            'description' => $locale === 'en'
-                ? 'Choose the website type and features you need and send SiteGo a clear project request.'
-                : 'Alege tipul de site și funcționalitățile de care ai nevoie și trimite către SiteGo o cerere clară de proiect.',
+            'title' =>
+                $locale === 'en'
+                    ? 'Website configurator - Choose the features you need | SiteGo'
+                    : 'Configurator site - Alege funcționalitățile de care ai nevoie | SiteGo',
+            'description' =>
+                $locale === 'en'
+                    ? 'Choose the website type and features you need and send SiteGo a clear project request.'
+                    : 'Alege tipul de site și funcționalitățile de care ai nevoie și trimite către SiteGo o cerere clară de proiect.',
         ],
         'portofoliu' => [
             'title' => data_get($portfolioContent, 'meta.index.title', 'Portofoliu SiteGo - proiecte web live'),
-            'description' => data_get($portfolioContent, 'meta.index.description', 'Vezi proiectele web realizate și publicate de SiteGo.'),
+            'description' => data_get(
+                $portfolioContent,
+                'meta.index.description',
+                'Vezi proiectele web realizate și publicate de SiteGo.',
+            ),
         ],
         'portofoliu/rentride' => [
             'title' => data_get($portfolioContent, 'meta.rentride.title', 'RentRide în portofoliul SiteGo'),
-            'description' => data_get($portfolioContent, 'meta.rentride.description', 'Descoperă proiectul RentRide, platformă pentru închirieri.'),
+            'description' => data_get(
+                $portfolioContent,
+                'meta.rentride.description',
+                'Descoperă proiectul RentRide, platformă pentru închirieri.',
+            ),
         ],
         'portofoliu/access-bars-beatris' => [
-            'title' => data_get($portfolioContent, 'meta.access-bars-beatris.title', 'Access Happiness în portofoliul SiteGo'),
-            'description' => data_get($portfolioContent, 'meta.access-bars-beatris.description', 'Descoperă site-ul Access Happiness realizat de SiteGo.'),
+            'title' => data_get(
+                $portfolioContent,
+                'meta.access-bars-beatris.title',
+                'Access Happiness în portofoliul SiteGo',
+            ),
+            'description' => data_get(
+                $portfolioContent,
+                'meta.access-bars-beatris.description',
+                'Descoperă site-ul Access Happiness realizat de SiteGo.',
+            ),
         ],
         'portofoliu/happiness-atelier' => [
-            'title' => data_get($portfolioContent, 'meta.happiness-atelier.title', 'Happiness Atelier în portofoliul SiteGo'),
-            'description' => data_get($portfolioContent, 'meta.happiness-atelier.description', 'Descoperă platforma Happiness Atelier pentru catalog și rezervări de rochii.'),
+            'title' => data_get(
+                $portfolioContent,
+                'meta.happiness-atelier.title',
+                'Happiness Atelier în portofoliul SiteGo',
+            ),
+            'description' => data_get(
+                $portfolioContent,
+                'meta.happiness-atelier.description',
+                'Descoperă platforma Happiness Atelier pentru catalog și rezervări de rochii.',
+            ),
         ],
     ];
 
     if (str_starts_with($currentPath, 'templates/')) {
         $pageMeta = [
-            'title' => $locale === 'en'
-                ? 'Interactive website demo | SiteGo'
-                : 'Demo site interactiv | SiteGo',
-            'description' => $locale === 'en'
-                ? 'Explore a configurable website demo and see how the structure can be adapted to your business.'
-                : 'Vezi un demo de site configurabil și cum poate fi adaptată structura pentru afacerea ta.',
+            'title' => $locale === 'en' ? 'Interactive website demo | SiteGo' : 'Demo site interactiv | SiteGo',
+            'description' =>
+                $locale === 'en'
+                    ? 'Explore a configurable website demo and see how the structure can be adapted to your business.'
+                    : 'Vezi un demo de site configurabil și cum poate fi adaptată structura pentru afacerea ta.',
         ];
     } else {
         $pageMeta = $metaByPath[$currentPath] ?? $metaByPath[''];
     }
 
-    $ogImagePath = '/images/og-cover.jpg';
+    $ogImagePath = '/images/og-cover.png';
     $ogImageAlt = 'SiteGo - creare site web și dezvoltare web pentru afaceri';
     $ogImageType = 'image/jpeg';
 
     $portfolioStructuredData = null;
-    $portfolioProjectsBySlug = is_array($portfolioContent)
-        ? ($portfolioContent['projects'] ?? [])
-        : [];
+    $portfolioProjectsBySlug = is_array($portfolioContent) ? $portfolioContent['projects'] ?? [] : [];
     $portfolioProjects = array_values($portfolioProjectsBySlug);
 
     $makePortfolioCreativeWork = static function (array $project) use ($appUrl): array {
@@ -175,7 +199,7 @@
         if (is_array($portfolioProject)) {
             if (!empty($portfolioProject['image'])) {
                 $ogImagePath = $portfolioProject['image'];
-                $ogImageAlt = $portfolioProject['image_alt'] ?? $portfolioProject['name'] ?? $ogImageAlt;
+                $ogImageAlt = $portfolioProject['image_alt'] ?? ($portfolioProject['name'] ?? $ogImageAlt);
 
                 if (str_ends_with(strtolower($ogImagePath), '.webp')) {
                     $ogImageType = 'image/webp';
@@ -193,15 +217,17 @@
         }
     }
 
-    $robotsMeta = $currentPath === 'cerere-trimisa'
-        ? 'noindex, follow'
-        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+    $robotsMeta =
+        $currentPath === 'cerere-trimisa'
+            ? 'noindex, follow'
+            : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
     $ogImage = $appUrl . $ogImagePath;
     $ogLocale = $locale === 'ro' ? 'ro_RO' : 'en_US';
     $contact = config('sitego.contact');
 @endphp
 <html lang="{{ $locale }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -233,17 +259,18 @@
     <meta name="theme-color" content="#f7f4ef">
     <meta name="google-site-verification" content="8Wp3PXaLXhT25xkld277MiKuu-PrIKrYvT6HKMXNeD4">
 
-    <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
-    @if($locale === 'ro')
-        <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-ext-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-ext-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-wght-normal.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-wght-normal.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    @if ($locale === 'ro')
+        <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-ext-wght-normal.woff2') }}" as="font"
+            type="font/woff2" crossorigin>
+        <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-ext-wght-normal.woff2') }}" as="font"
+            type="font/woff2" crossorigin>
     @endif
 
-    @vite([
-        'resources/css/app.css',
-        'resources/js/app.js',
-    ])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script type="application/ld+json">
         {!! json_encode(
@@ -260,7 +287,7 @@
                             '@type' => 'ImageObject',
                             'url' => $appUrl . '/images/sitego-icon.svg',
                         ],
-                        'image' => $appUrl . '/images/og-cover.jpg',
+                        'image' => $appUrl . '/images/og-cover.png',
                         'email' => $contact['email'] ?? 'sitegobv@gmail.com',
                         'telephone' => $contact['phone'] ?? '+40747084861',
                         'areaServed' => [
@@ -319,9 +346,11 @@
         </script>
     @endif
 </head>
+
 <body>
     <script id="sitego-app-data" type="application/json">@json($sitegoAppData)</script>
     <div id="app"></div>
     @include('partials.cookie-consent')
 </body>
+
 </html>

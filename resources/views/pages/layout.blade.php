@@ -25,13 +25,13 @@
     <meta property="og:title" content="@yield('title')">
     <meta property="og:description" content="@yield('description', __('pages.layout.default_description'))">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.jpg">
+    <meta property="og:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.png">
     <meta property="og:image:alt" content="SiteGo - creare site web și dezvoltare web pentru afaceri">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title')">
     <meta name="twitter:description" content="@yield('description', __('pages.layout.default_description'))">
-    <meta name="twitter:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.jpg">
+    <meta name="twitter:image" content="{{ rtrim(config('app.url'), '/') }}/images/og-cover.png">
 
     <meta name="google-site-verification" content="8Wp3PXaLXhT25xkld277MiKuu-PrIKrYvT6HKMXNeD4">
 
