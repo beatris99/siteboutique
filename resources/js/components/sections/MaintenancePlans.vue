@@ -50,7 +50,7 @@
                             :key="feature"
                             class="flex gap-2"
                         >
-                            <span :class="plan.highlighted ? 'text-white' : 'text-[#8b6f47]'">✓</span>
+                            <span :class="plan.highlighted ? 'text-white' : 'text-[#805d2c]'">✓</span>
                             <span>{{ feature }}</span>
                         </li>
                     </ul>

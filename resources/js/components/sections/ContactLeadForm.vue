@@ -2,7 +2,7 @@
     <section id="contact" class="bg-[#f7f4ef] px-4 py-14 sm:px-6 sm:py-20">
         <div class="mx-auto max-w-7xl">
             <div class="max-w-3xl">
-                <p class="text-sm uppercase tracking-[0.25em] text-[#a67c3a]">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                     {{ contact.eyebrow }}
                 </p>
 
@@ -25,7 +25,7 @@
                         class="overflow-hidden rounded-[1.5rem] bg-[#f7f4ef] p-6"
                     >
                         <p
-                            class="text-sm uppercase tracking-[0.25em] text-[#a67c3a]"
+                            class="text-sm uppercase tracking-[0.25em] text-[#805d2c]"
                         >
                             {{ contact.details_eyebrow }}
                         </p>
@@ -41,35 +41,35 @@
 
                     <div class="mt-8 grid gap-6">
                         <div>
-                            <p class="text-sm font-medium text-black/45">
+                            <p class="text-sm font-medium text-black/60">
                                 {{ contact.email_label }}
                             </p>
 
                             <a
                                 v-if="contactInfo.email"
                                 :href="`mailto:${contactInfo.email}`"
-                                class="mt-1 inline-block text-lg font-semibold text-black hover:text-[#a67c3a]"
+                                class="mt-1 inline-block text-lg font-semibold text-black hover:text-[#805d2c]"
                             >
                                 {{ contactInfo.email }}
                             </a>
                         </div>
 
                         <div>
-                            <p class="text-sm font-medium text-black/45">
+                            <p class="text-sm font-medium text-black/60">
                                 {{ contact.phone_label }}
                             </p>
 
                             <a
                                 v-if="contactInfo.phone"
                                 :href="phoneHref"
-                                class="mt-1 inline-block text-lg font-semibold text-black hover:text-[#a67c3a]"
+                                class="mt-1 inline-block text-lg font-semibold text-black hover:text-[#805d2c]"
                             >
                                 {{ contactInfo.phone }}
                             </a>
                         </div>
 
                         <div>
-                            <p class="text-sm font-medium text-black/45">
+                            <p class="text-sm font-medium text-black/60">
                                 {{ contact.area_label }}
                             </p>
 
@@ -79,7 +79,7 @@
                         </div>
 
                         <div>
-                            <p class="text-sm font-medium text-black/45">
+                            <p class="text-sm font-medium text-black/60">
                                 {{ contact.services_label }}
                             </p>
 
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="mb-8 rounded-[1.5rem] bg-[#f7f4ef] p-5">
-                        <p class="text-sm text-black/50">
+                        <p class="text-sm text-black/65">
                             {{ contact.selected_label }}
                         </p>
 
@@ -124,7 +124,7 @@
                             <div class="mt-3 grid gap-3">
                                 <div class="grid gap-1">
                                     <p
-                                        class="text-xs uppercase tracking-[0.2em] text-black/40"
+                                        class="text-xs uppercase tracking-[0.2em] text-black/60"
                                     >
                                         {{ contact.template_label }}
                                     </p>
@@ -139,7 +139,7 @@
 
                                 <div class="grid gap-1">
                                     <p
-                                        class="text-xs uppercase tracking-[0.2em] text-black/40"
+                                        class="text-xs uppercase tracking-[0.2em] text-black/60"
                                     >
                                         {{ contact.package_label }}
                                     </p>
@@ -157,7 +157,7 @@
                                     class="grid gap-2"
                                 >
                                     <p
-                                        class="text-xs uppercase tracking-[0.2em] text-black/40"
+                                        class="text-xs uppercase tracking-[0.2em] text-black/60"
                                     >
                                         {{ contact.features_label }}
                                     </p>
@@ -173,13 +173,13 @@
                                     </div>
                                 </div>
 
-                                <p v-else class="text-sm text-black/45">
+                                <p v-else class="text-sm text-black/60">
                                     {{ contact.empty_features }}
                                 </p>
 
                                 <div v-if="totalPrice > 0" class="pt-1">
                                     <p
-                                        class="text-xs uppercase tracking-[0.2em] text-black/40"
+                                        class="text-xs uppercase tracking-[0.2em] text-black/60"
                                     >
                                         {{ contact.estimated_total_label }}
                                     </p>
@@ -629,5 +629,7 @@ async function handleSubmit() {
     resetForm();
     hasSubmitted.value = true;
     emit("lead-created");
+
+    window.location.assign("/cerere-trimisa");
 }
 </script>

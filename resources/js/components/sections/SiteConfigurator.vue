@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="text-sm uppercase tracking-[0.25em] text-[#a67c3a]">
+        <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
             {{ section.eyebrow }}
         </p>
 
@@ -40,7 +40,7 @@
                                     class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl text-xs font-bold"
                                     :class="isSelected(feature.id)
                                         ? 'bg-white text-black'
-                                        : 'bg-[#f7f4ee] text-[#a67c3a]'"
+                                        : 'bg-[#f7f4ee] text-[#805d2c]'"
                                 >
                                     <span>{{ feature.icon }}</span>
                                 </div>
@@ -52,7 +52,7 @@
 
                                     <p
                                         class="mt-1 text-sm leading-6"
-                                        :class="isSelected(feature.id) ? 'text-white/60' : 'text-black/50'"
+                                        :class="isSelected(feature.id) ? 'text-white/60' : 'text-black/65'"
                                     >
                                         {{ feature.plainName }}
                                     </p>
@@ -72,7 +72,7 @@
                         <div class="mt-4 flex items-center justify-between gap-4 border-t pt-3 text-sm"
                              :class="isSelected(feature.id) ? 'border-white/10' : 'border-black/10'"
                         >
-                            <span :class="isSelected(feature.id) ? 'text-white/50' : 'text-black/50'">
+                            <span :class="isSelected(feature.id) ? 'text-white/50' : 'text-black/65'">
                                 {{ section.costLabel }}
                             </span>
 

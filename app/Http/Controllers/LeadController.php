@@ -85,17 +85,36 @@ class LeadController extends Controller
     {
         $lead = $createLeadAction->handle($request->validated());
 
-        try {
-            Mail::to(config('admin.email'))->send(new NewLeadReceivedMail($lead));
+        if ($lead->email) {
+            $customerEmail = $lead->email;
 
-            if ($lead->email) {
-                Mail::to($lead->email)->send(new LeadConfirmationMail($lead));
-            }
-        } catch (Throwable $exception) {
-            Log::error('Lead emails could not be sent.', [
-                'lead_id' => $lead->id,
-                'error' => $exception->getMessage(),
-            ]);
+            defer(function () use ($lead, $customerEmail): void {
+                try {
+                    Mail::to($customerEmail)->send(new LeadConfirmationMail($lead));
+                } catch (Throwable $exception) {
+                    Log::error('Lead confirmation email could not be sent.', [
+                        'lead_id' => $lead->id,
+                        'recipient' => $customerEmail,
+                        'error' => $exception->getMessage(),
+                    ]);
+                }
+            }, "lead-confirmation-{$lead->id}", true);
+        }
+
+        $notificationEmail = config('sitego.contact.email') ?: config('admin.email');
+
+        if ($notificationEmail) {
+            defer(function () use ($lead, $notificationEmail): void {
+                try {
+                    Mail::to($notificationEmail)->send(new NewLeadReceivedMail($lead));
+                } catch (Throwable $exception) {
+                    Log::error('New lead notification email could not be sent.', [
+                        'lead_id' => $lead->id,
+                        'recipient' => $notificationEmail,
+                        'error' => $exception->getMessage(),
+                    ]);
+                }
+            }, "lead-notification-{$lead->id}", true);
         }
 
         return response()->json([

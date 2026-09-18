@@ -5,9 +5,9 @@
                 <img :src="brand.icon" :alt="brand.logo_alt || brand.name" class="h-10 w-10 object-contain">
                 <div class="leading-none">
                     <p class="text-xl font-bold tracking-tight text-black">
-                        {{ brand.first_part }}<span class="text-[#a67c3a]">{{ brand.second_part }}</span>
+                        {{ brand.first_part }}<span class="text-[#805d2c]">{{ brand.second_part }}</span>
                     </p>
-                    <p class="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#a67c3a]">{{ brand.tagline }}</p>
+                    <p class="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#805d2c]">{{ brand.tagline }}</p>
                 </div>
             </a>
             <nav class="hidden items-center gap-6 text-sm text-black/60 lg:flex">
@@ -15,8 +15,8 @@
             </nav>
             <div class="flex items-center gap-3">
                 <div class="hidden rounded-full border border-black/10 bg-white p-1 text-xs font-semibold sm:flex">
-                    <a href="/language/ro" class="rounded-full px-3 py-2" :class="locale === 'ro' ? 'bg-black text-white' : 'text-black/50'">{{ header.language_ro }}</a>
-                    <a href="/language/en" class="rounded-full px-3 py-2" :class="locale === 'en' ? 'bg-black text-white' : 'text-black/50'">{{ header.language_en }}</a>
+                    <a href="/language/ro" class="rounded-full px-3 py-2" :class="locale === 'ro' ? 'bg-black text-white' : 'text-black/65'">{{ header.language_ro }}</a>
+                    <a href="/language/en" class="rounded-full px-3 py-2" :class="locale === 'en' ? 'bg-black text-white' : 'text-black/65'">{{ header.language_en }}</a>
                 </div>
                 <a href="/contact" class="hidden rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#8b6f47] sm:inline-flex">{{ header.cta }}</a>
                 <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/70 text-black transition hover:bg-white lg:hidden" :aria-expanded="isOpen" aria-controls="mobile-menu" :aria-label="isOpen ? header.menu_close_label : header.menu_open_label" @click="toggleMenu">
@@ -30,8 +30,8 @@
                 <nav class="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
                     <a v-for="item in navigation" :key="item.href" :href="item.href" class="rounded-2xl px-4 py-3 text-base font-medium text-black/70 transition hover:bg-white hover:text-black" @click="closeMenu">{{ item.label }}</a>
                     <div class="mt-3 flex gap-2 sm:hidden">
-                        <a href="/language/ro" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'ro' ? 'bg-black text-white' : 'bg-white text-black/50'" @click="closeMenu">{{ header.language_ro }}</a>
-                        <a href="/language/en" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'en' ? 'bg-black text-white' : 'bg-white text-black/50'" @click="closeMenu">{{ header.language_en }}</a>
+                        <a href="/language/ro" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'ro' ? 'bg-black text-white' : 'bg-white text-black/65'" @click="closeMenu">{{ header.language_ro }}</a>
+                        <a href="/language/en" class="rounded-full px-4 py-2 text-sm font-semibold" :class="locale === 'en' ? 'bg-black text-white' : 'bg-white text-black/65'" @click="closeMenu">{{ header.language_en }}</a>
                     </div>
                     <a href="/contact" class="mt-2 rounded-full bg-black px-5 py-3 text-center text-base font-semibold text-white transition hover:bg-[#8b6f47]" @click="closeMenu">{{ header.cta }}</a>
                 </nav>

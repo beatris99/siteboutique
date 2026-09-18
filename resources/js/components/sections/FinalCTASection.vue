@@ -2,7 +2,7 @@
     <section class="bg-black px-6 py-24 text-white">
         <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
             <div>
-                <p class="text-sm uppercase tracking-[0.25em] text-white/40">
+                <p class="text-sm uppercase tracking-[0.25em] text-white/65">
                     {{ section.eyebrow }}
                 </p>
 

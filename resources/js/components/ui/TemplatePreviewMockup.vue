@@ -5,7 +5,7 @@
             <span class="h-3 w-3 rounded-full bg-yellow-300"></span>
             <span class="h-3 w-3 rounded-full bg-green-300"></span>
 
-            <div class="ml-3 flex-1 rounded-full bg-white px-3 py-1 text-[10px] text-black/40">
+            <div class="ml-3 flex-1 rounded-full bg-white px-3 py-1 text-[10px] text-black/60">
                 sitego.ro/templates/{{ template.slug }}
             </div>
         </div>
@@ -39,7 +39,7 @@
                     :key="stat.label"
                     class="rounded-2xl bg-white/10 p-3"
                 >
-                    <p class="text-[10px] uppercase tracking-wide text-white/40">
+                    <p class="text-[10px] uppercase tracking-wide text-white/65">
                         {{ stat.label }}
                     </p>
 
@@ -60,7 +60,7 @@
                 <div class="mt-3 h-2 w-full rounded-full bg-black/10"></div>
                 <div class="mt-2 h-2 w-2/3 rounded-full bg-black/10"></div>
 
-                <p class="mt-4 text-xs font-semibold text-black/50">
+                <p class="mt-4 text-xs font-semibold text-black/65">
                     {{ section }}
                 </p>
             </div>

@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
                 <div>
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ section.eyebrow }}
                     </p>
 

@@ -17,7 +17,7 @@
                 >
                     <div class="flex flex-col justify-between gap-4 md:flex-row md:items-start">
                         <div>
-                            <p class="text-sm uppercase tracking-[0.25em] text-white/40">
+                            <p class="text-sm uppercase tracking-[0.25em] text-white/65">
                                 {{ item.category }}
                             </p>
 
@@ -61,7 +61,7 @@
                         </a>
                     </div>
 
-                    <p class="mt-5 text-xs text-white/35">
+                    <p class="mt-5 text-xs text-white/65">
                         Bazat pe template-ul {{ item.templateName }}.
                     </p>
                 </article>

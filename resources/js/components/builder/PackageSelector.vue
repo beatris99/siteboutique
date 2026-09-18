@@ -2,7 +2,7 @@
     <section class="bg-[#f7f4ef] px-4 py-12 sm:px-6 lg:py-16">
         <div class="mx-auto max-w-7xl">
             <div class="max-w-4xl">
-                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                     {{ section.eyebrow }}
                 </p>
 
@@ -34,7 +34,7 @@
                             <div>
                                 <p
                                     class="text-sm uppercase tracking-[0.25em]"
-                                    :class="packageItem.key === 'premium' ? 'text-white/40' : 'text-[#8b6f47]'"
+                                    :class="packageItem.key === 'premium' ? 'text-white/65' : 'text-[#805d2c]'"
                                 >
                                     {{ packageItem.badge }}
                                 </p>
@@ -66,7 +66,7 @@
                         >
                             <p
                                 class="text-sm"
-                                :class="packageItem.key === 'premium' ? 'text-white/50' : 'text-black/50'"
+                                :class="packageItem.key === 'premium' ? 'text-white/50' : 'text-black/65'"
                             >
                                 {{ common.realization }}
                             </p>
@@ -107,7 +107,7 @@
                             :class="packageItem.key === 'premium' ? 'text-white/80' : 'text-black/70'"
                         >
                             <li v-for="feature in packageItem.features" :key="feature" class="flex gap-2">
-                                <span class="text-[#a67c3a]">✓</span>
+                                <span class="text-[#805d2c]">✓</span>
                                 <span>{{ feature }}</span>
                             </li>
                         </ul>

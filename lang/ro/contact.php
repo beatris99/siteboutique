@@ -88,6 +88,9 @@ return [
     'success_title' => 'Am primit cererea ta.',
     'success_description' => 'Revenim cu întrebări și recomandări clare, pe baza informațiilor trimise de tine.',
     'send_another' => 'Trimite altă cerere',
+    'success_home' => 'Înapoi la prima pagină',
+    'success_back_to_contact' => 'Trimite altă cerere',
+    'success_note' => 'Mesajul tău a ajuns la SiteGo. Nu trebuie să faci nimic în plus; revenim folosind datele de contact trimise.',
     'messages' => [
         'too_many_requests' => 'Ai trimis prea multe cereri într-un timp scurt. Încearcă din nou peste un minut.',
         'check_data' => 'Verifică datele introduse.',

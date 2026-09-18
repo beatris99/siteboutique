@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#a67c3a]">
+                    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#805d2c]">
                         {{ section.eyebrow }}
                     </p>
 
@@ -23,7 +23,7 @@
                     :key="step.number"
                     class="rounded-[1.75rem] border border-black/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#a67c3a]/30 hover:shadow-xl"
                 >
-                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#a67c3a]">
+                    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#805d2c]">
                         {{ step.number }}
                     </p>
 

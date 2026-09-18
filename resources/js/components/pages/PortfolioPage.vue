@@ -7,7 +7,7 @@
             <div class="mx-auto max-w-7xl">
                 <div>
                     <p
-                        class="text-sm font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                        class="text-sm font-semibold uppercase tracking-[0.28em] text-[#805d2c]"
                     >
                         {{ portfolio.hero.eyebrow }}
                     </p>
@@ -37,7 +37,7 @@
                                     {{ item.value }}
                                 </p>
 
-                                <p class="mt-1 text-sm leading-5 text-black/50">
+                                <p class="mt-1 text-sm leading-5 text-black/65">
                                     {{ item.label }}
                                 </p>
                             </div>
@@ -111,12 +111,12 @@
                                 class="flex flex-wrap items-center justify-between gap-3"
                             >
                                 <p
-                                    class="text-sm font-semibold uppercase tracking-[0.2em] text-black/35"
+                                    class="text-sm font-semibold uppercase tracking-[0.2em] text-black/60"
                                 >
                                     {{ project.name }}
                                 </p>
 
-                                <p class="text-sm text-black/40">
+                                <p class="text-sm text-black/60">
                                     {{ project.year }}
                                 </p>
                             </div>
@@ -194,14 +194,14 @@
                                 </span>
 
                                 <span
-                                    class="rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-black/50"
+                                    class="rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-black/65"
                                 >
                                     {{ activeProject.status }}
                                 </span>
                             </div>
 
                             <p
-                                class="mt-8 text-sm font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                                class="mt-8 text-sm font-semibold uppercase tracking-[0.28em] text-[#805d2c]"
                             >
                                 {{ activeProject.name }} ·
                                 {{ activeProject.year }}
@@ -237,7 +237,7 @@
                                 </a>
                             </div>
 
-                            <p class="mt-3 text-xs text-black/35">
+                            <p class="mt-3 text-xs text-black/60">
                                 {{ portfolio.labels.external_note }}
                             </p>
                         </div>
@@ -286,7 +286,7 @@
                         class="rounded-[2rem] border border-black/10 bg-[#f7f4ef] p-7 sm:p-8"
                     >
                         <p
-                            class="text-sm font-semibold uppercase tracking-[0.22em] text-[#a67c3a]"
+                            class="text-sm font-semibold uppercase tracking-[0.22em] text-[#805d2c]"
                         >
                             {{ portfolio.labels.delivered }}
                         </p>
@@ -329,7 +329,7 @@
                         class="rounded-[2rem] border border-black/10 bg-white p-7 sm:p-8"
                     >
                         <p
-                            class="text-sm font-semibold uppercase tracking-[0.22em] text-[#a67c3a]"
+                            class="text-sm font-semibold uppercase tracking-[0.22em] text-[#805d2c]"
                         >
                             {{ portfolio.labels.technology }}
                         </p>
@@ -361,7 +361,7 @@
             >
                 <div class="mx-auto max-w-7xl">
                     <p
-                        class="text-sm font-semibold uppercase tracking-[0.24em] text-[#a67c3a]"
+                        class="text-sm font-semibold uppercase tracking-[0.24em] text-[#805d2c]"
                     >
                         {{ portfolio.labels.next_project }}
                     </p>
@@ -392,13 +392,13 @@
 
                         <div class="flex flex-col justify-center p-7 sm:p-10">
                             <p
-                                class="text-sm font-semibold uppercase tracking-[0.2em] text-black/35"
+                                class="text-sm font-semibold uppercase tracking-[0.2em] text-black/60"
                             >
                                 {{ nextProject.name }}
                             </p>
 
                             <h2
-                                class="mt-4 font-serif text-4xl leading-tight tracking-tight text-black transition group-hover:text-[#8b6f47]"
+                                class="mt-4 font-serif text-4xl leading-tight tracking-tight text-black transition group-hover:text-[#805d2c]"
                             >
                                 {{ nextProject.headline }}
                             </h2>

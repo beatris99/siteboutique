@@ -6,7 +6,7 @@
             </div>
 
             <div>
-                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                     Template selectat
                 </p>
 
@@ -20,7 +20,7 @@
 
                 <div class="mt-8 grid gap-4 md:grid-cols-2">
                     <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                        <p class="text-sm text-black/50">Preț de bază</p>
+                        <p class="text-sm text-black/65">Preț de bază</p>
 
                         <p class="mt-1 text-2xl font-semibold">
                             {{ template.basePrice }} lei
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                        <p class="text-sm text-black/50">Livrare</p>
+                        <p class="text-sm text-black/65">Livrare</p>
 
                         <p class="mt-1 text-2xl font-semibold">
                             {{ template.deliveryTime || 'Estimativ' }}
@@ -38,7 +38,7 @@
 
                 <div class="mt-8 grid gap-5 md:grid-cols-2">
                     <div>
-                        <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                        <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                             Potrivit pentru
                         </p>
 
@@ -54,7 +54,7 @@
                     </div>
 
                     <div>
-                        <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                        <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                             Pagini incluse
                         </p>
 
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         Ce include
                     </p>
 
@@ -81,7 +81,7 @@
                             :key="item"
                             class="flex gap-2"
                         >
-                            <span class="text-[#8b6f47]">✓</span>
+                            <span class="text-[#805d2c]">✓</span>
                             <span>{{ item }}</span>
                         </li>
                     </ul>

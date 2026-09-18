@@ -16,7 +16,7 @@
 
             <span
                 class="mt-2 block text-xs leading-5"
-                :class="selectedCategoryKey === category.key ? 'text-white/60' : 'text-black/50'"
+                :class="selectedCategoryKey === category.key ? 'text-white/60' : 'text-black/65'"
             >
                 {{ category.description }}
             </span>

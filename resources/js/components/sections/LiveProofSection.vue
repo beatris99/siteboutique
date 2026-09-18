@@ -1,7 +1,7 @@
 <template>
     <section id="live-sites" class="bg-[#f7f4ef] px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
         <div class="mx-auto max-w-7xl">
-            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#a67c3a]">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#805d2c]">
                 {{ section.eyebrow }}
             </p>
 
@@ -21,7 +21,7 @@
                 >
                     <div class="flex items-center justify-between gap-3 px-6 pt-6">
                         <div>
-                            <p class="text-sm uppercase tracking-[0.2em] text-black/40">
+                            <p class="text-sm uppercase tracking-[0.2em] text-black/60">
                                 {{ site.category }}
                             </p>
                             <h3 class="mt-2 text-2xl font-semibold text-[#1f1f1f]">
@@ -31,7 +31,7 @@
 
                         <span
                             class="inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold"
-                            :class="site.status === 'live' ? 'bg-[#0f766e]/10 text-[#0f766e]' : 'bg-black/5 text-black/50'"
+                            :class="site.status === 'live' ? 'bg-[#0f766e]/10 text-[#0f766e]' : 'bg-black/5 text-black/65'"
                         >
                             <span v-if="site.status === 'live'" class="h-2 w-2 animate-pulse rounded-full bg-[#0f766e] motion-reduce:animate-none"></span>
                             {{ site.status_label }}
@@ -54,10 +54,10 @@
 
                     <div v-if="site.metrics?.length" class="mt-6 grid grid-cols-3 gap-px overflow-hidden border-y border-black/5 bg-black/5">
                         <div v-for="metric in site.metrics" :key="metric.label" class="bg-white px-4 py-5 text-center">
-                            <p class="text-xl font-semibold text-[#a67c3a] sm:text-2xl">
+                            <p class="text-xl font-semibold text-[#805d2c] sm:text-2xl">
                                 {{ metric.value }}
                             </p>
-                            <p class="mt-1 text-xs leading-4 text-black/50">
+                            <p class="mt-1 text-xs leading-4 text-black/65">
                                 {{ metric.label }}
                             </p>
                         </div>
@@ -77,7 +77,7 @@
                         <a
                             v-if="site.templateSlug"
                             :href="`/templates/${site.templateSlug}#builder`"
-                            class="flex-1 rounded-full border border-[#a67c3a] px-5 py-3 text-center text-sm font-semibold text-[#a67c3a] transition hover:bg-[#a67c3a] hover:text-white"
+                            class="flex-1 rounded-full border border-[#a67c3a] px-5 py-3 text-center text-sm font-semibold text-[#805d2c] transition hover:bg-[#a67c3a] hover:text-white"
                         >
                             {{ section.similar_label }}
                         </a>

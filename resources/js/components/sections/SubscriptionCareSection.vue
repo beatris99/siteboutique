@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#a67c3a]">
+                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#805d2c]">
                         {{ t.eyebrow }}
                     </p>
                     <h2 class="mt-4 max-w-xl font-serif text-3xl font-medium leading-tight text-[#171717] sm:text-4xl lg:text-5xl">
@@ -26,7 +26,7 @@
                         :key="item.title"
                         class="rounded-[1.5rem] border border-black/10 bg-[#f7f4ef] p-6"
                     >
-                        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#a67c3a]">
+                        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#805d2c]">
                             {{ item.label }}
                         </p>
                         <h3 class="mt-4 text-xl font-semibold text-[#171717]">

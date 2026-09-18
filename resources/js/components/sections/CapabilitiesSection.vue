@@ -2,7 +2,7 @@
     <section id="capabilities" class="bg-white px-4 py-20 sm:px-6 lg:py-28">
         <div class="mx-auto max-w-7xl">
             <div class="max-w-3xl">
-                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#a67c3a]">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#805d2c]">
                     {{ t.eyebrow }}
                 </p>
                 <h2 class="mt-5 font-serif text-4xl font-medium leading-[1.08] tracking-[-0.03em] text-[#171717] sm:text-5xl">
@@ -21,7 +21,7 @@
                     :href="item.href || undefined"
                     class="group flex flex-col rounded-[1.75rem] border border-black/10 bg-[#f7f4ef] p-7 transition duration-300 hover:-translate-y-1.5 hover:border-[#a67c3a]/30 hover:bg-white hover:shadow-xl"
                 >
-                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white text-[#a67c3a] shadow-sm ring-1 ring-black/5 transition group-hover:bg-[#a67c3a] group-hover:text-white">
+                    <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white text-[#805d2c] shadow-sm ring-1 ring-black/5 transition group-hover:bg-[#a67c3a] group-hover:text-white">
                         <component :is="icons[item.icon] || icons.globe" class="h-6 w-6" />
                     </div>
 
@@ -34,10 +34,10 @@
                     </p>
 
                     <div class="mt-6 flex items-center justify-between gap-3">
-                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-black/25 transition group-hover:text-[#a67c3a]">
+                        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-black/60 transition group-hover:text-[#805d2c]">
                             0{{ index + 1 }}
                         </span>
-                        <span v-if="item.href" class="text-sm text-black/25 transition group-hover:translate-x-1 group-hover:text-[#a67c3a]">
+                        <span v-if="item.href" class="text-sm text-black/60 transition group-hover:translate-x-1 group-hover:text-[#805d2c]">
                             →
                         </span>
                     </div>

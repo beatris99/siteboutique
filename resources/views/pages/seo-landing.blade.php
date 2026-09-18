@@ -84,12 +84,12 @@
 
 <section class="mt-8 grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
     <article class="rounded-[1.75rem] bg-[#f7f4ef] p-6 sm:p-8">
-        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#8b6f47]">{{ $localizedPage['eyebrow'] ?? 'SiteGo' }}</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#805d2c]">{{ $localizedPage['eyebrow'] ?? 'SiteGo' }}</p>
         <h2 class="mt-4 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{{ $ui['what_get'] }}</h2>
         <div class="mt-6 grid gap-2 sm:grid-cols-2">
             @foreach($localizedPage['includes'] ?? [] as $item)
                 <div class="flex gap-3 rounded-2xl bg-white px-4 py-3.5 text-sm leading-6 text-black/70 ring-1 ring-black/[0.04]">
-                    <span class="mt-0.5 text-[#8b6f47]">✓</span><span>{{ $item }}</span>
+                    <span class="mt-0.5 text-[#805d2c]">✓</span><span>{{ $item }}</span>
                 </div>
             @endforeach
         </div>
@@ -97,7 +97,7 @@
 
     <article class="flex flex-col justify-between rounded-[1.75rem] bg-black p-6 text-white sm:p-8">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-white/40">{{ $ui['for_who'] }}</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-white/65">{{ $ui['for_who'] }}</p>
             <p class="mt-5 text-lg leading-8 text-white/70">{{ $localizedPage['for_who'] ?? '' }}</p>
         </div>
         <a href="/contact" class="mt-7 inline-flex w-full justify-between rounded-full bg-white px-5 py-3.5 text-sm font-semibold text-black transition hover:bg-[#d8c3a5]">
@@ -142,7 +142,7 @@
 <section class="mt-10">
     <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#8b6f47]">{{ $ui['proof_eyebrow'] }}</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#805d2c]">{{ $ui['proof_eyebrow'] }}</p>
             <h2 class="mt-2 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{{ $ui['proof_title'] }}</h2>
         </div>
         <a href="/portofoliu" class="text-sm font-semibold text-black/60 transition hover:text-black">{{ $ui['portfolio'] }} →</a>
@@ -154,7 +154,7 @@
                     <h3 class="text-lg font-semibold">{{ $project['title'] }}</h3>
                     <p class="mt-2 text-sm leading-6 text-black/60">{{ $project['text'] }}</p>
                 </div>
-                <span class="shrink-0 text-xl text-black/30 transition group-hover:translate-x-1 group-hover:text-black">→</span>
+                <span class="shrink-0 text-xl text-black/60 transition group-hover:translate-x-1 group-hover:text-black">→</span>
             </a>
         @endforeach
     </div>
@@ -164,13 +164,13 @@
 <section class="mt-10 grid gap-5 lg:grid-cols-[1fr_0.75fr]">
     @if(!empty($localizedPage['faqs']))
         <div class="rounded-[1.75rem] bg-[#f7f4ef] p-6 sm:p-8">
-            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#8b6f47]">{{ $ui['faq_eyebrow'] }}</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#805d2c]">{{ $ui['faq_eyebrow'] }}</p>
             <h2 class="mt-2 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl">{{ $ui['faq_title'] }}</h2>
             <div class="mt-5 grid gap-2">
                 @foreach($localizedPage['faqs'] as $faq)
                     <details class="group rounded-2xl bg-white px-5 py-4 ring-1 ring-black/[0.04]">
                         <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold">
-                            <span>{{ $faq['question'] }}</span><span class="text-lg text-[#8b6f47] transition group-open:rotate-45">+</span>
+                            <span>{{ $faq['question'] }}</span><span class="text-lg text-[#805d2c] transition group-open:rotate-45">+</span>
                         </summary>
                         <p class="mt-3 text-sm leading-6 text-black/60">{{ $faq['answer'] }}</p>
                     </details>
@@ -180,14 +180,14 @@
     @endif
 
     <div class="rounded-[1.75rem] border border-black/10 bg-white p-6 sm:p-8">
-        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#8b6f47]">{{ $ui['related_title'] }}</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#805d2c]">{{ $ui['related_title'] }}</p>
         <div class="mt-5 grid gap-2">
             <a href="/creare-site-web" class="flex items-center justify-between rounded-2xl bg-[#f7f4ef] px-5 py-4 text-sm font-semibold transition hover:bg-black hover:text-white">
                 {{ $ui['all_services'] }} <span>→</span>
             </a>
             @foreach($localizedPage['related'] ?? [] as $related)
                 <a href="{{ $related['href'] }}" class="flex items-center justify-between rounded-2xl border border-black/[0.07] px-5 py-4 text-sm font-semibold transition hover:border-black/25">
-                    {{ $related['title'] }} <span class="text-black/35">→</span>
+                    {{ $related['title'] }} <span class="text-black/60">→</span>
                 </a>
             @endforeach
         </div>

@@ -1,7 +1,7 @@
 <template>
     <aside class="lg:sticky lg:top-28">
         <div class="rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl">
-            <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+            <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                 {{ summary.eyebrow }}
             </p>
 
@@ -11,7 +11,7 @@
 
             <div class="mt-6 grid gap-4">
                 <div v-if="selectedTemplate?.name" class="rounded-2xl bg-[#f7f4ef] p-4">
-                    <p class="text-sm text-black/50">
+                    <p class="text-sm text-black/65">
                         {{ label('template_label', 'templateLabel') }}
                     </p>
 
@@ -21,7 +21,7 @@
                 </div>
 
                 <div v-if="selectedPackage?.name" class="rounded-2xl bg-[#f7f4ef] p-4">
-                    <p class="text-sm text-black/50">
+                    <p class="text-sm text-black/65">
                         {{ label('package_label', 'packageLabel') }}
                     </p>
 
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="rounded-2xl bg-[#f7f4ef] p-4">
-                    <p class="text-sm text-black/50">
+                    <p class="text-sm text-black/65">
                         {{ label('features_label', 'featuresLabel') }}
                     </p>
 
@@ -45,7 +45,7 @@
                         </span>
                     </div>
 
-                    <p v-else class="mt-2 text-sm text-black/50">
+                    <p v-else class="mt-2 text-sm text-black/65">
                         {{ label('no_features', 'noFeatures') }}
                     </p>
                 </div>

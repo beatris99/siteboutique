@@ -2,7 +2,7 @@
     <section class="bg-[#f7f4ef] px-6 py-24">
         <div class="mx-auto max-w-7xl">
             <div class="mb-12 max-w-4xl">
-                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                     {{ labels.eyebrow }}
                 </p>
                 <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
@@ -23,7 +23,7 @@
                             :key="item"
                             class="flex gap-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-black/70"
                         >
-                            <span class="text-[#8b6f47]">✓</span>
+                            <span class="text-[#805d2c]">✓</span>
                             <span>{{ item }}</span>
                         </div>
                     </div>

@@ -102,7 +102,7 @@
                 >
                     <div>
                         <p
-                            class="text-xs font-semibold uppercase tracking-[0.25em] text-[#a67c3a]"
+                            class="text-xs font-semibold uppercase tracking-[0.25em] text-[#805d2c]"
                         >
                             {{ copy.form.eyebrow }}
                         </p>
@@ -128,8 +128,8 @@
                         aria-hidden="true"
                     />
 
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <label class="grid gap-2">
+                    <div class="grid gap-4 sm:grid-cols-2 sm:items-start">
+                        <label class="grid content-start gap-2">
                             <span class="text-sm font-medium text-black/70">
                                 {{ copy.form.name }}
                             </span>
@@ -156,7 +156,7 @@
                             </p>
                         </label>
 
-                        <label class="grid gap-2">
+                        <label class="grid content-start gap-2">
                             <span class="text-sm font-medium text-black/70">
                                 {{ copy.form.contact }}
                             </span>
@@ -185,7 +185,7 @@
                         </label>
                     </div>
 
-                    <label class="grid gap-2">
+                    <label class="grid content-start gap-2">
                         <span class="text-sm font-medium text-black/70">
                             {{ copy.form.company }}
                         </span>
@@ -199,7 +199,7 @@
                         />
                     </label>
 
-                    <label class="grid gap-2">
+                    <label class="grid content-start gap-2">
                         <span class="text-sm font-medium text-black/70">
                             {{ copy.form.message }}
                         </span>
@@ -300,6 +300,10 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    initialSubmitted: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const emit = defineEmits(["lead-created"]);
@@ -317,7 +321,7 @@ const { isSubmitting, errorMessage, submitLead, resetMessages } =
         { currencyCode: props.currencyCode },
     );
 
-const hasSubmitted = ref(false);
+const hasSubmitted = ref(props.initialSubmitted);
 
 const emptyForm = {
     name: "",
@@ -386,8 +390,12 @@ function resetValidation() {
 }
 
 function prepareAnother() {
-    hasSubmitted.value = false;
+    if (window.location.pathname === "/cerere-trimisa") {
+        window.location.assign("/contact");
+        return;
+    }
 
+    hasSubmitted.value = false;
     resetMessages();
     resetForm();
     resetValidation();
@@ -626,10 +634,9 @@ async function handleSubmit() {
 
     resetForm();
     resetValidation();
-
-    hasSubmitted.value = true;
-
     emit("lead-created");
+
+    window.location.replace("/cerere-trimisa");
 }
 </script>
 
@@ -648,8 +655,27 @@ async function handleSubmit() {
         background-color 0.2s ease;
 }
 
+.field:not(textarea) {
+    height: 3.5rem;
+    min-height: 3.5rem;
+}
+
+textarea.field {
+    min-height: 8rem;
+}
+
 .field::placeholder {
     color: rgb(0 0 0 / 0.34);
+}
+
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus,
+.field:-webkit-autofill:active {
+    -webkit-text-fill-color: #171717;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    box-shadow: 0 0 0 1000px #ffffff inset;
+    caret-color: #171717;
 }
 
 .field:hover {

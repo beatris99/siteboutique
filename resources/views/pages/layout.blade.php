@@ -38,11 +38,12 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sitego-icon.svg') }}?v=1">
     <link rel="shortcut icon" href="{{ asset('images/sitego-icon.svg') }}?v=1">
 
-    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-    <link
-        href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700|source-serif-4:400,500,600,700"
-        rel="stylesheet"
-    >
+    <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+    @if($locale === 'ro')
+        <link rel="preload" href="{{ asset('fonts/instrument-sans-latin-ext-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{{ asset('fonts/source-serif-4-latin-ext-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+    @endif
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -56,9 +57,9 @@
 
             <div class="leading-none">
                 <p class="text-xl font-bold tracking-tight text-black">
-                    {{ $brand['first_part'] }}<span class="text-[#a67c3a]">{{ $brand['second_part'] }}</span>
+                    {{ $brand['first_part'] }}<span class="text-[#805d2c]">{{ $brand['second_part'] }}</span>
                 </p>
-                <p class="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#a67c3a]">
+                <p class="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#805d2c]">
                     {{ $brand['tagline'] }}
                 </p>
             </div>
@@ -74,10 +75,10 @@
 
         <div class="flex items-center gap-3">
             <div class="hidden rounded-full border border-black/10 bg-white p-1 text-xs font-semibold sm:flex">
-                <a href="{{ route('language.switch', 'ro') }}" class="rounded-full px-3 py-2 {{ $locale === 'ro' ? 'bg-black text-white' : 'text-black/50' }}">
+                <a href="{{ route('language.switch', 'ro') }}" class="rounded-full px-3 py-2 {{ $locale === 'ro' ? 'bg-black text-white' : 'text-black/65' }}">
                     {{ $header['language_ro'] }}
                 </a>
-                <a href="{{ route('language.switch', 'en') }}" class="rounded-full px-3 py-2 {{ $locale === 'en' ? 'bg-black text-white' : 'text-black/50' }}">
+                <a href="{{ route('language.switch', 'en') }}" class="rounded-full px-3 py-2 {{ $locale === 'en' ? 'bg-black text-white' : 'text-black/65' }}">
                     {{ $header['language_en'] }}
                 </a>
             </div>
@@ -114,10 +115,10 @@
             @endforeach
 
             <div class="mt-3 flex gap-2 sm:hidden">
-                <a href="{{ route('language.switch', 'ro') }}" class="rounded-full px-4 py-2 text-sm font-semibold {{ $locale === 'ro' ? 'bg-black text-white' : 'bg-white text-black/50' }}">
+                <a href="{{ route('language.switch', 'ro') }}" class="rounded-full px-4 py-2 text-sm font-semibold {{ $locale === 'ro' ? 'bg-black text-white' : 'bg-white text-black/65' }}">
                     {{ $header['language_ro'] }}
                 </a>
-                <a href="{{ route('language.switch', 'en') }}" class="rounded-full px-4 py-2 text-sm font-semibold {{ $locale === 'en' ? 'bg-black text-white' : 'bg-white text-black/50' }}">
+                <a href="{{ route('language.switch', 'en') }}" class="rounded-full px-4 py-2 text-sm font-semibold {{ $locale === 'en' ? 'bg-black text-white' : 'bg-white text-black/65' }}">
                     {{ $header['language_en'] }}
                 </a>
             </div>
@@ -131,7 +132,7 @@
 
 <main class="px-4 py-12 sm:px-6 sm:py-16">
     <div class="mx-auto max-w-7xl rounded-[2rem] border border-black/10 bg-white p-6 shadow-sm sm:p-10">
-        <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+        <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
             {{ $brand['name'] }}
         </p>
 
@@ -160,7 +161,7 @@
                 {{ $footer['description'] }}
             </p>
 
-            <p class="mt-6 text-sm text-white/40">
+            <p class="mt-6 text-sm text-white/65">
                 {{ $footer['copyright'] }}
             </p>
         </div>

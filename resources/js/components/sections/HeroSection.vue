@@ -7,14 +7,14 @@
 
         <div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div class="max-w-2xl">
-                <p class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a] backdrop-blur">
+                <p class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#805d2c] backdrop-blur">
                     <span class="h-1.5 w-1.5 rounded-full bg-[#a67c3a]"></span>
                     {{ t.eyebrow }}
                 </p>
 
                 <h1 class="mt-8 font-serif text-5xl font-medium leading-[1.02] tracking-[-0.03em] text-[#171717] sm:text-6xl lg:text-[5.25rem]">
                     {{ t.title_line_1 }}
-                    <span class="block text-[#a67c3a]">{{ t.title_line_2 }}</span>
+                    <span class="block text-[#805d2c]">{{ t.title_line_2 }}</span>
                     {{ t.title_line_3 }}
                 </h1>
 

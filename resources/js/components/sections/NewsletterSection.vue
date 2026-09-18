@@ -2,7 +2,7 @@
     <section id="newsletter" class="bg-[#f7f4ef] px-4 py-12 sm:px-6 lg:py-16">
         <div class="mx-auto grid max-w-7xl gap-8 rounded-[2rem] border border-black/10 bg-white p-6 shadow-[0_24px_80px_rgba(23,23,23,0.06)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
             <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#a67c3a]">
+                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-[#805d2c]">
                     {{ t.eyebrow }}
                 </p>
 
@@ -32,7 +32,7 @@
                     <p class="mt-2 text-sm leading-6 text-black/60">{{ successMessage }}</p>
                     <button
                         type="button"
-                        class="mt-4 text-sm font-semibold text-[#a67c3a]"
+                        class="mt-4 text-sm font-semibold text-[#805d2c]"
                         @click="resetForm"
                     >
                         {{ t.send_another }}
@@ -49,7 +49,7 @@
                             type="email"
                             required
                             :placeholder="t.email_placeholder"
-                            class="w-full rounded-2xl border border-white/10 bg-white px-4 py-3.5 text-[#171717] outline-none transition placeholder:text-black/35 focus:border-[#d8c3a5] focus:shadow-[0_0_0_3px_rgba(216,195,165,0.18)]"
+                            class="w-full rounded-2xl border border-white/10 bg-white px-4 py-3.5 text-[#171717] outline-none transition placeholder:text-black/60 focus:border-[#d8c3a5] focus:shadow-[0_0_0_3px_rgba(216,195,165,0.18)]"
                         >
                     </label>
 
@@ -70,7 +70,7 @@
                         {{ isSubmitting ? t.sending : t.submit_subscribe }}
                     </button>
 
-                    <p class="text-center text-xs leading-5 text-white/40">
+                    <p class="text-center text-xs leading-5 text-white/65">
                         {{ t.note_subscribe }}
                     </p>
                 </form>

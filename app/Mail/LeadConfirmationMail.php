@@ -21,7 +21,7 @@ class LeadConfirmationMail extends Mailable
     {
         return $this
             ->subject('Am primit cererea ta - SiteGo')
-            ->replyTo(config('admin.email'))
+            ->replyTo(config('sitego.contact.email') ?: config('mail.from.address'))
             ->view('emails.leads.confirmation')
             ->with([
                 'requirements' => TemplateRequirementResolver::requirements($this->lead),

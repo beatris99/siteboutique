@@ -25,7 +25,7 @@
         <div class="mt-6 grid gap-4 md:grid-cols-2">
             @foreach($page['benefits'] as $benefit)
                 <div class="flex gap-3 rounded-2xl bg-[#f7f4ef] p-5">
-                    <span class="text-[#8b6f47]">✓</span>
+                    <span class="text-[#805d2c]">✓</span>
                     <span>{{ $benefit }}</span>
                 </div>
             @endforeach

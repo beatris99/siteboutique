@@ -1,7 +1,7 @@
 <template>
     <div class="px-4 pb-8 pt-12">
         <div class="mb-4 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
-            <p class="text-[9px] font-bold uppercase tracking-[0.25em] text-black/35">{{ labels.search_engine }}</p>
+            <p class="text-[9px] font-bold uppercase tracking-[0.25em] text-black/60">{{ labels.search_engine }}</p>
             <p class="mt-1 truncate text-[12px] font-semibold text-black/65">{{ site.search }}</p>
         </div>
 
@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     <p class="font-serif text-[21px] leading-none text-[#171717]">{{ site.brand }}</p>
-                    <p class="mt-1 text-[8px] font-bold uppercase tracking-[0.32em] text-black/40">{{ site.category }}</p>
+                    <p class="mt-1 text-[8px] font-bold uppercase tracking-[0.32em] text-black/60">{{ site.category }}</p>
                 </div>
             </div>
             <button type="button" class="grid h-9 w-9 place-items-center rounded-full bg-white shadow-sm ring-1 ring-black/10">
@@ -53,7 +53,7 @@
                     >
                         <div>
                             <p class="text-[13px] font-bold text-[#171717]">{{ item.title }}</p>
-                            <p class="mt-0.5 text-[10px] leading-4 text-black/50">{{ item.text }}</p>
+                            <p class="mt-0.5 text-[10px] leading-4 text-black/65">{{ item.text }}</p>
                         </div>
                         <span class="grid h-8 w-8 place-items-center rounded-full text-white" :style="{ background: theme.accent }">→</span>
                     </article>
@@ -82,7 +82,7 @@
                         :key="item.label"
                         class="rounded-2xl bg-[#f8f7ff] p-3"
                     >
-                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">{{ item.label }}</p>
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/60">{{ item.label }}</p>
                         <p class="mt-2 text-[20px] font-bold text-[#171717]">{{ item.value }}</p>
                     </article>
                 </div>
@@ -92,7 +92,7 @@
                         <p class="text-[10px] font-bold uppercase tracking-[0.24em]" :style="{ color: theme.accent }">
                             {{ site.pipeline_label }}
                         </p>
-                        <span class="text-[11px] font-semibold text-black/50">{{ site.pipeline_total }}</span>
+                        <span class="text-[11px] font-semibold text-black/65">{{ site.pipeline_total }}</span>
                     </div>
 
                     <div class="grid gap-3">
@@ -126,7 +126,7 @@
                             class="rounded-2xl bg-[#fafafa] p-3"
                         >
                             <p class="text-[12px] font-semibold text-[#171717]">{{ item.title }}</p>
-                            <p class="mt-1 text-[10px] leading-5 text-black/50">{{ item.meta }}</p>
+                            <p class="mt-1 text-[10px] leading-5 text-black/65">{{ item.meta }}</p>
                         </article>
                     </div>
                 </div>

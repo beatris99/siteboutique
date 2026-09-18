@@ -8,27 +8,12 @@
         />
 
         <FloatingContactDock
-            v-if="!isLeadSuccessPage"
             :dock="siteContent.floatingDock"
             :contact-info="contactInfo"
         />
 
-        <template v-if="isLeadSuccessPage">
-            <LeadSuccessPage :content="siteContent.leadSuccess" />
-
-            <AppFooter
-                :footer="siteContent.footer"
-                :brand="siteContent.brand"
-                :navigation="siteContent.navigation"
-                :contact-info="contactInfo"
-                :locale="locale"
-            />
-        </template>
-
-        <template v-else-if="isTemplatePage && !publicTemplate">
-            <TemplateNotFoundPage
-                :content="builder.template_ui?.not_found || {}"
-            />
+        <template v-if="isTemplatePage && !publicTemplate">
+            <TemplateNotFoundPage :content="builder.template_ui?.not_found || {}" />
 
             <AppFooter
                 :footer="siteContent.footer"
@@ -47,7 +32,7 @@
             />
 
             <TemplatePublicPage
-                v-else
+                v-else-if="templateRegistryReady"
                 :template="publicTemplate"
                 :labels="builder.template_ui?.public || {}"
                 :currency-label="pricingConfig.currencyLabel"
@@ -116,7 +101,7 @@
                 :total-price="totalPrice"
                 :currency-label="pricingConfig.currencyLabel"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="handleLeadCreated"
+                @lead-created="resetSelectedFeatures"
             />
 
             <AppFooter
@@ -193,7 +178,7 @@
                 :total-price="totalPrice"
                 :currency-label="pricingConfig.currencyLabel"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="handleLeadCreated"
+                @lead-created="resetSelectedFeatures"
             />
 
             <AppFooter
@@ -225,7 +210,8 @@
                 :t="siteContent.landing.invitation"
                 :messages="siteContent.contact.messages || {}"
                 :currency-code="pricingConfig.currencyCode"
-                @lead-created="handleLeadCreated"
+                :initial-submitted="isLeadSuccessPage"
+                @lead-created="resetSelectedFeatures"
             />
 
             <AppFooter
@@ -262,10 +248,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed, defineAsyncComponent, onMounted, ref } from "vue";
 
 import { useSiteBuilder } from "./composables/useSiteBuilder";
-import { getRegisteredTemplate } from "./templates/templateRegistry";
+
 
 import AppHeader from "./components/layout/AppHeader.vue";
 import AppFooter from "./components/layout/AppFooter.vue";
@@ -274,23 +260,20 @@ import FloatingContactDock from "./components/layout/FloatingContactDock.vue";
 import HeroSection from "./components/sections/HeroSection.vue";
 import CapabilitiesSection from "./components/sections/CapabilitiesSection.vue";
 import SubscriptionCareSection from "./components/sections/SubscriptionCareSection.vue";
-import InvitationSection from "./components/sections/InvitationSection.vue";
-import WhatYouGetSection from "./components/sections/WhatYouGetSection.vue";
-import WhyWorkWithMeSection from "./components/sections/WhyWorkWithMeSection.vue";
-import TemplateGallery from "./components/sections/TemplateGallery.vue";
-import ContactLeadForm from "./components/sections/ContactLeadForm.vue";
-import TemplatePreparationSection from "./components/sections/TemplatePreparationSection.vue";
-import TemplateScopeSection from "./components/sections/TemplateScopeSection.vue";
-import TemplateProductDetailsSection from "./components/sections/TemplateProductDetailsSection.vue";
-import SiteConfigurator from "./components/sections/SiteConfigurator.vue";
-
-import PackageSelector from "./components/builder/PackageSelector.vue";
-import PriceSummary from "./components/builder/PriceSummary.vue";
-
-import TemplatePublicPage from "./components/pages/TemplatePublicPage.vue";
-import TemplateNotFoundPage from "./components/pages/TemplateNotFoundPage.vue";
-import PortfolioPage from "./components/pages/PortfolioPage.vue";
-import LeadSuccessPage from "./components/pages/LeadSuccessPage.vue";
+const InvitationSection = defineAsyncComponent(() => import("./components/sections/InvitationSection.vue"));
+const WhatYouGetSection = defineAsyncComponent(() => import("./components/sections/WhatYouGetSection.vue"));
+const WhyWorkWithMeSection = defineAsyncComponent(() => import("./components/sections/WhyWorkWithMeSection.vue"));
+const TemplateGallery = defineAsyncComponent(() => import("./components/sections/TemplateGallery.vue"));
+const ContactLeadForm = defineAsyncComponent(() => import("./components/sections/ContactLeadForm.vue"));
+const TemplatePreparationSection = defineAsyncComponent(() => import("./components/sections/TemplatePreparationSection.vue"));
+const TemplateScopeSection = defineAsyncComponent(() => import("./components/sections/TemplateScopeSection.vue"));
+const TemplateProductDetailsSection = defineAsyncComponent(() => import("./components/sections/TemplateProductDetailsSection.vue"));
+const SiteConfigurator = defineAsyncComponent(() => import("./components/sections/SiteConfigurator.vue"));
+const PackageSelector = defineAsyncComponent(() => import("./components/builder/PackageSelector.vue"));
+const PriceSummary = defineAsyncComponent(() => import("./components/builder/PriceSummary.vue"));
+const TemplatePublicPage = defineAsyncComponent(() => import("./components/pages/TemplatePublicPage.vue"));
+const TemplateNotFoundPage = defineAsyncComponent(() => import("./components/pages/TemplateNotFoundPage.vue"));
+const PortfolioPage = defineAsyncComponent(() => import("./components/pages/PortfolioPage.vue"));
 
 const props = defineProps({
     initialLocale: {
@@ -310,6 +293,7 @@ const props = defineProps({
 
     siteConfig: {
         type: Object,
+
         default: () => ({
             contact: {},
         }),
@@ -323,16 +307,20 @@ const builder = props.initialBuilder;
 
 const contactInfo = {
     email: props.siteConfig?.contact?.email || "",
+
     phone: props.siteConfig?.contact?.phone || "",
+
     location: props.siteConfig?.contact?.location || "",
+
     area: props.siteConfig?.contact?.area || "",
 };
 
 const features = builder.features || [];
 const packages = builder.packages || [];
-const templateCategories = builder.template_categories || [];
-const templates = builder.templates || [];
 
+const templateCategories = builder.template_categories || [];
+
+const templates = builder.templates || [];
 const pricingConfig = {
     currencyCode: builder.pricing?.currency_code || "",
     currencyLabel: builder.pricing?.currency_label || "",
@@ -357,10 +345,6 @@ const {
 } = useSiteBuilder(templates, features, templateCategories, packages);
 
 const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
-
-const isLeadSuccessPage = computed(() => {
-    return currentPath === "/cerere-trimisa";
-});
 
 const isTemplatePage = computed(() => {
     return currentPath.startsWith("/templates/");
@@ -388,8 +372,12 @@ const portfolioProjectSlug = computed(() => {
     return currentPath.replace("/portofoliu/", "").replace(/^\/+|\/+$/g, "");
 });
 
+const isLeadSuccessPage = computed(() => {
+    return currentPath === "/cerere-trimisa";
+});
+
 const isContactPage = computed(() => {
-    return currentPath === "/contact";
+    return currentPath === "/contact" || currentPath === "/cerere-trimisa";
 });
 
 const templateSlug = computed(() => {
@@ -410,9 +398,8 @@ const publicTemplate = computed(() => {
     );
 });
 
-const registeredTemplate = computed(() => {
-    return getRegisteredTemplate(templateSlug.value, locale);
-});
+const registeredTemplate = ref(null);
+const templateRegistryReady = ref(!isTemplatePage.value);
 
 const realTemplateComponent = computed(() => {
     return registeredTemplate.value?.component || null;
@@ -440,14 +427,6 @@ const templateClientInfo = computed(() => {
     };
 });
 
-function handleLeadCreated() {
-    resetSelectedFeatures();
-
-    sessionStorage.removeItem("sitego_selected_template_id");
-
-    window.location.href = "/cerere-trimisa";
-}
-
 function handleTemplateSelect(templateId) {
     selectTemplate(templateId);
 
@@ -465,11 +444,14 @@ function handleTemplateSelect(templateId) {
     window.location.href = "/configurator#builder";
 }
 
-onMounted(() => {
-    if (isLeadSuccessPage.value) {
-        sessionStorage.removeItem("sitego_selected_template_id");
+onMounted(async () => {
+    if (isTemplatePage.value && templateSlug.value) {
+        if (locale !== "en") {
+            const { getRegisteredTemplate } = await import("./templates/templateRegistry");
+            registeredTemplate.value = getRegisteredTemplate(templateSlug.value, locale);
+        }
 
-        return;
+        templateRegistryReady.value = true;
     }
 
     if (publicTemplate.value) {
@@ -497,6 +479,7 @@ onMounted(() => {
     }
 
     selectCategory(storedTemplate.categoryKey);
+
     selectTemplate(storedTemplate.id);
 
     sessionStorage.removeItem("sitego_selected_template_id");

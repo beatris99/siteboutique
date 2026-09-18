@@ -88,6 +88,9 @@ return [
     'success_title' => 'We received your request.',
     'success_description' => 'We will come back with clear questions and recommendations based on the information you sent.',
     'send_another' => 'Send another request',
+    'success_home' => 'Back to homepage',
+    'success_back_to_contact' => 'Send another request',
+    'success_note' => 'Your message has reached SiteGo. You do not need to do anything else; we will reply using the contact details you provided.',
     'messages' => [
         'too_many_requests' => 'You sent too many requests in a short time. Please try again in one minute.',
         'check_data' => 'Please check the entered details.',

@@ -14,7 +14,7 @@
         ] as [$name, $price, $description])
             <article class="rounded-[2rem] bg-[#f7f4ef] p-6">
                 <h2 class="text-2xl font-semibold">{{ $name }}</h2>
-                <p class="mt-4 text-3xl font-semibold text-[#8b6f47]">{{ $price }}</p>
+                <p class="mt-4 text-3xl font-semibold text-[#805d2c]">{{ $price }}</p>
                 <p class="mt-4 text-black/60">{{ $description }}</p>
             </article>
         @endforeach

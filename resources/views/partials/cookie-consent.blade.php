@@ -5,7 +5,7 @@
     <div class="mx-auto max-w-5xl overflow-hidden rounded-[1.5rem] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.22)]">
         <div class="grid gap-5 p-5 sm:p-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#805d2c]">
                     Cookies SiteGo
                 </p>
 
@@ -20,7 +20,7 @@
 
                 <a
                     href="/politica-cookies"
-                    class="mt-3 inline-flex text-sm font-semibold text-[#a67c3a] underline-offset-4 hover:underline"
+                    class="mt-3 inline-flex text-sm font-semibold text-[#805d2c] underline-offset-4 hover:underline"
                 >
                     Citește politica de cookies
                 </a>

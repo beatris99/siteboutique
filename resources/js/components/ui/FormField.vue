@@ -4,7 +4,7 @@
         :value="modelValue"
         :rows="rows"
         :placeholder="placeholder"
-        class="rounded-2xl border border-white/10 bg-white/10 px-5 py-4 outline-none placeholder:text-white/40"
+        class="rounded-2xl border border-white/10 bg-white/10 px-5 py-4 outline-none placeholder:text-white/65"
         @input="$emit('update:modelValue', $event.target.value)"
     />
 
@@ -13,7 +13,7 @@
         :value="modelValue"
         :type="type"
         :placeholder="placeholder"
-        class="rounded-2xl border border-white/10 bg-white/10 px-5 py-4 outline-none placeholder:text-white/40"
+        class="rounded-2xl border border-white/10 bg-white/10 px-5 py-4 outline-none placeholder:text-white/65"
         @input="$emit('update:modelValue', $event.target.value)"
     />
 </template>

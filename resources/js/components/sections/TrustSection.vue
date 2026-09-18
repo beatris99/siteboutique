@@ -7,7 +7,7 @@
                     :key="item.title"
                     class="rounded-[1.5rem] border border-black/10 bg-white p-5"
                 >
-                    <p class="text-2xl font-semibold text-[#8b6f47]">
+                    <p class="text-2xl font-semibold text-[#805d2c]">
                         {{ item.value }}
                     </p>
 

@@ -14,7 +14,7 @@
                     :key="step.number"
                     class="rounded-[2rem] border border-black/10 bg-[#f7f4ef] p-6"
                 >
-                    <p class="text-sm font-semibold text-[#8b6f47]">
+                    <p class="text-sm font-semibold text-[#805d2c]">
                         {{ step.number }}
                     </p>
 

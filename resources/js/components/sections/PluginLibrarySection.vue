@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div class="max-w-3xl">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#a67c3a]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         Funcționalități
                     </p>
 
@@ -36,7 +36,7 @@
                         :style="{ background: plugin.background }"
                     >
                         <div class="flex items-center justify-between gap-3">
-                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/90 text-[#a67c3a] shadow-sm">
+                            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/90 text-[#805d2c] shadow-sm">
                                 <WhatsappIcon
                                     v-if="plugin.type === 'whatsapp'"
                                     class="h-6 w-6"
@@ -50,13 +50,13 @@
                                 </span>
                             </div>
 
-                            <span class="rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold text-black/50">
+                            <span class="rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold text-black/65">
                                 {{ plugin.category }}
                             </span>
                         </div>
 
                         <div class="mt-8 rounded-2xl bg-white/80 p-4 shadow-sm backdrop-blur">
-                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-black/40">
+                            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-black/60">
                                 Exemplu
                             </p>
 
@@ -64,7 +64,7 @@
                                 {{ plugin.exampleTitle }}
                             </p>
 
-                            <p class="mt-1 text-xs leading-5 text-black/50">
+                            <p class="mt-1 text-xs leading-5 text-black/65">
                                 {{ plugin.exampleText }}
                             </p>
                         </div>
@@ -85,7 +85,7 @@
                                 :key="benefit"
                                 class="flex gap-2 text-xs leading-5 text-black/60"
                             >
-                                <span class="text-[#a67c3a]">✓</span>
+                                <span class="text-[#805d2c]">✓</span>
                                 <span>{{ benefit }}</span>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             <span
                                 v-for="useCase in plugin.useCases"
                                 :key="useCase"
-                                class="rounded-full bg-[#f7f4ee] px-3 py-1 text-[11px] font-semibold text-black/50"
+                                class="rounded-full bg-[#f7f4ee] px-3 py-1 text-[11px] font-semibold text-black/65"
                             >
                                 {{ useCase }}
                             </span>

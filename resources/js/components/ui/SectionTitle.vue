@@ -2,7 +2,7 @@
     <div :class="wrapperClass">
         <p
             class="text-sm uppercase tracking-[0.25em]"
-            :class="dark ? 'text-white/40' : 'text-[#8b6f47]'"
+            :class="dark ? 'text-white/65' : 'text-[#805d2c]'"
         >
             {{ eyebrow }}
         </p>

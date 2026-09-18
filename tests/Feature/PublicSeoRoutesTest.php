@@ -105,6 +105,15 @@ class PublicSeoRoutesTest extends TestCase
         }
     }
 
+
+    public function test_lead_success_page_is_available_and_not_indexable(): void
+    {
+        $this->get('/cerere-trimisa')
+            ->assertOk()
+            ->assertSee('noindex, follow', false)
+            ->assertSee('SiteGo');
+    }
+
     public function test_pricing_page_uses_configured_prices(): void
     {
         config([

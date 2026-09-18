@@ -111,7 +111,7 @@
             </div>
 
             <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur">
-                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-white/45">{{ $content['hero_badge'] }}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-white/65">{{ $content['hero_badge'] }}</p>
                 <p class="mt-5 text-sm font-medium text-white/60">{{ $content['hero_price_label'] }}</p>
 
                 <div class="mt-2 flex items-end gap-3">
@@ -120,14 +120,14 @@
                     <span class="pb-1 text-sm text-white/55">{{ $currencyLabel }}</span>
                 </div>
 
-                <p class="mt-3 text-sm text-white/45">{{ $content['hero_price_note'] }}</p>
+                <p class="mt-3 text-sm text-white/65">{{ $content['hero_price_note'] }}</p>
             </div>
         </div>
     </section>
 
     <section class="mt-16">
         <div class="max-w-3xl">
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">{{ $content['project_eyebrow'] }}
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">{{ $content['project_eyebrow'] }}
             </p>
             <h2 class="mt-4 font-serif text-4xl font-medium leading-tight sm:text-5xl">{{ $content['project_title'] }}</h2>
             <p class="mt-5 text-base leading-8 text-black/60">{{ $content['project_text'] }}</p>
@@ -154,25 +154,25 @@
                             @else
                                 <div class="text-right">
                                     <p
-                                        class="text-[8px] leading-none {{ $isRecommended ? 'text-white/40' : 'text-black/40' }}">
+                                        class="text-[8px] leading-none {{ $isRecommended ? 'text-white/65' : 'text-black/60' }}">
                                         {{ $content['price_from'] }}</p>
                                     <div class="mt-1 flex items-end justify-end gap-1">
                                         <strong
                                             class="font-serif text-xl font-medium leading-none {{ $isRecommended ? 'text-[#eadbc4]' : 'text-black' }}">{{ $formatPrice($packagePrice) }}</strong>
                                         <span
-                                            class="pb-[1px] text-[8px] {{ $isRecommended ? 'text-white/40' : 'text-black/40' }}">{{ $currencyLabel }}</span>
+                                            class="pb-[1px] text-[8px] {{ $isRecommended ? 'text-white/65' : 'text-black/60' }}">{{ $currencyLabel }}</span>
                                     </div>
                                 </div>
                             @endif
 
                             <span
-                                class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-base leading-none transition-all duration-300 group-open:rotate-45 {{ $isRecommended ? 'border-[#d8c3a5]/25 text-[#d8c3a5]' : 'border-black/10 text-[#9a7440]' }}">+</span>
+                                class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-base leading-none transition-all duration-300 group-open:rotate-45 {{ $isRecommended ? 'border-[#d8c3a5]/25 text-[#d8c3a5]' : 'border-black/10 text-[#805d2c]' }}">+</span>
                         </div>
                     </summary>
 
                     <div class="border-t px-4 pb-5 pt-4 {{ $isRecommended ? 'border-white/10' : 'border-black/10' }}">
                         <p
-                            class="text-[10px] font-semibold uppercase tracking-[0.2em] {{ $isRecommended ? 'text-[#d8c3a5]' : 'text-[#9a7440]' }}">
+                            class="text-[10px] font-semibold uppercase tracking-[0.2em] {{ $isRecommended ? 'text-[#d8c3a5]' : 'text-[#805d2c]' }}">
                             {{ $package['eyebrow'] }}</p>
                         <p class="mt-3 text-xs leading-6 {{ $isRecommended ? 'text-white/60' : 'text-black/60' }}">
                             {{ $package['description'] }}</p>
@@ -180,7 +180,7 @@
                         <ul class="mt-4 grid gap-2.5 text-xs {{ $isRecommended ? 'text-white/75' : 'text-black/70' }}">
                             @foreach ($package['features'] as $feature)
                                 <li class="flex gap-2.5">
-                                    <span class="mt-[2px] shrink-0 text-[#b28a52]">◆</span>
+                                    <span class="mt-[2px] shrink-0 text-[#8d6938]">◆</span>
                                     <span class="leading-5">{{ $feature }}</span>
                                 </li>
                             @endforeach
@@ -203,7 +203,7 @@
                     class="flex h-full min-w-0 flex-col overflow-hidden rounded-[1.75rem] border p-6 {{ $isRecommended ? 'border-[#a67c3a] bg-[#171614] text-white shadow-[0_24px_70px_rgba(0,0,0,0.14)]' : 'border-black/10 bg-[#faf8f4]' }}">
                     <div class="flex min-h-[3rem] items-start justify-between gap-3">
                         <p
-                            class="min-w-0 text-[11px] font-semibold uppercase leading-5 tracking-[0.25em] {{ $isRecommended ? 'text-[#d8c3a5]' : 'text-[#9a7440]' }}">
+                            class="min-w-0 text-[11px] font-semibold uppercase leading-5 tracking-[0.25em] {{ $isRecommended ? 'text-[#d8c3a5]' : 'text-[#805d2c]' }}">
                             {{ $package['eyebrow'] }}</p>
 
                         @if ($packageBadge)
@@ -219,14 +219,14 @@
                             <p class="text-xl font-semibold {{ $isRecommended ? 'text-white' : 'text-black' }}">
                                 {{ $content['custom_price'] }}</p>
                         @else
-                            <p class="text-sm {{ $isRecommended ? 'text-white/50' : 'text-black/45' }}">
+                            <p class="text-sm {{ $isRecommended ? 'text-white/50' : 'text-black/60' }}">
                                 {{ $content['price_from'] }}</p>
 
                             <div class="mt-1 flex items-end gap-2">
                                 <strong
                                     class="font-serif text-4xl font-medium {{ $isRecommended ? 'text-[#eadbc4]' : 'text-black' }}">{{ $formatPrice($packagePrice) }}</strong>
                                 <span
-                                    class="pb-1 text-xs {{ $isRecommended ? 'text-white/45' : 'text-black/45' }}">{{ $currencyLabel }}</span>
+                                    class="pb-1 text-xs {{ $isRecommended ? 'text-white/65' : 'text-black/60' }}">{{ $currencyLabel }}</span>
                             </div>
                         @endif
                     </div>
@@ -237,7 +237,7 @@
                     <ul class="mt-6 grid gap-3 text-sm {{ $isRecommended ? 'text-white/75' : 'text-black/70' }}">
                         @foreach ($package['features'] as $feature)
                             <li class="flex gap-3">
-                                <span class="mt-1 shrink-0 text-[#b28a52]">◆</span>
+                                <span class="mt-1 shrink-0 text-[#8d6938]">◆</span>
                                 <span>{{ $feature }}</span>
                             </li>
                         @endforeach
@@ -250,7 +250,7 @@
     <section class="mt-16 rounded-[2rem] bg-[#f6f1e8] p-6 sm:p-9 lg:p-12">
         <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">
+                <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">
                     {{ $content['included_eyebrow'] }}</p>
                 <h2 class="mt-4 font-serif text-4xl font-medium leading-tight">{{ $content['included_title'] }}</h2>
                 <p class="mt-5 leading-8 text-black/60">{{ $content['included_text'] }}</p>
@@ -269,7 +269,7 @@
 
     <section class="mt-16">
         <div class="max-w-3xl">
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">{{ $content['extras_eyebrow'] }}
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">{{ $content['extras_eyebrow'] }}
             </p>
             <h2 class="mt-4 font-serif text-4xl font-medium leading-tight">{{ $content['extras_title'] }}</h2>
             <p class="mt-5 leading-8 text-black/60">{{ $content['extras_text'] }}</p>
@@ -283,7 +283,7 @@
                         <h3 class="font-semibold">{{ $extra['name'] }}</h3>
 
                         <div class="shrink-0 text-right">
-                            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/35">
+                            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60">
                                 {{ $content['price_from'] }}</p>
                             <p class="mt-1 font-serif text-xl font-medium text-[#8d6938]">
                                 {{ $formatPrice($pricing['extras'][$key]) }} <span
@@ -314,14 +314,14 @@
                 <article
                     class="flex min-w-0 flex-col rounded-[1.6rem] border p-5 sm:p-6 {{ $isFeatured ? 'border-[#d8c3a5]/50 bg-[#d8c3a5]/10' : 'border-white/10 bg-white/[0.04]' }}">
                     <p
-                        class="text-xs font-semibold uppercase tracking-[0.24em] {{ $isFeatured ? 'text-[#eadbc4]' : 'text-white/40' }}">
+                        class="text-xs font-semibold uppercase tracking-[0.24em] {{ $isFeatured ? 'text-[#eadbc4]' : 'text-white/65' }}">
                         {{ $plan['label'] }}</p>
                     <h3 class="mt-4 font-serif text-3xl font-medium">{{ $plan['name'] }}</h3>
 
                     <div class="mt-5 flex flex-wrap items-end gap-2">
                         <strong
                             class="font-serif text-4xl font-medium text-[#eadbc4]">{{ $formatPrice($pricing['maintenance'][$key]) }}</strong>
-                        <span class="pb-1 text-sm text-white/45">{{ $currencyLabel }} / {{ $content['per_month'] }}</span>
+                        <span class="pb-1 text-sm text-white/65">{{ $currencyLabel }} / {{ $content['per_month'] }}</span>
                     </div>
 
                     <p class="mt-5 text-sm leading-7 text-white/60">{{ $plan['description'] }}</p>
@@ -338,12 +338,12 @@
             @endforeach
         </div>
 
-        <p class="mt-6 text-xs leading-6 text-white/40">{{ $content['maintenance_note'] }}</p>
+        <p class="mt-6 text-xs leading-6 text-white/65">{{ $content['maintenance_note'] }}</p>
     </section>
 
     <section class="mt-16 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">
                 {{ $content['transparency_eyebrow'] }}</p>
             <h2 class="mt-4 font-serif text-4xl font-medium leading-tight">{{ $content['transparency_title'] }}</h2>
         </div>
@@ -360,7 +360,7 @@
 
     <section class="mt-16 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
         <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">{{ $content['faq_eyebrow'] }}</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">{{ $content['faq_eyebrow'] }}</p>
             <h2 class="mt-4 font-serif text-4xl font-medium leading-tight">{{ $content['faq_title'] }}</h2>
         </div>
 
@@ -369,7 +369,7 @@
                 <details class="group rounded-[1.3rem] border border-black/10 bg-[#faf8f4] p-5">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-5 font-semibold">
                         <span>{{ $item['question'] }}</span>
-                        <span class="shrink-0 text-[#9a7440] transition group-open:rotate-45">+</span>
+                        <span class="shrink-0 text-[#805d2c] transition group-open:rotate-45">+</span>
                     </summary>
 
                     <p class="mt-4 max-w-3xl text-sm leading-7 text-black/60">{{ $item['answer'] }}</p>
@@ -382,7 +382,7 @@
         class="mt-16 overflow-hidden rounded-[2rem] border border-[#b28a52]/25 bg-gradient-to-br from-[#f5ede0] via-white to-[#f7f4ef] p-7 sm:p-10 lg:p-12">
         <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#9a7440]">{{ $content['cta_eyebrow'] }}
+                <p class="text-xs font-semibold uppercase tracking-[0.32em] text-[#805d2c]">{{ $content['cta_eyebrow'] }}
                 </p>
                 <h2 class="mt-4 max-w-3xl font-serif text-4xl font-medium leading-tight sm:text-5xl">
                     {{ $content['cta_title'] }}</h2>

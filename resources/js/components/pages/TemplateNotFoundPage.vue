@@ -1,7 +1,7 @@
 <template>
     <section class="flex min-h-[70vh] items-center bg-[#f7f4ef] px-6 py-20">
         <div class="mx-auto max-w-3xl text-center">
-            <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+            <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                 {{ content.eyebrow }}
             </p>
             <h1 class="mt-5 text-5xl font-semibold tracking-tight md:text-7xl">

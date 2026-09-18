@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#a67c3a] sm:tracking-[0.28em]">
+                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#805d2c] sm:tracking-[0.28em]">
                         {{ t.eyebrow }}
                     </p>
 
@@ -16,7 +16,7 @@
                     </p>
 
                     <div class="mt-8 rounded-[2rem] border border-black/10 bg-[#f7f4ef] p-6">
-                        <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#a67c3a]">
+                        <p class="text-sm font-bold uppercase tracking-[0.22em] text-[#805d2c]">
                             {{ t.importantTitle }}
                         </p>
                         <p class="mt-3 text-sm leading-7 text-black/65">
@@ -34,7 +34,7 @@
                     >
                         <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                             <div>
-                                <p class="text-sm font-semibold uppercase tracking-[0.25em]" :class="item.dark ? 'text-[#d8c3a5]' : 'text-[#a67c3a]'">
+                                <p class="text-sm font-semibold uppercase tracking-[0.25em]" :class="item.dark ? 'text-[#d8c3a5]' : 'text-[#805d2c]'">
                                     {{ item.eyebrow }}
                                 </p>
 

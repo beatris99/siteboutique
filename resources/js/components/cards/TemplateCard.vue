@@ -8,7 +8,7 @@
         <div class="p-5 sm:p-6">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#a67c3a]">
+                    <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ template.category }}
                     </p>
 
@@ -41,12 +41,12 @@
 
             <div class="mt-6 grid gap-3 rounded-2xl bg-[#f7f4ee] p-4 text-sm">
                 <div class="flex justify-between gap-4">
-                    <span class="text-black/50">Template developer</span>
+                    <span class="text-black/65">Template developer</span>
                     <strong>{{ formatPrice(template.developerPrice) }}</strong>
                 </div>
 
                 <div class="flex justify-between gap-4">
-                    <span class="text-black/50">Site făcut de mine</span>
+                    <span class="text-black/65">Site făcut de mine</span>
                     <strong>de la {{ formatPrice(template.buildPriceFrom) }}</strong>
                 </div>
             </div>
@@ -61,7 +61,7 @@
 
                 <button
                     type="button"
-                    class="inline-flex items-center justify-center rounded-full border border-black/10 px-5 py-3 text-sm font-semibold transition hover:border-[#a67c3a] hover:text-[#a67c3a]"
+                    class="inline-flex items-center justify-center rounded-full border border-black/10 px-5 py-3 text-sm font-semibold transition hover:border-[#a67c3a] hover:text-[#805d2c]"
                     @click="$emit('select-template', template.id)"
                 >
                     Alege modelul

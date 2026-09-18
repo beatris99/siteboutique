@@ -2,7 +2,7 @@
     <section class="bg-white px-4 py-12 sm:px-6 lg:py-16">
         <div class="mx-auto max-w-7xl">
             <div class="rounded-[2rem] border border-black/10 bg-[#f7f4ef] p-6 shadow-[0_18px_60px_rgba(22,32,51,0.06)] sm:p-8">
-                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#8b6f47]">
+                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#805d2c]">
                     {{ section.eyebrow }}
                 </p>
 
@@ -19,7 +19,7 @@
                         v-for="item in section.items"
                         :key="item.href"
                         :href="item.href"
-                        class="rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-[#171717] transition hover:-translate-y-0.5 hover:border-[#a67c3a] hover:text-[#8b6f47]"
+                        class="rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-[#171717] transition hover:-translate-y-0.5 hover:border-[#a67c3a] hover:text-[#805d2c]"
                     >
                         {{ item.label }}
                     </a>

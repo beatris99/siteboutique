@@ -9,7 +9,7 @@
 <div class="grid gap-5 md:grid-cols-2">
     @foreach(__('pages.work_process.steps') as $step)
         <article class="rounded-[1.6rem] border border-black/8 bg-[#f7f4ef] p-6">
-            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#8b6f47]">{{ $step['number'] }}</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#805d2c]">{{ $step['number'] }}</p>
             <h2 class="mt-3 text-2xl font-semibold">{{ $step['title'] }}</h2>
             <p class="mt-3 leading-7 text-black/60">{{ $step['description'] }}</p>
         </article>

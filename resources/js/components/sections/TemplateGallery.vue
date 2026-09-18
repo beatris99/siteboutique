@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
                 <div>
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ section.eyebrow }}
                     </p>
 
@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <p class="mt-6 text-sm text-black/40 sm:hidden">
+            <p class="mt-6 text-sm text-black/60 sm:hidden">
                 {{ section.mobile_hint || section.mobileHint }}
             </p>
 
@@ -48,7 +48,7 @@
 
                     <p
                         class="mt-2 text-xs leading-5"
-                        :class="selectedCategoryKey === category.key ? 'text-white/60' : 'text-black/50'"
+                        :class="selectedCategoryKey === category.key ? 'text-white/60' : 'text-black/65'"
                     >
                         {{ category.description }}
                     </p>
@@ -87,7 +87,7 @@
 
                         <div class="mt-5 grid gap-3 rounded-2xl bg-[#f7f4ef] p-4">
                             <div class="flex items-center justify-between gap-4 text-sm">
-                                <span class="text-black/50">
+                                <span class="text-black/65">
                                     {{ common.realization }}
                                 </span>
 
@@ -97,7 +97,7 @@
                             </div>
 
                             <div class="flex items-center justify-between gap-4 text-sm">
-                                <span class="text-black/50">
+                                <span class="text-black/65">
                                     {{ common.estimated_delivery || common.estimatedDelivery || 'Termen estimativ' }}
                                 </span>
 

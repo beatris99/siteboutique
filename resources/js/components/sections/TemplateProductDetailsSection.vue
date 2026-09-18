@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
                 <div>
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.eyebrow }}
                     </p>
                     <h2 class="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
@@ -14,7 +14,7 @@
                     </p>
                 </div>
                 <div class="rounded-[2rem] bg-black p-6 text-white sm:p-8">
-                    <p class="text-sm uppercase tracking-[0.25em] text-white/40">
+                    <p class="text-sm uppercase tracking-[0.25em] text-white/65">
                         {{ labels.service_eyebrow }}
                     </p>
                     <h3 class="mt-4 text-3xl font-semibold">
@@ -39,7 +39,7 @@
             </div>
             <div class="mt-10 grid gap-6 lg:grid-cols-3">
                 <article class="rounded-[2rem] bg-[#f7f4ef] p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.pages_label }}
                     </p>
                     <div class="mt-4 flex flex-wrap gap-2">
@@ -53,7 +53,7 @@
                     </div>
                 </article>
                 <article class="rounded-[2rem] bg-[#f7f4ef] p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.ideal_for_label }}
                     </p>
                     <div class="mt-4 flex flex-wrap gap-2">
@@ -67,7 +67,7 @@
                     </div>
                 </article>
                 <article class="rounded-[2rem] bg-[#f7f4ef] p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.timeline_label }}
                     </p>
                     <p class="mt-4 text-3xl font-semibold">

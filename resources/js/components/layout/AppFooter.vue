@@ -10,7 +10,7 @@
                     {{ footer.description }}
                 </p>
 
-                <p class="mt-6 text-sm text-white/40">
+                <p class="mt-6 text-sm text-white/65">
                     {{ footer.copyright }}
                 </p>
             </div>

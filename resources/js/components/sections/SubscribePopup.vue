@@ -55,7 +55,7 @@
                 <div class="overflow-y-auto p-5 sm:p-9">
                     <div class="sm:hidden">
                         <p
-                            class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                            class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#805d2c]"
                         >
                             {{ copy.eyebrow }}
                         </p>
@@ -100,7 +100,7 @@
                         @submit.prevent="handleSubmit"
                     >
                         <p
-                            class="hidden text-xs font-semibold uppercase tracking-[0.26em] text-[#a67c3a] sm:block"
+                            class="hidden text-xs font-semibold uppercase tracking-[0.26em] text-[#805d2c] sm:block"
                         >
                             {{ copy.form_eyebrow }}
                         </p>
@@ -131,7 +131,7 @@
                                 type="email"
                                 required
                                 :placeholder="copy.email_placeholder"
-                                class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3.5 text-[#171717] outline-none transition placeholder:text-black/35 focus:border-[#a67c3a] focus:shadow-[0_0_0_3px_rgba(166,124,58,0.12)]"
+                                class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3.5 text-[#171717] outline-none transition placeholder:text-black/60 focus:border-[#a67c3a] focus:shadow-[0_0_0_3px_rgba(166,124,58,0.12)]"
                                 autocomplete="email"
                             />
                         </label>
@@ -166,7 +166,7 @@
 
                         <button
                             type="button"
-                            class="mx-auto text-[13px] font-medium text-black/40 underline-offset-4 transition hover:text-black/70 hover:underline"
+                            class="mx-auto text-[13px] font-medium text-black/60 underline-offset-4 transition hover:text-black/70 hover:underline"
                             @click="decline"
                         >
                             {{ copy.decline }}

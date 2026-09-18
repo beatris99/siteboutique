@@ -6,7 +6,7 @@
             >
                 <div class="max-w-2xl">
                     <p
-                        class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#a67c3a]"
+                        class="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#805d2c]"
                     >
                         {{ copy.compact_eyebrow }}
                     </p>
@@ -57,7 +57,7 @@
                                 type="email"
                                 required
                                 :placeholder="copy.email_placeholder"
-                                class="min-w-0 flex-1 rounded-full border border-black/10 bg-[#f7f4ef] px-5 py-3.5 text-sm text-[#171717] outline-none placeholder:text-black/35 focus:border-[#a67c3a]"
+                                class="min-w-0 flex-1 rounded-full border border-black/10 bg-[#f7f4ef] px-5 py-3.5 text-sm text-[#171717] outline-none placeholder:text-black/60 focus:border-[#a67c3a]"
                                 autocomplete="email"
                             />
 
@@ -75,7 +75,7 @@
                         </div>
 
                         <label
-                            class="flex items-start gap-3 text-xs leading-5 text-black/50"
+                            class="flex items-start gap-3 text-xs leading-5 text-black/65"
                         >
                             <input
                                 v-model="consent"

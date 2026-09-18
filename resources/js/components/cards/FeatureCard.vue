@@ -15,7 +15,7 @@
                     {{ feature.name }}
                 </p>
 
-                <p class="mt-1 text-sm text-black/50">
+                <p class="mt-1 text-sm text-black/65">
                     {{ feature.description }}
                 </p>
             </div>

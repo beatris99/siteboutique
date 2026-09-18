@@ -48,7 +48,7 @@
 
                 <form v-else class="grid gap-5" @submit.prevent="handleSubmit">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#a67c3a]">
+                        <p class="text-xs font-semibold uppercase tracking-[0.25em] text-[#805d2c]">
                             {{ t.formEyebrow }}
                         </p>
                         <h3 class="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#171717] sm:text-4xl">

@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-7xl">
             <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
                 <div>
-                    <a href="/modele-site" class="text-sm text-black/50 transition hover:text-black">
+                    <a href="/modele-site" class="text-sm text-black/65 transition hover:text-black">
                         {{ labels.back }}
                     </a>
                     <p class="mt-8 inline-flex rounded-full border border-black/10 bg-white px-4 py-2 text-sm text-black/60">
@@ -30,7 +30,7 @@
             </div>
             <div class="mt-16 grid gap-6 md:grid-cols-3">
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.ideal_for }}
                     </p>
                     <div class="mt-5 flex flex-wrap gap-2">
@@ -40,7 +40,7 @@
                     </div>
                 </article>
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.pages }}
                     </p>
                     <div class="mt-5 flex flex-wrap gap-2">
@@ -50,7 +50,7 @@
                     </div>
                 </article>
                 <article class="rounded-[2rem] border border-black/10 bg-white p-6">
-                    <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                    <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                         {{ labels.quick_details }}
                     </p>
                     <div class="mt-5 grid gap-3 text-sm text-black/60">
@@ -70,12 +70,12 @@
                 </article>
             </div>
             <div class="mt-6 rounded-[2rem] border border-black/10 bg-white p-6">
-                <p class="text-sm uppercase tracking-[0.25em] text-[#8b6f47]">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#805d2c]">
                     {{ labels.includes }}
                 </p>
                 <ul class="mt-6 grid gap-4 md:grid-cols-2">
                     <li v-for="item in includesList" :key="item" class="flex gap-3 rounded-2xl bg-[#f7f4ef] p-4 text-sm text-black/60">
-                        <span class="text-[#8b6f47]">✓</span>
+                        <span class="text-[#805d2c]">✓</span>
                         <span>{{ item }}</span>
                     </li>
                 </ul>

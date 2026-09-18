@@ -32,7 +32,7 @@
     <div class="mt-7 grid gap-4 md:grid-cols-2">
         @foreach(__('pages.websites.approach') as $item)
             <div class="flex gap-3 rounded-[1.2rem] bg-white/80 p-5">
-                <span class="text-[#8b6f47]">◆</span>
+                <span class="text-[#805d2c]">◆</span>
                 <span class="text-black/70">{{ $item }}</span>
             </div>
         @endforeach
