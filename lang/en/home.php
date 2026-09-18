@@ -90,6 +90,8 @@ return [
                 'name_placeholder' => 'Your name',
                 'contact' => 'Phone or email',
                 'contact_placeholder' => 'How we can reach you',
+                'company' => 'Company / project, optional',
+                'company_placeholder' => 'E.g. salon, clinic, guesthouse, local service',
                 'message' => 'What do you have in mind?',
                 'message_placeholder' => 'E.g. I want a website for my salon, with appointments and a gallery of my work.',
                 'subscription_message' => 'I would like to discuss post-launch maintenance, support and ongoing development.',
